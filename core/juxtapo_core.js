@@ -1,5 +1,12 @@
 /**
- * @author david
+ * juxtapo JavaScript Library v0.3a
+ * http://juxtapo.net/
+ *
+ * Copyright (c) 2009 David Taylor (@davetayls)
+ * Licensed under the GNU v3 license.
+ * http://www.gnu.org/licenses/gpl.html
+ *
+ * @author @davetayls
  * @namespace juxtapo
  */
 var juxtapo = {};
@@ -27,7 +34,8 @@ var juxtapo = {};
 	function initStatus(){
 		// get current status
 	    s = juxtapo.utils.getQuery("status");
-	    if (s) { juxtapo.currentStatus = s; }	
+	    if (s) { juxtapo.currentStatus = s; }
+	    else { juxtapo.currentStatus = juxtapo.statuses.pause; }
 	};
 	
 	/* public */
@@ -36,16 +44,16 @@ var juxtapo = {};
 		designViews : { hidden: 0, semiTransparent: 1, opjuxtapo: 2 },
 
 		// Properties
-		container = null,
-		controller = null,
-		designlayout = null,
-		designvisible = false,
-		designCurrentImageIndex = 0,
-		designLayoutImages = [],  // list of layout images to place as the design overlay 
-		currentStatus = juxtapo.statuses.pause,
-		secondsBeforeRefresh = 2.5,
-		currentDesignView = juxtapo.designViews.hidden,
-		timerId = -1,
+		container : null,
+		controller : null,
+		designlayout : null,
+		designvisible : false,
+		designCurrentImageIndex : 0,
+		designLayoutImages : [],  // list of layout images to place as the design overlay 
+		currentStatus : 2,
+		secondsBeforeRefresh : 2.5,
+		currentDesignView : 0,
+		timerId : -1,
 		
 		// methods
 		init : function() {

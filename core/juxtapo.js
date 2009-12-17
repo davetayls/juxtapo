@@ -16,6 +16,7 @@ function getJsLocation(jsFileName){
 			return scriptTag.src.substring(0,scriptTag.src.lastIndexOf("/")+1);
 		}
 	}
+	return "";
 };
 
 var combinerJsLocation = getJsLocation("juxtapo.js");
@@ -31,6 +32,7 @@ function includeJs(){
 	for (var i=0;i< includes.length;i++){
 		document.write("<script type=\"text/javascript\" src=\"" + combinerJsLocation + includes[i] + "\"></script>");
 	}
+	return null;
 };
 includeJs();
 })();

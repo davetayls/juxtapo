@@ -17,7 +17,7 @@ juxtapo.designs = {};
 juxtapo.designs.LayoutTemplate = function(imageUrl,paths,style){
 	this.imageUrl = imageUrl;
 	this.paths = paths;
-	this.style = $.extend(juxtapo.designs.LayoutTemplate.defaultStyles,style);
+	this.style = $.extend({},juxtapo.designs.LayoutTemplate.defaultStyles,style);
 };
 juxtapo.designs.LayoutTemplate.prototype = {};
 juxtapo.designs.LayoutTemplate.prototype.imageUrl = '';
