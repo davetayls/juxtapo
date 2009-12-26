@@ -25,7 +25,7 @@ juxtapo.eh.init = function(){
 	document.getElementsByTagName("body")[0].appendChild(juxtapo.eh.errorsBox);
 	
 	juxtapo.eh.renderErrors();
-}
+};
 juxtapo.eh.logInfo = function(message){
 	juxtapo.eh.errors  += "<li class=\"juxtapo-info\">" + "[" + juxtapo.utils.date.toShortTimeString(new Date()) + "] " + message + "</li>";
 	juxtapo.eh.renderErrors();
@@ -38,7 +38,7 @@ juxtapo.eh.logError = function(err){
 	}
 	juxtapo.eh.hasError = true;
 	juxtapo.eh.renderErrors();
-}
+};
 juxtapo.eh.renderErrors = function(){
 	if (juxtapo.eh.errorsBox){	$(juxtapo.eh.errorsBox).html(juxtapo.eh.errors); }
 	if (juxtapo.eh.controller) {
@@ -54,7 +54,7 @@ juxtapo.eh.renderErrors = function(){
 				.html("e");
 		}
 	}
-}
+};
 juxtapo.eh.showErrorBox = function(b){
 	juxtapo.eh.errorsBoxVisible = b;
 	if (b){
@@ -62,8 +62,8 @@ juxtapo.eh.showErrorBox = function(b){
 	}else{
 		$(juxtapo.eh.errorsBox).hide(100);
 	}
-}
+};
 juxtapo.eh.toggleErrorBox = function(){
 	juxtapo.eh.showErrorBox(!juxtapo.eh.errorsBoxVisible);
-}
+};
 

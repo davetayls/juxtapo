@@ -41,7 +41,7 @@ juxtapo.designs.change = function(previous) {
     $("#design")
         .attr("src", nextLayout.imageUrl)
         .css(nextLayout.style);
-}
+};
 juxtapo.designs.back = function() {
     if (juxtapo.currentDesignView == juxtapo.designViews.hidden) {
         juxtapo.designs.show();
@@ -71,21 +71,21 @@ juxtapo.designs.forward = function() {
     } else {
         juxtapo.designs.hide();
     }
-}
+};
 juxtapo.designs.getDesignImageSettings = function() {
-    pathname = location.pathname.toLowerCase();
+	var href = location.href;
     for (var i = 0; i < juxtapo.designLayoutImages.length; i++) {
         layout = juxtapo.designLayoutImages[i];
         for (var p = 0; p < layout.paths.length; p++) {
             path = layout.paths[p].toLowerCase();
-            if (pathname == path) {
+            if (href.juxtapoContains(path)) {
                 juxtapo.designCurrentImageIndex = i;
                 return layout;
             }
         }
     };
     return '/images/layout-home.jpg';
-}
+};
 juxtapo.designs.hide = function() {
     $("#design").css("display", "none");
     juxtapo.designvisible = false;
@@ -110,7 +110,7 @@ juxtapo.designs.init = function(){
     // design layout
     juxtapo.designlayout = document.createElement("div");
     //$(juxtapo.designlayout).attr("style", "border: solid 1px #ccc; position: fixed; top:0; left:15px; width: 45px; height: 6px; font-weight: bold; text-align: center; padding: 3px; cursor: pointer; background-color: white; font-size: 7px; z-index: 2000;");
-	$(juxtapo.designlayout).attr("class","juxtapo-btn")
+	$(juxtapo.designlayout).attr("class","juxtapo-btn");
     juxtapo.designlayout.onclick = juxtapo.designs.toggle;
     juxtapo.designlayout.innerHTML = "D E S I G N";
     juxtapo.container.appendChild(juxtapo.designlayout);
@@ -139,7 +139,7 @@ juxtapo.designs.init = function(){
     }
 
 	
-}
+};
 juxtapo.designs.search = function(q){
 	var results = {designs:[],indexes:[]};
 	for(var i =0;i < juxtapo.designLayoutImages.length;i++){
@@ -155,12 +155,12 @@ juxtapo.designs.show = function() {
     $("#design").css({ display: "block", opacity: "1" });
     juxtapo.designvisible = true;
     juxtapo.currentDesignView = juxtapo.designViews.opjuxtapo;
-}
+};
 juxtapo.designs.semiTransparent = function() {
     $("#design").css({ display: "block", opacity: "0.5" });
     juxtapo.designvisible = true;
     juxtapo.currentDesignView = juxtapo.designViews.semiTransparent;
-}
+};
 juxtapo.designs.toggle = function() {
     juxtapo.designs.forward();
 };

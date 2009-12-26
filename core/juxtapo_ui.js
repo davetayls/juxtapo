@@ -11,7 +11,7 @@ juxtapo.ui.blackOut = {};
 juxtapo.ui.blackOut.element = document.createElement("div");
 juxtapo.ui.blackOut.show = function(){
 	
-}
+};
 
 juxtapo.ui.dropDown = function(top,left, width, height){
 	this.render(top,left, width, height);
@@ -22,14 +22,14 @@ juxtapo.ui.dropDown.prototype = {
 	controller:null,
 	contents:null,
 	expanded:null
-}
+};
 juxtapo.ui.dropDown.prototype.contentHtml = function(s){
 	if (typeof s == "undefined"){
 		return $(this.contents).html();
 	}else{
 		$(this.contents).html(s);
 	}
-}
+};
 juxtapo.ui.dropDown.prototype.render = function(top,left,width,height){
 	var dd = this;
 	// controller
@@ -45,7 +45,7 @@ juxtapo.ui.dropDown.prototype.render = function(top,left,width,height){
 	$(this.contents).attr("class", "juxtapo-lightBox");
 	document.getElementsByTagName("body")[0].appendChild(this.contents);
 	
-}
+};
 juxtapo.ui.dropDown.prototype.showErrorBox = function(b){
 	this.expanded = b;
 	if (b){
@@ -55,14 +55,14 @@ juxtapo.ui.dropDown.prototype.showErrorBox = function(b){
 	}else{
 		$(this.contents).hide(100);
 	}
-}
+};
 juxtapo.ui.dropDown.prototype.text = function(s){
 	if (typeof s == "undefined"){
 		return $(this.controller).html();
 	}else{
 		$(this.controller).html(s);
 	}
-}
+};
 juxtapo.ui.dropDown.prototype.toggleErrorBox = function(){
 	this.showErrorBox(!this.expanded);
-}
+};
