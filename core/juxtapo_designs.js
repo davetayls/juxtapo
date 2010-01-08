@@ -73,7 +73,7 @@ juxtapo.designs.forward = function() {
     }
 };
 juxtapo.designs.getDesignImageSettings = function() {
-	var href = location.href;
+	var href = location.href.toLowerCase();;
     for (var i = 0; i < juxtapo.designLayoutImages.length; i++) {
         layout = juxtapo.designLayoutImages[i];
         for (var p = 0; p < layout.paths.length; p++) {
