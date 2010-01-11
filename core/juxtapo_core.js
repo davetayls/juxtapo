@@ -67,7 +67,9 @@ var juxtapo = {};
 		        juxtapo.control.init();
 		    }
 			juxtapo.eh.init();
-			juxtapo.thumbs.init();	
+			juxtapo.thumbs.init();
+			
+			juxtapo.utils.getKeyCombination("13+shift");	
 		},
 
 		/**
@@ -94,7 +96,7 @@ juxtapo.onBody_KeyDown = function(e) {
     if (window.event) keycode = window.event.keyCode;
     else if (e) keycode = e.which;
     else return true;
-
+	
     // Check if user presses Ctl+. (ie Ctl+>)
     if (e.ctrlKey && (keycode == 190 || keycode == 39)) {
 		if (e.altKey){
@@ -152,91 +154,6 @@ juxtapo.onMouseMove = function() {
 };
 	
 })();
-
-
-/*
- * juxtapo.control
- */
-juxtapo.control = {};
-juxtapo.control.init = function(){
-    // controller
-    juxtapo.controller = document.createElement("div");
-    //$(juxtapo.controller).attr("style", "border: solid 1px #ccc; position: fixed; top:0; left:0; width: 5px; height: 6px; font-weight: bold; text-align: center; padding: 3px; cursor: pointer; background-color: white; font-size: 5px; z-index: 2000;");
-	$(juxtapo.controller).attr("class","juxtapo-btn");
-    juxtapo.controller.onclick = juxtapo.control.toggle;
-    juxtapo.container.appendChild(juxtapo.controller);	
-
-    window.onmousemove = juxtapo.onMouseMove;
-    if (juxtapo.currentStatus == juxtapo.statuses.pause) {
-        juxtapo.control.pause();
-    } else {
-        juxtapo.control.play();
-    }
-
-};
-juxtapo.control.play = function() {
-    juxtapo.currentStatus = juxtapo.statuses.play;
-    juxtapo.controller.innerHTML = "|&nbsp;|";
-    juxtapo.timerId = setTimeout('juxtapo.control.reload()', juxtapo.secondsBeforeRefresh * 1000);
-};
-juxtapo.control.pause = function() {
-    juxtapo.currentStatus = juxtapo.statuses.pause;
-    juxtapo.controller.innerHTML = ">";
-    clearTimeout(juxtapo.timerId);
-    //reloadUrl = "http://" + location.host + location.pathname + "?status=" + juxtapo.currentStatus + "&design=" + juxtapo.designvisible + "&v=" + $(document).scrollTop() + "&dv=" + juxtapo.currentDesignView;
-    //location.href = reloadUrl;
-    
-};
-juxtapo.control.reload = function() {
-    if (juxtapo.currentStatus == juxtapo.statuses.play) {
-        reloadUrl = "http://" + location.host + location.pathname + "?r=" + new Date().toString() + "&status=" + juxtapo.currentStatus + "&design=" + juxtapo.designvisible + "&v=" + $(document).scrollTop() + "&dv=" + juxtapo.currentDesignView + "&di=" + juxtapo.designCurrentImageIndex;
-        location.href = reloadUrl;
-    }
-};
-
-juxtapo.control.toggle = function() {
-    if (juxtapo.currentStatus == juxtapo.statuses.pause) {
-        juxtapo.control.play();
-    } else {
-        juxtapo.control.pause();
-    }
-};
-
-/*
-    juxtapo.thumbs
------------------------------------------------------------*/
-juxtapo.thumbs = {};
-juxtapo.thumbs.dropDown = null;
-juxtapo.thumbs.rendered = false;
-juxtapo.thumbs.init = function(){
-	var designs = new juxtapo.ui.dropDown(0,70, 920, 500);
-	this.dropDown = designs;
-	designs.text("+");
-	var thumbs = this;
-	designs.beforeOpen = function(){
-		if (!thumbs.rendered){
-			thumbs.renderThumbs(designs);
-		}
-	};
-	designs.afterOpen = function(){
-		$("#juxtapo-searchDesigns").focus();
-	};
-};
-juxtapo.thumbs.renderThumbs = function(designsDropDown){
-	juxtapo.eh.logInfo("thumbs rendering");
-	var designList; designList = "";
-	for (var i=0;i<juxtapo.designLayoutImages.length;i++){
-		designList += '<li id="juxtapo-design-' + i + '"><a style="display:block;" href="' + juxtapo.designLayoutImages[i].paths[0] + '"><img height="220" src="' + juxtapo.designLayoutImages[i].imageUrl + '" alt="design image" /><span>' + juxtapo.designLayoutImages[i].paths[0] + '</span></a></li>';
-	}
-	designsDropDown.contentHtml('<div id="juxtapo-designsToolbar"><input id="juxtapo-searchDesigns" type="text" /></div><ul id="juxtapo-designsDD">' + designList + '</ul>');
-	$("#juxtapo-searchDesigns").keyup(this.searchKeyup);	
-	this.rendered = true;
-};
-juxtapo.thumbs.searchKeyup = function(e){
-	juxtapo.designs.filterBySearch($("#juxtapo-searchDesigns").val());
-};
-
-
 
 if (window.addEventListener) {
     window.addEventListener('load', juxtapo.init, false);

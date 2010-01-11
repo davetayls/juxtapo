@@ -37,6 +37,24 @@
 			}
 			return null;
 		},
+		getKeyCombination : function(combination){
+			var items = combination.split("+");
+			var ret = {
+				ctrl: false,
+				keycode: -1,
+				shift: false
+			};
+			for (var i=0;i<items.length;i++){
+				var itm = items[i].toLowerCase();
+				if (isNaN(parseInt(itm))){
+					ret.shift = (ret.shift || itm == "shift");
+					ret.ctrl = (ret.ctrl || itm == "ctrl");
+				}else{
+					keycode = parseInt(itm);	
+				}
+			}
+			return ret;
+		},
 		String : {
 			contains : function(s,containing){
 				return s.indexOf(containing) > -1;
