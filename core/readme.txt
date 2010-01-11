@@ -1,5 +1,6 @@
 juxapo Installation
 ===================
+View online at juxtapo.net
 
 I have designed juxtapo to be as simple as possible to integrate and use 
 and so this will be short:
@@ -13,8 +14,8 @@ Initial Setup
 =============
 
 Juxtapo gets it's settings from the juxtapo.config.js file within 
-the juxtapo directory. We'll look at more in depth customisation 
-later but initially this will get you going.
+the juxtapo directory. More in depth customisation details can be
+found on the juxtapo website.
 
 1. Setting the default overlay styles
 
