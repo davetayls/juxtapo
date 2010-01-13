@@ -96,8 +96,9 @@ juxtapo.onBody_KeyDown = function(e) {
     if (window.event) keycode = window.event.keyCode;
     else if (e) keycode = e.which;
     else return true;
-	
-    // Check if user presses Ctl+. (ie Ctl+>)
+    juxtapo.eh.logInfo("keycode is: "+keycode);
+
+    // Check if user presses Ctl+. (ie Ctl+>) or Ctl+right
     if (e.ctrlKey && (keycode == 190 || keycode == 39)) {
 		if (e.altKey){
 			var currentLeft = parseInt($("#design").css("margin-left"));
@@ -107,7 +108,7 @@ juxtapo.onBody_KeyDown = function(e) {
 			return false;
 		}
     }
-    // Check if user presses Ctl+, (ie Ctl+<)
+    // Check if user presses Ctl+, (ie Ctl+<) or Ctl+left
     if (e.ctrlKey && (keycode == 188 || keycode == 37)) {
 		if (e.altKey){
 			var currentLeft = parseInt($("#design").css("margin-left"));
@@ -145,6 +146,7 @@ juxtapo.onBody_KeyDown = function(e) {
     else {
         return true;
     }
+    
 };
 juxtapo.onMouseMove = function() {
     clearTimeout(juxtapo.timerId);
