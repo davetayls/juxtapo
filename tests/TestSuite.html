@@ -4,15 +4,109 @@
         <script src="../lib/jquery-1.3.2.min.js"></script>
         <link rel="stylesheet" href="qunit.css" type="text/css" media="screen" />
         <script type="text/javascript" src="qunit.js"></script>
+		<script type="text/javascript" src="../core/juxtapo.js"></script>
 		<script type="text/javascript" src="test.juxtapo_core.js"></script>
         <script>
             $(document).ready(function(){
-				testJuxtapoCore();            
+				
+			    module("Core");
+			    
+			    test("addTemplate", function(){
+					var t  = juxtapo.addTemplate("test.htm","test.png",{});
+					var expected = new juxtapo.designs.LayoutTemplate("test.png",["test.htm"],{});
+			        same(t,expected,"We should have a new template");
+					juxtapo.addTemplate("test2.htm","test2.png",{});
+					juxtapo.addTemplate("test3.htm","test3.png",{});
+					equals(juxtapo.designLayoutImages.length,3,"There should be 3 templates")
+			    });
+			    
+			    module("Designs");
+			    
+			    test("getDesignImageSettings", function(){
+			        ok(
+						juxtapo.designs.getDesignImageSettings("test.htm"),
+						"We should get image settings back"
+					);
+			        ok(
+						juxtapo.designs.getDesignImageSettings("TeSt.htm"),
+						"url should be case insensitive"
+					);
+			        same(
+						juxtapo.designs.getDesignImageSettings("nofile.htm"),
+						juxtapo.designLayoutImages[0],
+						"When there is no match we should get the first template back"
+					);
+			
+			    });
+				
+				test("Setting transparency",function(){
+					juxtapo.designs.show();
+					equals(
+						juxtapo.currentDesignView, 
+						juxtapo.designViews.opaque,
+						"juxtapo.designs.show() - Design view should be opaque(2)"
+						)
+					juxtapo.designs.semiTransparent();
+					equals(
+						juxtapo.currentDesignView, 
+						juxtapo.designViews.semiTransparent,
+						"juxtapo.designs.semiTransparent() - Design view should be semiTransparent(1)"
+						)
+					juxtapo.designs.hide();
+					equals(
+						juxtapo.currentDesignView, 
+						juxtapo.designViews.hidden,
+						"juxtapo.designs.hide() - Design view should be hidden(0)"
+						)
+
+				});
+				test("Switching transparency",function(){
+					juxtapo.designs.forward();
+					equals(
+						juxtapo.currentDesignView, 
+						juxtapo.designViews.semiTransparent,
+						"juxtapo.designs.forward() - Design view should be semiTransparent(1)"
+						)
+					juxtapo.designs.forward();
+					equals(
+						juxtapo.currentDesignView, 
+						juxtapo.designViews.opaque,
+						"juxtapo.designs.forward() - Design view should be opaque(2)"
+						)
+					juxtapo.designs.forward();
+					equals(
+						juxtapo.currentDesignView, 
+						juxtapo.designViews.hidden,
+						"juxtapo.designs.forward() - Design view should be hidden(0)"
+						)
+					juxtapo.designs.back();
+					equals(
+						juxtapo.currentDesignView, 
+						juxtapo.designViews.opaque,
+						"juxtapo.designs.back() - Design view should be opaque(2)"
+						)
+					juxtapo.designs.back();
+					equals(
+						juxtapo.currentDesignView, 
+						juxtapo.designViews.semiTransparent,
+						"juxtapo.designs.back() - Design view should be semiTransparent(1)"
+						)
+					juxtapo.designs.back();
+					equals(
+						juxtapo.currentDesignView, 
+						juxtapo.designViews.hidden,
+						"juxtapo.designs.back() - Design view should be hidden(0)"
+						)
+				});
+				
+
+
+
             });
         </script>
     </head>
     <body>
-        <h1 id="qunit-header">QUnit example</h1>
+        <h1 id="qunit-header">juxtapo unit test suite</h1>
         <h2 id="qunit-banner"></h2>
         <h2 id="qunit-userAgent"></h2>
         <ol id="qunit-tests">

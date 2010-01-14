@@ -41,7 +41,7 @@ var juxtapo = {};
 	/* public */
 	juxtapo = {
 		statuses : { off: 0, play: 1, pause: 2 },
-		designViews : { hidden: 0, semiTransparent: 1, opjuxtapo: 2 },
+		designViews : { hidden: 0, semiTransparent: 1, opaque: 2 },
 
 		// Properties
 		container : null,

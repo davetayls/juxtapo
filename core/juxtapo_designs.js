@@ -72,8 +72,8 @@ juxtapo.designs.forward = function() {
         juxtapo.designs.hide();
     }
 };
-juxtapo.designs.getDesignImageSettings = function() {
-	var href = location.href.toLowerCase();;
+juxtapo.designs.getDesignImageSettings = function(url) {
+	var href = url.toLowerCase();;
     for (var i = 0; i < juxtapo.designLayoutImages.length; i++) {
         layout = juxtapo.designLayoutImages[i];
         for (var p = 0; p < layout.paths.length; p++) {
@@ -84,7 +84,7 @@ juxtapo.designs.getDesignImageSettings = function() {
             }
         }
     };
-    return '/images/layout-home.jpg';
+    return juxtapo.designLayoutImages[0];
 };
 juxtapo.designs.hide = function() {
     $("#design").css("display", "none");
@@ -97,7 +97,7 @@ juxtapo.designs.init = function(){
         juxtapo.designCurrentImageIndex = parseInt(juxtapo.utils.getQuery("di"));
         designImageSettings = juxtapo.designLayoutImages[juxtapo.designCurrentImageIndex];
     } else {
-        designImageSettings = juxtapo.designs.getDesignImageSettings();
+        designImageSettings = juxtapo.designs.getDesignImageSettings(location.href);
     }
     if (designImageSettings) {
         $("body").append('<img id="design" src="' + designImageSettings.imageUrl + '" alt="design image" />');
@@ -154,7 +154,8 @@ juxtapo.designs.search = function(q){
 juxtapo.designs.show = function() {
     $("#design").css({ display: "block", opacity: "1" });
     juxtapo.designvisible = true;
-    juxtapo.currentDesignView = juxtapo.designViews.opjuxtapo;
+    juxtapo.currentDesignView = juxtapo.designViews.opaque;
+	return juxtapo.currentDesignView;
 };
 juxtapo.designs.semiTransparent = function() {
     $("#design").css({ display: "block", opacity: "0.5" });
