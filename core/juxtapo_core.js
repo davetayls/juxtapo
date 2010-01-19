@@ -101,57 +101,57 @@ juxtapo.onBody_KeyDown = function(e) {
     if (window.event) keycode = window.event.keyCode;
     else if (e) keycode = e.which;
     else return true;
-    juxtapo.eh.logInfo("keycode is: "+keycode);
 
-    // Check if user presses Ctl+. (ie Ctl+>) or Ctl+right
-    if (e.ctrlKey && (keycode == 190 || keycode == 39)) {
-		if (e.altKey){
-			var currentLeft = parseInt($("#design").css("margin-left"));
-			$("#design").css("margin-left", currentLeft + 1);
-		}else{
-			juxtapo.designs.forward();
-			return false;
-		}
+    juxtapo.eh.logInfo("keycode is: "+keycode); //##DEBUG
+   
+    // Check if user presses Ctl+; or Ctl+right
+    if (e.ctrlKey && (keycode == 59 || keycode == 39)) {
+		juxtapo.designs.forward();
+		return false;
     }
-    // Check if user presses Ctl+, (ie Ctl+<) or Ctl+left
-    if (e.ctrlKey && (keycode == 188 || keycode == 37)) {
-		if (e.altKey){
-			var currentLeft = parseInt($("#design").css("margin-left"));
-			$("#design").css("margin-left", currentLeft - 1);
-		}else{
-			juxtapo.designs.back();
-			return false;
-		}
+    // Check if user presses Ctl+h or Ctl+left
+    if (e.ctrlKey && (keycode == 72 || keycode == 37)) {
+		juxtapo.designs.back();
+		return false;
     }
     // Check if user presses Ctl+up-arrow
     if (e.ctrlKey && keycode == 38) {
-		if (e.altKey){
-			var currentTop = parseInt($("#design").css("top"));
-			$("#design").css("top", currentTop - 1);
-		}else{
-			juxtapo.designs.change(true);
-			return false;
-		}
+		juxtapo.designs.change(true);
+		return false;
     }
     // Check if user presses Ctl+down-arrow
     if (e.ctrlKey && keycode == 40) {
-		if (e.altKey){
-			var currentTop = parseInt($("#design").css("top"));
-			$("#design").css("top", currentTop + 1);
-		}else{
-			juxtapo.designs.change(false);
-			return false;
-		}
+		juxtapo.designs.change(false);
+		return false;
     }
     // Ctl+Space
-    else if (e.ctrlKey && keycode == 32) {
+    if (e.ctrlKey && keycode == 32) {
         juxtapo.control.toggle();
         return false;
     }
-    else {
-        return true;
+    // nudge designs
+    if (e.ctrlKey && keycode == 73) {
+    	var pixels = e.shiftKey ? 1 : 25;
+    	juxtapo.designs.nudge("top",pixels);
+        return false;
+    }
+    if (e.ctrlKey && keycode == 76) {
+    	var pixels = e.shiftKey ? 1 : 25;
+    	juxtapo.designs.nudge("right",pixels);
+        return false;
+    }
+    if (e.ctrlKey && keycode == 75) {
+    	var pixels = e.shiftKey ? 1 : 25;
+    	juxtapo.designs.nudge("bottom",pixels);
+        return false;
+    }
+    if (e.ctrlKey && keycode == 74) {
+    	var pixels = e.shiftKey ? 1 : 25;
+    	juxtapo.designs.nudge("left",pixels);
+        return false;
     }
     
+    return true;    
 };
 juxtapo.onMouseMove = function() {
     clearTimeout(juxtapo.timerId);
