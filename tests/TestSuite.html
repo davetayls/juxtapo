@@ -7,10 +7,15 @@
 		<script type="text/javascript" src="../core/juxtapo.js"></script>
 		<script type="text/javascript" src="test.juxtapo_core.js"></script>
         <script>
-            $(document).ready(function(){
+        	
+            juxtapo.initComplete = function(){
 				
 			    module("Core");
-			    
+
+				test("init",function(){
+					ok(true,"initComplete");
+				});			    
+
 			    test("addTemplate", function(){
 					var t  = juxtapo.addTemplate("test.htm","test.png",{});
 					var expected = new juxtapo.designs.LayoutTemplate("test.png",["test.htm"],{});
@@ -99,10 +104,104 @@
 						)
 				});
 				
+				test("Changing Template",function(){
+					equals(
+						juxtapo.designCurrentImageIndex,
+						0,
+						"Current Template should be 0"
+					);
+					juxtapo.designs.change()
+					equals(
+						juxtapo.designCurrentImageIndex,
+						1,
+						"Next Template (should be 1)"
+					);
+					juxtapo.designs.change()
+					equals(
+						juxtapo.designCurrentImageIndex,
+						2,
+						"Next Template (should be 2)"
+					);
+					juxtapo.designs.change(true)
+					equals(
+						juxtapo.designCurrentImageIndex,
+						1,
+						"Previous Template (should be 1)"
+					);
+				});
+				
+				test("search",function(){
+					same(
+						juxtapo.designs.search(""),
+						{designs:[],indexes:[]},
+						"Blank search should return an object with designs and indexes properties."
+					);
+					var results = juxtapo.designs.search("test");
+					ok(results,"Search for test should not be null");
+					equals(
+						results.designs.length,
+						3,
+						"Search for test should give 3 design results"
+					);
+					equals(
+						results.indexes.length,
+						3,
+						"Search for test should give 3 indexes results"
+					);
+				});
 
+				/*
+				 * Control
+				 -----------------------------------------------*/
+			    module("Control");
+				test("Control Init",function(){
+					ok(juxtapo.control.initCompleted,"Control has initialised")
+					equals(typeof(juxtapo.controller),"object","Controller element exists");
+					ok(juxtapo.controller.onclick,"Controller on click added");
+				});
 
+				/*
+				 * Error handling
+				 -----------------------------------------------*/
+				module("Error handling");
+				test("init",function(){
+					ok(juxtapo.eh.initCompleted,"Error handling init has completed");
+					ok(juxtapo.eh.controller,"controller has been created");
+					ok(juxtapo.eh.errorsBox,"Errors box has been created");
+				});
+				test("logInfo",function(){
+					var log = juxtapo.eh.logInfo("here's some information");
+					ok(!juxtapo.eh.hasError,"Should not think there has been an error after log info");
+					equals(
+						log,
+						juxtapo.eh.errors,
+						"logInfo should return the current list of errors"
+					);
+					juxtapo.eh.logError("an error has occured");
+					ok(juxtapo.eh.hasError,"Should now have set the hasError flag");
+				});
+				
+				/*
+				 * thumbs
+				 -----------------------------------------------*/
+				module("Thumbs");
+				test("dropDown", function(){
+					ok(juxtapo.thumbs.dropDown,"The dropDown should have been created");
+					equals(juxtapo.thumbs.dropDown.text(),"+","drop down text should be a plus sign");
+					equals(
+						juxtapo.thumbs.dropDown.show(),
+						true,
+						"drop down expanded flag should be true"
+					);
+					equals(
+						juxtapo.thumbs.dropDown.show(false),
+						false,
+						"drop down expanded flag should be false"
+					);
+				});
+				
 
-            });
+            };
         </script>
     </head>
     <body>

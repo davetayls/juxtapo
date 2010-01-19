@@ -46,13 +46,13 @@ var juxtapo = {};
 		// Properties
 		container : null,
 		controller : null,
+		currentDesignView : 0,
+		currentStatus : 2,
 		designlayout : null,
 		designvisible : false,
 		designCurrentImageIndex : 0,
 		designLayoutImages : [],  // list of layout images to place as the design overlay 
-		currentStatus : 2,
 		secondsBeforeRefresh : 2.5,
-		currentDesignView : 0,
 		timerId : -1,
 		
 		// methods
@@ -69,7 +69,9 @@ var juxtapo = {};
 			juxtapo.eh.init();
 			juxtapo.thumbs.init();
 			
-			juxtapo.utils.getKeyCombination("13+shift");	
+			juxtapo.utils.getKeyCombination("13+shift");
+			
+			if (juxtapo.initComplete) juxtapo.initComplete();	
 		},
 
 		/**
@@ -83,7 +85,10 @@ var juxtapo = {};
 			var t = new juxtapo.designs.LayoutTemplate(imageUrl,[path],style);
 			this.designLayoutImages.push(t);
 			return t;
-		}
+		},
+		
+		// events
+		initComplete:null
 		
 		
 	};
@@ -151,7 +156,7 @@ juxtapo.onBody_KeyDown = function(e) {
 juxtapo.onMouseMove = function() {
     clearTimeout(juxtapo.timerId);
     if (juxtapo.currentStatus == juxtapo.statuses.play) {
-        timerId = setTimeout('juxtapo.control.reload()', juxtapo.secondsBeforeRefresh * 1000);
+        juxtapo.timerId = setTimeout('juxtapo.control.reload()', juxtapo.secondsBeforeRefresh * 1000);
     }
 };
 	

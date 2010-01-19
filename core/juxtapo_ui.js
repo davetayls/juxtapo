@@ -32,21 +32,21 @@ juxtapo.ui.dropDown.prototype.contentHtml = function(s){
 };
 juxtapo.ui.dropDown.prototype.render = function(top,left,width,height){
 	var dd = this;
+
 	// controller
 	this.controller = document.createElement("div");
-	//$(this.controller).attr("style", "border: solid 1px #ccc; position: fixed; top:" + top + "px; left: " + left + "px; width: 5px; height: 6px; font-weight: bold; text-align: center; padding: 3px; cursor: pointer; background-color: white; font-size: 9px; z-index: 2000;");
 	$(this.controller).attr("class","juxtapo-dropDown");
-	this.controller.onclick = function(){ dd.toggleErrorBox(); };
+	this.controller.onclick = function(){ dd.toggleShow(); };
 	juxtapo.container.appendChild(this.controller);
 
-	// errors
+	// pop up
 	this.contents = document.createElement("div");
-	//var contentStyle = "border: solid 1px #ccc; display: none; position: fixed; top:" + (top + 15) + "px; left:" + left + "px; width: " + width + "px; height: " + height + "px; font-weight: bold; text-align: left; padding: 3px; background-color: white; font-size: 11px; z-index: 2000; overflow: auto;";
 	$(this.contents).attr("class", "juxtapo-lightBox");
 	document.getElementsByTagName("body")[0].appendChild(this.contents);
 	
 };
-juxtapo.ui.dropDown.prototype.showErrorBox = function(b){
+juxtapo.ui.dropDown.prototype.show = function(b){
+	if (typeof(b)=="undefined") b = true;
 	this.expanded = b;
 	if (b){
 		if (this.beforeOpen) { this.beforeOpen(); }
@@ -55,6 +55,7 @@ juxtapo.ui.dropDown.prototype.showErrorBox = function(b){
 	}else{
 		$(this.contents).hide(100);
 	}
+	return this.expanded;
 };
 juxtapo.ui.dropDown.prototype.text = function(s){
 	if (typeof s == "undefined"){
@@ -63,6 +64,6 @@ juxtapo.ui.dropDown.prototype.text = function(s){
 		$(this.controller).html(s);
 	}
 };
-juxtapo.ui.dropDown.prototype.toggleErrorBox = function(){
+juxtapo.ui.dropDown.prototype.toggleShow = function(){
 	this.showErrorBox(!this.expanded);
 };
