@@ -41,7 +41,7 @@
 			var items = combination.split("+");
 			var ret = {
 				ctrl: false,
-				keycode: -1,
+				keyCode: -1,
 				shift: false
 			};
 			for (var i=0;i<items.length;i++){
@@ -50,7 +50,7 @@
 					ret.shift = (ret.shift || itm == "shift");
 					ret.ctrl = (ret.ctrl || itm == "ctrl");
 				}else{
-					keycode = parseInt(itm);	
+					ret.keyCode = parseInt(itm);	
 				}
 			}
 			return ret;

@@ -198,8 +198,94 @@
 						false,
 						"drop down expanded flag should be false"
 					);
+					equals(
+						juxtapo.thumbs.dropDown.toggleShow(),
+						true,
+						"drop down expanded flag should be true"
+					);
+				});
+				test("thumbnails", function(){
+					equals(juxtapo.thumbs.rendered,true,"thumbnails should be rendered because the dropdown has been shown");
+					var filter = juxtapo.designs.filterBySearch("2");
+					ok(filter,"filter has returned an object");
+					equals(
+						filter.results.indexes.length,
+						1,
+						"filter should have returned 1 result"
+					);
 				});
 				
+				/*
+				 * ui
+				 -----------------------------------------------*/
+				module("ui");
+
+
+				/*
+				 * utils
+				 -----------------------------------------------*/
+				module("utils");
+				test("date",function(){
+					var testDate = new Date("23 Dec 2010, 10:20:30");
+					equals(
+						juxtapo.utils.date.toShortTimeString(testDate),
+						"10:20:30:0",
+						"to short time string"
+					);
+				});
+				test("getJsLocation",function(){
+					ok(
+						juxtapo.utils.getJsLocation("juxtapo.js"),
+						"should find the juxtapo js file"
+					);
+					equals(
+						juxtapo.utils.getJsLocation("notincluded.js"),
+						null,
+						"return null for a file which isn't included"
+					);
+					
+				});
+				test("getKeyCombination ",function(){
+					same(
+						juxtapo.utils.getKeyCombination("23+shift"),
+						{ ctrl:false,keyCode:23,shift:true },
+						"should return an object with shift true and the key code"
+					);
+					same(
+						juxtapo.utils.getKeyCombination("23+ctrl"),
+						{ ctrl:true,keyCode:23,shift:false },
+						"should return an object with ctrl true and the key code"
+					);
+					same(
+						juxtapo.utils.getKeyCombination("23+shift+ctrl"),
+						{ ctrl:true,keyCode:23,shift:true },
+						"should return an object with shift and ctrl true and the key code"
+					);
+				});
+				test("Strings",function(){
+					equals(
+						juxtapo.utils.String.contains("stringabcstring","abc"),
+						true,
+						"The string should contain abc"
+					);
+					equals(
+						juxtapo.utils.String.contains("stringABCstring","abc"),
+						false,
+						"The string should not contain abs as this is case sensitive"
+					);
+					equals(
+						juxtapo.utils.String.contains("stringstring","abc"),
+						false,
+						"The string should not contain abc at all"
+					);
+					equals(
+						"stringabcstring".juxtapoContains("abc"),
+						true,
+						"Contains function should also be available through String.juxtapoContains()"
+					);
+				});
+
+
 
             };
         </script>

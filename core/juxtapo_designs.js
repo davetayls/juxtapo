@@ -30,16 +30,19 @@
 		        .css(nextLayout.style);
 		},
 		filterBySearch : function(q){
+			var results = null;
+			var thumbs = [];
 			if (q == "") {
 				$("#juxtapo-designsDD li").show();
 			}
 			else {
-				var results = this.search(q);
+				results = this.search(q);
 				$("#juxtapo-designsDD li").hide();
 				for (var i = 0; i < results.indexes.length; i++) {
-					$("#juxtapo-design-" + results.indexes[i]).show();
+					thumbs.push($("#juxtapo-design-" + results.indexes[i]).show().get());
 				}
 			}
+			return {"q":q,"results":results,"thumbs":thumbs};
 		},
 		forward : function() {
 		    if (juxtapo.currentDesignView == juxtapo.designViews.hidden) {

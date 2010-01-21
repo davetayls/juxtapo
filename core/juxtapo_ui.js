@@ -65,5 +65,5 @@ juxtapo.ui.dropDown.prototype.text = function(s){
 	}
 };
 juxtapo.ui.dropDown.prototype.toggleShow = function(){
-	this.showErrorBox(!this.expanded);
+	return this.show(!this.expanded);
 };
