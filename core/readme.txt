@@ -1,7 +1,5 @@
 juxapo Installation
 ===================
-View online at juxtapo.net
-
 I have designed juxtapo to be as simple as possible to integrate and use 
 and so this will be short:
 
@@ -9,6 +7,13 @@ and so this will be short:
 2. Extract the files in to your website root 
    (doesn't need to be in the root, just needs to be accessible)
 3. Include a script reference to the juxtapo.js file within your page
+
+Pre-requisites
+==============
+juxtapo currently utilises the jQuery library for much of it's functionality.
+If you don't already have this library included within your page then you will 
+need to add a reference to it. It has been added to the lib folder so you don't
+have to download it.
 
 Initial Setup
 =============

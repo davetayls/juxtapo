@@ -1,7 +1,8 @@
 del release\*.* /Q/S
-copy core\*.js release\
-copy core\*.css release\
-copy core\readme.txt release\
+xcopy core\*.js release\core\ /e
+xcopy core\*.css release\core\ /e
+copy core\readme.txt release\core\
+xcopy lib\*.* release\lib\ /e
 xcopy sample\*.* release\sample\ /e
-jsCombiner "C:\Projects\juxtapo\release\"
+jsCombiner "C:\Projects\juxtapo\release\core\"
 pause
