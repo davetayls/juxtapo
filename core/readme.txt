@@ -1,5 +1,13 @@
-juxapo Installation
-===================
+juxtapo JavaScript Library v0.3a
+http://juxtapo.net/
+
+Copyright (c) 2009 David Taylor (@davetayls)
+Licensed under the GNU v3 license.
+http://www.gnu.org/licenses/gpl.html
+
+
+Installation
+============
 I have designed juxtapo to be as simple as possible to integrate and use 
 and so this will be short:
 
@@ -7,6 +15,7 @@ and so this will be short:
 2. Extract the files in to your website root 
    (doesn't need to be in the root, just needs to be accessible)
 3. Include a script reference to the juxtapo.js file within your page
+4. Add your templates to the juxtapo.config.js file
 
 Pre-requisites
 ==============
@@ -17,10 +26,8 @@ have to download it.
 
 Initial Setup
 =============
-
 Juxtapo gets it's settings from the juxtapo.config.js file within 
-the juxtapo directory. More in depth customisation details can be
-found on the juxtapo website.
+the juxtapo directory.
 
 1. Setting the default overlay styles
 
@@ -38,7 +45,7 @@ found on the juxtapo website.
 
 2. For each page which has a corresponding design image add the following:
 
-	juxtapo.addTemplate(pageUrl,designUrl);
+	juxtapo.addTemplate(pageUrl,designUrl,style);
 
 	@param pageUrl {String}
 	this is the absolute or partial url of the page which you are matching a design to. 
@@ -61,4 +68,16 @@ found on the juxtapo website.
 	@param designUrl {String}
 	the designUrl is the location of the image file which you want to overlay on to your page. 
 	This will be placed as entered here in to the src of the img tag
+	
+	@param style {object} optional
+	This is a key/value object containing any style tweaks to be applied to the default 
+	overlay styles.
+
+More information
+================
+The juxtapo project is still in its early stages so please inform me of any errors or bugs
+you come across at http://code.google.com/p/juxtapo.
+
+If you would like to contribute to the project please let me know by joining the google 
+group and posting a message.
 	
