@@ -35,11 +35,10 @@
 	display: none; 
 	font-size: 11px; 
 	font-weight: bold; 
-	height: 80%;
+	height: 588px;
 	left: 10px; 
-	padding: 3px; 
+	padding: 0px; 
 	position: fixed; 
-	overflow: auto;	
 	text-align: left; 
 	width: 90%; 
 	z-index: 2000; 
@@ -64,13 +63,18 @@
 
 #juxtapo-designsToolbar {
 	background-color: #ccc;
-	padding: 4px 20px;	
+	padding: 6px 20px;	
 }
 	#juxtapo-designsToolbar input {
 		width: 300px;
 	}
 
-#juxtapo-designsDD { margin: 0; padding: 0; }
+#juxtapo-designsDD { 
+    height: 550px;
+    margin: 0; 
+    overflow: auto;
+    padding: 0; 
+}
 #juxtapo-designsDD li {
 	border: solid 1px #ccc;
     display: block;
