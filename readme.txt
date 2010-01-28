@@ -73,6 +73,15 @@ the juxtapo directory.
 	This is a key/value object containing any style tweaks to be applied to the default 
 	overlay styles.
 
+Keyboard Shortcuts
+==================
+Ctrl+I/K/J/L = Move the design by 25 pixels up/down/left/right
+Ctrl+Shift+I/K/J/L = Nudge the design by 1 pixel up/down/left/right
+Ctrl+; or Ctrl+right = Change transparency
+Ctrl+h or Ctrl+left = Change transparency
+Ctrl+up and Ctrl+down = Overlay previous/next design
+Ctrl+space = Auto refresh play/pause
+
 More information
 ================
 The juxtapo project is still in its early stages so please inform me of any errors or bugs
