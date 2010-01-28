@@ -146,9 +146,10 @@
 		search : function(q){
 			var results = {designs:[],indexes:[]};
 			if (q != ""){
+				q = q.toLowerCase();
 				for(var i =0;i < juxtapo.designLayoutImages.length;i++){
 					var iDesign = juxtapo.designLayoutImages[i];
-					if (iDesign.imageUrl.indexOf(q) > -1 || iDesign.paths[0].indexOf(q) > -1){
+					if (iDesign.imageUrl.toLowerCase().indexOf(q) > -1 || iDesign.paths[0].toLowerCase().indexOf(q) > -1){
 						results.designs.push(iDesign);
 						results.indexes.push(i);
 					}
