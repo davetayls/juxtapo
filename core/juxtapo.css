@@ -109,5 +109,9 @@
 		z-index: 2;
 	}
 
-.juxtapo-error { color: red; }
 .juxtapo-info { }
+.juxtapo-error,
+.juxtapo-eh-error {
+	background-color: #900;
+	color: white;
+}
