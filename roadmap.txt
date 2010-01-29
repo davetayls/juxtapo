@@ -12,7 +12,7 @@ v0.4
 	- events: init
 	- methods:
 	- properties:
-
+- move error console to strip
 v0.5
 - plugin support
 
