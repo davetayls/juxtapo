@@ -45,9 +45,9 @@ var juxtapo = {};
     
     // events
     var onInitComplete = function(){
-        $(juxtapo).trigger("_initComplete");
-        
+        $(juxtapo).trigger("_initComplete");        
     };
+	
     /* public */
     juxtapo = {
         statuses: {
