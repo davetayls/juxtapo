@@ -1,18 +1,18 @@
 #juxtapo-container {
-	background-color: #ccc;
+	background:#000000 url(juxtapo-logo-12.gif) no-repeat 2px 2px;
 	border-top: solid 1px #aaa;
 	bottom: 0;
 	height: 15px;
 	left: 0;	
 	line-height: 7px;
-	padding: 1px 3px;
+	padding:1px 3px 1px 47px;
 	position: fixed;
 	z-index: 2001;
 }
 
 
 .juxtapo-dropDown {
-	border: solid 1px #ccc; 
+	border: solid 1px #000; 
 	position: relative; 
 	/*width: 5px;*/ 
 	height: 6px;
@@ -47,7 +47,7 @@
 
 .juxtapo-btn {
 	background-color: white; 
-	border: solid 1px #ccc; 
+	border: solid 1px #000; 
 	cursor: pointer;
 	float: left; 
 	font-family: arial,helvetica,sans-serif;
