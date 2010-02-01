@@ -131,13 +131,13 @@ var juxtapo = {};
 			return true;
 
 		juxtapo.eh.logInfo("keycode is: " + keycode); // ##DEBUG
-		// Check if user presses Ctl+; or Ctl+right
-		if (e.ctrlKey && (keycode == 59 || keycode == 39)) {
+		// Check if user presses Ctl+o or Ctl+right
+		if (e.ctrlKey && (keycode == 79 || keycode == 39)) {
 			juxtapo.designs.forward();
 			return false;
 		}
-		// Check if user presses Ctl+h or Ctl+left
-		if (e.ctrlKey && (keycode == 72 || keycode == 37)) {
+		// Check if user presses Ctl+u or Ctl+left
+		if (e.ctrlKey && (keycode == 85 || keycode == 37)) {
 			juxtapo.designs.back();
 			return false;
 		}
