@@ -55,6 +55,13 @@
 			}
 			return ret;
 		},
+		requireResource : function(url){
+			if (url.substr(url.lastIndexOf(".")) == ".css"){
+				$("head").append('<link href="' + url + '" rel="stylesheet" type="text/css" />');
+			}else if (url.substr(url.lastIndexOf(".")) == ".js"){
+				$("head").append('<script src="' + url + '" type="text/javascript" ></script>');
+			}
+		},
 		String : {
 			contains : function(s,containing){
 				return s.indexOf(containing) > -1;

@@ -17,18 +17,8 @@ juxtapo.ui.blackOut.show = function(){
 // Control which puts a button in the tool strip and gives a popup
 (function(){
 
-	var escToCloseFn = function(dd){		
-		return function(e){
-	        juxtapo.eh.logInfo("keycode is: " + e.which); //##DEBUG
-	        if (e.which == 27) {
-				alert("esc");
-	            dd.show(false);
-	            return false;
-	        }
-		}    
-	};
     juxtapo.ui.dropDown = function(options){
-		this._init();
+		this._init();		
     };
     juxtapo.ui.dropDown.prototype = {
         // properties
@@ -41,6 +31,14 @@ juxtapo.ui.blackOut.show = function(){
         // methods
 		_init : function(){
 	        this.render();			
+
+	        var self = this;
+			$(document).bind("keydown", function(e){		
+		        if (self.expanded && e.which == 27) {
+		            self.show(false);
+		            return false;
+		        }
+			});
 		},
         contentHtml: function(s){
             if (typeof s == "undefined") {

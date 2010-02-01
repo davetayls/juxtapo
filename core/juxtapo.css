@@ -14,7 +14,7 @@
 .juxtapo-dropDown {
 	border: solid 1px #ccc; 
 	position: relative; 
-	width: 5px; 
+	/*width: 5px;*/ 
 	height: 6px;
 	float: left; 
 	font-family: arial, helvetica,sans-serif;
