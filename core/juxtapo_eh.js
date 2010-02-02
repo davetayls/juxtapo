@@ -20,7 +20,7 @@
 		},
         init: function(){
         
-            _dropDown = new juxtapo.ui.dropDown();
+            _dropDown = new juxtapo.ui.dropDown({style:{height:'300px',width:'450px'}});
             _dropDown.text("e");
                         
             juxtapo.eh.renderErrors();

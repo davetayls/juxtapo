@@ -5,8 +5,10 @@
 
 (function() {
 
+	// properties
 	var _designImageElement = null;
 
+	// events
 	var onDesignPositionChanged = function(img, oldPos, newPos) {
 		$(juxtapo).trigger("_designPositionChanged", [ img, oldPos, newPos ]);
 	};
@@ -32,9 +34,19 @@
 				if (newIndex > juxtapo.designLayoutImages.length - 1)
 					newIndex = 0;
 			}
-			juxtapo.designCurrentImageIndex = newIndex;
-			nextLayout = juxtapo.designLayoutImages[newIndex];
-			$("#design").attr("src", nextLayout.imageUrl).css(nextLayout.style);
+			juxtapo.designs.changeTo(newIndex);
+		},
+		changeTo : function(item){
+			var design = null;
+			if (typeof(item)=="undefined"){
+				return false;
+			}else if (typeof(item)=="object"){
+				design = item;
+			}else{
+				juxtapo.designCurrentImageIndex = item;
+				design = juxtapo.designLayoutImages[item];				
+			}
+			$("#design").attr("src", design.imageUrl).css(design.style);			
 		},
 		designImageElement : function(el) {
 			if (typeof (el) != "undefined") {
@@ -72,9 +84,8 @@
 				juxtapo.designs.hide();
 			}
 		},
-		getDesignImageSettings : function(url) {
-			var href = url.toLowerCase();
-			;
+		getDesignFromUrl : function(url) {
+			var href = url.toLowerCase();			
 			for ( var i = 0; i < juxtapo.designLayoutImages.length; i++) {
 				layout = juxtapo.designLayoutImages[i];
 				for ( var p = 0; p < layout.paths.length; p++) {
@@ -94,30 +105,21 @@
 			juxtapo.currentDesignView = juxtapo.designViews.hidden;
 		},
 		init : function() {
-			// layout image
+			// add design image to page
+			$('<img id="design" src="noimage.jpg" alt="design image" />')
+				.appendTo("body")
+				.css( {display : 'none'});
+			
+			
 			if (juxtapo.utils.getQuery("di") != null) {
-				juxtapo.designCurrentImageIndex = parseInt(juxtapo.utils
-						.getQuery("di"));
-				designImageSettings = juxtapo.designLayoutImages[juxtapo.designCurrentImageIndex];
+				juxtapo.designs.changeTo(parseInt(juxtapo.utils.getQuery("di")));
 			} else {
-				designImageSettings = juxtapo.designs
-						.getDesignImageSettings(location.href);
+				juxtapo.designs.changeTo(juxtapo.designs.getDesignFromUrl(location.href));
 			}
-			if (designImageSettings) {
-				$('<img id="design" src="' + designImageSettings.imageUrl + '" alt="design image" />')
-						.appendTo("body")
-						.css( {display : 'none'})
-						.css(designImageSettings.style);
-				$(document).keydown(juxtapo.onBody_KeyDown);
-			}
+			$(document).keydown(juxtapo.onBody_KeyDown);
 
-			// design layout
+			// design controller button
 			juxtapo.designlayout = document.createElement("div");
-			// $(juxtapo.designlayout).attr("style", "border: solid 1px #ccc;
-			// position: fixed; top:0; left:15px; width: 45px; height: 6px;
-			// font-weight: bold; text-align: center; padding: 3px; cursor:
-			// pointer; background-color: white; font-size: 7px; z-index:
-			// 2000;");
 			$(juxtapo.designlayout).attr("class", "juxtapo-btn");
 			juxtapo.designlayout.onclick = juxtapo.designs.toggle;
 			juxtapo.designlayout.innerHTML = "D E S I G N";
@@ -125,8 +127,6 @@
 			d = juxtapo.utils.getQuery("design");
 			if (d != null) {
 				juxtapo.designvisible = d;
-				// if (d == 'true') { juxtapo.designs.show(); } else {
-				// juxtapo.designs.hide(); }
 			}
 			dv = juxtapo.utils.getQuery("dv");
 			if (!dv) {
@@ -141,7 +141,8 @@
 					juxtapo.designs.show();
 				}
 			}
-
+			
+			// reset scroll position
 			v = juxtapo.utils.getQuery("v");
 			if (v) {
 				$(document).scrollTop(v);

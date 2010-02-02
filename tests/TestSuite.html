@@ -28,17 +28,17 @@
 			    
 			    module("Designs");
 			    
-			    test("getDesignImageSettings", function(){
+			    test("getDesignFromUrl", function(){
 			        ok(
-						juxtapo.designs.getDesignImageSettings("test.htm"),
+						juxtapo.designs.getDesignFromUrl("test.htm"),
 						"We should get image settings back"
 					);
 			        ok(
-						juxtapo.designs.getDesignImageSettings("TeSt.htm"),
+						juxtapo.designs.getDesignFromUrl("TeSt.htm"),
 						"url should be case insensitive"
 					);
 			        same(
-						juxtapo.designs.getDesignImageSettings("nofile.htm"),
+						juxtapo.designs.getDesignFromUrl("nofile.htm"),
 						juxtapo.designLayoutImages[0],
 						"When there is no match we should get the first template back"
 					);

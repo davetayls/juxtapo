@@ -4,18 +4,23 @@
 (function() {
 
     juxtapo.initComplete(function() {
-        var info = new juxtapo.ui.dropDown();
-        if (juxtapo.designs.designImageElement()) {
-            var $design = $(juxtapo.designs.designImageElement());
-            info.text("info: left:" + $design.css("left") + ", top:" + $design.css("top"));
-            info.contentHtml("");
-        } else {
-            info.text("No design");
-            info.contentHtml("<h3>No design matches the current url<h3>");
-        }
+        var info = new juxtapo.ui.dropDown({style:{height: '150px',width:'300px'}});
+        var $design = $(juxtapo.designs.designImageElement());
+		
+		var setInfo = function(){
+			var infoText = 'info:<br />';
+			infoText += "margin-left:" + $design.css("margin-left") + '<br />';
+			infoText += "top:" + $design.css("top") + '<br />'; 
+			infoText += "left:" + $design.css("left") + '<br />';
+			infoText += "height:" + $design.height() + '<br />';
+			infoText += "width:" + $design.width() + '<br />';
+			
+            info.contentHtml(infoText);			
+		};
+        info.text('info');
+		setInfo();		
         juxtapo.designs.designPositionChanged(function(img, oldPos, newPos) {
-            info.text("info: left:" + $design.css("left") + ", top:" + $design.css("top"));
-            info.contentHtml("");
+			setInfo();
         });
     });
 

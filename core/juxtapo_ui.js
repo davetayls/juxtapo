@@ -16,9 +16,9 @@ juxtapo.ui.blackOut.show = function(){
 // juxtapo.ui.dropDown
 // Control which puts a button in the tool strip and gives a popup
 (function(){
-
+	
     juxtapo.ui.dropDown = function(options){
-		this._init();		
+		this._init(options);		
     };
     juxtapo.ui.dropDown.prototype = {
         // properties
@@ -27,9 +27,16 @@ juxtapo.ui.blackOut.show = function(){
         controller: null,
         contents: null,
         expanded: null,
+		settings: {
+			style: {
+				height: '388px',
+				width: '900px'
+			}
+		},
         
         // methods
-		_init : function(){
+		_init : function(options){
+			this.settings = $.extend( {}, this.settings,options);			
 	        this.render();			
 
 	        var self = this;
@@ -61,7 +68,9 @@ juxtapo.ui.blackOut.show = function(){
             
             // pop up
             this.contents = document.createElement("div");
-            $(this.contents).attr("class", "juxtapo-lightBox");
+            $(this.contents)
+				.attr("class", "juxtapo-lightBox")
+				.css(this.settings.style);
             document.getElementsByTagName("body")[0].appendChild(this.contents);
             
         },
