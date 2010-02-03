@@ -16,9 +16,9 @@ var juxtapo = {};
     
     // Methods
     function addResources(){
-        var loc = juxtapo.utils.getJsLocation('juxtapo.js');
-        if (loc) {
-            juxtapo.utils.requireResource(loc + 'juxtapo.css');
+        juxtapo.juxtapoJsFileLocation = juxtapo.utils.getJsLocation('juxtapo.js');
+        if (juxtapo.juxtapoJsFileLocation) {
+            juxtapo.utils.requireResource(juxtapo.juxtapoJsFileLocation + 'juxtapo.css');
         }
     };
     function initContainer(){
@@ -68,7 +68,7 @@ var juxtapo = {};
         designvisible: false,
         designCurrentImageIndex: 0,
         designTemplates: [], // list of layout images to place as the
-        // design overlay
+        juxtapoJsFileLocation: '',
         secondsBeforeRefresh: 2.5,
         timerId: -1,
         

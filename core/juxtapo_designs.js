@@ -48,6 +48,9 @@
 			var designStyle = $.extend({},juxtapo.designs.designTemplate.defaultStyles,design.settings.style);
 			$("#design").attr("src", design.imageUrl).css(designStyle);
 		},
+		currentDesign : function(){
+			return juxtapo.designTemplates[juxtapo.designCurrentImageIndex];
+		},
 		designImageElement : function(el) {
 			if (typeof (el) != "undefined") {
 				_designImageElement = el;
