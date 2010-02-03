@@ -135,47 +135,56 @@ var juxtapo = {};
         // Check if user presses Ctl+o or Ctl+right
         if (e.ctrlKey && (keycode == 79 || keycode == 39)) {
             juxtapo.designs.forward();
+            juxtapo.utils.preventDefaultEventAction(e);
             return false;
         }
         // Check if user presses Ctl+u or Ctl+left
         if (e.ctrlKey && (keycode == 85 || keycode == 37)) {
             juxtapo.designs.back();
+            juxtapo.utils.preventDefaultEventAction(e);
             return false;
         }
         // Check if user presses Ctl+up-arrow
         if (e.ctrlKey && keycode == 38) {
             juxtapo.designs.change(true);
+            juxtapo.utils.preventDefaultEventAction(e);
             return false;
         }
         // Check if user presses Ctl+down-arrow
         if (e.ctrlKey && keycode == 40) {
             juxtapo.designs.change(false);
+            juxtapo.utils.preventDefaultEventAction(e);
             return false;
         }
         // Ctl+Space
         if (e.ctrlKey && keycode == 32) {
             juxtapo.control.toggle();
+            juxtapo.utils.preventDefaultEventAction(e);
             return false;
         }
         // nudge designs
         if (e.ctrlKey && keycode == 73) {
             var pixels = e.shiftKey ? 1 : 25;
             juxtapo.designs.nudge("top", pixels);
+            juxtapo.utils.preventDefaultEventAction(e);
             return false;
         }
         if (e.ctrlKey && keycode == 76) {
             var pixels = e.shiftKey ? 1 : 25;
             juxtapo.designs.nudge("right", pixels);
+            juxtapo.utils.preventDefaultEventAction(e);
             return false;
         }
         if (e.ctrlKey && keycode == 75) {
             var pixels = e.shiftKey ? 1 : 25;
             juxtapo.designs.nudge("bottom", pixels);
+            juxtapo.utils.preventDefaultEventAction(e);
             return false;
         }
         if (e.ctrlKey && keycode == 74) {
             var pixels = e.shiftKey ? 1 : 25;
             juxtapo.designs.nudge("left", pixels);
+            juxtapo.utils.preventDefaultEventAction(e);
             return false;
         }
         

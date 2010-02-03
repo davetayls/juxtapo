@@ -64,7 +64,7 @@
 		    // Loop through the properties/functions
 		    var properties = '';
 		    for (var propertyName in obj) {
-		        // Check if it’s NOT a function
+		        // Check if itï¿½s NOT a function
 		        if (!(obj[propertyName] instanceof Function)) {
 		            if (typeof(obj[propertyName]) == 'object'){
 						if (level < 3){							
@@ -78,15 +78,23 @@
 		    // Loop through the properties/functions
 		    var functions = '';
 		    for (var functionName in obj) {
-		        // Check if it’s a function
+		        // Check if itï¿½s a function
 		        if (obj[functionName] instanceof Function) {
 		            functions +='<li>'+functionName + '</li>';
 		        }
 		    }
-		    var sReturn = ''
+		    var sReturn = '';
 		    if (properties !=''){sReturn+='<li>Properties : <ul>' + properties + '</ul></li>';}
 		    if (functions !=''){sReturn+=newLine+tab+'<li>Functions : <ul>'+functions + '</ul></li>';}
 		    return '<ul>' + sReturn + '</ul>';
+		},
+		preventDefaultEventAction : function(event){
+			event.preventDefault();
+			event.keyCode = 0;
+			event.which = 0;
+			if (event.originalEvent){
+				event.originalEvent.keyCode = 0;
+			}
 		},
 		requireResource : function(url){
 			if (url.substr(url.lastIndexOf(".")) == ".css"){
