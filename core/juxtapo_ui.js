@@ -107,4 +107,19 @@ juxtapo.ui.blackOut.show = function(){
         
     };
     
+
+    juxtapo.ui.thumbnail = function(options){
+		this._init(options);		
+    };
+	juxtapo.ui.thumbnail.prototype = {
+		settings: {},
+        
+        // methods
+		_init : function(options){
+			this.settings = $.extend( {}, this.settings,options);			
+	        var self = this;
+	        this.render();			
+		}		
+	};
+
 })();

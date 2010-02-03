@@ -35,7 +35,7 @@ the juxtapo directory.
 	the size and positioning of your designs. This example default styles 
 	positions a 900px wide the image centrally on the page:
 
-	juxtapo.designs.LayoutTemplate.defaultStyles = { 
+	juxtapo.designs.designTemplate.defaultStyles = { 
 		position: 'absolute', 
 		'z-index': '2000', 
 		top: '0px', 
