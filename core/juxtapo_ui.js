@@ -30,8 +30,8 @@ juxtapo.ui.blackOut.show = function(){
 		settings: {
 			cssClass: '',
 			style: {
-				height: '388px',
-				width: '900px'
+				height: '588px',
+				width: '905px'
 			}
 		},
         
