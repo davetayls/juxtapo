@@ -32,7 +32,8 @@
 	background-color: white; 
 	border: solid 5px #777;
 	bottom: 18px; 
-	display: none; 
+	display: none;
+	font-family: Arial,sans-serif;
 	font-size: 11px; 
 	font-weight: bold; 
 	height: 588px;
@@ -43,7 +44,6 @@
 	width: 90%; 
 	z-index: 2000; 
 }
-
 
 .juxtapo-btn {
 	background-color: white; 
@@ -112,6 +112,32 @@
 .juxtapo-info { }
 .juxtapo-error,
 .juxtapo-eh-error {
-	background-color: #900;
+	background-color: #900 !important;
 	color: white;
 }
+
+.juxtapo-errorBox {
+	font-size: 12px !important;
+	overflow: auto;
+}
+	.juxtapo-errorBox ul {
+		margin: 0;
+		padding:0;
+		list-style: none;
+	}
+	.juxtapo-errorBox ul ul {
+		list-style: disc;
+		margin: 0 15px;
+		padding:0;
+	}
+		.juxtapo-errorBox li {
+			background-color: #eee;
+			border-bottom: solid 1px #aaa;
+			border-top: solid 1px #fff;
+			margin:0;
+			padding: 3px 5px;
+		}
+			.juxtapo-errorBox li ul li {
+				background-color: inherit;
+				border: none;				
+			}

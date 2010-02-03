@@ -55,6 +55,39 @@
 			}
 			return ret;
 		},
+		objectToStructureString : function(obj,tab,level){
+			if (obj == window) return "window";
+		    if (typeof(tab)=='undefined'){tab='';}
+			if (typeof(level)=='undefined'){level=0;}
+			var newLine = "<br />";
+			var tabString = "&nbsp;&nbsp;&nbsp;&nbsp;"
+		    // Loop through the properties/functions
+		    var properties = '';
+		    for (var propertyName in obj) {
+		        // Check if it’s NOT a function
+		        if (!(obj[propertyName] instanceof Function)) {
+		            if (typeof(obj[propertyName]) == 'object'){
+						if (level < 3){							
+		                	properties +='<li>'+propertyName+':'+newLine+juxtapo.utils.objectToStructureString(obj[propertyName],tab+tabString,level+1) + '</li>';
+						}
+		            }else{
+		                properties +='<li>'+propertyName+':'+obj[propertyName] + '</li>';
+		            }
+		        }
+		    }
+		    // Loop through the properties/functions
+		    var functions = '';
+		    for (var functionName in obj) {
+		        // Check if it’s a function
+		        if (obj[functionName] instanceof Function) {
+		            functions +='<li>'+functionName + '</li>';
+		        }
+		    }
+		    var sReturn = ''
+		    if (properties !=''){sReturn+='<li>Properties : <ul>' + properties + '</ul></li>';}
+		    if (functions !=''){sReturn+=newLine+tab+'<li>Functions : <ul>'+functions + '</ul></li>';}
+		    return '<ul>' + sReturn + '</ul>';
+		},
 		requireResource : function(url){
 			if (url.substr(url.lastIndexOf(".")) == ".css"){
 				$("head").append('<link href="' + url + '" rel="stylesheet" type="text/css" />');

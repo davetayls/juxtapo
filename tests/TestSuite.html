@@ -7,6 +7,10 @@
 		<script type="text/javascript" src="../core/juxtapo.js"></script>
 		<script type="text/javascript" src="../plugins/juxtapo.designInfo.js"></script>
 		<script type="text/javascript" src="test.juxtapo_core.js"></script>
+		<style type="text/css">
+
+					
+		</style>
         <script>
         	
             juxtapo.initComplete(function(){
@@ -184,6 +188,10 @@
 						$(juxtapo.eh.dropDown().controller).hasClass("juxtapo-eh-error"),
 						"Error handler's controller button should have a red color"
 					)
+					juxtapo.eh.logError({
+						message: "an error has occured",
+						context: "test"
+					});
 				});
 				
 				/*
