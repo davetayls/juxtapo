@@ -55,6 +55,18 @@
 			}
 			return ret;
 		},
+		isAbsoluteUrl : function(url) {
+		    Url = url.toLowerCase();
+		    if (Url.substr(0, 7) == "http://") { return true; }
+		    if (Url.substr(0, 6) == "ftp://") { return true; }
+		    return false;
+		},
+		isRelativeUrl : function(url) {
+		    Url = url.toLowerCase();
+		    if (Url.substr(0, 2) == "~/") { return true; }
+		    if (Url.substr(0, 3) == "../") { return true; }
+		    return false;
+		},
 		objectToStructureString : function(obj,tab,level){
 			if (obj == window) return "window";
 		    if (typeof(tab)=='undefined'){tab='';}
@@ -103,13 +115,56 @@
 				$("head").append('<script src="' + url + '" type="text/javascript" ></script>');
 			}
 		},
+		resolveAbsoluteUrl : function(baseUrl,relativeUrl) {
+		    if (relativeUrl.substr(0, 1) == '/') {
+		        return baseUrl + relativeUrl; 
+		    }else if (self.isAbsoluteUrl(relativeUrl)) {
+		        return relativeUrl;
+		    } else {
+		        var Loc = baseUrl;
+		        Loc = Loc.substring(0, Loc.lastIndexOf('/'));
+		        while (/^\.\./.test(relativeUrl)) {
+		            Loc = Loc.substring(0, Loc.lastIndexOf('/'));
+		            relativeUrl = relativeUrl.substring(3);
+		        }
+		        relativeUrl = self.String.ltrim(relativeUrl, "/");
+		        return Loc + '/' + relativeUrl;
+		    }
+		},
+		
 		String : {
 			contains : function(s,containing){
 				return s.indexOf(containing) > -1;
+			},
+			ltrim : function(str, chars) {
+			    chars = chars || "\\s";
+			    return str.replace(new RegExp("^[" + chars + "]+", "g"), "");
+			},
+			replace : function(str, oldChar, newChar) {
+			    var RegEx = new RegExp('['+oldChar+']','g');
+			    return str.replace(RegEx, newChar);
+			},
+			right : function(str, n){
+			        if (n <= 0)     // Invalid bound, return blank string
+			           return "";
+			        else if (n > String(str).length)   // Invalid bound, return
+			           return str;                     // entire string
+			        else { // Valid bound, return appropriate substring
+			           var iLen = String(str).length;
+			           return String(str).substring(iLen, iLen - n);
+			        }
+			},
+			rtrim : function(str, chars) {
+			    chars = chars || "\\s";
+			    return str.replace(new RegExp("[" + chars + "]+$", "g"), "");
+			},
+			trim : function(str, chars) {
+			    return self.String.ltrim(self.String.rtrim(str, chars), chars);
 			}
 		}
 	};
 
+	var self = juxtapo.utils;
 	String.prototype.juxtapoContains = function(containing){
 		return juxtapo.utils.String.contains(this,containing);
 	};

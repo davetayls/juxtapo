@@ -106,19 +106,27 @@ juxtapo.ui.blackOut.show = function(){
         }
         
     };
-    
+})();
+
+(function(){
 
     juxtapo.ui.thumbnail = function(options){
 		this._init(options);		
     };
 	juxtapo.ui.thumbnail.prototype = {
+		caption:null,
+		container: null,
+		link:null,
+		imageContainer:null,
+		image:null,
+		
 		settings: {},
         
         // methods
 		_init : function(options){
 			this.settings = $.extend( {}, this.settings,options);			
 	        var self = this;
-	        this.render();			
+	        	
 		}		
 	};
 

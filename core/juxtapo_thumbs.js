@@ -4,6 +4,11 @@
 (function(){
 
     var _dropDown = null;
+    var _$toolbar = $('<div id="juxtapo-ui-toolbar" class="juxtapo-cc" />');
+    var _$toolbarLeft = $('<div id="juxtapo-ui-toolbarL" />');
+    var _$toolbarRight = $('<div id="juxtapo-ui-toolbarR" />');
+    var _$searchBox = $('<input id="juxtapo-searchDesigns" type="text" />');
+    var _$thumbsContainer = $('<ul id="juxtapo-designsDD" />');
  
     juxtapo.thumbs = {
         rendered: false,
@@ -29,9 +34,20 @@
             var designList;
             designList = "";
             for (var i = 0; i < juxtapo.designTemplates.length; i++) {
-                designList += '<li id="juxtapo-design-' + i + '"><a style="display:block;" href="' + juxtapo.designTemplates[i].paths[0] + '"><img height="220" src="' + juxtapo.designTemplates[i].imageUrl + '" alt="design image" /><span>' + juxtapo.designTemplates[i].paths[0] + '</span></a></li>';
+                designList += '<li id="juxtapo-design-' + i + '" class="juxtapo-thumb">';
+                designList += '<a class="juxtapo-thumb-lnk" style="display:block;" href="' + juxtapo.designTemplates[i].paths[0] + '">';
+                designList += '<span class="juxtapo-thumb-img"><img height="220" src="' + juxtapo.designTemplates[i].imageUrl + '" alt="design image" /></span>';
+                designList += '<span class="juxtapo-thumb-caption">' + juxtapo.designTemplates[i].paths[0] + '</span>';
+                designList += '</a>';
+                designList += '</li>';
             }
-            _dropDown.contentHtml('<div id="juxtapo-designsToolbar"><input id="juxtapo-searchDesigns" type="text" /></div><ul id="juxtapo-designsDD">' + designList + '</ul>');
+            $(_dropDown.contents)
+            	.append(_$toolbar)
+            	.append(_$thumbsContainer);
+            _$toolbar.append(_$toolbarLeft).append(_$toolbarRight);
+            _$toolbarLeft.append(_$searchBox);
+            _$thumbsContainer.html(designList);
+            //('<div id="juxtapo-designsToolbar"><input id="juxtapo-searchDesigns" type="text" /></div><ul id="juxtapo-designsDD">' + designList + '</ul>');
             $("#juxtapo-searchDesigns").keyup(this.searchKeyup);
             this.rendered = true;
         },
