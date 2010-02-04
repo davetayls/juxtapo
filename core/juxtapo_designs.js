@@ -63,19 +63,18 @@
 			var results = null;
 			var thumbs = [];
 			if (q == "") {
-				$("#juxtapo-designsDD li").show();
+				$("#juxtapo-thumbs-container li").show();
 			} else {
 				results = this.search(q);
-				$("#juxtapo-designsDD li").hide();
-				for ( var i = 0; i < results.indexes.length; i++) {
-					thumbs.push($("#juxtapo-design-" + results.indexes[i])
-							.show().get());
+				$("#juxtapo-thumbs-container li").hide();
+				for ( var i = 0; i < results.designs.length; i++) {
+					var design = results.designs[i]
+					design.thumbnail.show();
 				}
 			}
 			return {
 				"q" : q,
-				"results" : results,
-				"thumbs" : thumbs
+				"designs" : results
 			};
 		},
 		forward : function() {
@@ -233,6 +232,7 @@
 		}
 	};
 
+
 	// SUB CLASSES
 	/**
 	 * Create a new instance of designTemplate
@@ -248,10 +248,8 @@
 	 * @constructor
 	 */
 	juxtapo.designs.designTemplate = function(imageUrl, paths, settings) {
-		this.imageUrl = imageUrl;
-		this.paths = paths;
-		this.settings = $.extend( {},
-				juxtapo.designs.designTemplate.prototype.settings, settings);
+		this._init(imageUrl, paths, settings);
+		return;
 	};
 	juxtapo.designs.designTemplate.prototype = {
 		imageUrl : '',
@@ -259,7 +257,24 @@
 		settings : {
 			data : {},
 			style : {}
-		}
+		},
+		thumbnail:null,
+		
+		_init : function(imageUrl, paths, settings){
+			var self = this;
+			self.imageUrl = imageUrl;
+			self.paths = paths;
+			self.settings = $.extend( {}, juxtapo.designs.designTemplate.prototype.settings, settings);
+			
+			self.setUiThumbnail = function(thumbnail){
+				self.thumbnail = thumbnail;
+				$(self).trigger("_thumbnailSet");
+			};
+			self.thumbnailSet = function(fn){
+				$(self).bind("_thumbnailSet",fn);
+			};
+
+		},
 	};
 	juxtapo.designs.designTemplate.defaultStyles = {
 		position : 'absolute',

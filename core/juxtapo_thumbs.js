@@ -8,7 +8,7 @@
     var _$toolbarLeft = $('<div id="juxtapo-ui-toolbarL" />');
     var _$toolbarRight = $('<div id="juxtapo-ui-toolbarR" />');
     var _$searchBox = $('<input id="juxtapo-searchDesigns" type="text" />');
-    var _$thumbsContainer = $('<ul id="juxtapo-designsDD" />');
+    var _$thumbsContainer = $('<ul id="juxtapo-thumbs-container" />');
  
     juxtapo.thumbs = {
         rendered: false,
@@ -33,21 +33,16 @@
             juxtapo.eh.logInfo("thumbs rendering");
             var designList;
             designList = "";
-            for (var i = 0; i < juxtapo.designTemplates.length; i++) {
-                designList += '<li id="juxtapo-design-' + i + '" class="juxtapo-thumb">';
-                designList += '<a class="juxtapo-thumb-lnk" style="display:block;" href="' + juxtapo.designTemplates[i].paths[0] + '">';
-                designList += '<span class="juxtapo-thumb-img"><img height="220" src="' + juxtapo.designTemplates[i].imageUrl + '" alt="design image" /></span>';
-                designList += '<span class="juxtapo-thumb-caption">' + juxtapo.designTemplates[i].paths[0] + '</span>';
-                designList += '</a>';
-                designList += '</li>';
-            }
             $(_dropDown.contents)
             	.append(_$toolbar)
             	.append(_$thumbsContainer);
             _$toolbar.append(_$toolbarLeft).append(_$toolbarRight);
             _$toolbarLeft.append(_$searchBox);
-            _$thumbsContainer.html(designList);
-            //('<div id="juxtapo-designsToolbar"><input id="juxtapo-searchDesigns" type="text" /></div><ul id="juxtapo-designsDD">' + designList + '</ul>');
+			_$thumbsContainer.css("height",(parseInt($(_dropDown.contents).css("height")) - 36)+'px');
+            for (var i = 0; i < juxtapo.designTemplates.length; i++) {
+				var thumb = new juxtapo.ui.thumbnail(juxtapo.designTemplates[i]);
+				_$thumbsContainer.append(thumb.container);
+            }
             $("#juxtapo-searchDesigns").keyup(this.searchKeyup);
             this.rendered = true;
         },

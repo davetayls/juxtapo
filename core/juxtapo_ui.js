@@ -30,7 +30,7 @@ juxtapo.ui.blackOut.show = function(){
 		settings: {
 			cssClass: '',
 			style: {
-				height: '588px',
+				height: '548px',
 				width: '905px'
 			}
 		},
@@ -110,12 +110,13 @@ juxtapo.ui.blackOut.show = function(){
 
 (function(){
 
-    juxtapo.ui.thumbnail = function(options){
-		this._init(options);		
+    juxtapo.ui.thumbnail = function(designTemplate,options){
+		this._init(designTemplate,options);		
     };
 	juxtapo.ui.thumbnail.prototype = {
 		caption:null,
 		container: null,
+		designTemplate:null,
 		link:null,
 		imageContainer:null,
 		image:null,
@@ -123,9 +124,38 @@ juxtapo.ui.blackOut.show = function(){
 		settings: {},
         
         // methods
-		_init : function(options){
-			this.settings = $.extend( {}, this.settings,options);			
+		_init : function(designTemplate,options){
 	        var self = this;
+
+			self.settings = $.extend( {}, this.settings,options);
+			self.designTemplate = designTemplate;			
+
+			self.image = $('<img height="220" src="' + designTemplate.imageUrl + '" alt="design image" />')
+				.get(0);
+            self.caption = $('<span class="juxtapo-thumb-caption" />')
+				.html(self.designTemplate.paths[0])
+				.get(0);
+            self.imageContainer = $('<span class="juxtapo-thumb-img" />')
+				.append(self.image)
+				.append(self.caption)
+				.get(0);
+            self.link = $('<a class="juxtapo-thumb-lnk" style="display:block;" href="' + self.designTemplate.paths[0] + '" />')
+				.append(self.imageContainer)
+				.get(0);
+			self.container = $('<li id="juxtapo-design-' + i + '" class="juxtapo-thumb" />')
+				.append(self.link)
+				.get(0);
+			
+			designTemplate.setUiThumbnail(self);
+			
+			self.show = function(b){
+				if (typeof(b) == 'undefined') b = true;
+				if (b){
+					$(self.container).show();
+				}else{
+					$(self.container).show();
+				}
+			};
 	        	
 		}		
 	};
