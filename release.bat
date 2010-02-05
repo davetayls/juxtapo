@@ -1,6 +1,9 @@
 del release\*.* /Q/S
 xcopy core\*.js release\core\ /e
 xcopy core\*.css release\core\ /e
+xcopy core\*.jpg release\core\ /e
+xcopy core\*.png release\core\ /e
+xcopy core\*.gif release\core\ /e
 copy readme.txt release\
 xcopy lib\*.* release\lib\ /e
 xcopy sample\*.* release\sample\ /e

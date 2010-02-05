@@ -9,7 +9,7 @@
 	juxtapo.initComplete(function(){
 			var details = new juxtapo.ui.toolbtn();
 			details
-				.text("Details")
+				.text("List")
 				.click(function(e){
 					$(juxtapo.thumbs.thumbsContainer)
 						.find(".juxtapo-thumb")
