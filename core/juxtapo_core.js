@@ -68,6 +68,7 @@ var juxtapo = {};
         designvisible: false,
         designCurrentImageIndex: 0,
         designTemplates: [], // list of layout images to place as the
+		globalSettings:{},
         juxtapoJsFileLocation: '',
         secondsBeforeRefresh: 2.5,
         timerId: -1,

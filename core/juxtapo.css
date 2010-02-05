@@ -76,7 +76,7 @@
 	.juxtapo-btn:hover { background-color: #555; color: white; }
 
 #juxtapo-ui-toolbar {
-	background-color: #ccc;
+	background-color: #444;
 	padding: 6px 20px;	
 }
 	#juxtapo-ui-toolbarL {
@@ -106,37 +106,57 @@
 	padding: 0;
     width: 200px;
 }
-a.juxtapo-thumb-lnk {
-	display: block;
-	height: 250px;
-	margin:0;
-	overflow: hidden;
-	padding:0;
-	position: relative;
-    width: 200px;
-}
-    .juxtapo-thumb-img {
-    	display:block;
-    	height: 220px;
+	a.juxtapo-thumb-lnk {
+		display: block;
+		height: 250px;
 		margin:0;
 		overflow: hidden;
 		padding:0;
-    } 
-    .juxtapo-thumb-img img { 
-		float: left; 
 		position: relative;
-		z-index: 1;
+	    width: 200px;
 	}
-    span.juxtapo-thumb-caption { 
-		position: absolute;
-		background-color: #efefef;
-		bottom: 0; 
-		left: 0;
-		padding: 3px;
-		display: block;
-		width: 200px;
-		z-index: 2;
+	    .juxtapo-thumb-img {
+	    	display:block;
+	    	height: 220px;
+			margin:0;
+			overflow: hidden;
+			padding:0;
+	    } 
+	    .juxtapo-thumb-img img { 
+			float: left; 
+			position: relative;
+			z-index: 1;
+		}
+	    span.juxtapo-thumb-caption { 
+			position: absolute;
+			background-color: #efefef;
+			bottom: 0; 
+			left: 0;
+			padding: 3px;
+			display: block;
+			width: 200px;
+			z-index: 2;
+		}
+
+.juxtapo-thumb.juxtapo-thumb-detailsView {
+	border-color: red;
+	float: none;
+	height: 20px;
+	width: auto;
+	
+}
+	.juxtapo-thumb-detailsView a.juxtapo-thumb-lnk {
+		
 	}
+	    .juxtapo-thumb-img {
+	    }
+	    .juxtapo-thumb-img img {
+	    	
+	    } 
+	    span.juxtapo-thumb-caption {
+	    	
+	    } 
+
 
 .juxtapo-info { }
 .juxtapo-error,
@@ -170,3 +190,32 @@ a.juxtapo-thumb-lnk {
 				background-color: inherit;
 				border: none;				
 			}
+
+
+.juxtapo-toolbtn {
+	background-color: #555;
+	border-color: #aaa #777 #888 #aaa;
+	border-style: solid;
+	border-width: 1px;
+	border-radius:3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;	
+	cursor:pointer;
+	display:block;
+	float: left;
+	line-height: 20px;
+	margin: 0 2px;
+}
+	.juxtapo-toolbtn-contents {
+		color: #bbb;
+		display:block;
+		float:left;
+		padding: 0 5px;
+	}
+
+.juxtapo-toolbtn:hover {
+	background-color: #777;
+}
+	.juxtapo-toolbtn:hover .juxtapo-toolbtn-contents {
+		color: #ddd;
+	}

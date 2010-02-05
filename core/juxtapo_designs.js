@@ -14,6 +14,7 @@
 
 	/* public */
 	juxtapo.designs = {
+		// methods
 		back : function() {
 			if (juxtapo.currentDesignView == juxtapo.designViews.hidden) {
 				juxtapo.designs.show();

@@ -3,6 +3,7 @@
  -----------------------------------------------------------*/
 (function(){
 
+	var self;
     var _dropDown = null;
     var _$toolbar = $('<div id="juxtapo-ui-toolbar" class="juxtapo-cc" />');
     var _$toolbarLeft = $('<div id="juxtapo-ui-toolbarL" />');
@@ -17,6 +18,7 @@
 			return _dropDown;
 		},
         init: function(){
+			self = juxtapo.thumbs;
 			_dropDown = new juxtapo.ui.dropDown();
             _dropDown.text("+");
             var thumbs = this;
@@ -29,6 +31,14 @@
                 $("#juxtapo-searchDesigns").focus();
             };
         },
+		appendToToolbarLeft : function(el){
+			_$toolbarLeft.append(el);
+			return self;
+		},
+		appendToToolbarRight : function(el){
+			_$toolbarRight.append(el);
+			return self;
+		},
         renderThumbs: function(){
             juxtapo.eh.logInfo("thumbs rendering");
             var designList;
@@ -48,7 +58,10 @@
         },
         searchKeyup: function(e){
             juxtapo.designs.filterBySearch($("#juxtapo-searchDesigns").val());
-        }
+        },
+		thumbsContainer : function(){
+			return _$thumbsContainer.get(0);
+		}
     };
     
 })();
