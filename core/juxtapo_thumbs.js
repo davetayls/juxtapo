@@ -43,12 +43,15 @@
             juxtapo.eh.logInfo("thumbs rendering");
             var designList;
             designList = "";
+			var windowHeight = parseInt($(window).height());
+			var contentsHeight = windowHeight - 50; 
             $(_dropDown.contents)
             	.append(_$toolbar)
-            	.append(_$thumbsContainer);
+            	.append(_$thumbsContainer)
+				.css("height", contentsHeight+'px');
             _$toolbar.append(_$toolbarLeft).append(_$toolbarRight);
             _$toolbarLeft.append(_$searchBox);
-			_$thumbsContainer.css("height",(parseInt($(_dropDown.contents).css("height")) - 36)+'px');
+			_$thumbsContainer.css("height",(contentsHeight - 37)+'px');
             for (var i = 0; i < juxtapo.designTemplates.length; i++) {
 				var thumb = new juxtapo.ui.thumbnail(juxtapo.designTemplates[i]);
 				_$thumbsContainer.append(thumb.container);

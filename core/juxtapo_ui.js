@@ -68,8 +68,9 @@ juxtapo.ui.blackOut.show = function() {
 
 			// pop up
 			this.contents = document.createElement("div");
-			$(this.contents).attr("class", ("juxtapo-lightBox")).css(
-					this.settings.style);
+			$(this.contents)
+				.attr("class", ("juxtapo-lightBox"))
+				.css(this.settings.style);
 			document.getElementsByTagName("body")[0].appendChild(this.contents);
 
 		},

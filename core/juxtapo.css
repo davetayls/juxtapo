@@ -89,11 +89,13 @@
 		float:right;
 	}
 
-#juxtapo-thumbs-container { 
+#juxtapo-thumbs-container {
+	display:block; 
     height: 530px;
     margin: 0; 
     overflow: auto;
     padding: 0; 
+	position:relative;
 }
 .juxtapo-thumb {
     display: block;
@@ -115,6 +117,7 @@
 		position: relative;
 	    width: 200px;
 	}
+	a.juxtapo-thumb-lnk:hover,
 	a.juxtapo-thumb-lnk:focus,
 	a.juxtapo-thumb-lnk:active {
 		border: solid 1px #000;
@@ -143,6 +146,7 @@
 			width: 200px;
 			z-index: 2;
 		}
+			a.juxtapo-thumb-lnk:hover span.juxtapo-thumb-caption,
 			a.juxtapo-thumb-lnk:focus span.juxtapo-thumb-caption,
 			a.juxtapo-thumb-lnk:active span.juxtapo-thumb-caption {
 				background-color: #000;
