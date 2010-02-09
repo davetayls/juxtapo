@@ -244,7 +244,9 @@
 	 * @class designTemplate is the description of each design layout
 	 * @param {Object} imageUrl
 	 * @param {Object} paths
-	 * @param {Object} style
+	 * @param {Object} settings Key value pair of settings
+	 * @param {Object} settings.data Key:value set of meta data that can be used by plugins
+	 * @param {Object} settings.style Key:value pair of css styles which will override the default styles
 	 * @return {juxtapo.designs.designTemplate} Returns a new designTemplate
 	 * @constructor
 	 */
@@ -279,8 +281,20 @@
 				$(self).trigger("_thumbnailSet");
 				return self;
 			};
+			/**
+			 * Adds a listener to the thumbnailSet event which fires
+			 * when the designTemplate receives a {@link juxtapo.ui.thumbnail}
+			 * through the {@link juxtapo.designs.designTemplate.setUiThumbnail}
+			 * method
+			 * @event
+			 * @example
+			 * designTemplateInstance.thumbnailSet(function(ev){ code to run ... });
+			 * @name juxtapo.designs.designTemplate.thumbnailSet
+			 * @param {Object} fn(ev)
+			 */
 			self.thumbnailSet = function(fn){
 				$(self).bind("_thumbnailSet",fn);
+				return self;
 			};
 
 		}

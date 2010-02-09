@@ -8,11 +8,23 @@
 	 * @namespace
 	 */
 	juxtapo.utils = {
+		/**
+		 * Set of date functions
+		 * @namespace
+		 */
 		date : {
-				toShortTimeString : function(d){
+			/**
+			 * Returns a string with hours:minutes:seconds:milliseconds
+			 * @param {Date} d
+			 */
+			toShortTimeString : function(d){
 				return d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds() + ":" + d.getMilliseconds();  
 			}		
 		},
+		/**
+		 * Returns the value of a query string variable
+		 * @param {String} ji The query string variable name
+		 */
 		getQuery : function(ji) {
 		    hu = window.location.search.substring(1);
 		    gy = hu.split("&");
@@ -135,7 +147,10 @@
 		        return Loc + '/' + relativeUrl;
 		    }
 		},
-		
+		/**
+		 * A namespace of string functions
+		 * @namespace 
+		 */
 		String : {
 			contains : function(s,containing){
 				return s.indexOf(containing) > -1;

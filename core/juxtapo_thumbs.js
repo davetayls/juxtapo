@@ -17,7 +17,10 @@
 	 */
     juxtapo.thumbs = {
         rendered: false,
-        
+		/**
+		 * The {@link juxtapo.ui.dropDown} used by the thumbnail control
+		 * @returns {juxtapo.ui.dropDown}
+		 */        
 		dropDown : function(){
 			return _dropDown;
 		},
@@ -26,11 +29,14 @@
 			_dropDown = new juxtapo.ui.dropDown();
             _dropDown.text("+");
             var thumbs = this;
+
+			/** @private */
             _dropDown.beforeOpen = function(){
                 if (!thumbs.rendered) {
                     thumbs.renderThumbs();
                 }
             };
+			/** @private */
             _dropDown.afterOpen = function(){
                 $("#juxtapo-searchDesigns").focus();
             };

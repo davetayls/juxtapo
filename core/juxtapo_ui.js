@@ -11,12 +11,6 @@
  */
 juxtapo.ui = {};
 
-juxtapo.ui.blackOut = {};
-juxtapo.ui.blackOut.element = document.createElement("div");
-juxtapo.ui.blackOut.show = function() {
-
-};
-
 (function() {
 
 	/**
@@ -68,6 +62,7 @@ juxtapo.ui.blackOut.show = function() {
 			// controller
 			this.controller = document.createElement("div");
 			$(this.controller).attr("class", "juxtapo-dropDown");
+			/** @private */
 			this.controller.onclick = function() {
 				dd.toggleShow();
 			};
