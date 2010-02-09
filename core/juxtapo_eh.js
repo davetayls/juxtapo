@@ -7,7 +7,11 @@
 (function(){
 
     var _dropDown = null;
-    
+
+	/**
+	 * Error handler
+	 * @namespace
+	 */    
     juxtapo.eh = {
         // properties
         errors: "",

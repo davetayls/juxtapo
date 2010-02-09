@@ -4,6 +4,7 @@
 (function(){
 	/**
 	 * The control name
+	 * @namespace
 	 */
 	juxtapo.control = {
 		

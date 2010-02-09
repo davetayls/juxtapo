@@ -5,6 +5,10 @@
  * juxtapo.ui
  * ------------------------------------------------------------------------
  */
+/**
+ * UI namespace of controls
+ * @namespace
+ */
 juxtapo.ui = {};
 
 juxtapo.ui.blackOut = {};
@@ -13,10 +17,13 @@ juxtapo.ui.blackOut.show = function() {
 
 };
 
-// juxtapo.ui.dropDown
-// Control which puts a button in the tool strip and gives a popup
 (function() {
 
+	/**
+	 * Creates a new dropDown control which puts a button in the tool strip and gives a popup
+	 * @class Represents a dropDown control
+	 * @constructor
+	 */
 	juxtapo.ui.dropDown = function(options) {
 		this._init(options);
 	};
@@ -105,6 +112,12 @@ juxtapo.ui.blackOut.show = function() {
 	};
 })();
 
+/**
+ * Creates a new thumbnail control which contains a link to the page
+ * a small image and the page name
+ * @class Represents a thumbnail control
+ * @constructor
+ */
 juxtapo.ui.thumbnail = function(designTemplate, options) {
 	this._init(designTemplate, options);
 };
@@ -154,6 +167,11 @@ juxtapo.ui.thumbnail.prototype = {
 	}
 };
 
+/**
+ * Creates a new toolbtn control
+ * @class Represents a toolbtn control
+ * @constructor
+ */
 juxtapo.ui.toolbtn = function(options) {
 	this._init(options);
 };

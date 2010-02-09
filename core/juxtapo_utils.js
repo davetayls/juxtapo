@@ -3,6 +3,10 @@
  */
 (function(){
 
+	/**
+	 * Utils namespace which contains useful functions
+	 * @namespace
+	 */
 	juxtapo.utils = {
 		date : {
 				toShortTimeString : function(d){

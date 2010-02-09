@@ -13,6 +13,10 @@
 	};
 
 	/* public */
+	/**
+	 * Designs
+	 * @namespace
+	 */
 	juxtapo.designs = {
 		// methods
 		back : function() {

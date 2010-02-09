@@ -12,6 +12,6 @@ jsCombiner "C:\Projects\juxtapo-0.4\release\core\"
 
 xcopy plugins\*.* release\plugins\ /e
 
-perl tools\jsdoc\jsdoc.pl release\core\juxtapo.js -d release\docs
+java -jar tools\jsdoc-toolkit\jsrun.jar tools\jsdoc-toolkit\app\run.js -d=release\docs\ -a -t=tools\jsdoc-toolkit\templates\jsdoc release\core\juxtapo.js
 
 pause

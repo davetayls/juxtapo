@@ -11,6 +11,10 @@
     var _$searchBox = $('<input id="juxtapo-searchDesigns" type="text" />');
     var _$thumbsContainer = $('<ul id="juxtapo-thumbs-container" />');
  
+	/**
+	 * Pop up for displaying thumbnails
+	 * @namespace
+	 */
     juxtapo.thumbs = {
         rendered: false,
         

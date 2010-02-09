@@ -1,14 +1,12 @@
 /**
- * juxtapo JavaScript Library v0.3a http://juxtapo.net/
+ * juxtapo JavaScript Library http://juxtapo.net/
  *
  * Copyright (c) 2009 David Taylor (@davetayls) Licensed under the GNU v3
  * license. http://www.gnu.org/licenses/gpl.html
+ * 
+ * Version 0.4a
  *
- * @author
- * @davetayls
- * @namespace juxtapo
  */
-//var juxtapo = {};
 
 (function(){
 
@@ -49,11 +47,16 @@
     /* public */
 	/**
 	 * Juxtapo library 
+	 * @class
+	 * @name juxtapo
 	 */
     juxtapo = {
 		/**
 		 * The various states the auto refresh can be in
-		 * @return {Object} off,play,pause
+		 * @constant
+		 * @default pause:2
+		 * @field
+		 * @type Object {off,play,pause}
 		 */
         statuses: {
             off: 0,
@@ -62,7 +65,7 @@
         },
 		/**
 		 * The states to choose the transparency of the design
-		 * @return {Object} hidden,semiTransparent,opaque
+		 * @type Object {hidden,semiTransparent,opaque}
 		 */
         designViews: {
             hidden: 0,
@@ -85,6 +88,9 @@
         timerId: -1,
         
         // methods
+		/**
+		 * Initialises juxtapo
+		 */
         init: function(){
             addResources();
             initStatus();
@@ -125,6 +131,13 @@
         },
         
         // events
+		/**
+		 * Adds a listener to the initComplete event
+		 * @event
+		 * @example
+		 * juxtapo.iniComplete(function(ev){ run code here... });
+		 * @param {Function} fn(ev)
+		 */
         initComplete: function(fn){
             $(juxtapo).bind("_initComplete", fn);
         }
@@ -133,6 +146,10 @@
     
     // Methods
     
+	/**
+	 * Listener attached to the keydown event on the body
+	 * @private
+	 */
     juxtapo.onBody_KeyDown = function(e){
         var keycode;
         if (window.event) 
