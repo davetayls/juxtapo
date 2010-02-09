@@ -2,9 +2,18 @@
  * juxtapo.control
  */
 (function(){
+	/**
+	 * The control name
+	 */
 	juxtapo.control = {
 		
 		// properties
+		/**
+		 * Set to true at the end of the init function
+		 * @property {bool}
+		 * @type {bool}
+		 * @return {bool}
+		 */
 		initCompleted:false,
 		
 		// methods
@@ -24,6 +33,11 @@
 		    }
 			this.initCompleted = true;
 		},
+		/**
+		 * Sets the currentStatus to play and begins
+		 * automatically refreshing the page
+		 * @return {int} returns the int value of juxtapo.statuses.play
+		 */
 		play : function() {
 		    juxtapo.currentStatus = juxtapo.statuses.play;
 		    juxtapo.controller.innerHTML = "|&nbsp;|";

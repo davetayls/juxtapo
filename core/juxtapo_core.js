@@ -8,7 +8,7 @@
  * @davetayls
  * @namespace juxtapo
  */
-var juxtapo = {};
+//var juxtapo = {};
 
 (function(){
 
@@ -47,12 +47,23 @@ var juxtapo = {};
     };
     
     /* public */
+	/**
+	 * Juxtapo library 
+	 */
     juxtapo = {
+		/**
+		 * The various states the auto refresh can be in
+		 * @return {Object} off,play,pause
+		 */
         statuses: {
             off: 0,
             play: 1,
             pause: 2
         },
+		/**
+		 * The states to choose the transparency of the design
+		 * @return {Object} hidden,semiTransparent,opaque
+		 */
         designViews: {
             hidden: 0,
             semiTransparent: 1,

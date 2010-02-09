@@ -1,5 +1,6 @@
 del release\*.* /Q/S
 xcopy core\*.js release\core\ /e
+xcopy core\*.sdoc release\core\ /e
 xcopy core\*.css release\core\ /e
 xcopy core\*.jpg release\core\ /e
 xcopy core\*.png release\core\ /e
@@ -10,5 +11,7 @@ xcopy sample\*.* release\sample\ /e
 jsCombiner "C:\Projects\juxtapo-0.4\release\core\"
 
 xcopy plugins\*.* release\plugins\ /e
+
+perl tools\jsdoc\jsdoc.pl release\core\juxtapo.js -d release\docs
 
 pause
