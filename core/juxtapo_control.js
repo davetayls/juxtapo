@@ -11,9 +11,8 @@
 		// properties
 		/**
 		 * Set to true at the end of the init function
-		 * @property {bool}
-		 * @type {bool}
-		 * @return {bool}
+		 * @property bool
+		 * @type bool
 		 */
 		initCompleted:false,
 		

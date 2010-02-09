@@ -241,14 +241,10 @@
 	// SUB CLASSES
 	/**
 	 * Create a new instance of designTemplate
-	 * 
-	 * @classDescription This class creates a new designTemplate
-	 * @param {Object}
-	 *            imageUrl
-	 * @param {Object}
-	 *            paths
-	 * @param {Object}
-	 *            style
+	 * @class designTemplate is the description of each design layout
+	 * @param {Object} imageUrl
+	 * @param {Object} paths
+	 * @param {Object} style
 	 * @return {juxtapo.designs.designTemplate} Returns a new designTemplate
 	 * @constructor
 	 */
@@ -270,16 +266,24 @@
 			self.imageUrl = imageUrl;
 			self.paths = paths;
 			self.settings = $.extend( {}, juxtapo.designs.designTemplate.prototype.settings, settings);
-			
+
+			/**
+			 * Sets the {@link juxtapo.ui.thumbnail} connected with this designTemplate
+			 * @name juxtapo.designs.designTemplate.setUiThumbnail
+			 * @function
+			 * @param {juxtapo.ui.thumbnail} thumbnail
+			 * @returns {juxtapo.designs.designTemplate}
+			 */			
 			self.setUiThumbnail = function(thumbnail){
 				self.thumbnail = thumbnail;
 				$(self).trigger("_thumbnailSet");
+				return self;
 			};
 			self.thumbnailSet = function(fn){
 				$(self).bind("_thumbnailSet",fn);
 			};
 
-		},
+		}
 	};
 	juxtapo.designs.designTemplate.defaultStyles = {
 		position : 'absolute',
