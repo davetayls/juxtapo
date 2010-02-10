@@ -8,24 +8,25 @@ namespace jsCombiner
 {
     class Program
     {
+
+        static Regex regex = new Regex(@"includes.push\(\""([^\""]*\.js)\""\)");
+
         static void Main(string[] args)
         {
-            Regex regex = new Regex(@"includes.push\(\""([^\""]*\.js)\""\)");
             String fileLoc = args[0].Trim('"');
-            String fileCombined = String.Empty;
-            /*
-            if (args.Length > 1)
-            {
-                fileCombined = args[1].Trim('"');
-            }
-            */
-            if (fileLoc.Substring(fileLoc.Length - 1) != "\\")
-            {
-                fileLoc += "\\";
-            }
             Console.WriteLine("");
-            Console.WriteLine("- Looking in " + fileLoc);
-            foreach (String f in Directory.GetFiles(fileLoc))
+            ProcessDirectory(fileLoc);
+        }
+
+        static void ProcessDirectory(String dir)
+        {
+            if (dir.Substring(dir.Length - 1) != "\\") {
+                dir += "\\";
+            }
+            String fileCombined = String.Empty;
+            Console.WriteLine("- Looking in " + dir);
+            if (!Directory.Exists(dir)) return;
+            foreach (String f in Directory.GetFiles(dir))
             {
                 if (Path.GetExtension(f).Contains("js") && System.IO.File.Exists(f))
                 {
@@ -38,8 +39,14 @@ namespace jsCombiner
                         MatchCollection col = regex.Matches(sFile);
                         foreach (Match m in col) {
                             String matchedFileName = m.Groups[1].Value;
-                            Console.WriteLine("   - Adding to root: " + matchedFileName);
-                            combined += "\n\n" + File.ReadAllText(fileLoc + matchedFileName);
+                            if (File.Exists(dir + matchedFileName))
+                            {
+                                Console.WriteLine("   - Adding to root: " + matchedFileName);
+                                combined += "\n\n" + File.ReadAllText(dir + matchedFileName);                                
+                            }else
+                            {
+                                Console.WriteLine("   - File doesn't exist in same folder as combiner: " + matchedFileName);
+                            }
                         }
 
                         // removing //##DEBUG lines
@@ -60,13 +67,16 @@ namespace jsCombiner
                         foreach (Match m in col) {
                             String matchedFileName = m.Groups[1].Value;
                             Console.WriteLine("     - Deleting file: " + matchedFileName);
-                            if (System.IO.File.Exists(fileLoc + matchedFileName))
+                            if (System.IO.File.Exists(dir + matchedFileName))
                             {
-                                System.IO.File.Delete(fileLoc + matchedFileName);    
+                                System.IO.File.Delete(dir + matchedFileName);    
                             }
                         }
                     }
                 }
+            }
+            foreach (string subDir in Directory.GetDirectories(dir)) {
+                ProcessDirectory(subDir);
             }
         }
     }

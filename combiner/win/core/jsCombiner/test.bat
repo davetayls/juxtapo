@@ -1,2 +1,2 @@
-C:\Projects\jsCombiner\jsCombiner\bin\Debug\jsCombiner "C:\Projects\jsCombiner\jsCombiner\test\"
+C:\Projects\juxtapo-0.4\combiner\win\core\jsCombiner\bin\Debug\jsCombiner "C:\Projects\juxtapo-0.4\combiner\win\core\jsCombiner\test\"
 pause

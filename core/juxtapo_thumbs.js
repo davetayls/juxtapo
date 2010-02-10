@@ -69,7 +69,7 @@
 				.css("height", contentsHeight+'px');
             _$toolbar.append(_$toolbarLeft).append(_$toolbarRight);
             _$toolbarLeft.append(_$searchBox);
-			_$thumbsContainer.css("height",(contentsHeight - 37)+'px');
+			_$thumbsContainer.css("height",(contentsHeight - 39)+'px');
             for (var i = 0; i < juxtapo.designTemplates.length; i++) {
 				var thumb = new juxtapo.ui.thumbnail(juxtapo.designTemplates[i]);
 				_$thumbsContainer.append(thumb.container);
