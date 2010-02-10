@@ -23,6 +23,12 @@
 				}
 			};
 			
+			if (typeof(juxtapo.globalSettings.qunitTests) != "undefined"){
+				for (var i=0;i<juxtapo.globalSettings.qunitTests.length;i++){
+					var jsTestFile = juxtapo.utils.resolveAbsoluteUrl(juxtapo.juxtapoJsFileLocation,juxtapo.globalSettings.qunitTests[i]);
+					juxtapo.utils.requireResource(jsTestFile);
+				}
+			}
 			currentDesign = juxtapo.designs.currentDesign();
 			if (currentDesign.settings.data.qunitTests){
 				for (var i=0;i<currentDesign.settings.data.qunitTests.length;i++){
