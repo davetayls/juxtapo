@@ -24,6 +24,7 @@
 		dropDown : function(){
 			return _dropDown;
 		},
+		/** @private */
         init: function(){
 			self = juxtapo.thumbs;
 			_dropDown = new juxtapo.ui.dropDown();
@@ -41,14 +42,21 @@
                 $("#juxtapo-searchDesigns").focus();
             };
         },
+		/**
+		 * @param {HtmlElement} el
+		 */
 		appendToToolbarLeft : function(el){
 			_$toolbarLeft.append(el);
 			return self;
 		},
+		/**
+		 * @param {HtmlElement} el
+		 */
 		appendToToolbarRight : function(el){
 			_$toolbarRight.append(el);
 			return self;
 		},
+		/** @private */
         renderThumbs: function(){
             juxtapo.eh.logInfo("thumbs rendering");
             var designList;
@@ -69,9 +77,14 @@
             $("#juxtapo-searchDesigns").keyup(this.searchKeyup);
             this.rendered = true;
         },
+		/** @private */
         searchKeyup: function(e){
             juxtapo.designs.filterBySearch($("#juxtapo-searchDesigns").val());
         },
+		/**
+		 * The html ul element which contains the list of thumbs
+		 * @returns {HtmlUlElement}
+		 */
 		thumbsContainer : function(){
 			return _$thumbsContainer.get(0);
 		}

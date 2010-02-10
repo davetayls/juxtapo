@@ -17,6 +17,10 @@ juxtapo.ui = {};
 	 * Creates a new dropDown control which puts a button in the tool strip and gives a popup
 	 * @class Represents a dropDown control
 	 * @constructor
+	 * @property {HtmlElement} controller The button the sits on the toolstrip
+	 * @property {HtmlElement} contents The main lightbox container
+	 * @property {bool} expanded
+	 * @property {Object} settings
 	 */
 	juxtapo.ui.dropDown = function(options) {
 		this._init(options);
@@ -112,6 +116,13 @@ juxtapo.ui = {};
  * a small image and the page name
  * @class Represents a thumbnail control
  * @constructor
+ * @property {HtmlElement} caption The Html element containing the thumbnail caption
+ * @property {HtmlElement} container The main thumbnail container li
+ * @property {juxtapo.designs.designTemplate} designTemplate The designTemplate this thumbnail is associated with
+ * @property {HtmlElement} link The Html anchor element for the thumbnail 
+ * @property {HtmlSpanElement} imageContainer The Html span element containing the thumbnail image 
+ * @property {HtmlImage} image The thumbnail image
+ * @property {Object} settings
  */
 juxtapo.ui.thumbnail = function(designTemplate, options) {
 	this._init(designTemplate, options);
@@ -123,7 +134,6 @@ juxtapo.ui.thumbnail.prototype = {
 	link : null,
 	imageContainer : null,
 	image : null,
-
 	settings : {},
 
 	// methods
@@ -149,6 +159,12 @@ juxtapo.ui.thumbnail.prototype = {
 
 		designTemplate.setUiThumbnail(self);
 
+		/**
+		 * Shows or hides the thumbnail
+		 * @function
+		 * @name juxtapo.ui.thumbnail.show
+		 * @param {bool} [b=true] A boolean value to determine whether to show the thumbnail 
+		 */
 		self.show = function(b) {
 			if (typeof (b) == 'undefined')
 				b = true;
@@ -186,10 +202,22 @@ juxtapo.ui.toolbtn.prototype = {
 		self.container = $('<a class="juxtapo-toolbtn" />').append(
 				self.contents).get(0);
 
+		/**
+		 * Adds a listener function which is triggered when a user clicks on the button
+		 * @name juxtapo.ui.toolbtn.click
+		 * @event
+		 * @param {Object} fn
+		 */
 		self.click = function(fn) {
 			$(self.container).click(fn);
 			return self;
 		};
+		/**
+		 * Shows or hides the button
+		 * @function
+		 * @name juxtapo.ui.toolbtn.show
+		 * @param {bool} [b=true] A boolean value to determine whether to show the button 
+		 */
 		self.show = function(b) {
 			if (typeof (b) == 'undefined')
 				b = true;
@@ -200,6 +228,11 @@ juxtapo.ui.toolbtn.prototype = {
 			}
 			return self;
 		};
+		/**
+		 * Sets the contents of the button
+		 * @property
+		 * @param {Html|String} text
+		 */
 		self.text = function(text) {
 			$(self.contents).html(text);
 			return self;
