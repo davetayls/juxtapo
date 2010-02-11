@@ -41,6 +41,7 @@ juxtapo.ui = {};
 		},
 
 		// methods
+		/** @private */
 		_init : function(options) {
 			this.settings = $.extend( {}, this.settings, options);
 			this.render();
@@ -60,6 +61,7 @@ juxtapo.ui = {};
 				$(this.contents).html(s);
 			}
 		},
+		/** @private */
 		render : function() {
 			var dd = this;
 

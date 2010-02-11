@@ -49,6 +49,16 @@
 	 * Juxtapo library 
 	 * @class
 	 * @name juxtapo
+     * @property {HtmlElement} container
+     * @property {HtmlElement} controller
+     * @property {juxtapo.designViews} currentDesignView
+     * @property {juxtapo.statuses} currentStatus
+     * @property {bool} designvisible
+     * @property {int} designCurrentImageIndex
+     * @property {juxtapo.designs.designTemplate[]} designTemplates Array of {@link juxtapo.designs.designTemplate} which describe the designs within the project
+     * @property {Object} globalSettings
+     * @property {String} juxtapoJsFileLocation
+     * @property {int} secondsBeforeRefresh
 	 */
     juxtapo = {
 		/**
@@ -65,6 +75,7 @@
         },
 		/**
 		 * The states to choose the transparency of the design
+		 * @constant
 		 * @type Object {hidden,semiTransparent,opaque}
 		 */
         designViews: {
@@ -78,7 +89,7 @@
         controller: null,
         currentDesignView: 0,
         currentStatus: 2,
-        designlayout: null,
+        //designlayout: null,
         designvisible: false,
         designCurrentImageIndex: 0,
         designTemplates: [], // list of layout images to place as the
@@ -90,6 +101,7 @@
         // methods
 		/**
 		 * Initialises juxtapo
+		 * @private
 		 */
         init: function(){
             addResources();
@@ -219,6 +231,7 @@
         
         return true;
     };
+	/** @private */
     juxtapo.onMouseMove = function(){
         clearTimeout(juxtapo.timerId);
         if (juxtapo.currentStatus == juxtapo.statuses.play) {

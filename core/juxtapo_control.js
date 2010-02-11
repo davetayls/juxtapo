@@ -5,15 +5,11 @@
 	/**
 	 * The control name
 	 * @namespace
+	 * @property {bool} initCompleted Set to true at the end of the init function 
 	 */
 	juxtapo.control = {
 		
 		// properties
-		/**
-		 * Set to true at the end of the init function
-		 * @property bool
-		 * @type bool
-		 */
 		initCompleted:false,
 		
 		// methods

@@ -232,6 +232,12 @@
 		},
 
 		/* events */
+		/**
+		 * Adds a listener function which gets triggered when the overlay image
+		 * has been moved
+		 * @event
+		 * @param {Object} fn(ev)
+		 */
 		designPositionChanged : function(fn) {
 			$(juxtapo).bind("_designPositionChanged", fn);
 		}
