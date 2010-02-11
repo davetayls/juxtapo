@@ -6,6 +6,8 @@ juxtapo.designs.designTemplate.defaultStyles = {
 	'margin-left' : '-375px'
 };
 
+juxtapo.gspreadsheet.addTemplates("tBqvTyflHChzhkZ0dLAOftw");
+/*
 juxtapo.addTemplate('design1.htm', 'design1.png', {
 	style : {
 		top : '8px'
@@ -20,3 +22,4 @@ juxtapo.addTemplate('design2.htm', 'design2.png', {
 		'margin-left' : '0'
 	}
 });
+*/

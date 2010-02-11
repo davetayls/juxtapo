@@ -42,6 +42,7 @@
 			win: navigator.platform == "Win32"
 		},		
 		getJsLocation : function(jsFileName){
+			jsFileName = jsFileName.toLowerCase();
 			var scriptFiles = document.getElementsByTagName("script");
 			for (var i=0;i<scriptFiles.length;i++){
 				var scriptTag = scriptFiles[i];
