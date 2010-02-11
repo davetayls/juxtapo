@@ -1,5 +1,8 @@
 ﻿/*
- *	Adds on qunit functionality to any page 
+ *	Allows you to load designs from a spreadsheet
+ *  - the spreadsheet must have the following headers
+ *    path,imageurl,style
+ *  - any other headers will get added to the settings.data object 
  */
 (function() {
 
