@@ -76,6 +76,7 @@
             }
             $("#juxtapo-searchDesigns").keyup(this.searchKeyup);
             this.rendered = true;
+            $(juxtapo.thumbs).trigger("_thumbsRendered");
         },
 		/** @private */
         searchKeyup: function(e){
@@ -87,6 +88,11 @@
 		 */
 		thumbsContainer : function(){
 			return _$thumbsContainer.get(0);
+		},
+        
+        // events
+        thumbsRendered : function(fn){
+			$(juxtapo.thumbs).bind("_thumbsRendered", fn);
 		}
     };
     

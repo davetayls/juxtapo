@@ -91,6 +91,9 @@
 				juxtapo.designs.hide();
 			}
 		},
+		getAll : function(){
+			return juxtapo.designTemplates;
+		},
 		getDesignFromUrl : function(url) {
 			var href = url.toLowerCase();
 			for ( var i = 0; i < juxtapo.designTemplates.length; i++) {
@@ -255,6 +258,8 @@
 	 * @param {Object} settings.style Key:value pair of css styles which will override the default styles
 	 * @return {juxtapo.designs.designTemplate} Returns a new designTemplate
 	 * @constructor
+	 * 
+	 * @property {juxtapo.ui.thumbnail} thumbnail
 	 */
 	juxtapo.designs.designTemplate = function(imageUrl, paths, settings) {
 		this._init(imageUrl, paths, settings);
