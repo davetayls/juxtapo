@@ -29,6 +29,7 @@ includes.push("juxtapo_designs.js");
 includes.push("juxtapo_thumbs.js");
 includes.push("juxtapo_utils.js");
 includes.push("juxtapo_ui.js");
+includes.push("juxtapo_help.js");
 
 function includeJs(){
 	for (var i=0;i< includes.length;i++){

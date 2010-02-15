@@ -51,14 +51,40 @@
 	font-size: 11px; 
 	font-weight: bold; 
 	height: 568px;
-	left: 1px; 
+	left: 1px;
+	overflow:auto; 
 	padding: 0px; 
 	position: fixed; 
 	text-align: left; 
 	width: 90%; 
 	z-index: 2000; 
 }
+	.juxtapo-lightBox h4 {
+		border-top: solid 1px #ccc;
+		font-size: 1.1em;
+		margin: 6px 0px 3px;
+		padding: 5px 0 3px;
+	}
+	.juxtapo-lightBox table {
+		border-collapse: separate;
+		border-spacing: 0;
+	}
+		.juxtapo-lightBox table tr {
+			
+		}
+		.juxtapo-lightBox table tr:nth-child(even) td {
+			background-color: #ddd;
+		}
+			.juxtapo-lightBox table tr td {
+				background-color: #eee;
+				border-left: solid 1px #fff;
+				border-right: solid 1px #bbb;
+				padding: 8px 5px;
+			}
 
+	.juxtapo-lightBox ul {
+		margin: 5px 0px 3px 10px;
+	}
 .juxtapo-btn {
 	background-color: white; 
 	border: solid 1px #000; 
@@ -73,6 +99,15 @@
 	text-align: center; 
 	z-index: 2000;		
 }
+	.juxtapo-btn-open {
+		background-color:#000000;
+		border-bottom:1px solid #aaa;
+		border-left:1px solid #CCCCCC;
+		border-right:1px solid #aaa;
+		color:#FFFFFF;
+		padding-bottom: 5px;
+		top:-3px;
+	}
 	.juxtapo-btn:hover { background-color: #555; color: white; }
 
 #juxtapo-ui-toolbar {

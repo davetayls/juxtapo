@@ -14,9 +14,9 @@
     
     // Methods
     function addResources(){
-        juxtapo.juxtapoJsFileLocation = juxtapo.utils.getJsLocation('juxtapo.js');
-        if (juxtapo.juxtapoJsFileLocation) {
-            juxtapo.utils.requireResource(juxtapo.juxtapoJsFileLocation + 'juxtapo.css');
+        juxtapo.coreJsUrl = juxtapo.utils.getJsLocation('juxtapo.js');
+        if (juxtapo.coreJsUrl) {
+            juxtapo.utils.requireResource(juxtapo.coreJsUrl + 'juxtapo.css');
         }
     };
     function initContainer(){
@@ -43,6 +43,9 @@
     var onInitComplete = function(){
         $(juxtapo).trigger("_initComplete");
     };
+    var onInitConfig = function(){
+        $(juxtapo).trigger("_initConfig");
+    };
     
     /* public */
 	/**
@@ -57,7 +60,7 @@
      * @property {int} designCurrentImageIndex
      * @property {juxtapo.designs.designTemplate[]} designTemplates Array of {@link juxtapo.designs.designTemplate} which describe the designs within the project
      * @property {Object} globalSettings
-     * @property {String} juxtapoJsFileLocation
+     * @property {String} coreJsUrl
      * @property {int} secondsBeforeRefresh
 	 */
     juxtapo = {
@@ -94,7 +97,7 @@
         designCurrentImageIndex: 0,
         designTemplates: [], // list of layout images to place as the
 		globalSettings:{},
-        juxtapoJsFileLocation: '',
+        coreJsUrl: '',
         secondsBeforeRefresh: 2.5,
         timerId: -1,
         
@@ -105,6 +108,7 @@
 		 */
         init: function(){
             addResources();
+			onInitConfig();
             initStatus();
             
             // init if not turned off
@@ -120,7 +124,18 @@
             
             onInitComplete();
         },
-        
+		/**
+		 * Adds plugin files to juxtapo
+		 * @param {Object} pluginPaths An array of paths to plugins relative to the juxtapo.js
+		 * @example
+		 * juxtapo.addPlugins(['../plugins/juxtapo.views.js']);
+		 */
+        addPlugins : function(pluginPaths){
+			for (var i=0;i<pluginPaths.length;i++){
+				var jsLoc = juxtapo.utils.resolveAbsoluteUrl(juxtapo.coreJsUrl,pluginPaths[i]);
+				juxtapo.utils.requireResource(jsLoc);
+			}
+		},
         /**
          * Adds a juxtapo.designs.designTemplate object to the designTemplates
          * array
@@ -143,6 +158,19 @@
         },
         
         // events
+		/**
+		 * Adds a listener function which gets fired when juxtapo
+		 * needs the configuration to be initialised
+		 * @event
+		 * @example
+		 * juxtapo.iniConfig(function(ev){
+		 * 		juxtapo.addTemplate('path.htm','image.png',{}); 
+		 * });
+		 * @param {Function} fn(ev)
+		 */
+        initConfig: function(fn){
+            $(juxtapo).bind("_initConfig", fn);
+        },
 		/**
 		 * Adds a listener to the initComplete event
 		 * @event

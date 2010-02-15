@@ -5,21 +5,19 @@ juxtapo.designs.designTemplate.defaultStyles = {
 	left : '50%',
 	'margin-left' : '-375px'
 };
-
-juxtapo.gspreadsheet.addTemplates("tBqvTyflHChzhkZ0dLAOftw");
-/*
-juxtapo.addTemplate('design1.htm', 'design1.png', {
-	style : {
-		top : '8px'
-	},
-	data : {
-		qunitTests: ["../sample/tests.js"]
-	}
+juxtapo.initConfig(function(){
+	juxtapo.addTemplate('design1.htm', 'design1.png', {
+		style : {
+			top : '8px'
+		},
+		data : {
+			qunitTests: ["../sample/tests.js"]
+		}
+	});
+	juxtapo.addTemplate('design2.htm', 'design2.png', {
+		style : {
+			left : "0",
+			'margin-left' : '0'
+		}
+	});	
 });
-juxtapo.addTemplate('design2.htm', 'design2.png', {
-	style : {
-		left : "0",
-		'margin-left' : '0'
-	}
-});
-*/

@@ -13,10 +13,14 @@ juxtapo.ui = {};
 
 (function() {
 
+	_openDropDown = null;
+	
 	/**
 	 * Creates a new dropDown control which puts a button in the tool strip and gives a popup
 	 * @class Represents a dropDown control
 	 * @constructor
+	 * @param {Object} options
+	 * @param {Object} options.style
 	 * @property {HtmlElement} controller The button the sits on the toolstrip
 	 * @property {HtmlElement} contents The main lightbox container
 	 * @property {bool} expanded
@@ -85,17 +89,25 @@ juxtapo.ui = {};
 		show : function(b) {
 			if (typeof (b) == "undefined")
 				b = true;
-			this.expanded = b;
-			if (b) {
+			if (b && !this.expanded) {
+				if (_openDropDown){
+					_openDropDown.show(false);
+					_openDropDown = null;
+				}
 				if (this.beforeOpen) {
 					this.beforeOpen();
 				}
-				$(this.contents).show(100);
+				$(this.contents).show();
+				$(this.controller).addClass("juxtapo-btn-open");
+				this.expanded = true;
+				_openDropDown = this;
 				if (this.afterOpen) {
 					this.afterOpen();
 				}
-			} else {
-				$(this.contents).hide(100);
+			} else if (!b) {
+				$(this.contents).hide();
+				$(this.controller).removeClass("juxtapo-btn-open");
+				this.expanded = false;
 			}
 			return this.expanded;
 		},

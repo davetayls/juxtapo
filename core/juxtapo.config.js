@@ -6,10 +6,11 @@ juxtapo.designs.designTemplate.defaultStyles = {
     left: '50%',
     'margin-left': '-375px'
 };
-
-
-// include each template below
-juxtapo.addTemplate('example.htm', 'example.png', {
-    style: {},
-    data: {}
+juxtapo.initConfig(function(){
+	// include each template below
+	juxtapo.addTemplate('example.htm', 'example.png', {
+	    style: {},
+	    data: {}
+	});	
 });
+

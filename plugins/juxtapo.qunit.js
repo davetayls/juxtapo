@@ -8,7 +8,11 @@
 
 	juxtapo.initComplete(function(){
 
-		if (QUnit){
+		var libUrl = juxtapo.utils.resolveAbsoluteUrl(juxtapo.coreJsUrl,'../lib/');
+        juxtapo.utils.requireResource(libUrl + "qunit.js");
+        juxtapo.utils.requireResource(libUrl + "qunit.css");
+
+		if (typeof(QUnit) != 'undefined'){
 			dropDown = new juxtapo.ui.dropDown();
 			dropDown.text('qunit');
 			dropDown.contentHtml('<h2 id="qunit-header">test suite</h2><h3 id="qunit-banner"></h3><h3 id="qunit-userAgent"></h3><ol id="qunit-tests"></ol>');
@@ -25,14 +29,14 @@
 			
 			if (typeof(juxtapo.globalSettings.qunitTests) != "undefined"){
 				for (var i=0;i<juxtapo.globalSettings.qunitTests.length;i++){
-					var jsTestFile = juxtapo.utils.resolveAbsoluteUrl(juxtapo.juxtapoJsFileLocation,juxtapo.globalSettings.qunitTests[i]);
+					var jsTestFile = juxtapo.utils.resolveAbsoluteUrl(juxtapo.juxcoreJsUrlxtapo.globalSettings.qunitTests[i]);
 					juxtapo.utils.requireResource(jsTestFile);
 				}
 			}
 			currentDesign = juxtapo.designs.currentDesign();
 			if (currentDesign.settings.data.qunitTests){
 				for (var i=0;i<currentDesign.settings.data.qunitTests.length;i++){
-					var jsTestFile = juxtapo.utils.resolveAbsoluteUrl(juxtapo.juxtapoJsFileLocation,currentDesign.settings.data.qunitTests[i]);
+					var jsTestFile = juxtapo.utils.resolveAbsoluteUrl(juxtapo.juxcoreJsUrlrrentDesign.settings.data.qunitTests[i]);
 					juxtapo.utils.requireResource(jsTestFile);
 				}
 			}
