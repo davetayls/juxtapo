@@ -1,1 +1,2 @@
-var juxtapoTestSuiteExternal = new Object();
+
+juxtapo.globalSettings.test = 'externalfile';

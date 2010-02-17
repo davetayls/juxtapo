@@ -11,12 +11,12 @@
 (function(){
 
     /* private */
+	var _coreJsUrl = ''
     
     // Methods
     function addResources(){
-        juxtapo.coreJsUrl = juxtapo.utils.getJsLocation('juxtapo.js');
-        if (juxtapo.coreJsUrl) {
-            juxtapo.utils.requireResource(juxtapo.coreJsUrl + 'juxtapo.css');
+        if (juxtapo.coreJsUrl()) {
+            juxtapo.utils.requireResource(juxtapo.coreJsUrl() + 'juxtapo.css');
         }
     };
     function initContainer(){
@@ -60,7 +60,6 @@
      * @property {int} designCurrentImageIndex
      * @property {juxtapo.designs.designTemplate[]} designTemplates Array of {@link juxtapo.designs.designTemplate} which describe the designs within the project
      * @property {Object} globalSettings
-     * @property {String} coreJsUrl
      * @property {int} secondsBeforeRefresh
 	 */
     juxtapo = {
@@ -97,7 +96,10 @@
         designCurrentImageIndex: 0,
         designTemplates: [], // list of layout images to place as the
 		globalSettings:{},
-        coreJsUrl: '',
+        coreJsUrl: function(){
+	        if (_coreJsUrl == '') _coreJsUrl = juxtapo.utils.getJsLocation('juxtapo.js');
+			return _coreJsUrl;
+		},
         secondsBeforeRefresh: 2.5,
         timerId: -1,
         
@@ -132,8 +134,8 @@
 		 */
         addPlugins : function(pluginPaths){
 			for (var i=0;i<pluginPaths.length;i++){
-				var jsLoc = juxtapo.utils.resolveAbsoluteUrl(juxtapo.coreJsUrl,pluginPaths[i]);
-				juxtapo.utils.requireResource(jsLoc);
+				var jsLoc = juxtapo.utils.resolveAbsoluteUrl(juxtapo.coreJsUrl(),pluginPaths[i]);
+				document.write("<script type=\"text/javascript\" src=\"" + jsLoc + "\"></script>");
 			}
 		},
         /**

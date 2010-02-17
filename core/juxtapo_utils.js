@@ -13,6 +13,7 @@
 			}
 			else var expires = "";
 			document.cookie = name+"="+value+expires+"; path=/";
+			return true;
 		},
 		/**
 		 * Set of date functions
@@ -28,7 +29,8 @@
 			}		
 		},
 		eraseCookie : function(name) {
-			createCookie(name,"",-1);
+			self.createCookie(name,"",-1);
+			return true;
 		},
 		/**
 		 * Returns the value of a query string variable
@@ -102,7 +104,7 @@
 		    // Loop through the properties/functions
 		    var properties = '';
 		    for (var propertyName in obj) {
-		        // Check if it�s NOT a function
+		        // Check if it's NOT a function
 		        if (!(obj[propertyName] instanceof Function)) {
 		            if (typeof(obj[propertyName]) == 'object'){
 						if (level < 3){							
@@ -144,12 +146,43 @@
 			}
 			return null;
 		},
-		requireResource : function(url){
+		requireResource : function(url,callBack){
+			var head = document.getElementsByTagName('head')[0];
+			var callBackRun = false;
+			var resourceLoaded = false;
+
 			if (url.substr(url.lastIndexOf(".")) == ".css"){
-				$("head").append('<link href="' + url + '" rel="stylesheet" type="text/css" />');
+				var link = document.createElement('link');
+				link.setAttribute('rel','stylesheet');
+				link.setAttribute('type','text/css');
+				link.setAttribute('href',url);
+				head.appendChild(link);
+				return link;
+
 			}else if (url.substr(url.lastIndexOf(".")) == ".js"){
-				$("head").append('<script src="' + url + '" type="text/javascript" ></script>');
+				var script = document.createElement('script');
+				script.type= 'text/javascript';
+				if (typeof(callBack) != 'undefined'){
+					script.onreadystatechange= function () {
+					  if (this.readyState == 'complete' && !callBackRun) {
+					  	callBackRun = true;
+						resourceLoaded = true;
+						if (typeof(callBack) != 'undefined') callBack.call(script,url);
+					  }
+					}
+					script.onload = function(){
+						if (!callBackRun){
+							callBackRun = true;
+							resourceLoaded = true;
+							if (typeof(callBack) != 'undefined') callBack.call(script,url);
+						}
+					};
+				}
+				script.src= url;
+				head.appendChild(script);
+				return script;
 			}
+			return null;
 		},
 		resolveAbsoluteUrl : function(baseUrl,relativeUrl) {
 		    if (relativeUrl.substr(0, 1) == '/') {

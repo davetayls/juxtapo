@@ -19,7 +19,7 @@
 		'<tr><td>Auto Refresh Play/Stop</td><td>Ctrl+Space</td></tr>' +
 		'</table>' +
 		'<h4>Docs</h4>' +
-		'<ul><li><a href="'+ juxtapo.utils.resolveAbsoluteUrl(juxtapo.coreJsUrl,'../docs/index.htm') + '">Documentation</a></ul>';
+		'<ul><li><a href="'+ juxtapo.utils.resolveAbsoluteUrl(juxtapo.coreJsUrl(),'../docs/index.htm') + '">Documentation</a></ul>';
 		
 		_dropDown.contentHtml(helpHtml);
 		

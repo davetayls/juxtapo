@@ -5,6 +5,7 @@ juxtapo.designs.designTemplate.defaultStyles = {
 	left : '50%',
 	'margin-left' : '-375px'
 };
+juxtapo.addPlugins(['../plugins/juxtapo.qunit.js']);
 juxtapo.initConfig(function(){
 	juxtapo.addTemplate('design1.htm', 'design1.png', {
 		style : {

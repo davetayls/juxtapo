@@ -41,7 +41,12 @@ juxtapo.initComplete(function(){
 			true,
 			"relativeUrl ../juxtapo.js is a relative url"
 		);
-		ok(juxtapo.utils.requireResource())
+		var absUrl = juxtapo.utils.resolveAbsoluteUrl(juxtapo.coreJsUrl(),'../tests/externalfile.js');
+		equals(typeof(absUrl),'string','resolveAbsoluteUrl returns a string');
+		ok(absUrl,'absUrl equals: '+absUrl);
+		var res = juxtapo.utils.requireResource(absUrl);
+		equals(res.tagName.toLowerCase(),'script','requireResource has returned a script tag');
+		equals($(res).parent().get(0).tagName.toLowerCase(),'head','requireResource returned tag with parent head');
 	});
 	test("getKeyCombination ", function(){
 	    same(juxtapo.utils.getKeyCombination("23+shift"), {
@@ -59,6 +64,15 @@ juxtapo.initComplete(function(){
 	        keyCode: 23,
 	        shift: true
 	    }, "should return an object with shift and ctrl true and the key code");
+	});
+	test('Cookies',function(){
+		ok(juxtapo.utils.eraseCookie('juxtapoTestSuiteTest'),'eraseCookie clear cookies previously created by this test');
+		ok(juxtapo.utils.createCookie('juxtapoTestSuiteTest','CookieSet',3),'createCookie');
+		equals(
+			juxtapo.utils.readCookie('juxtapoTestSuiteTest'),
+			'CookieSet',
+			'readCookie should return CookieSet'
+		);
 	});
 	test("Strings", function(){
 	    equals(juxtapo.utils.String.contains("stringabcstring", "abc"), true, "The string should contain abc");
