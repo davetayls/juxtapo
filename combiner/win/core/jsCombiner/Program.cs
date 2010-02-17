@@ -9,7 +9,9 @@ namespace jsCombiner
     class Program
     {
 
-        static Regex regex = new Regex(@"includes.push\(\""([^\""]*\.js)\""\)");
+        static Regex regexIncludes = new Regex(@"includes.push\(\""([^\""]*\.js)\""\)");
+        static Regex regRemoveDebugContainers = new Regex(@"(//##DEBUGSTART)([\s\S]*?)(//##DEBUGEND)");
+        static Regex regRemoveDebuging = new Regex(@"[\r]?\n.*//##DEBUG");
 
         static void Main(string[] args)
         {
@@ -36,7 +38,12 @@ namespace jsCombiner
                     {
                         Console.WriteLine("- Processing combiner root: " + fileName + ".js");
                         String combined = String.Empty;
-                        MatchCollection col = regex.Matches(sFile);
+                        // removing //##DEBUGSTART //##DEBUGEND containers
+                        sFile = regRemoveDebugContainers.Replace(sFile, "");
+                        // removing //##DEBUG lines
+                        sFile = regRemoveDebuging.Replace(sFile, "");
+                        // match includes.push
+                        MatchCollection col = regexIncludes.Matches(sFile);
                         foreach (Match m in col) {
                             String matchedFileName = m.Groups[1].Value;
                             if (File.Exists(dir + matchedFileName))
@@ -49,8 +56,10 @@ namespace jsCombiner
                             }
                         }
 
+                        // removing //##DEBUGSTART //##DEBUGEND containers
+                        combined = regRemoveDebugContainers.Replace(combined, "");
+
                         // removing //##DEBUG lines
-                        Regex regRemoveDebuging = new Regex(@"[\r]?\n.*//##DEBUG");
                         combined = regRemoveDebuging.Replace(combined, "");
                         
                         // writing combined file

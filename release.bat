@@ -33,7 +33,7 @@ xcopy plugins\*.* release\plugins\ /e
 @echo *
 @echo **** combining javascript core ****
 @echo *
-jsCombiner "C:\Projects\juxtapo-0.4\release\core\"
+C:\Projects\juxtapo-0.4\combiner\win\core\jsCombiner\bin\Debug\jsCombiner "C:\Projects\juxtapo-0.4\release\core\"
 
 @echo *
 @echo **** generating docs ****
