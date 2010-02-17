@@ -169,7 +169,7 @@
 						resourceLoaded = true;
 						if (typeof(callBack) != 'undefined') callBack.call(script,url);
 					  }
-					}
+					};
 					script.onload = function(){
 						if (!callBackRun){
 							callBackRun = true;
@@ -178,8 +178,9 @@
 						}
 					};
 				}
-				script.src= url;
-				head.appendChild(script);
+				script.src = url;
+				//head.appendChild(script);
+				$(script).appendTo("head");
 				return script;
 			}
 			return null;
