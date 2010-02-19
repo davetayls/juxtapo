@@ -18,6 +18,7 @@ xcopy core\*.gif release\core\ /e
 @echo **** copying readme and lib files ****
 @echo *
 copy readme.txt release\
+copy release-notes.txt release\
 xcopy lib\*.* release\lib\ /e
 
 @echo *
@@ -33,7 +34,8 @@ xcopy plugins\*.* release\plugins\ /e
 @echo *
 @echo **** combining javascript core ****
 @echo *
-C:\Projects\juxtapo-0.4\combiner\win\core\jsCombiner\bin\Debug\jsCombiner "C:\Projects\juxtapo-0.4\release\core\"
+C:\Projects\juxtapo-0.4\combiner\win\commandline\jsCombiner "C:\Projects\juxtapo-0.4\release\core\"
+copy release\core\juxtapo.js release\core\juxtapo.dev.js
 
 @echo *
 @echo **** generating docs ****
@@ -43,6 +45,14 @@ java -jar tools\jsdoc-toolkit\jsrun.jar tools\jsdoc-toolkit\app\run.js -d=releas
 @echo *
 @echo **** building compiled js ****
 @echo *
-java -jar tools\compiler\compiler.jar --js=release\core\juxtapo.js --js_output_file=release\core\juxtapo.compiled.js
+java -jar tools\compiler\compiler.jar --js=release\core\juxtapo.js --js_output_file=release\core\juxtapo.comp.js
+
+@echo *
+@echo **** combining javascript compiled ****
+@echo *
+copy tools\juxtapo.compiled.js release\core\juxtapo.js
+copy core\juxtapo_headcomment.js release\core\
+C:\Projects\juxtapo-0.4\combiner\win\commandline\jsCombiner "C:\Projects\juxtapo-0.4\release\core\"
+
 
 pause

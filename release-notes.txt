@@ -1,0 +1,7 @@
+juxtapo release notes
+=====================
+
+0.4		Released: 
+		- Added plugin support
+		- Need to use juxtapo.initConfig event for adding templates
+		- Now using juxtapo.setDefaultStyles({}) for default styles

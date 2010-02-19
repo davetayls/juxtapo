@@ -179,8 +179,8 @@
 					};
 				}
 				script.src = url;
-				//head.appendChild(script);
-				$(script).appendTo("head");
+				$(script).appendTo(head);
+				head.appendChild(script);
 				return script;
 			}
 			return null;

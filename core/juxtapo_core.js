@@ -1,13 +1,3 @@
-/**
- * juxtapo JavaScript Library http://juxtapo.net/
- *
- * Copyright (c) 2009 David Taylor (@davetayls) Licensed under the GNU v3
- * license. http://www.gnu.org/licenses/gpl.html
- * 
- * Version 0.4a
- *
- */
-
 (function(){
 
     /* private */
@@ -63,6 +53,7 @@
      * @property {int} secondsBeforeRefresh
 	 */
     juxtapo = {
+		version : '0.4a',
 		/**
 		 * The various states the auto refresh can be in
 		 * @constant
@@ -158,7 +149,14 @@
             this.designTemplates.push(t);
             return t;
         },
-        
+        /**
+         * This sets the default styles applied to each design template
+         * image when added to the page.
+         * @param {Object} styles
+         */
+		setDefaultStyles : function(styles){
+			juxtapo.designs.designTemplate.defaultStyles = styles;
+		},
         // events
 		/**
 		 * Adds a listener function which gets fired when juxtapo

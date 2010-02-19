@@ -19,18 +19,11 @@ function getJsLocation(jsFileName){
 	return "";
 };
 
-var combinerJsLocation = getJsLocation("juxtapo.js");
+var combinerJsLocation = getJsLocation("juxtapo.compiled.js");
 
 var includes = [];
 includes.push("juxtapo_headcomment.js");
-includes.push("juxtapo_core.js");
-includes.push("juxtapo_eh.js");
-includes.push("juxtapo_control.js");
-includes.push("juxtapo_designs.js");
-includes.push("juxtapo_thumbs.js");
-includes.push("juxtapo_utils.js");
-includes.push("juxtapo_ui.js");
-includes.push("juxtapo_help.js");
+includes.push("juxtapo.comp.js");
 
 function includeJs(){
 	for (var i=0;i< includes.length;i++){

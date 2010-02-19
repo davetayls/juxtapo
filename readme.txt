@@ -15,7 +15,7 @@ and so this will be short:
 2. Extract the files in to your website root 
    (doesn't need to be in the root, just needs to be accessible)
 3. Include a script reference to the juxtapo.js file within your page
-4. Add your templates to the juxtapo.config.js file
+4. Copy and paste the juxtapo.config.js file from the core directory
 
 Pre-requisites
 ==============
@@ -35,13 +35,13 @@ the juxtapo directory.
 	the size and positioning of your designs. This example default styles 
 	positions a 900px wide the image centrally on the page:
 
-	juxtapo.designs.designTemplate.defaultStyles = { 
+	juxtapo.setDefaultStyles({ 
 		position: 'absolute', 
 		'z-index': '2000', 
 		top: '0px', 
 		left: '50%', 
 		'margin-left': '-450px' 
-	};
+	});
 
 2. For each page which has a corresponding design image add the following:
 
@@ -72,15 +72,6 @@ the juxtapo directory.
 	@param style {object} optional
 	This is a key/value object containing any style tweaks to be applied to the default 
 	overlay styles.
-
-Keyboard Shortcuts
-==================
-Ctrl+I/K/J/L = Move the design by 25 pixels up/down/left/right
-Ctrl+Shift+I/K/J/L = Nudge the design by 1 pixel up/down/left/right
-Ctrl+; or Ctrl+right = Change transparency
-Ctrl+h or Ctrl+left = Change transparency
-Ctrl+up and Ctrl+down = Overlay previous/next design
-Ctrl+space = Auto refresh play/pause
 
 More information
 ================
