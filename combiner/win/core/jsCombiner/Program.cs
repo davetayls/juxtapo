@@ -4,7 +4,7 @@ using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace jsCombiner
+namespace juxtapo.Combiner
 {
     class Program
     {
@@ -45,7 +45,7 @@ namespace jsCombiner
                         // match includes.push
                         MatchCollection col = regexIncludes.Matches(sFile);
                         foreach (Match m in col) {
-                            String matchedFileName = m.Groups[1].Value;
+                            String matchedFileName = m.Groups[1].Value.Replace("/","\\");
                             if (File.Exists(dir + matchedFileName))
                             {
                                 Console.WriteLine("   - Adding to root: " + matchedFileName);

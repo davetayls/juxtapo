@@ -8,8 +8,8 @@
     <ProjectGuid>{414276E9-6DED-4D9E-BC91-AFA76CA3F540}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>jsCombiner</RootNamespace>
-    <AssemblyName>jsCombiner</AssemblyName>
+    <RootNamespace>juxtapo.Combiner</RootNamespace>
+    <AssemblyName>juxtapo-combiner</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <PublishUrl>publish\</PublishUrl>
