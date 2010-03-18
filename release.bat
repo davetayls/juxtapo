@@ -58,5 +58,6 @@ combiner\win\commandline\jsCombiner "D:\Projects\juxtapo-0.4\release\core\"
 @echo **** copying combiner releases ****
 @echo *
 xcopy combiner\win\commandline\*.* release\combiner\win\commandline /e/c/y/r
+copy combiner\*.* release\combiner\
 
 pause
