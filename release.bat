@@ -34,7 +34,7 @@ xcopy plugins\*.* release\plugins\ /e
 @echo *
 @echo **** combining javascript core ****
 @echo *
-C:\Projects\juxtapo-0.4\combiner\win\commandline\jsCombiner "C:\Projects\juxtapo-0.4\release\core\"
+combiner\win\commandline\jsCombiner "D:\Projects\juxtapo-0.4\release\core\"
 copy release\core\juxtapo.js release\core\juxtapo.dev.js
 
 @echo *
@@ -52,7 +52,11 @@ java -jar tools\compiler\compiler.jar --js=release\core\juxtapo.js --js_output_f
 @echo *
 copy tools\juxtapo.compiled.js release\core\juxtapo.js
 copy core\juxtapo_headcomment.js release\core\
-C:\Projects\juxtapo-0.4\combiner\win\commandline\jsCombiner "C:\Projects\juxtapo-0.4\release\core\"
+combiner\win\commandline\jsCombiner "D:\Projects\juxtapo-0.4\release\core\"
 
+@echo *
+@echo **** copying combiner releases ****
+@echo *
+xcopy combiner\win\commandline\*.* release\combiner\win\commandline /e/c/y/r
 
 pause
