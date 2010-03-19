@@ -1,4 +1,0 @@
-var testJuxtapoCore = function(){
-
-
-};
