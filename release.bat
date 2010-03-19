@@ -6,6 +6,13 @@
 del release\*.* /Q/S
 
 @echo *
+@echo **** copying combiner releases ****
+@echo *
+xcopy combiner\win\core\juxtapo-combiner\bin\Debug\juxtapo-combiner.exe release\combiner\win\commandline\ /e/c/y/r
+copy combiner\*.* release\combiner\
+
+
+@echo *
 @echo **** copying core files ****
 @echo *
 xcopy core\*.js release\core\ /e
@@ -34,7 +41,7 @@ xcopy plugins\*.* release\plugins\ /e
 @echo *
 @echo **** combining javascript core ****
 @echo *
-combiner\win\commandline\jsCombiner "D:\Projects\juxtapo-0.4\release\core\"
+release\combiner\win\commandline\juxtapo-combiner "release\core\"
 copy release\core\juxtapo.js release\core\juxtapo.dev.js
 
 @echo *
@@ -52,12 +59,6 @@ java -jar tools\compiler\compiler.jar --js=release\core\juxtapo.js --js_output_f
 @echo *
 copy tools\juxtapo.compiled.js release\core\juxtapo.js
 copy core\juxtapo_headcomment.js release\core\
-combiner\win\commandline\jsCombiner "D:\Projects\juxtapo-0.4\release\core\"
-
-@echo *
-@echo **** copying combiner releases ****
-@echo *
-xcopy combiner\win\commandline\*.* release\combiner\win\commandline /e/c/y/r
-copy combiner\*.* release\combiner\
+release\combiner\win\commandline\juxtapo-combiner "release\core\"
 
 pause

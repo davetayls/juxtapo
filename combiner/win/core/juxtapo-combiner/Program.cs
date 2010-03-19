@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -16,7 +16,10 @@ namespace juxtapo.Combiner
         static void Main(string[] args)
         {
             String fileLoc = args[0].Trim('"');
-            Console.WriteLine("");
+			if (!Path.IsPathRooted(fileLoc)){
+				fileLoc = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(),fileLoc));
+			}
+			Console.WriteLine("");
             ProcessDirectory(fileLoc);
         }
 
