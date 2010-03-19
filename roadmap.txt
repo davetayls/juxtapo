@@ -1,0 +1,31 @@
+juxtapo roadmap
+===============
+
+
+
+v0.3
+- first stable release
+- tested across supported browsers
+
+v0.4
+- expose api
+	- events: init
+	- methods:
+	- properties:
+
+v0.5
+- plugin support
+
+v0.6
+- keyboard shortcut customisation
+- add plugin to move design with mouse
+- add ui info plugin: displays info about design position
+
+v0.7
+
+v0.8
+
+v0.9
+
+v1.0
+

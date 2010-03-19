@@ -1,0 +1,290 @@
+/*  cc - clear container 
+----------------------------------------------------*/
+.juxtapo-cc { zoom: 1; }
+    .juxtapo-cc:after {
+        content: ".";
+        display: block;
+        height: 0;
+        clear: both;
+        visibility: hidden;
+    }
+
+#juxtapo-container {
+	background:#000000 url(juxtapo-logo-12.gif) no-repeat 2px 2px;
+	border-top: solid 1px #aaa;
+	bottom: 0;
+	height: 15px;
+	left: 0;	
+	line-height: 7px;
+	padding:1px 3px 1px 47px;
+	position: fixed;
+	z-index: 2001;
+}
+
+
+.juxtapo-dropDown {
+	border: solid 1px #000; 
+	position: relative; 
+	/*width: 5px;*/ 
+	height: 6px;
+	float: left; 
+	font-family: arial, helvetica,sans-serif;
+	font-weight: bold; 
+	text-align: center; 
+	padding: 3px; 
+	cursor: pointer; 
+	background-color: white; 
+	font-size: 9px; 
+	z-index: 2000;	
+}
+	.juxtapo-dropDown:hover { background-color: #555; color: white; }
+
+.juxtapo-lightBox {
+	background-color: white; 
+	border: solid 5px #000;
+	bottom: 18px; 
+	box-shadow: 0px 0px 20px #000;
+	-moz-box-shadow: 0px 0px 20px #000;
+	-webkit-box-shadow: 0px 0px 20px #000;
+	display: none;
+	font-family: Arial,sans-serif;
+	font-size: 11px; 
+	font-weight: bold; 
+	height: 568px;
+	left: 1px;
+	overflow:auto; 
+	padding: 0px; 
+	position: fixed; 
+	text-align: left; 
+	width: 90%; 
+	z-index: 2000; 
+}
+	.juxtapo-lightBox h4 {
+		border-top: solid 1px #ccc;
+		font-size: 1.1em;
+		margin: 6px 0px 3px;
+		padding: 5px 0 3px;
+	}
+	.juxtapo-lightBox table {
+		border-collapse: separate;
+		border-spacing: 0;
+	}
+		.juxtapo-lightBox table tr {
+			
+		}
+		.juxtapo-lightBox table tr:nth-child(even) td {
+			background-color: #ddd;
+		}
+			.juxtapo-lightBox table tr td {
+				background-color: #eee;
+				border-left: solid 1px #fff;
+				border-right: solid 1px #bbb;
+				padding: 8px 5px;
+			}
+
+	.juxtapo-lightBox ul {
+		margin: 5px 0px 3px 10px;
+	}
+.juxtapo-btn {
+	background-color: white; 
+	border: solid 1px #000; 
+	cursor: pointer;
+	float: left; 
+	font-family: arial,helvetica,sans-serif;
+	font-weight: bold; 
+	font-size: 9px; 
+	height: 6px; 
+	padding: 3px; 
+	position: relative; 
+	text-align: center; 
+	z-index: 2000;		
+}
+	.juxtapo-btn-open {
+		background-color:#000000;
+		border-bottom:1px solid #aaa;
+		border-left:1px solid #CCCCCC;
+		border-right:1px solid #aaa;
+		color:#FFFFFF;
+		padding-bottom: 5px;
+		top:-3px;
+	}
+	.juxtapo-btn:hover { background-color: #555; color: white; }
+
+#juxtapo-ui-toolbar {
+	background-color: #444;
+	padding: 6px 20px;	
+}
+	#juxtapo-ui-toolbarL {
+		float: left;
+	}
+		#juxtapo-ui-toolbar input {
+			width: 300px;
+		}
+	#juxtapo-ui-toolbarR {
+		float:right;
+	}
+
+#juxtapo-thumbs-container {
+	display:block; 
+    height: 530px;
+    margin: 0; 
+    overflow: auto;
+    padding: 0; 
+	position:relative;
+}
+.juxtapo-thumb {
+    display: block;
+    float: left;
+    height: 252px;
+	margin: 10px;
+	overflow: hidden;
+	position: relative;
+	padding: 0;
+    width: 202px;
+}
+	a.juxtapo-thumb-lnk {
+		border: solid 1px #ccc;
+		display: block;
+		height: 250px;
+		margin:0;
+		overflow: hidden;
+		padding:0;
+		position: relative;
+	    width: 200px;
+	}
+	a.juxtapo-thumb-lnk:hover,
+	a.juxtapo-thumb-lnk:focus,
+	a.juxtapo-thumb-lnk:active {
+		border: solid 1px #000;
+		color: #fff;
+	}
+	    .juxtapo-thumb-img {
+	    	display:block;
+	    	height: 220px;
+			margin:0;
+			overflow: hidden;
+			padding:0;
+	    } 
+	    .juxtapo-thumb-img img {
+	    	border: none; 
+			float: left; 
+			position: relative;
+			z-index: 1;
+		}
+	    span.juxtapo-thumb-caption { 
+			position: absolute;
+			background-color: #efefef;
+			bottom: 0; 
+			left: 0;
+			padding: 3px;
+			display: block;
+			width: 200px;
+			z-index: 2;
+		}
+			a.juxtapo-thumb-lnk:hover span.juxtapo-thumb-caption,
+			a.juxtapo-thumb-lnk:focus span.juxtapo-thumb-caption,
+			a.juxtapo-thumb-lnk:active span.juxtapo-thumb-caption {
+				background-color: #000;
+			}
+
+.juxtapo-thumb.juxtapo-thumb-detailsView {
+	float: none;
+	height: auto;
+	margin:0;
+	width: auto;
+	
+}
+	.juxtapo-thumb-detailsView a.juxtapo-thumb-lnk {
+		background-color: #efefef;
+		border: none;
+		border-top: solid 1px #fff;
+		border-bottom: solid 1px #aaa;
+		height: 30px;
+		padding: 10px 5px;
+		width: auto;
+	}
+		.juxtapo-thumb-detailsView a.juxtapo-thumb-lnk:focus,
+		.juxtapo-thumb-detailsView a.juxtapo-thumb-lnk:active {
+			background-color: #000;
+			border: none;
+			border-top: solid 1px #fff;
+			border-bottom: solid 1px #aaa;
+		}
+	
+	    .juxtapo-thumb-detailsView .juxtapo-thumb-img {
+			height: 30px;
+			float: left;
+			width: 50px;
+	    }
+	    .juxtapo-thumb-detailsView .juxtapo-thumb-img img {
+			height: auto;
+			width: 40px;	    	
+	    } 
+	    .juxtapo-thumb-detailsView span.juxtapo-thumb-caption {
+	    	position: relative;
+			float: left;
+			width: auto;
+	    } 
+
+
+.juxtapo-info { }
+.juxtapo-error,
+.juxtapo-eh-error {
+	background-color: #900 !important;
+	color: white;
+}
+
+.juxtapo-errorBox {
+	font-size: 12px !important;
+	overflow: auto;
+}
+	.juxtapo-errorBox ul {
+		margin: 0;
+		padding:0;
+		list-style: none;
+	}
+	.juxtapo-errorBox ul ul {
+		list-style: disc;
+		margin: 0 15px;
+		padding:0;
+	}
+		.juxtapo-errorBox li {
+			background-color: #eee;
+			border-bottom: solid 1px #aaa;
+			border-top: solid 1px #fff;
+			margin:0;
+			padding: 3px 5px;
+		}
+			.juxtapo-errorBox li ul li {
+				background-color: inherit;
+				border: none;				
+			}
+
+
+.juxtapo-toolbtn {
+	background-color: #555;
+	border-color: #aaa #777 #888 #aaa;
+	border-style: solid;
+	border-width: 1px;
+	border-radius:3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;	
+	cursor:pointer;
+	display:block;
+	float: left;
+	line-height: 20px;
+	margin: 0 2px;
+}
+	.juxtapo-toolbtn-contents {
+		color: #bbb;
+		display:block;
+		float:left;
+		padding: 0 5px;
+	}
+
+.juxtapo-toolbtn:hover {
+	background-color: #777;
+}
+	.juxtapo-toolbtn:hover .juxtapo-toolbtn-contents {
+		color: #ddd;
+	}

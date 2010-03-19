@@ -1,0 +1,2 @@
+
+juxtapo.globalSettings.test = 'externalfile';
