@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "jsCombiner", "jsCombiner\jsCombiner.csproj", "{414276E9-6DED-4D9E-BC91-AFA76CA3F540}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "juxtapo-combiner", "juxtapo-combiner\juxtapo-combiner.csproj", "{414276E9-6DED-4D9E-BC91-AFA76CA3F540}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
