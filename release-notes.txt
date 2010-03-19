@@ -1,0 +1,10 @@
+juxtapo release notes
+=====================
+
+0.4a 2010-03-18	Released:
+		- Added combiner to release
+
+0.4a		Released: 
+		- Added plugin support
+		- Need to use juxtapo.initConfig event for adding templates
+		- Now using juxtapo.setDefaultStyles({}) for default styles
