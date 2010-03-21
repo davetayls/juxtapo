@@ -2,10 +2,20 @@
 <project name="juxtapo-release" default="build" basedir="..\" xmlns="http://nant.sf.net/release/0.85/nant.xsd">
 
     <property name="combiner" value="release\combiner\win\commandline\juxtapo-combiner" />
+    <property name="project.config" value="Debug" />
     
     <description>juxtapo release script</description>
 
-    <target name="build" description="compiles the source code">
+	<target name="compile-combiner-win" depends="">
+		<echo message="Compiling Combiner Windows"/>
+		<exec program="c:\Windows\Microsoft.NET\Framework\v3.5\MSBuild.exe"
+					  commandline="combiner\win\core\juxtapo-combiner.sln /t:Clean /p:Configuration=${project.config} /p:trackfileaccess=false /v:q" workingdir="." />
+		<exec program="c:\Windows\Microsoft.NET\Framework\v3.5\MSBuild.exe"
+					  commandline="combiner\win\core\juxtapo-combiner.sln /t:Rebuild /p:Configuration=${project.config} /p:trackfileaccess=false /v:q" workingdir="." />
+		<echo message="Compile finished" />
+	</target>
+
+    <target name="build" description="compiles the source code" depends="compile-combiner-win">
     
     	<echo message="removing old release" />
 		<delete dir="release\" />
