@@ -76,7 +76,7 @@ the juxtapo directory.
 More information
 ================
 The juxtapo project is still in its early stages so please inform me of any errors or bugs
-you come across at http://code.google.com/p/juxtapo.
+you come across at http://github.com/davetayls/juxtapo.
 
 If you would like to contribute to the project please let me know by joining the google 
 group and posting a message.

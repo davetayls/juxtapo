@@ -16,10 +16,10 @@ v0.4
 v0.5
 - plugin support
 - add ui info plugin: displays info about design position
-- auto include config file functionality with ?cfg query string customisation
 
 v0.6
 - keyboard shortcut customisation
+- auto include config file functionality with ?cfg query string customisation
 
 v0.7
 
