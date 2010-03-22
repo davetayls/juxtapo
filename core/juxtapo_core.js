@@ -13,10 +13,6 @@
         juxtapo.container = document.createElement("div");
         $(juxtapo.container).attr("id", "juxtapo-container");
         $("body").append(juxtapo.container);
-        /*
-         * if (juxtapo.utils.is.ie && juxtapo.utils.is.version == 6){
-         * $(juxtapo.container).css({position:"absolute",top:"0",left:"0"}); }
-         */
     };
     function initStatus(){
         // get current status
@@ -53,7 +49,7 @@
      * @property {int} secondsBeforeRefresh
 	 */
     juxtapo = {
-		version : '0.4a',
+		version : '0.5a',
 		/**
 		 * The various states the auto refresh can be in
 		 * @constant

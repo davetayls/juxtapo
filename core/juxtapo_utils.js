@@ -47,11 +47,6 @@
 		    }
 		    return null;
 		},
-		is : {
-			ie: navigator.appName == "Microsoft Internet Explorer",
-			version: parseFloat(navigator.appVersion.substr(21)) || parseFloat(navigator.appVersion),
-			win: navigator.platform == "Win32"
-		},		
 		getJsLocation : function(jsFileName){
 			jsFileName = jsFileName.toLowerCase();
 			var scriptFiles = document.getElementsByTagName("script");
