@@ -175,7 +175,7 @@
 				}
 				script.src = url;
 				$(script).appendTo(head);
-				head.appendChild(script);
+				//head.appendChild(script);
 				return script;
 			}
 			return null;
