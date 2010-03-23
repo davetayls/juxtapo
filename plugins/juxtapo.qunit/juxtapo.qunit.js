@@ -17,7 +17,9 @@
         if (typeof(QUnit) != 'undefined'){
 			dropDown = new juxtapo.ui.dropDown({style:{height:'400px',width:'600px'}});
 			dropDown.text('qunit');
-			dropDown.contentHtml('<h2 id="qunit-header">test suite</h2><h3 id="qunit-banner"></h3><h3 id="qunit-userAgent"></h3><ol id="qunit-tests"></ol>');
+			if (!document.getElementById('qunit-header')){
+				dropDown.contentHtml('<h2 id="qunit-header">test suite</h2><h3 id="qunit-banner"></h3><h3 id="qunit-userAgent"></h3><ol id="qunit-tests"></ol>');				
+			}
 			
 			QUnit.done = function(failures, total){
 				if (failures > 0){
@@ -36,12 +38,15 @@
 				}
 			}
 			currentDesign = juxtapo.designs.currentDesign();
-			if (currentDesign.settings.data.qunitTests){
-				for (var i=0;i<currentDesign.settings.data.qunitTests.length;i++){
-					var jsTestFile = juxtapo.utils.resolveAbsoluteUrl(juxtapo.coreJsUrl(),currentDesign.settings.data.qunitTests[i]);
-					juxtapo.utils.requireResource(jsTestFile);
+			if (currentDesign){
+				if (currentDesign.settings.data.qunitTests){
+					for (var i=0;i<currentDesign.settings.data.qunitTests.length;i++){
+						var jsTestFile = juxtapo.utils.resolveAbsoluteUrl(juxtapo.coreJsUrl(),currentDesign.settings.data.qunitTests[i]);
+						juxtapo.utils.requireResource(jsTestFile);
+					}
 				}
 			}
+			
 		}else{
 			juxtapo.eh.logError("QUnit plugin requires qunit resources added to the page");
 		}
