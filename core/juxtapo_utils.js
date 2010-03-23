@@ -90,6 +90,13 @@
 		    if (Url.substr(0, 3) == "../") { return true; }
 		    return false;
 		},
+		isStaticUrl : function(url){
+		    Url = url.toLowerCase();
+		    if (Url.substr(0, 7) == "file://") { return true; }
+		    if (Url.substr(0, 6) == "ftp://") { return true; }
+			if (Url.substr(1, 1) == ":") { return true; }
+		    return false;			
+		},
 		objectToStructureString : function(obj,tab,level){
 			if (obj == window) return "window";
 		    if (typeof(tab)=='undefined'){tab='';}

@@ -9,23 +9,24 @@ juxtapo.initComplete(function(){
 	    equals(juxtapo.utils.getJsLocation("notincluded.js"), null, "return null for a file which isn't included");
 	    
 	});
-	test("url functions",function(){
+	test("isAbsoluteUrl",function(){
 		equals(
 			juxtapo.utils.isAbsoluteUrl("http://www.juxtapo.net"),
 			true,
-			"Detects http://www.juxtapo.net is an absolute url"
+			"isAbsoluteUrl Detects http://www.juxtapo.net is an absolute url"
 		);
 		equals(
 			juxtapo.utils.isAbsoluteUrl("/juxtapo.js"),
 			false,
-			"Detects /juxtapo.js is not an absolute url"
+			"isAbsoluteUrl Detects /juxtapo.js is not an absolute url"
 		);
 		equals(
 			juxtapo.utils.isAbsoluteUrl("../juxtapo.js"),
 			false,
-			"Detects ../juxtapo.js is not an absolute url"
+			"isAbsoluteUrl Detects ../juxtapo.js is not an absolute url"
 		);
-		// relative urls
+	});
+	test("isRelativeUrl",function(){
 		equals(
 			juxtapo.utils.isRelativeUrl("http://www.juxtapo.net"),
 			false,
@@ -41,12 +42,45 @@ juxtapo.initComplete(function(){
 			true,
 			"relativeUrl ../juxtapo.js is a relative url"
 		);
+	});
+	test("isStaticUrl",function(){
+		equals(
+			juxtapo.utils.isStaticUrl('file:///D:/static.html'),
+			true,
+			'file:///D:/static.html is a static url'
+		);
+		equals(
+			juxtapo.utils.isStaticUrl('ftp://foo.com/static.html'),
+			true,
+			'ftp://foo.com/static.html is a static url'
+		);
+		equals(
+			juxtapo.utils.isStaticUrl('d:\\static.html'),
+			true,
+			'd:\\static.html is a static url'
+		);
+		equals(
+			juxtapo.utils.isStaticUrl('http://foo.com/web.html'),
+			false,
+			'http://foo.com/web.html is not a static url'
+		);
+	});
+	test("requireResource",function(){		
 		var absUrl = juxtapo.utils.resolveAbsoluteUrl(juxtapo.coreJsUrl(),'../tests/externalfile.js');
 		equals(typeof(absUrl),'string','resolveAbsoluteUrl returns a string');
 		ok(absUrl,'absUrl equals: '+absUrl);
 		var res = juxtapo.utils.requireResource(absUrl);
 		equals(res.tagName.toLowerCase(),'script','requireResource has returned a script tag');
 		equals($(res).parent().get(0).tagName.toLowerCase(),'head','requireResource returned tag with parent head');
+		stop();
+		setTimeout(function(){
+			equals(
+				juxtapo.globalSettings.test,
+				'externalfile',
+				'requireResource: the external file has set a global setting'
+			);
+			start();
+		},100);
 	});
 	test("getKeyCombination ", function(){
 	    same(juxtapo.utils.getKeyCombination("23+shift"), {
@@ -68,11 +102,13 @@ juxtapo.initComplete(function(){
 	test('Cookies',function(){
 		ok(juxtapo.utils.eraseCookie('juxtapoTestSuiteTest'),'eraseCookie clear cookies previously created by this test');
 		ok(juxtapo.utils.createCookie('juxtapoTestSuiteTest','CookieSet',3),'createCookie');
-		equals(
-			juxtapo.utils.readCookie('juxtapoTestSuiteTest'),
-			'CookieSet',
-			'readCookie should return CookieSet'
-		);
+		if (!juxtapo.utils.isStaticUrl(window.location.href)){
+			equals(
+				juxtapo.utils.readCookie('juxtapoTestSuiteTest'),
+				'CookieSet',
+				'readCookie should return CookieSet'
+			);			
+		}
 	});
 	test("Strings", function(){
 	    equals(juxtapo.utils.String.contains("stringabcstring", "abc"), true, "The string should contain abc");
