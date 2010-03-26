@@ -7,3 +7,8 @@ javadocs
 tools/selenuim/selenium-dotnet-client-driver-1.0.1/doc/
 
 /.project
+*.sln.cache
+*.userprefs
+*.pidb
+*.VisualState.xml
+/TestResult.xml
