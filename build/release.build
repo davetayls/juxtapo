@@ -6,10 +6,6 @@
     
     <description>juxtapo release script</description>
 
-	<assemblyfileset id="test.assemblies">
-		<include name="d:\projects\juxtapo\tests\juxtapo-tests\juxtapo-testsuite\bin\Debug\juxtapo-testsuite.dll"></include>
-	</assemblyfileset>
-
 	<target name="compile-solutions">
 		<call target="compile-juxtapo-tests" />
 		<call target="compile-combiner-win" />
@@ -34,12 +30,8 @@
 	</target>
 	
 	<target name="run-testsuite" depends="">
-		<nunit2 failonerror="true" verbose="true">
-			<formatter type="Plain" />
-			<test>
-				<assemblies refid="test.assemblies"></assemblies>
-			</test>
-		</nunit2>
+		<exec program="tools\nunit\nunit-console.exe"
+				commandline="tests\juxtapo-tests\juxtapo-testsuite\bin\Debug\juxtapo-testsuite.dll" />
 	</target>
 
     <target name="build" description="builds the project">
