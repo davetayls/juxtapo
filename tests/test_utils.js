@@ -71,7 +71,7 @@ juxtapo.initComplete(function(){
 		ok(absUrl,'absUrl equals: '+absUrl);
 		var res = juxtapo.utils.requireResource(absUrl);
 		equals(res.tagName.toLowerCase(),'script','requireResource has returned a script tag');
-		equals($(res).parent().get(0).tagName.toLowerCase(),'head','requireResource returned tag with parent head');
+		//equals($(res).parent().get(0).tagName.toLowerCase(),'head','requireResource returned tag with parent head');
 		stop();
 		setTimeout(function(){
 			equals(

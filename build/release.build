@@ -6,6 +6,24 @@
     
     <description>juxtapo release script</description>
 
+	<assemblyfileset id="test.assemblies">
+		<include name="d:\projects\juxtapo\tests\juxtapo-tests\juxtapo-testsuite\bin\Debug\juxtapo-testsuite.dll"></include>
+	</assemblyfileset>
+
+	<target name="compile-solutions">
+		<call target="compile-juxtapo-tests" />
+		<call target="compile-combiner-win" />
+	</target>
+	
+	<target name="compile-juxtapo-tests" depends="">
+		<echo message="Compiling Combiner Windows"/>
+		<exec program="c:\Windows\Microsoft.NET\Framework\v3.5\MSBuild.exe"
+					  commandline="tests\juxtapo-tests\juxtapo-testsuite.sln /t:Clean /p:Configuration=${project.config} /p:trackfileaccess=false /v:q" workingdir="." />
+		<exec program="c:\Windows\Microsoft.NET\Framework\v3.5\MSBuild.exe"
+					  commandline="tests\juxtapo-tests\juxtapo-testsuite.sln /t:Rebuild /p:Configuration=${project.config} /p:trackfileaccess=false /v:q" workingdir="." />
+		<echo message="Compile finished" />
+	</target>
+	
 	<target name="compile-combiner-win" depends="">
 		<echo message="Compiling Combiner Windows"/>
 		<exec program="c:\Windows\Microsoft.NET\Framework\v3.5\MSBuild.exe"
@@ -14,9 +32,21 @@
 					  commandline="combiner\win\core\juxtapo-combiner.sln /t:Rebuild /p:Configuration=${project.config} /p:trackfileaccess=false /v:q" workingdir="." />
 		<echo message="Compile finished" />
 	</target>
+	
+	<target name="run-testsuite" depends="">
+		<nunit2 failonerror="true" verbose="true">
+			<formatter type="Plain" />
+			<test>
+				<assemblies refid="test.assemblies"></assemblies>
+			</test>
+		</nunit2>
+	</target>
 
-    <target name="build" description="compiles the source code" depends="compile-combiner-win">
-    
+    <target name="build" description="builds the project">
+    	
+    	<call target="compile-solutions" />
+    	<call target="run-testsuite" />
+    	
     	<echo message="removing old release" />
 		<delete dir="release\" />
 		<mkdir dir="release" />

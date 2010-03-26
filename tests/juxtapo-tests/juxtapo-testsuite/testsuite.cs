@@ -1,5 +1,6 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using NUnit.Framework;
 using Selenium;
@@ -11,11 +12,13 @@ namespace juxtapo_testsuite
     {
         private ISelenium selenium;
         private StringBuilder verificationErrors;
+		private String browserUrl = "file:///D:/projects/juxtapo/tests/TestSuite.html";
 
         [SetUp]
         public void SetupTest()
         {
-            selenium = new DefaultSelenium("localhost", 4444, "*firefox", "http://www.google.com/");
+			Console.WriteLine(browserUrl);
+            selenium = new DefaultSelenium("localhost", 4444, "*firefox", browserUrl);
             selenium.Start();
             verificationErrors = new StringBuilder();
         }
@@ -36,11 +39,11 @@ namespace juxtapo_testsuite
         [Test]
         public void TheNewTest()
         {
-            selenium.Open("/");
-            selenium.Type("q", "selenium rc");
-            selenium.Click("btnG");
+            selenium.Open(browserUrl);
+            //selenium.Type("q", "selenium rc");
+            //selenium.Click("btnG");
             selenium.WaitForPageToLoad("30000");
-            Assert.IsTrue(selenium.IsTextPresent("Results * for selenium rc"));
+            Assert.IsTrue(!selenium.IsTextPresent("fail"));
         }
     }
 }
