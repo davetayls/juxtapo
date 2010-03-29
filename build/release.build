@@ -9,14 +9,15 @@
 	<property name="combiner.testsuite.solution.file" value="${combiner.testsuite.directory}\juxtapo-testsuite.sln" />
 	<property name="tools.directory" value="${project.directory}\tools" />
 	<property name="nunit.exe" value="${project.directory}\tools\nunit\nunit-console.exe" />
+	<property name="msbuild.exe" value="${environment::get-variable('WINDIR')}\Microsoft.NET\Framework\v3.5\msbuild.exe" />
 
 	<property name="project.version.major" value="0" />
 	<property name="project.version.minor" value="5" />
 	<property name="project.version.revision" value="${datetime::get-year(datetime::now())}-${datetime::get-month(datetime::now())}-${datetime::get-day(datetime::now())}" />
-	<property name="project.version" value="${project.version.major}.${project.version.minor}.${project.version.revision}" />
+	<property name="project.version" value="${project.version.major}.${project.version.minor}-${project.version.revision}" />
 	<property name="project.build.configuration" value="Release" />
 
-	<target name="generate-release-package" depends="init,compile-combiner,generate-package" />
+	<target name="generate-release-package" depends="init,compile-solutions,generate-package" />
 
 
 	<!--
@@ -32,14 +33,14 @@
 		<echo message="Finished initialising build environment" />
 	</target>
 
-	<target name="compile-combiner">
-		<echo message="Compiling combiner" />
+	<target name="compile-solutions">
+		<echo message="Compiling solutions" />
 
 		<echo message="${project.directory}" />
-		<exec program="${environment::get-variable('WINDIR')}\Microsoft.NET\Framework\v3.5\msbuild.exe" commandline="${combiner.solution.file} /t:Rebuild /p:Configuration=${project.build.configuration} /v:minimal" />
-		<exec program="${environment::get-variable('WINDIR')}\Microsoft.NET\Framework\v3.5\msbuild.exe" commandline="${combiner.testsuite.solution.file} /t:Rebuild /p:Configuration=${project.build.configuration} /v:minimal" />
+		<exec program="${msbuild.exe}" commandline="${combiner.solution.file} /t:Rebuild /p:Configuration=${project.build.configuration} /v:minimal" />
+		<exec program="${msbuild.exe}" commandline="${combiner.testsuite.solution.file} /t:Rebuild /p:Configuration=${project.build.configuration} /v:minimal" />
 
-		<echo message="Finished compiling combiner" />
+		<echo message="Finished compiling solutions" />
 	</target>
 
 	<target name="run-tests">
@@ -53,7 +54,7 @@
 	<target name="generate-package" depends="copy-package-source,prepare-javascript-sources">
 		<echo message="Generating package" />
 
-		<zip zipfile="${release.directory}\combiner-${project.version}.zip">
+		<zip zipfile="${release.directory}\juxtapo-v${project.version}.zip">
 			<fileset basedir="${release.directory}" >
 				<include name="**\**" />
 			</fileset>
@@ -114,9 +115,9 @@
 		<echo message="building compiled js" />
 		<exec program="java" commandline="-jar ${tools.directory}\compiler\compiler.jar --js=${release.directory}\core\juxtapo.js --js_output_file=${release.directory}\core\juxtapo.comp.js" />
 
-		<delete file="release\core\juxtapo.js"/>
+		<delete file="${release.directory}\core\juxtapo.js"/>
 		<copy file="${tools.directory}\juxtapo.compiled.js" tofile="${release.directory}\core\juxtapo.js" />
-		<copy file="${project.directory}\core\juxtapo_headcomment.js" todir="release\core\"/>
+		<copy file="${project.directory}\core\juxtapo_headcomment.js" todir="${release.directory}\core\"/>
 		<exec program="${release.directory}\combiner\win\commandline\juxtapo-combiner.exe" commandline="core\" workingdir="${release.directory}" />
 
 	</target>
