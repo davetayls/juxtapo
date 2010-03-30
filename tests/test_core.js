@@ -8,13 +8,16 @@ juxtapo.initConfig(function(){
         equals(t.imageUrl, expected.imageUrl, "We should have a new template");
         juxtapo.addTemplate("test2.htm", "test2.png", {});
         juxtapo.addTemplate("test3.htm", "test3.png", {});
-        equals(juxtapo.designTemplates.length, 3, "There should be 3 templates")
+        juxtapo.addTemplate("item.htm", "item.png", {});
+        juxtapo.addTemplate("page5.htm", "page5.png", {});
+        juxtapo.addTemplate("template6.htm", "template6.png", {});
+        equals(juxtapo.designTemplates.length, 6, "There should be 6 templates")
     });	
 });          
 juxtapo.initComplete(function(){
     module("initComplete");
     test("init", function(){
-        equals(juxtapo.designs.getAll().length, 3, "There should be 3 templates")
+        equals(juxtapo.designs.getAll().length, 6, "There should be 6 templates")
         ok(true, "initComplete");
     });
     module("Plugins");

@@ -5,10 +5,11 @@
 
 	var self;
     var _dropDown = null;
-    var _$toolbar = $('<div id="juxtapo-ui-toolbar" class="juxtapo-cc" />');
-    var _$toolbarLeft = $('<div id="juxtapo-ui-toolbarL" />');
-    var _$toolbarRight = $('<div id="juxtapo-ui-toolbarR" />');
-    var _$searchBox = $('<input id="juxtapo-searchDesigns" type="text" />');
+    var _toolbar = new juxtapo.ui.Toolbar();
+    //var _$toolbarLeft = $('<div id="juxtapo-ui-toolbarL" />');
+    //var _$toolbarRight = $('<div id="juxtapo-ui-toolbarR" />');
+    var _$searchBox = $('<input id="juxtapo-searchDesigns" type="text" title="Search" />');
+	var _search$ = $('<label><span class="label-text">Search:</span></label>').append(_$searchBox);
     var _$thumbsContainer = $('<ul id="juxtapo-thumbs-container" />');
  
 	/**
@@ -46,14 +47,14 @@
 		 * @param {HtmlElement} el
 		 */
 		appendToToolbarLeft : function(el){
-			_$toolbarLeft.append(el);
+			_toolbar.toolbarLeft$.append(el);
 			return self;
 		},
 		/**
 		 * @param {HtmlElement} el
 		 */
 		appendToToolbarRight : function(el){
-			_$toolbarRight.append(el);
+			_toolbar.toolbarRight$.append(el);
 			return self;
 		},
 		/** @private */
@@ -64,11 +65,9 @@
 			var windowHeight = parseInt($(window).height());
 			var contentsHeight = windowHeight - 50; 
             $(_dropDown.contents)
-            	.append(_$toolbar)
-            	.append(_$thumbsContainer)
-				.css("height", contentsHeight+'px');
-            _$toolbar.append(_$toolbarLeft).append(_$toolbarRight);
-            _$toolbarLeft.append(_$searchBox);
+            	.append(_toolbar.toolbar$)
+            	.append(_$thumbsContainer);
+            _toolbar.toolbarLeft$.append(_search$);
 			_$thumbsContainer.css("height",(contentsHeight - 39)+'px');
             for (var i = 0; i < juxtapo.designTemplates.length; i++) {
 				var thumb = new juxtapo.ui.thumbnail(juxtapo.designTemplates[i]);

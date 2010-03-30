@@ -14,7 +14,7 @@ juxtapo.initComplete(function(){
         equals(filter.designs.indexes.length, 1, "filter should have returned 1 result");
         var filter = juxtapo.designs.filterBySearch("T");
         ok(filter, "filter has returned an object");
-        equals(filter.designs.indexes.length, 3, "searching is not case sensitive. filter should have returned 3 results");
+        equals(filter.designs.indexes.length, 6, "searching is not case sensitive. filter should have returned 6 results");
         juxtapo.thumbs.dropDown().show(false);
     });
 });          

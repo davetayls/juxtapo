@@ -39,7 +39,7 @@ juxtapo.ui = {};
 		settings : {
 			cssClass : '',
 			style : {
-				height : '548px',
+				height : 'auto',
 				width : '905px'
 			}
 		},

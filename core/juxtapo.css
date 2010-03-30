@@ -50,9 +50,7 @@
 	font-family: Arial,sans-serif;
 	font-size: 11px; 
 	font-weight: bold; 
-	height: 568px;
 	left: 1px;
-	overflow:auto; 
 	padding: 0px; 
 	position: fixed; 
 	text-align: left; 
@@ -110,20 +108,23 @@
 	}
 	.juxtapo-btn:hover { background-color: #555; color: white; }
 
-#juxtapo-ui-toolbar {
+#juxtapo-searchDesigns { width: 300px; }
+
+.juxtapo-ui-toolbar {
 	background-color: #444;
 	padding: 6px 20px;	
 }
-	#juxtapo-ui-toolbarL {
+	.juxtapo-ui-toolbarL {
 		float: left;
 	}
-		#juxtapo-ui-toolbar input {
-			width: 300px;
-		}
-	#juxtapo-ui-toolbarR {
+	.juxtapo-ui-toolbarR {
 		float:right;
 	}
-
+	.juxtapo-ui-toolbar .label-text {
+		color: #ccc;
+		padding-right: 5px;
+	}
+	
 #juxtapo-thumbs-container {
 	display:block; 
     height: 530px;
