@@ -17,7 +17,7 @@
 	<property name="project.version" value="${project.version.major}.${project.version.minor}-${project.version.revision}" />
 	<property name="project.build.configuration" value="Release" />
 
-	<target name="generate-release-package" depends="init,compile-solutions,generate-package" />
+	<target name="generate-release-package" depends="init,compile-solutions,run-tests,generate-package" />
 
 
 	<!--

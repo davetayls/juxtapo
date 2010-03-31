@@ -12,7 +12,7 @@ namespace juxtapo_testsuite
     {
         private ISelenium selenium;
         private StringBuilder verificationErrors;
-		private String browserUrl = "file:///D:/projects/juxtapo/tests/TestSuite.html";
+		private String browserUrl = "file:///D:/projects/juxtapo/tests/";
 
         [SetUp]
         public void SetupTest()
@@ -39,11 +39,13 @@ namespace juxtapo_testsuite
         [Test]
         public void TheNewTest()
         {
-            selenium.Open(browserUrl);
-            //selenium.Type("q", "selenium rc");
-            //selenium.Click("btnG");
+            selenium.Open("TestSuite.html");
             selenium.WaitForPageToLoad("30000");
-            Assert.IsTrue(!selenium.IsTextPresent("fail"));
+			selenium.WaitForCondition("typeof(window.QUnitDone) != 'undefined' && window.QUnitDone","30000");
+			Console.WriteLine(selenium.GetHtmlSource());
+			Boolean IsPass = selenium.IsElementPresent("//h2[@class='qunit-pass']");
+			Console.WriteLine(IsPass);
+            Assert.IsTrue(IsPass);
         }
     }
 }

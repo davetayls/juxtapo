@@ -1,6 +1,7 @@
 ﻿/*
  *	Adds on qunit functionality to any page 
  */
+window.QUnitDone = false;
 (function(){
 
 	var dropDown = null;
@@ -29,6 +30,7 @@
 					$(dropDown.controller).css("background-color","#C6E746");
 					dropDown.text("qunit:"+total+" tests");
 				}
+				window.QUnitDone = true;
 			};
 			
 			if (typeof(juxtapo.globalSettings.qunitTests) != "undefined"){
