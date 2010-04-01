@@ -1,21 +1,50 @@
-juxtapo JavaScript Library v0.3a
+juxtapo
+Front End Tools: JavaScript Library
 http://juxtapo.net/
 
-Copyright (c) 2009 David Taylor (@davetayls)
+Copyright (c) 2010 David Taylor (@davetayls), http://the-taylors.org
 Licensed under the GNU v3 license.
 http://www.gnu.org/licenses/gpl.html
 
+What is juxtapo
+=========================================================
+juxtapo has two streams at the moment.
 
-Installation
-============
-I have designed juxtapo to be as simple as possible to integrate and use 
-and so this will be short:
+1. In browser tools using javascript to assist while you're turning designs in to html\css.
+
+	The core library is designed to be basic and fast to get up and running and gives:
+	- Overlays with keyboard nudging and positioning
+	- Auto refresh
+	
+	It has a plugin api which allows for any developer to extend the core functionality.
+	Currently the following plugin concepts have been created:
+	* qunit: Allows for in build unit testing using the qunit library
+	* Google Spreadsheets: Get your design templates and template metadata from a Google spreadsheet
+	* Design Info: Show the positioning and size of the current design
+	* Views: Different displays for the template thumbnails
+	
+2. 	Ease the management of your javascript by providing a framework for working with and deploying JavaScript
+	
+	This enables you to split your javascript in to separate files but only reference and use a central combiner js file
+	to link them all while developing.
+	
+	The combiner can then be run on deployment to join all the included files in to one large js file.
+	
+	You can have as many root combiners as you wish to give you complete control over which files get combined.
+
+	
+	
+Front End Tools: Installation
+=========================================================
+juxtapo is designed to be as simple as possible to integrate and use.
+If you have any issues with installation please contact us.
 
 1. Download the latest version
 2. Extract the files in to your website root 
    (doesn't need to be in the root, just needs to be accessible)
 3. Include a script reference to the juxtapo.js file within your page
 4. Copy and paste the juxtapo.config.js file from the core directory
+5. Edit the juxtapo.config.js file and add your templates
 
 Pre-requisites
 ==============
@@ -43,9 +72,9 @@ the juxtapo directory.
 		'margin-left': '-450px' 
 	});
 
-2. For each page which has a corresponding design image add the following:
+2. For each page which has a corresponding design image add the following within the juxtapo.initConfig section provided:
 
-	juxtapo.addTemplate(pageUrl,designUrl,style);
+	juxtapo.addTemplate(pageUrl,designUrl,settings);
 
 	@param pageUrl {String}
 	this is the absolute or partial url of the page which you are matching a design to. 
@@ -53,9 +82,9 @@ the juxtapo directory.
 	default to the design linked
 	
 	here are some examples:
-	- http://juxtapo.net/sample/design1.htm
-	- /sample/design1.htm
-	- design1.htm
+	* http://juxtapo.net/sample/design1.htm
+	* /sample/design1.htm
+	* design1.htm
 	
 	if you are using juxtapo on a static site then you would use something like the 
 	following for a file located at: c:\juxtapo\sample\design1.htm
@@ -69,12 +98,23 @@ the juxtapo directory.
 	the designUrl is the location of the image file which you want to overlay on to your page. 
 	This will be placed as entered here in to the src of the img tag
 	
-	@param style {object} optional
+	@param settings {object} optional
 	This is a key/value object containing any style tweaks to be applied to the default 
-	overlay styles.
+	overlay styles and any data related to your template.
 
+	for more detailed information see the docs withn the juxtapo directory:
+	/docs/symbols/juxtapo.html#.addTemplate
+	
+Combiner Installation
+=========================================================
+
+	
+	
+
+
+	
 More information
-================
+=========================================================
 The juxtapo project is still in its early stages so please inform me of any errors or bugs
 you come across at http://github.com/davetayls/juxtapo.
 
