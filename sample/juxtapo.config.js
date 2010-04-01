@@ -3,7 +3,7 @@ juxtapo.setDefaultStyles({
 	position : 'absolute',
 	'z-index' : '2000',
 	top : '0px',
-	left : '50%',
+	left: '50%',
 	'margin-left' : '-375px'
 });
 /*

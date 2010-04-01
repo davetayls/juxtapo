@@ -52,5 +52,9 @@ juxtapo.initComplete(function(){
         equals(results.designs.length, 3, "Search for test should give 3 design results");
         equals(results.indexes.length, 3, "Search for test should give 3 indexes results");
     });
+	
+	test("nudge",function(){
+		
+	});
 });          
 
