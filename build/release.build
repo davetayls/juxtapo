@@ -12,7 +12,7 @@
 	<property name="msbuild.exe" value="${environment::get-variable('WINDIR')}\Microsoft.NET\Framework\v3.5\msbuild.exe" />
 
 	<property name="project.version.major" value="0" />
-	<property name="project.version.minor" value="5" />
+	<property name="project.version.minor" value="6" />
 	<property name="project.version.revision" value="${datetime::get-year(datetime::now())}-${datetime::get-month(datetime::now())}-${datetime::get-day(datetime::now())}" />
 	<property name="project.version" value="${project.version.major}.${project.version.minor}-${project.version.revision}" />
 	<property name="project.build.configuration" value="Release" />

@@ -12,3 +12,6 @@ tools/selenuim/selenium-dotnet-client-driver-1.0.1/doc/
 *.pidb
 *.VisualState.xml
 /TestResult.xml
+/build/TestResult.xml
+/tests/juxtapo-tests/juxtapo-testsuite/test-results/juxtapo-testsuite.csproj-Debug-2010-03-31.xml
+/tests/juxtapo-tests/juxtapo-testsuite/test-results/juxtapo-testsuite.csproj.test-cache
