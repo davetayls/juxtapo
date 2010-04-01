@@ -10,6 +10,8 @@ tools/selenuim/selenium-dotnet-client-driver-1.0.1/doc/
 *.sln.cache
 *.userprefs
 *.pidb
+*.suo
+*.csproj.user
 *.VisualState.xml
 /TestResult.xml
 /build/TestResult.xml
