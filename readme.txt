@@ -6,6 +6,9 @@ Copyright (c) 2010 David Taylor (@davetayls), http://the-taylors.org
 Licensed under the GNU v3 license.
 http://www.gnu.org/licenses/gpl.html
 
+If you find this software useful please support it's development by 
+donating at http://github.com/davetayls/juxtapo.
+
 What is juxtapo
 =========================================================
 juxtapo has two streams at the moment.
@@ -107,10 +110,19 @@ the juxtapo directory.
 	
 Combiner Installation
 =========================================================
+1. 	Copy the contents of the /combiner/example-combiner.js for each file you want to 
+	split in to separate files.
+2.	Change the combinerFileName to filename of the combiner javascript file.
+3.	Add includes.push("javascriptfile.js") lines for each of the files you want to
+	include with this file.
 
+On deployment:    
+    Copy your javascript files in to a separate deployment directory 
+	and use this with the juxtapo-combiner.exe file.
+    eg: juxtapo-combiner.exe "c:\full\path\to\jsdirecory\"
 	
-	
-
+	This will add all the contents of the included javascript files in to
+	the root combiner file and delete the referenced files.
 
 	
 More information
@@ -118,6 +130,4 @@ More information
 The juxtapo project is still in its early stages so please inform me of any errors or bugs
 you come across at http://github.com/davetayls/juxtapo.
 
-If you would like to contribute to the project please let me know by joining the google 
-group and posting a message.
-	
+If you would like to contribute to the project please let me know by posting a message on github.

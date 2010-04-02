@@ -1,8 +1,6 @@
 juxtapo roadmap
 ===============
 
-
-
 v0.3
 - first stable release
 - tested across supported browsers
