@@ -1,8 +1,6 @@
 juxtapo roadmap
 ===============
 
-
-
 v0.3
 - first stable release
 - tested across supported browsers
@@ -18,8 +16,7 @@ v0.5
 - add ui info plugin: displays info about design position
 
 v0.6
-- keyboard shortcut customisation
-- auto include config file functionality with ?cfg query string customisation
+- allow nudging to work with positioning using left style
 
 v0.7
 
@@ -28,9 +25,11 @@ v0.8
 v0.9
 
 v1.0
-- launch website
+- launch website with full documentation, examples and plugins
 
 Wanted Features
 ===============
+- auto include config file functionality with ?cfg query string customisation
+- keyboard shortcut customisation
 - add plugin to move design with mouse
 

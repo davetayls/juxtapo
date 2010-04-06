@@ -6,8 +6,6 @@
 	var self;
     var _dropDown = null;
     var _toolbar = new juxtapo.ui.Toolbar();
-    //var _$toolbarLeft = $('<div id="juxtapo-ui-toolbarL" />');
-    //var _$toolbarRight = $('<div id="juxtapo-ui-toolbarR" />');
     var _$searchBox = $('<input id="juxtapo-searchDesigns" type="text" title="Search" />');
 	var _search$ = $('<label><span class="label-text">Search:</span></label>').append(_$searchBox);
     var _$thumbsContainer = $('<ul id="juxtapo-thumbs-container" />');

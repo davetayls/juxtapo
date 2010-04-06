@@ -167,26 +167,35 @@
 			if (typeof (pixels) == "undefined")
 				pixels = 1;
 			var $img = $(this.designImageElement());
+			var horizClass = 'margin-left';
+			if ($img.css('left').indexOf('%') < 0){
+				if ($img.css('right') != 'auto'){
+					horizClass = 'right';
+				}else{
+					horizClass = 'left';
+				}
+			}
+			
 			var oldPos = {
 				offSet : $img.offset(),
 				position : $img.position()
 			};
 			switch (dir) {
 			case "top":
-				var currentTop = parseInt($("#design").css("top"));
+				var currentTop = parseInt($img.css("top"));
 				$img.css("top", currentTop - pixels);
 				break;
 			case "right":
-				var currentLeft = parseInt($("#design").css("margin-left"));
-				$img.css("margin-left", currentLeft + pixels);
+				var currentLeft = parseInt($img.css(horizClass));
+				horizClass != 'right' ? $img.css(horizClass, currentLeft + pixels): $img.css(horizClass, currentLeft - pixels);
 				break;
 			case "bottom":
-				var currentTop = parseInt($("#design").css("top"));
+				var currentTop = parseInt($img.css("top"));
 				$img.css("top", currentTop + pixels);
 				break;
 			case "left":
-				var currentLeft = parseInt($("#design").css("margin-left"));
-				$img.css("margin-left", currentLeft - pixels);
+				var currentLeft = parseInt($img.css(horizClass));
+				horizClass != 'right' ? $img.css(horizClass, currentLeft - pixels): $img.css(horizClass, currentLeft + pixels);
 				break;
 			}
 			var newPos = {

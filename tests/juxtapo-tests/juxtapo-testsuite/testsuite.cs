@@ -10,16 +10,18 @@ namespace juxtapo_testsuite
     [TestFixture]
     class testsuite
     {
-        private ISelenium selenium;
+        private List<ISelenium> seleniums = new List<ISelenium>();
         private StringBuilder verificationErrors;
-		private String browserUrl = "file:///D:/projects/juxtapo/tests/TestSuite.html";
+        private String browserUrl = "file:///"+Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\..\\..\\")).Replace("\\","/");
 
         [SetUp]
         public void SetupTest()
         {
-			Console.WriteLine(browserUrl);
-            selenium = new DefaultSelenium("localhost", 4444, "*firefox", browserUrl);
-            selenium.Start();
+            seleniums.Add(new DefaultSelenium("localhost", 4444, "*firefox", browserUrl));
+			//seleniums.Add(new DefaultSelenium("localhost", 4444, "*googlechrome", browserUrl));
+			foreach (ISelenium sel in seleniums){
+            	sel.Start();
+			}
             verificationErrors = new StringBuilder();
         }
 
@@ -27,7 +29,9 @@ namespace juxtapo_testsuite
         public void TeardownTest() {
             try
             {
-                selenium.Stop();
+				foreach (ISelenium selenium in seleniums){
+                	selenium.Stop();
+				}
             }
             catch (Exception)
             {
@@ -37,13 +41,15 @@ namespace juxtapo_testsuite
         }
 
         [Test]
-        public void TheNewTest()
+        public void VerifyQunitTests()
         {
-            selenium.Open(browserUrl);
-            //selenium.Type("q", "selenium rc");
-            //selenium.Click("btnG");
-            selenium.WaitForPageToLoad("30000");
-            Assert.IsTrue(!selenium.IsTextPresent("fail"));
+			foreach (ISelenium selenium in seleniums){
+	            selenium.Open("TestSuite.html");
+	            selenium.WaitForPageToLoad("30000");
+	            selenium.WaitForCondition("typeof(window.QUnitDone) != 'undefined' && window.QUnitDone", "30000");
+	            Boolean IsPass = selenium.IsElementPresent("//h2[@class='qunit-pass']");
+	            Assert.IsTrue(IsPass);
+			}
         }
     }
 }
