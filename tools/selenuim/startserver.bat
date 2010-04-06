@@ -1,2 +1,2 @@
-java -jar selenium-server-1.0.3\selenium-server.jar
+java -jar selenium-server\selenium-server.jar
 pause
