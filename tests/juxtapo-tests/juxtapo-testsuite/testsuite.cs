@@ -10,17 +10,18 @@ namespace juxtapo_testsuite
     [TestFixture]
     class testsuite
     {
-        private ISelenium selenium;
+        private List<ISelenium> seleniums = new List<ISelenium>();
         private StringBuilder verificationErrors;
         private String browserUrl = "file:///"+Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\..\\..\\")).Replace("\\","/");
 
         [SetUp]
         public void SetupTest()
         {
-			Console.WriteLine(browserUrl);
-            Console.WriteLine(Directory.GetCurrentDirectory());
-            selenium = new DefaultSelenium("localhost", 4444, "*firefox", browserUrl);
-            selenium.Start();
+            seleniums.Add(new DefaultSelenium("localhost", 4444, "*firefox", browserUrl));
+			//seleniums.Add(new DefaultSelenium("localhost", 4444, "*googlechrome", browserUrl));
+			foreach (ISelenium sel in seleniums){
+            	sel.Start();
+			}
             verificationErrors = new StringBuilder();
         }
 
@@ -28,7 +29,9 @@ namespace juxtapo_testsuite
         public void TeardownTest() {
             try
             {
-                selenium.Stop();
+				foreach (ISelenium selenium in seleniums){
+                	selenium.Stop();
+				}
             }
             catch (Exception)
             {
@@ -40,11 +43,13 @@ namespace juxtapo_testsuite
         [Test]
         public void VerifyQunitTests()
         {
-            selenium.Open("TestSuite.html");
-            selenium.WaitForPageToLoad("30000");
-            selenium.WaitForCondition("typeof(window.QUnitDone) != 'undefined' && window.QUnitDone", "30000");
-            Boolean IsPass = selenium.IsElementPresent("//h2[@class='qunit-pass']");
-            Assert.IsTrue(IsPass);
+			foreach (ISelenium selenium in seleniums){
+	            selenium.Open("TestSuite.html");
+	            selenium.WaitForPageToLoad("30000");
+	            selenium.WaitForCondition("typeof(window.QUnitDone) != 'undefined' && window.QUnitDone", "30000");
+	            Boolean IsPass = selenium.IsElementPresent("//h2[@class='qunit-pass']");
+	            Assert.IsTrue(IsPass);
+			}
         }
     }
 }

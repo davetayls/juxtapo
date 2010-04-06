@@ -25,7 +25,7 @@ v0.8
 v0.9
 
 v1.0
-- launch website
+- launch website with full documentation, examples and plugins
 
 Wanted Features
 ===============
