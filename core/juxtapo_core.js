@@ -49,7 +49,7 @@
      * @property {int} secondsBeforeRefresh
 	 */
     juxtapo = {
-		version : '0.5a',
+		version : '0.6',
 		/**
 		 * The various states the auto refresh can be in
 		 * @constant
@@ -82,6 +82,7 @@
         designvisible: false,
         designCurrentImageIndex: 0,
         designTemplates: [], // list of layout images to place as the
+        plugins : {}, // convention for adding plugin specific functionality
 		globalSettings:{},
         coreJsUrl: function(){
 	        if (_coreJsUrl == '') _coreJsUrl = juxtapo.utils.getJsLocation('juxtapo.js');

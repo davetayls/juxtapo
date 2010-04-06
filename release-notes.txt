@@ -1,6 +1,12 @@
 juxtapo release notes
 =====================
 
+0.6		2010-04-06	Released:
+					- added namespace juxtapo.plugins as the convention for adding
+					  plugin specific public methods/properties
+					- added ability to use nudging with absolute left or absolute right positioning
+					- now supports child directories within combiner
+					
 0.5.1 	2010-03-26 	Released:
 					- fix bug with juxtapo.ui.requireResource
 

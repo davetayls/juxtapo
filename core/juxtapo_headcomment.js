@@ -4,7 +4,7 @@
  * Copyright (c) 2009 David Taylor (@davetayls) Licensed under the GNU v3
  * license. http://www.gnu.org/licenses/gpl.html
  * 
- * Version 0.4a
+ * Version 0.6
  *
  */
 
