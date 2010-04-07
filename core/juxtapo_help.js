@@ -3,11 +3,12 @@
 	var _dropDown = null;
 
 	juxtapo.initComplete(function(){
-        _dropDown = new juxtapo.ui.dropDown({style:{height:'300px',width:'300px'}});
+        _dropDown = new juxtapo.ui.dropDown({style:{width:'300px'}});
         _dropDown.text("?");
 		
 		var helpHtml = '';
 		helpHtml = '' +
+		'<h4>juxtapo version: '+ juxtapo.version + ', <a href="http://juxtapo.net">website</a></h4>' +
 		'<h4>Keyboard Shortcuts</h4>' +
 		'<table width="100%">' +
 		'<tr><td>Move Left</td><td>Ctrl+J [+shift for nudge]</td></tr>' +
@@ -18,8 +19,8 @@
 		'<tr><td>Transparency Forward</td><td>Ctrl+O</td></tr>' +
 		'<tr><td>Auto Refresh Play/Stop</td><td>Ctrl+Space</td></tr>' +
 		'</table>' +
-		'<h4>Docs</h4>' +
-		'<ul><li><a href="'+ juxtapo.utils.resolveAbsoluteUrl(juxtapo.coreJsUrl(),'../docs/index.htm') + '">Documentation</a></ul>';
+		'<h4>Documention</h4>' +
+		'<ul><li><a href="'+ juxtapo.utils.resolveAbsoluteUrl(juxtapo.coreJsUrl(),'../docs/index.htm') + '">juxtapo API documentation</a></ul>';
 		
 		_dropDown.contentHtml(helpHtml);
 		

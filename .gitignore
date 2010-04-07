@@ -7,10 +7,14 @@ javadocs
 tools/selenuim/selenium-dotnet-client-driver-1.0.1/doc/
 
 /.project
+*.BASE.js
+*.LOCAL.js
+*.REMOTE.js
 *.sln.cache
 *.userprefs
 *.pidb
 *.suo
+*.tmp_*
 *.csproj.user
 *.VisualState.xml
 /TestResult.xml

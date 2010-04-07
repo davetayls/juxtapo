@@ -46,12 +46,14 @@
 				return false;
 			} else if (typeof (item) == "object") {
 				design = item;
-			} else {
+			} else if (typeof item == 'number' && item < juxtapo.designTemplates.length) {
 				juxtapo.designCurrentImageIndex = item;
 				design = juxtapo.designTemplates[item];
 			}
-			var designStyle = $.extend({},juxtapo.designs.designTemplate.defaultStyles,design.settings.style);
-			$("#design").attr("src", design.imageUrl).css(designStyle);
+			if (design){
+				var designStyle = $.extend({},juxtapo.designs.designTemplate.defaultStyles,design.settings.style);
+				$("#design").attr("src", design.imageUrl).css(designStyle);				
+			}
 		},
 		currentDesign : function(){
 			return juxtapo.designTemplates[juxtapo.designCurrentImageIndex];

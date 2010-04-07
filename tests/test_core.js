@@ -2,8 +2,8 @@ juxtapo.addPlugins(['../plugins/juxtapo.views/juxtapo.views.js']);
 
 juxtapo.initConfig(function(){
     module("initConfig");
+    var t = juxtapo.addTemplate("test.htm", "test.png", {});
     test("addTemplate", function(){
-        var t = juxtapo.addTemplate("test.htm", "test.png", {});
         var expected = new juxtapo.designs.designTemplate("test.png", ["test.htm"], {});
         equals(t.imageUrl, expected.imageUrl, "We should have a new template");
         juxtapo.addTemplate("test2.htm", "test2.png", {});
