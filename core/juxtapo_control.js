@@ -50,7 +50,18 @@
 		},
 		reload : function() {
 		    if (juxtapo.currentStatus == juxtapo.statuses.play) {
-		        reloadUrl = location.href + "?r=" + new Date().toString() + "&status=" + juxtapo.currentStatus + "&design=" + juxtapo.designvisible + "&v=" + $(document).scrollTop() + "&dv=" + juxtapo.currentDesignView + "&di=" + juxtapo.designCurrentImageIndex;
+				var originalUrl = juxtapo.utils.getQuery('jxurl');
+				originalUrl= originalUrl? unescape(originalUrl): location.href;
+				var joiner = originalUrl.indexOf('?') > -1 ? '&' : '?';
+		        reloadUrl = originalUrl + 
+							joiner +
+							"jxurl=" + escape(originalUrl) + 
+							"&r=" + new Date().toString() + 
+							"&status=" + juxtapo.currentStatus + 
+							"&design=" + juxtapo.designvisible + 
+							"&v=" + $(document).scrollTop() + 
+							"&dv=" + juxtapo.currentDesignView + 
+							"&di=" + juxtapo.designCurrentImageIndex;
 		        location.href = reloadUrl;
 		    }
 		},
