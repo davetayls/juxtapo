@@ -205,3 +205,17 @@ function resolveLinks(str, from) {
 	
 	return str;
 }
+
+function formatLinks(s){
+	str = s.replace(/http[:\/\w\.-]*/gi,
+		function(match, symbolName) {
+			return '<a href="'+ rtrim(match,'.') +'">'+match+'</a>';
+		}
+	);
+	return str;
+}
+function rtrim(str, chars) {
+    chars = chars || "\\s";
+    return str.replace(new RegExp("[" + chars + "]+$", "g"), "");
+}
+

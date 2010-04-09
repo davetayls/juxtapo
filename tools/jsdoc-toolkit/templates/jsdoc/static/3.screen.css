@@ -49,6 +49,9 @@ body {
 	margin-left: 280px;
 	width: 600px;
 }
+	.instructions {
+		white-space: pre;
+	}
 
 hr {
 	border: none 0;
