@@ -59,14 +59,14 @@
 				<include name="**\**" />
 			</fileset>
 		</zip>
-
+		<!--
 		<delete>
 			<fileset basedir="${release.directory}" >
 				<exclude name="*.zip" />
 				<include name="**\**" />
 			</fileset>
 		</delete>
-
+		-->
 		<echo message="Finished generating package" />
 	</target>
 

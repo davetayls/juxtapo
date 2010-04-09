@@ -17,6 +17,13 @@ function publish(symbolSet) {
 	
 	// create the folders and subfolders to hold the output
 	IO.mkPath((publish.conf.outDir+"symbols/src").split("/"));
+	IO.mkPath(publish.conf.outDir+"lib");
+	
+	// copy lib files
+	IO.copyFile(publish.conf.templatesDir+'static/1.reset.css',publish.conf.outDir+"lib/");
+	IO.copyFile(publish.conf.templatesDir+'static/2.brand.css',publish.conf.outDir+"lib/");
+	IO.copyFile(publish.conf.templatesDir+'static/3.screen.css',publish.conf.outDir+"lib/");
+	IO.copyFile(publish.conf.templatesDir+'static/juxtapo-logo-50.gif',publish.conf.outDir+"lib/");
 		
 	// used to allow Link to check the details of things being linked to
 	Link.symbolSet = symbolSet;

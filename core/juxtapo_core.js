@@ -39,7 +39,6 @@
 	 * @class
 	 * @name juxtapo
      * @property {HtmlElement} container
-     * @property {HtmlElement} controller
      * @property {juxtapo.designViews} currentDesignView
      * @property {juxtapo.statuses} currentStatus
      * @property {bool} designvisible
@@ -160,7 +159,7 @@
 		 * needs the configuration to be initialised
 		 * @event
 		 * @example
-		 * juxtapo.iniConfig(function(ev){
+		 * juxtapo.initConfig(function(ev){
 		 * 		juxtapo.addTemplate('path.htm','image.png',{}); 
 		 * });
 		 * @param {Function} fn(ev)
@@ -255,13 +254,6 @@
         }
         
         return true;
-    };
-	/** @private */
-    juxtapo.onMouseMove = function(){
-        clearTimeout(juxtapo.timerId);
-        if (juxtapo.currentStatus == juxtapo.statuses.play) {
-            juxtapo.timerId = setTimeout('juxtapo.control.reload()', juxtapo.secondsBeforeRefresh * 1000);
-        }
     };
     
 })();

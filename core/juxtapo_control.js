@@ -5,23 +5,30 @@
 	/**
 	 * The control name
 	 * @namespace
-	 * @property {bool} initCompleted Set to true at the end of the init function 
+	 * @property {bool} initCompleted Set to true at the end of the init function
+	 * @property {HtmlElement} controller The div element used for the play button 
 	 */
 	juxtapo.control = {
 		
 		// properties
+		controller : document.createElement("div"),
 		initCompleted:false,
 		
 		// methods
 		init : function(){
-		    // controller
-		    juxtapo.controller = document.createElement("div");
-			$(juxtapo.controller)
-				.attr({"class":"juxtapo-btn",'id':'juxtapo-controller'});
-		    juxtapo.controller.onclick = juxtapo.control.toggle;
-		    juxtapo.container.appendChild(juxtapo.controller);	
+			$(this.controller)
+				.attr({"class":"juxtapo-btn",'id':'juxtapo-controller'})
+				.click(this.toggle)
+				.appendTo(juxtapo.container);
 		
-		    window.onmousemove = juxtapo.onMouseMove;
+			/*
+		    $(window).mousemove(function(){
+		        clearTimeout(juxtapo.timerId);
+		        if (juxtapo.currentStatus == juxtapo.statuses.play) {
+		            juxtapo.timerId = setTimeout('juxtapo.control.reload()', juxtapo.secondsBeforeRefresh * 1000);
+		        }
+		    });*/
+			
 		    if (juxtapo.currentStatus == juxtapo.statuses.pause) {
 		        juxtapo.control.pause();
 		    } else {
@@ -36,13 +43,13 @@
 		 */
 		play : function() {
 		    juxtapo.currentStatus = juxtapo.statuses.play;
-		    juxtapo.controller.innerHTML = "|&nbsp;|";
+		    this.controller.innerHTML = "|&nbsp;|";
 		    juxtapo.timerId = setTimeout('juxtapo.control.reload()', juxtapo.secondsBeforeRefresh * 1000);
 			return juxtapo.currentStatus;
 		},
 		pause : function() {
 		    juxtapo.currentStatus = juxtapo.statuses.pause;
-		    juxtapo.controller.innerHTML = ">";
+		    this.controller.innerHTML = ">";
 		    clearTimeout(juxtapo.timerId);
 		    //reloadUrl = "http://" + location.host + location.pathname + "?status=" + juxtapo.currentStatus + "&design=" + juxtapo.designvisible + "&v=" + $(document).scrollTop() + "&dv=" + juxtapo.currentDesignView;
 		    //location.href = reloadUrl;

@@ -109,7 +109,7 @@ namespace juxtapo_testsuite
 				} catch (AssertionException e) {
 					verificationErrors.Append (e.Message);
 				}
-				selenium.CaptureEntirePageScreenshot ("juxtapotestsuite-screenshot.png", "");
+				selenium.CaptureEntirePageScreenshot (Path.GetFullPath (Path.Combine (Directory.GetCurrentDirectory (), "..\\..\\..\\..\\"))+"juxtapotestsuite-screenshot.png", "");
 			}
 		}
 		
