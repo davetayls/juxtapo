@@ -35,17 +35,17 @@
     
     /* public */
 	/**
-	 * Juxtapo library 
+	 * juxtapo library 
 	 * @class
 	 * @name juxtapo
-     * @property {HtmlElement} container
-     * @property {juxtapo.designViews} currentDesignView
-     * @property {juxtapo.statuses} currentStatus
-     * @property {bool} designvisible
-     * @property {int} designCurrentImageIndex
+     * @property {HtmlElement} container The div element containing the juxtapo tools
+     * @property {juxtapo.designViews} currentDesignView The enum signifying the visibility of the current overlay
+     * @property {juxtapo.statuses} currentStatus The enum specifying the auto refresh state
+     * @property {bool} designVisible Set to true if the current design is semiTransparent or completely visible
+     * @property {int} designCurrentImageIndex The index of the current matched template
      * @property {juxtapo.designs.designTemplate[]} designTemplates Array of {@link juxtapo.designs.designTemplate} which describe the designs within the project
-     * @property {Object} globalSettings
-     * @property {int} secondsBeforeRefresh
+     * @property {Object} plugins The namespace for adding plugin specific public methods/properties
+     * @property {Object} globalSettings A global namespace for public methods/properties
 	 */
     juxtapo = {
 		version : '0.6',
@@ -78,7 +78,7 @@
         currentDesignView: 0,
         currentStatus: 2,
         //designlayout: null,
-        designvisible: false,
+        designVisible: false,
         designCurrentImageIndex: 0,
         designTemplates: [], // list of layout images to place as the
         plugins : {}, // convention for adding plugin specific functionality
@@ -87,8 +87,6 @@
 	        if (_coreJsUrl == '') _coreJsUrl = juxtapo.utils.getJsLocation('juxtapo.js');
 			return _coreJsUrl;
 		},
-        secondsBeforeRefresh: 2.5,
-        timerId: -1,
         
         // methods
 		/**

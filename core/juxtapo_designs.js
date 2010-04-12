@@ -113,7 +113,7 @@
 		},
 		hide : function() {
 			$("#design").css("display", "none");
-			juxtapo.designvisible = false;
+			juxtapo.designVisible = false;
 			juxtapo.currentDesignView = juxtapo.designViews.hidden;
 		},
 		init : function() {
@@ -140,7 +140,7 @@
 			juxtapo.container.appendChild(juxtapo.designlayout);
 			d = juxtapo.utils.getQuery("design");
 			if (d != null) {
-				juxtapo.designvisible = d;
+				juxtapo.designVisible = d;
 			}
 			dv = juxtapo.utils.getQuery("dv");
 			if (!dv) {
@@ -229,7 +229,7 @@
 				display : "block",
 				opacity : "1"
 			});
-			juxtapo.designvisible = true;
+			juxtapo.designVisible = true;
 			juxtapo.currentDesignView = juxtapo.designViews.opaque;
 			return juxtapo.currentDesignView;
 		},
@@ -238,7 +238,7 @@
 				display : "block",
 				opacity : "0.5"
 			});
-			juxtapo.designvisible = true;
+			juxtapo.designVisible = true;
 			juxtapo.currentDesignView = juxtapo.designViews.semiTransparent;
 		},
 		toggle : function() {

@@ -13,6 +13,8 @@
 		// properties
 		controller : document.createElement("div"),
 		initCompleted:false,
+        secondsBeforeRefresh: 2.5,
+        timerId: -1,
 		
 		// methods
 		init : function(){
@@ -23,9 +25,9 @@
 		
 			/*
 		    $(window).mousemove(function(){
-		        clearTimeout(juxtapo.timerId);
+		        clearTimeout(this.timerId);
 		        if (juxtapo.currentStatus == juxtapo.statuses.play) {
-		            juxtapo.timerId = setTimeout('juxtapo.control.reload()', juxtapo.secondsBeforeRefresh * 1000);
+		            this.timerId = setTimeout('juxtapo.control.reload()', this.secondsBeforeRefresh * 1000);
 		        }
 		    });*/
 			
@@ -44,14 +46,14 @@
 		play : function() {
 		    juxtapo.currentStatus = juxtapo.statuses.play;
 		    this.controller.innerHTML = "|&nbsp;|";
-		    juxtapo.timerId = setTimeout('juxtapo.control.reload()', juxtapo.secondsBeforeRefresh * 1000);
+		    this.timerId = setTimeout('juxtapo.control.reload()', this.secondsBeforeRefresh * 1000);
 			return juxtapo.currentStatus;
 		},
 		pause : function() {
 		    juxtapo.currentStatus = juxtapo.statuses.pause;
 		    this.controller.innerHTML = ">";
-		    clearTimeout(juxtapo.timerId);
-		    //reloadUrl = "http://" + location.host + location.pathname + "?status=" + juxtapo.currentStatus + "&design=" + juxtapo.designvisible + "&v=" + $(document).scrollTop() + "&dv=" + juxtapo.currentDesignView;
+		    clearTimeout(this.timerId);
+		    //reloadUrl = "http://" + location.host + location.pathname + "?status=" + juxtapo.currentStatus + "&design=" + juxtapo.designVisible + "&v=" + $(document).scrollTop() + "&dv=" + juxtapo.currentDesignView;
 		    //location.href = reloadUrl;
 			return juxtapo.currentStatus;
 		},
@@ -65,7 +67,7 @@
 							"jxurl=" + escape(originalUrl) + 
 							"&r=" + new Date().toString() + 
 							"&status=" + juxtapo.currentStatus + 
-							"&design=" + juxtapo.designvisible + 
+							"&design=" + juxtapo.designVisible + 
 							"&v=" + $(document).scrollTop() + 
 							"&dv=" + juxtapo.currentDesignView + 
 							"&di=" + juxtapo.designCurrentImageIndex;
