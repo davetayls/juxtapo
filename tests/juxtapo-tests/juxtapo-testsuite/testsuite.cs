@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading;
 using NUnit.Framework;
 using Selenium;
 
@@ -82,5 +84,69 @@ namespace juxtapo_testsuite
 	            Assert.IsTrue(IsPass);
 			}
         }
+        [Test]
+		public void TheControllerTest ()
+		{
+			foreach (ISelenium selenium in seleniums) {
+				selenium.Open ("TestSuite.html?q=testquery");
+				Assert.AreEqual ("juxtapo test suite", selenium.GetTitle ());
+				selenium.Click ("juxtapo-controller");
+				selenium.WaitForPageToLoad ("3000");
+				try {
+					Assert.IsTrue (Regex.IsMatch (selenium.GetLocation (), "^[\\s\\S]*TestSuite\\.html[\\s\\S]q=testquery[\\s\\S]*$"));
+				} catch (AssertionException e) {
+					verificationErrors.Append (e.Message);
+				}
+				try {
+					Assert.IsFalse (Regex.IsMatch (selenium.GetLocation (), ".*status=1.*status=1"));
+				} catch (AssertionException e) {
+					verificationErrors.Append (e.Message);
+				}
+				Assert.AreEqual ("juxtapo test suite", selenium.GetTitle ());
+				selenium.WaitForPageToLoad ("3000");
+				Assert.AreEqual ("juxtapo test suite", selenium.GetTitle ());
+				try {
+					Assert.IsTrue (Regex.IsMatch (selenium.GetLocation (), "^[\\s\\S]*TestSuite\\.html[\\s\\S]q=testquery[\\s\\S]*$"));
+				} catch (AssertionException e) {
+					verificationErrors.Append (e.Message);
+				}
+				try {
+					Assert.IsTrue (Regex.IsMatch (selenium.GetLocation (), "^[\\s\\S]*status=1[\\s\\S]*$"));
+				} catch (AssertionException e) {
+					verificationErrors.Append (e.Message);
+				}
+				selenium.WaitForPageToLoad ("3000");
+				try {
+					Assert.IsTrue (Regex.IsMatch (selenium.GetLocation (), "^[\\s\\S]*TestSuite\\.html[\\s\\S]q=testquery[\\s\\S]*$"));
+				} catch (AssertionException e) {
+					verificationErrors.Append (e.Message);
+				}
+				try {
+					Assert.IsFalse (Regex.IsMatch (selenium.GetLocation (), ".*status=1.*status=1"));
+				} catch (AssertionException e) {
+					verificationErrors.Append (e.Message);
+				}
+				for (int second = 0;; second++) {
+					if (second >= 60)
+						Assert.Fail ("timeout");
+					try {
+						if (selenium.IsElementPresent ("juxtapo-controller"))
+							break;
+					} catch (Exception) {
+					}
+					Thread.Sleep (1000);
+				}
+				selenium.Click ("juxtapo-controller");
+				try {
+					Assert.IsFalse (Regex.IsMatch (selenium.GetLocation (), ".*status=1.*status=1"));
+				} catch (AssertionException e) {
+					verificationErrors.Append (e.Message);
+				}
+				selenium.CaptureEntirePageScreenshot (Path.GetFullPath (Path.Combine (Directory.GetCurrentDirectory (), "..\\..\\..\\..\\"))+"juxtapotestsuite-screenshot.png", "");
+			}
+		}
+		
+	}
+}
     }
 }
