@@ -62,7 +62,7 @@ namespace juxtapo_testsuite
 				foreach (ISelenium selenium in seleniums){
                 	selenium.Stop();
 				}
-                DisposeOfSeleniumServer();
+                //DisposeOfSeleniumServer();
             }
             catch (Exception)
             {
