@@ -6,10 +6,9 @@
 		
 		<title>JsDoc Reference - Index</title>
 		<meta name="generator" content="JsDoc Toolkit" />
-		
-		<style type="text/css">
-		{+include("static/default.css")+}
-		</style>
+		<link rel="stylesheet" type="text/css" href="lib/1.reset.css" />
+		<link rel="stylesheet" type="text/css" href="lib/2.brand.css" />
+		<link rel="stylesheet" type="text/css" href="lib/3.screen.css" />		
 	</head>
 	
 	<body>
@@ -20,6 +19,11 @@
 		</div>
 		
 		<div id="content">
+			<h1 class="classTitle">About and Installation</h1>
+			<div class="instructions">
+			{+formatLinks(include("../../../../readme.txt"))+}
+			</div>
+			
 			<h1 class="classTitle">Class Index</h1>
 			
 			<for each="thisClass" in="data">
