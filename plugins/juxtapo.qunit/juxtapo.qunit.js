@@ -16,7 +16,7 @@ window.QUnitDone = false;
         //juxtapo.utils.requireResource(libUrl + "qunit.js");
 
         if (typeof(QUnit) != 'undefined'){
-			dropDown = new juxtapo.ui.dropDown({style:{height:'400px',width:'600px'}});
+			dropDown = new juxtapo.ui.DropDown({style:{height:'400px',width:'600px'}});
 			dropDown.text('qunit');
 			if (!document.getElementById('qunit-header')){
 				dropDown.contentHtml('<h2 id="qunit-header">test suite</h2><h3 id="qunit-banner"></h3><h3 id="qunit-userAgent"></h3><ol id="qunit-tests"></ol>');				

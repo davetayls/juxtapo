@@ -24,7 +24,7 @@
 		},
         init: function(){
         
-            _dropDown = new juxtapo.ui.dropDown({style:{height:'300px',width:'450px'}});
+            _dropDown = new juxtapo.ui.DropDown({style:{height:'300px',width:'450px'}});
             _dropDown.text("e");
 			$(_dropDown.contents).addClass("juxtapo-errorBox");
                         

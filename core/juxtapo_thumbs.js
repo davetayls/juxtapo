@@ -17,8 +17,8 @@
     juxtapo.thumbs = {
         rendered: false,
 		/**
-		 * The {@link juxtapo.ui.dropDown} used by the thumbnail control
-		 * @returns {juxtapo.ui.dropDown}
+		 * The {@link juxtapo.ui.DropDown} used by the thumbnail control
+		 * @returns {juxtapo.ui.DropDown}
 		 */        
 		dropDown : function(){
 			return _dropDown;
@@ -26,7 +26,7 @@
 		/** @private */
         init: function(){
 			self = juxtapo.thumbs;
-			_dropDown = new juxtapo.ui.dropDown();
+			_dropDown = new juxtapo.ui.DropDown();
             _dropDown.text("+");
             var thumbs = this;
 
@@ -68,7 +68,7 @@
             _toolbar.toolbarLeft$.append(_search$);
 			_$thumbsContainer.css("height",(contentsHeight - 39)+'px');
             for (var i = 0; i < juxtapo.designTemplates.length; i++) {
-				var thumb = new juxtapo.ui.thumbnail(juxtapo.designTemplates[i]);
+				var thumb = new juxtapo.ui.Thumbnail(juxtapo.designTemplates[i]);
 				_$thumbsContainer.append(thumb.container);
             }
             $("#juxtapo-searchDesigns").keyup(this.searchKeyup);

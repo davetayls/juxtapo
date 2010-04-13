@@ -1,4 +1,4 @@
-(function(){
+(function($){
 
     /* private */
 	var _coreJsUrl = ''
@@ -254,7 +254,7 @@
         return true;
     };
     
-})();
+})(jQuery);
 
 if (window.addEventListener) {
     window.addEventListener('load', juxtapo.init, false);

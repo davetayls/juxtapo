@@ -7,7 +7,7 @@
 	var currentDesign;
 
 	juxtapo.initComplete(function(){
-			var details = new juxtapo.ui.toolbtn();
+			var details = new juxtapo.ui.ToolBtn();
 			details
 				.text("List")
 				.click(function(e){
@@ -17,7 +17,7 @@
 				});
 			
 			
-			var thumbs = new juxtapo.ui.toolbtn();
+			var thumbs = new juxtapo.ui.ToolBtn();
 			thumbs
 				.text("Thumbs")
 				.click(function(e){

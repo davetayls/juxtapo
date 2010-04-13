@@ -4,7 +4,7 @@
 (function() {
 
     juxtapo.initComplete(function() {
-        var info = new juxtapo.ui.dropDown({style:{height: '150px',width:'300px'}});
+        var info = new juxtapo.ui.DropDown({style:{height: '150px',width:'300px'}});
         var $design = $(juxtapo.designs.designImageElement());
 		
 		var setInfo = function(){

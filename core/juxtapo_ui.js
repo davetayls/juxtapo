@@ -11,7 +11,7 @@
  */
 juxtapo.ui = {};
 
-(function() {
+(function($) {
 
 	_openDropDown = null;
 	
@@ -26,10 +26,10 @@ juxtapo.ui = {};
 	 * @property {bool} expanded
 	 * @property {Object} settings
 	 */
-	juxtapo.ui.dropDown = function(options) {
+	juxtapo.ui.DropDown = function(options) {
 		this._init(options);
 	};
-	juxtapo.ui.dropDown.prototype = {
+	juxtapo.ui.DropDown.prototype = {
 		// properties
 		afterOpen : null,
 		beforeOpen : null,
@@ -123,8 +123,9 @@ juxtapo.ui = {};
 		}
 
 	};
-})();
+})(jQuery);
 
+(function($) {
 /**
  * Creates a new thumbnail control which contains a link to the page
  * a small image and the page name
@@ -138,10 +139,10 @@ juxtapo.ui = {};
  * @property {HtmlImage} image The thumbnail image
  * @property {Object} settings
  */
-juxtapo.ui.thumbnail = function(designTemplate, options) {
+juxtapo.ui.Thumbnail = function(designTemplate, options) {
 	this._init(designTemplate, options);
 };
-juxtapo.ui.thumbnail.prototype = {
+juxtapo.ui.Thumbnail.prototype = {
 	caption : null,
 	container : null,
 	designTemplate : null,
@@ -176,7 +177,7 @@ juxtapo.ui.thumbnail.prototype = {
 		/**
 		 * Shows or hides the thumbnail
 		 * @function
-		 * @name juxtapo.ui.thumbnail.show
+		 * @name juxtapo.ui.Thumbnail.show
 		 * @param {bool} [b=true] A boolean value to determine whether to show the thumbnail 
 		 */
 		self.show = function(b) {
@@ -191,16 +192,18 @@ juxtapo.ui.thumbnail.prototype = {
 
 	}
 };
+})(jQuery);
 
+(function($) {
 /**
  * Creates a new toolbtn control
  * @class Represents a toolbtn control
  * @constructor
  */
-juxtapo.ui.toolbtn = function(options) {
+juxtapo.ui.ToolBtn = function(options) {
 	this._init(options);
 };
-juxtapo.ui.toolbtn.prototype = {
+juxtapo.ui.ToolBtn.prototype = {
 	container : null,
 	contents : null,
 
@@ -218,7 +221,7 @@ juxtapo.ui.toolbtn.prototype = {
 
 		/**
 		 * Adds a listener function which is triggered when a user clicks on the button
-		 * @name juxtapo.ui.toolbtn.click
+		 * @name juxtapo.ui.ToolBtn.click
 		 * @event
 		 * @param {Object} fn
 		 */
@@ -229,7 +232,7 @@ juxtapo.ui.toolbtn.prototype = {
 		/**
 		 * Shows or hides the button
 		 * @function
-		 * @name juxtapo.ui.toolbtn.show
+		 * @name juxtapo.ui.ToolBtn.show
 		 * @param {bool} [b=true] A boolean value to determine whether to show the button 
 		 */
 		self.show = function(b) {
@@ -253,3 +256,4 @@ juxtapo.ui.toolbtn.prototype = {
 		};
 	}
 };
+})(jQuery);

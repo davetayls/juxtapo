@@ -15,7 +15,7 @@
             var jsFile = juxtapo.utils.getJsLocation("juxtapo.gspreadsheet.js") + "gspreadsheet.js";
             juxtapo.utils.requireResource(jsFile);
 
-            var goTo = new juxtapo.ui.toolbtn();
+            var goTo = new juxtapo.ui.ToolBtn();
             goTo.text("Open Spreadsheet");
             jQuery(goTo.container)
                 .attr("href", "http://spreadsheets.google.com/ccc?key=" + spreadSheetRef + "&hl=en_GB")

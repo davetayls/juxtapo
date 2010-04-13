@@ -3,7 +3,7 @@
 	var _dropDown = null;
 
 	juxtapo.initComplete(function(){
-        _dropDown = new juxtapo.ui.dropDown({style:{width:'300px'}});
+        _dropDown = new juxtapo.ui.DropDown({style:{width:'300px'}});
         _dropDown.text("?");
 		
 		var helpHtml = '';

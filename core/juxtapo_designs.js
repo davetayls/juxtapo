@@ -270,7 +270,7 @@
 	 * @return {juxtapo.designs.designTemplate} Returns a new designTemplate
 	 * @constructor
 	 * 
-	 * @property {juxtapo.ui.thumbnail} thumbnail
+	 * @property {juxtapo.ui.Thumbnail} thumbnail
 	 */
 	juxtapo.designs.designTemplate = function(imageUrl, paths, settings) {
 		this._init(imageUrl, paths, settings);
@@ -292,10 +292,10 @@
 			self.settings = $.extend( {}, juxtapo.designs.designTemplate.prototype.settings, settings);
 
 			/**
-			 * Sets the {@link juxtapo.ui.thumbnail} connected with this designTemplate
+			 * Sets the {@link juxtapo.ui.Thumbnail} connected with this designTemplate
 			 * @name juxtapo.designs.designTemplate.setUiThumbnail
 			 * @function
-			 * @param {juxtapo.ui.thumbnail} thumbnail
+			 * @param {juxtapo.ui.Thumbnail} thumbnail
 			 * @returns {juxtapo.designs.designTemplate}
 			 */			
 			self.setUiThumbnail = function(thumbnail){
@@ -305,7 +305,7 @@
 			};
 			/**
 			 * Adds a listener to the thumbnailSet event which fires
-			 * when the designTemplate receives a {@link juxtapo.ui.thumbnail}
+			 * when the designTemplate receives a {@link juxtapo.ui.Thumbnail}
 			 * through the {@link juxtapo.designs.designTemplate.setUiThumbnail}
 			 * method
 			 * @event
