@@ -24,7 +24,7 @@ namespace juxtapo_testsuite
         public void SetupTest()
         {
             seleniums.Add(new DefaultSelenium("localhost", 4444, "*firefox", browserUrl));
-			//seleniums.Add(new DefaultSelenium("localhost", 4444, "*googlechrome", browserUrl));
+			//seleniums.Add(new DefaultSelenium("localhost", 4444, "*iexplore", browserUrl));
 			foreach (ISelenium sel in seleniums){
             	sel.Start();
 			}

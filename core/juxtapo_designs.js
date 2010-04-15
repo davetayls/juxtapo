@@ -1,6 +1,6 @@
 /**
  * @author david
- * @namespace juxtapo.designs
+ * @namespace juxtapo.templates
  */
 (function() {
 
@@ -17,15 +17,15 @@
 	 * Designs
 	 * @namespace
 	 */
-	juxtapo.designs = {
+	juxtapo.templates = {
 		// methods
 		back : function() {
 			if (juxtapo.currentDesignView == juxtapo.designViews.hidden) {
-				juxtapo.designs.show();
+				juxtapo.templates.show();
 			} else if (juxtapo.currentDesignView == juxtapo.designViews.semiTransparent) {
-				juxtapo.designs.hide();
+				juxtapo.templates.hide();
 			} else {
-				juxtapo.designs.semiTransparent();
+				juxtapo.templates.semiTransparent();
 			}
 		},
 		change : function(previous) {
@@ -38,7 +38,7 @@
 				if (newIndex > juxtapo.designTemplates.length - 1)
 					newIndex = 0;
 			}
-			juxtapo.designs.changeTo(newIndex);
+			juxtapo.templates.changeTo(newIndex);
 		},
 		changeTo : function(item) {
 			var design = null;
@@ -51,7 +51,7 @@
 				design = juxtapo.designTemplates[item];
 			}
 			if (design){
-				var designStyle = $.extend({},juxtapo.designs.designTemplate.defaultStyles,design.settings.style);
+				var designStyle = $.extend({},juxtapo.templates.TemplateItem.defaultStyles,design.settings.style);
 				$("#design").attr("src", design.imageUrl).css(designStyle);				
 			}
 		},
@@ -86,11 +86,11 @@
 		},
 		forward : function() {
 			if (juxtapo.currentDesignView == juxtapo.designViews.hidden) {
-				juxtapo.designs.semiTransparent();
+				juxtapo.templates.semiTransparent();
 			} else if (juxtapo.currentDesignView == juxtapo.designViews.semiTransparent) {
-				juxtapo.designs.show();
+				juxtapo.templates.show();
 			} else {
-				juxtapo.designs.hide();
+				juxtapo.templates.hide();
 			}
 		},
 		getAll : function(){
@@ -124,10 +124,10 @@
 					});
 
 			if (juxtapo.utils.getQuery("di") != null) {
-				juxtapo.designs
+				juxtapo.templates
 						.changeTo(parseInt(juxtapo.utils.getQuery("di")));
 			} else {
-				juxtapo.designs.changeTo(juxtapo.designs
+				juxtapo.templates.changeTo(juxtapo.templates
 						.getDesignFromUrl(location.href));
 			}
 			$(document).keydown(juxtapo.onBody_KeyDown);
@@ -135,7 +135,7 @@
 			// design controller button
 			juxtapo.designlayout = document.createElement("div");
 			$(juxtapo.designlayout).attr("class", "juxtapo-btn");
-			juxtapo.designlayout.onclick = juxtapo.designs.toggle;
+			juxtapo.designlayout.onclick = juxtapo.templates.toggle;
 			juxtapo.designlayout.innerHTML = "D E S I G N";
 			juxtapo.container.appendChild(juxtapo.designlayout);
 			d = juxtapo.utils.getQuery("design");
@@ -148,11 +148,11 @@
 			}
 			if (dv != null) {
 				if (dv == juxtapo.designViews.hidden) {
-					juxtapo.designs.hide();
+					juxtapo.templates.hide();
 				} else if (dv == juxtapo.designViews.semiTransparent) {
-					juxtapo.designs.semiTransparent();
+					juxtapo.templates.semiTransparent();
 				} else {
-					juxtapo.designs.show();
+					juxtapo.templates.show();
 				}
 			}
 
@@ -242,7 +242,7 @@
 			juxtapo.currentDesignView = juxtapo.designViews.semiTransparent;
 		},
 		toggle : function() {
-			juxtapo.designs.forward();
+			juxtapo.templates.forward();
 		},
 
 		/* events */
@@ -260,23 +260,23 @@
 
 	// SUB CLASSES
 	/**
-	 * Create a new instance of designTemplate
-	 * @class designTemplate is the description of each design layout
+	 * Create a new instance of TemplateItem
+	 * @class TemplateItem is the description of each template layout
 	 * @param {Object} imageUrl
 	 * @param {Object} paths
 	 * @param {Object} settings Key value pair of settings
 	 * @param {Object} settings.data Key:value set of meta data that can be used by plugins
 	 * @param {Object} settings.style Key:value pair of css styles which will override the default styles
-	 * @return {juxtapo.designs.designTemplate} Returns a new designTemplate
+	 * @return {juxtapo.templates.TemplateItem} Returns a new TemplateItem
 	 * @constructor
 	 * 
 	 * @property {juxtapo.ui.Thumbnail} thumbnail
 	 */
-	juxtapo.designs.designTemplate = function(imageUrl, paths, settings) {
+	juxtapo.templates.TemplateItem = function(imageUrl, paths, settings) {
 		this._init(imageUrl, paths, settings);
 		return;
 	};
-	juxtapo.designs.designTemplate.prototype = {
+	juxtapo.templates.TemplateItem.prototype = {
 		imageUrl : '',
 		paths : [],
 		settings : {
@@ -289,14 +289,14 @@
 			var self = this;
 			self.imageUrl = imageUrl;
 			self.paths = paths;
-			self.settings = $.extend( {}, juxtapo.designs.designTemplate.prototype.settings, settings);
+			self.settings = $.extend( {}, juxtapo.templates.TemplateItem.prototype.settings, settings);
 
 			/**
-			 * Sets the {@link juxtapo.ui.Thumbnail} connected with this designTemplate
-			 * @name juxtapo.designs.designTemplate.setUiThumbnail
+			 * Sets the {@link juxtapo.ui.Thumbnail} connected with this TemplateItem
+			 * @name juxtapo.templates.TemplateItem.setUiThumbnail
 			 * @function
 			 * @param {juxtapo.ui.Thumbnail} thumbnail
-			 * @returns {juxtapo.designs.designTemplate}
+			 * @returns {juxtapo.templates.TemplateItem}
 			 */			
 			self.setUiThumbnail = function(thumbnail){
 				self.thumbnail = thumbnail;
@@ -305,13 +305,13 @@
 			};
 			/**
 			 * Adds a listener to the thumbnailSet event which fires
-			 * when the designTemplate receives a {@link juxtapo.ui.Thumbnail}
-			 * through the {@link juxtapo.designs.designTemplate.setUiThumbnail}
+			 * when the TemplateItem receives a {@link juxtapo.ui.Thumbnail}
+			 * through the {@link juxtapo.templates.TemplateItem.setUiThumbnail}
 			 * method
 			 * @event
 			 * @example
 			 * designTemplateInstance.thumbnailSet(function(ev){ code to run ... });
-			 * @name juxtapo.designs.designTemplate.thumbnailSet
+			 * @name juxtapo.templates.TemplateItem.thumbnailSet
 			 * @param {Object} fn(ev)
 			 */
 			self.thumbnailSet = function(fn){
@@ -321,7 +321,7 @@
 
 		}
 	};
-	juxtapo.designs.designTemplate.defaultStyles = {
+	juxtapo.templates.TemplateItem.defaultStyles = {
 		position : 'absolute',
 		'z-index' : '2000',
 		top : '0px',

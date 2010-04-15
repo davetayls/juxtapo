@@ -9,7 +9,7 @@
     juxtapo.initComplete(function() {
 
         juxtapo.thumbs.thumbsRendered(function() {
-            var designs = juxtapo.designs.getAll();
+            var designs = juxtapo.templates.getAll();
             for (var i = 0; i < designs.length; i++) {
                 var design = designs[i];
                 $(design.thumbnail.container).addClass("juxtapo-status-" + design.settings.data.status);

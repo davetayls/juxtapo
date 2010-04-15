@@ -77,7 +77,7 @@
         },
 		/** @private */
         searchKeyup: function(e){
-            juxtapo.designs.filterBySearch($("#juxtapo-searchDesigns").val());
+            juxtapo.templates.filterBySearch($("#juxtapo-searchDesigns").val());
         },
 		/**
 		 * The html ul element which contains the list of thumbs

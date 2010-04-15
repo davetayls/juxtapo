@@ -9,10 +9,10 @@ juxtapo.initComplete(function(){
     });
     test("thumbnails", function(){
         equals(juxtapo.thumbs.rendered, true, "thumbnails should be rendered because the dropdown has been shown");
-        var filter = juxtapo.designs.filterBySearch("2");
+        var filter = juxtapo.templates.filterBySearch("2");
         ok(filter, "filter has returned an object");
         equals(filter.designs.indexes.length, 1, "filter should have returned 1 result");
-        var filter = juxtapo.designs.filterBySearch("T");
+        var filter = juxtapo.templates.filterBySearch("T");
         ok(filter, "filter has returned an object");
         equals(filter.designs.indexes.length, 6, "searching is not case sensitive. filter should have returned 6 results");
         juxtapo.thumbs.dropDown().show(false);

@@ -4,7 +4,7 @@ juxtapo.initConfig(function(){
     module("initConfig");
     var t = juxtapo.addTemplate("test.htm", "test.png", {});
     test("addTemplate", function(){
-        var expected = new juxtapo.designs.designTemplate("test.png", ["test.htm"], {});
+        var expected = new juxtapo.templates.TemplateItem("test.png", ["test.htm"], {});
         equals(t.imageUrl, expected.imageUrl, "We should have a new template");
         juxtapo.addTemplate("test2.htm", "test2.png", {});
         juxtapo.addTemplate("test3.htm", "test3.png", {});
@@ -17,7 +17,7 @@ juxtapo.initConfig(function(){
 juxtapo.initComplete(function(){
     module("initComplete");
     test("init", function(){
-        equals(juxtapo.designs.getAll().length, 6, "There should be 6 templates")
+        equals(juxtapo.templates.getAll().length, 6, "There should be 6 templates")
         ok(true, "initComplete");
     });
     module("Plugins");

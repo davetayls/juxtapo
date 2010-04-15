@@ -5,7 +5,7 @@
 
     juxtapo.initComplete(function() {
         var info = new juxtapo.ui.DropDown({style:{height: '150px',width:'300px'}});
-        var $design = $(juxtapo.designs.designImageElement());
+        var $design = $(juxtapo.templates.designImageElement());
 		
 		var setInfo = function(){
 			var infoText = 'info:<br />';
@@ -19,7 +19,7 @@
 		};
         info.text('info');
 		setInfo();		
-        juxtapo.designs.designPositionChanged(function(img, oldPos, newPos) {
+        juxtapo.templates.designPositionChanged(function(img, oldPos, newPos) {
 			setInfo();
         });
     });

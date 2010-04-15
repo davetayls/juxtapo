@@ -43,7 +43,7 @@
      * @property {juxtapo.statuses} currentStatus The enum specifying the auto refresh state
      * @property {bool} designVisible Set to true if the current design is semiTransparent or completely visible
      * @property {int} designCurrentImageIndex The index of the current matched template
-     * @property {juxtapo.designs.designTemplate[]} designTemplates Array of {@link juxtapo.designs.designTemplate} which describe the designs within the project
+     * @property {juxtapo.templates.TemplateItem[]} designTemplates Array of {@link juxtapo.templates.TemplateItem} which describe the designs within the project
      * @property {Object} plugins The namespace for adding plugin specific public methods/properties
      * @property {Object} globalSettings A global namespace for public methods/properties
 	 */
@@ -101,7 +101,7 @@
             // init if not turned off
             if (juxtapo.currentStatus != juxtapo.statuses.off) {
                 initContainer();
-                juxtapo.designs.init();
+                juxtapo.templates.init();
                 juxtapo.control.init();
             }
             juxtapo.eh.init();
@@ -124,7 +124,7 @@
 			}
 		},
         /**
-         * Adds a juxtapo.designs.designTemplate object to the designTemplates
+         * Adds a juxtapo.templates.TemplateItem object to the designTemplates
          * array
          *
          * @param {String}
@@ -136,10 +136,10 @@
          *            - style: A set of key:value pairs to customise the style from the
          *              defaultStyles
          *            - data: A set of key:value pairs to be associated with the template 
-         * @return {juxtapo.designs.designTemplate} Returns the new template
+         * @return {juxtapo.templates.TemplateItem} Returns the new template
          */
         addTemplate: function(path, imageUrl, settings){
-            var t = new juxtapo.designs.designTemplate(imageUrl, [path], settings);
+            var t = new juxtapo.templates.TemplateItem(imageUrl, [path], settings);
             this.designTemplates.push(t);
             return t;
         },
@@ -149,7 +149,7 @@
          * @param {Object} styles
          */
 		setDefaultStyles : function(styles){
-			juxtapo.designs.designTemplate.defaultStyles = styles;
+			juxtapo.templates.TemplateItem.defaultStyles = styles;
 		},
         // events
 		/**
@@ -197,25 +197,25 @@
         juxtapo.eh.logInfo("keycode is: " + keycode); // ##DEBUG
         // Check if user presses Ctl+o or Ctl+right
         if (e.ctrlKey && (keycode == 79 || keycode == 39)) {
-            juxtapo.designs.forward();
+            juxtapo.templates.forward();
             juxtapo.utils.preventDefaultEventAction(e);
             return false;
         }
         // Check if user presses Ctl+u or Ctl+left
         if (e.ctrlKey && (keycode == 85 || keycode == 37)) {
-            juxtapo.designs.back();
+            juxtapo.templates.back();
             juxtapo.utils.preventDefaultEventAction(e);
             return false;
         }
         // Check if user presses Ctl+up-arrow
         if (e.ctrlKey && keycode == 38) {
-            juxtapo.designs.change(true);
+            juxtapo.templates.change(true);
             juxtapo.utils.preventDefaultEventAction(e);
             return false;
         }
         // Check if user presses Ctl+down-arrow
         if (e.ctrlKey && keycode == 40) {
-            juxtapo.designs.change(false);
+            juxtapo.templates.change(false);
             juxtapo.utils.preventDefaultEventAction(e);
             return false;
         }
@@ -228,25 +228,25 @@
         // nudge designs
         if (e.ctrlKey && keycode == 73) {
             var pixels = e.shiftKey ? 1 : 25;
-            juxtapo.designs.nudge("top", pixels);
+            juxtapo.templates.nudge("top", pixels);
             juxtapo.utils.preventDefaultEventAction(e);
             return false;
         }
         if (e.ctrlKey && keycode == 76) {
             var pixels = e.shiftKey ? 1 : 25;
-            juxtapo.designs.nudge("right", pixels);
+            juxtapo.templates.nudge("right", pixels);
             juxtapo.utils.preventDefaultEventAction(e);
             return false;
         }
         if (e.ctrlKey && keycode == 75) {
             var pixels = e.shiftKey ? 1 : 25;
-            juxtapo.designs.nudge("bottom", pixels);
+            juxtapo.templates.nudge("bottom", pixels);
             juxtapo.utils.preventDefaultEventAction(e);
             return false;
         }
         if (e.ctrlKey && keycode == 74) {
             var pixels = e.shiftKey ? 1 : 25;
-            juxtapo.designs.nudge("left", pixels);
+            juxtapo.templates.nudge("left", pixels);
             juxtapo.utils.preventDefaultEventAction(e);
             return false;
         }

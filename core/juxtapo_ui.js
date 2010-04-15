@@ -133,7 +133,7 @@ juxtapo.ui = {};
  * @constructor
  * @property {HtmlElement} caption The Html element containing the thumbnail caption
  * @property {HtmlElement} container The main thumbnail container li
- * @property {juxtapo.designs.designTemplate} designTemplate The designTemplate this thumbnail is associated with
+ * @property {juxtapo.templates.TemplateItem} designTemplate The designTemplate this thumbnail is associated with
  * @property {HtmlElement} link The Html anchor element for the thumbnail 
  * @property {HtmlSpanElement} imageContainer The Html span element containing the thumbnail image 
  * @property {HtmlImage} image The thumbnail image

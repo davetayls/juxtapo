@@ -39,7 +39,7 @@ window.QUnitDone = false;
 					juxtapo.utils.requireResource(jsTestFile);
 				}
 			}
-			currentDesign = juxtapo.designs.currentDesign();
+			currentDesign = juxtapo.templates.currentDesign();
 			if (currentDesign){
 				if (currentDesign.settings.data.qunitTests){
 					for (var i=0;i<currentDesign.settings.data.qunitTests.length;i++){
