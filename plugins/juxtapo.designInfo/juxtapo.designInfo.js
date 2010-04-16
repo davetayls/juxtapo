@@ -19,7 +19,7 @@
 		};
         info.text('info');
 		setInfo();		
-        juxtapo.templates.designPositionChanged(function(img, oldPos, newPos) {
+        juxtapo.templates.overlayImagePositionChanged(function(img, oldPos, newPos) {
 			setInfo();
         });
     });

@@ -70,7 +70,7 @@
 							"&design=" + juxtapo.designVisible + 
 							"&v=" + $(document).scrollTop() + 
 							"&dv=" + juxtapo.currentDesignView + 
-							"&di=" + juxtapo.designCurrentImageIndex;
+							"&di=" + juxtapo.templates.selectedTemplateIndex;
 		        location.href = reloadUrl;
 		    }
 		},

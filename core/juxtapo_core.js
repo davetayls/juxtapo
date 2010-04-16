@@ -42,7 +42,6 @@
      * @property {juxtapo.designViews} currentDesignView The enum signifying the visibility of the current overlay
      * @property {juxtapo.statuses} currentStatus The enum specifying the auto refresh state
      * @property {bool} designVisible Set to true if the current design is semiTransparent or completely visible
-     * @property {int} designCurrentImageIndex The index of the current matched template
      * @property {juxtapo.templates.TemplateItem[]} designTemplates Array of {@link juxtapo.templates.TemplateItem} which describe the designs within the project
      * @property {Object} plugins The namespace for adding plugin specific public methods/properties
      * @property {Object} globalSettings A global namespace for public methods/properties
@@ -79,7 +78,6 @@
         currentStatus: 2,
         //designlayout: null,
         designVisible: false,
-        designCurrentImageIndex: 0,
         designTemplates: [], // list of layout images to place as the
         plugins : {}, // convention for adding plugin specific functionality
 		globalSettings:{},

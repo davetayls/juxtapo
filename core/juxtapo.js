@@ -35,7 +35,7 @@
     includes.push("juxtapo_core.js");
     includes.push("juxtapo_eh.js");
     includes.push("juxtapo_control.js");
-    includes.push("juxtapo_designs.js");
+    includes.push("juxtapo_templates.js");
     includes.push("juxtapo_utils.js");
     includes.push("juxtapo_ui.js");
     includes.push("juxtapo_ui_toolbar.js");

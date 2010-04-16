@@ -5,7 +5,7 @@ window.QUnitDone = false;
 (function(){
 
 	var dropDown = null;
-	var currentTemplateItem;
+	var selectedTemplateItem;
 	var totalResources = 0;
 	var resourcesLoaded = 0;
 
@@ -39,11 +39,11 @@ window.QUnitDone = false;
 					juxtapo.utils.requireResource(jsTestFile);
 				}
 			}
-			currentTemplateItem = juxtapo.templates.currentTemplateItem();
-			if (currentTemplateItem){
-				if (currentTemplateItem.settings.data.qunitTests){
-					for (var i=0;i<currentTemplateItem.settings.data.qunitTests.length;i++){
-						var jsTestFile = juxtapo.utils.resolveAbsoluteUrl(juxtapo.coreJsUrl(),currentTemplateItem.settings.data.qunitTests[i]);
+			selectedTemplateItem = juxtapo.templates.selectedTemplateItem();
+			if (selectedTemplateItem){
+				if (selectedTemplateItem.settings.data.qunitTests){
+					for (var i=0;i<selectedTemplateItem.settings.data.qunitTests.length;i++){
+						var jsTestFile = juxtapo.utils.resolveAbsoluteUrl(juxtapo.coreJsUrl(),selectedTemplateItem.settings.data.qunitTests[i]);
 						juxtapo.utils.requireResource(jsTestFile);
 					}
 				}

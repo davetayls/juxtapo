@@ -8,15 +8,18 @@
 	var _overlayImageElement = null;
 
 	// events
-	var onDesignPositionChanged = function(img, oldPos, newPos) {
-		$(juxtapo).trigger("_designPositionChanged", [ img, oldPos, newPos ]);
+	var onOverlayImagePositionChanged = function(img, oldPos, newPos) {
+		$(juxtapo).trigger("_overlayImagePositionChanged", [ img, oldPos, newPos ]);
 	};
 
 	/* public */
 	/**
 	 * @namespace
+     * @property {int} selectedTemplateIndex The index of the current matched template
 	 */
 	juxtapo.templates = {
+		// properties
+        selectedTemplateIndex: 0,
 		// methods
 		/**
 		 * Moves the current visibility of the design back.
@@ -39,11 +42,11 @@
 		 */
 		change : function(previous) {
 			if (previous) {
-				newIndex = juxtapo.designCurrentImageIndex - 1;
+				newIndex = juxtapo.templates.selectedTemplateIndex - 1;
 				if (newIndex < 0)
 					newIndex = juxtapo.designTemplates.length - 1;
 			} else {
-				newIndex = juxtapo.designCurrentImageIndex + 1;
+				newIndex = juxtapo.templates.selectedTemplateIndex + 1;
 				if (newIndex > juxtapo.designTemplates.length - 1)
 					newIndex = 0;
 			}
@@ -60,7 +63,7 @@
 			} else if (typeof (item) == "object") {
 				design = item;
 			} else if (typeof item == 'number' && item < juxtapo.designTemplates.length) {
-				juxtapo.designCurrentImageIndex = item;
+				juxtapo.templates.selectedTemplateIndex = item;
 				design = juxtapo.designTemplates[item];
 			}
 			if (design){
@@ -71,8 +74,8 @@
 		/**
 		 * Gets the current {@link juxtapo.templates.TemplateItem}
 		 */
-		currentTemplateItem : function(){
-			return juxtapo.designTemplates[juxtapo.designCurrentImageIndex];
+		selectedTemplateItem : function(){
+			return juxtapo.designTemplates[juxtapo.templates.selectedTemplateIndex];
 		},
 		/**
 		 * Gets or sets the image element used as the overlay for
@@ -131,14 +134,14 @@
 		getAll : function(){
 			return juxtapo.designTemplates;
 		},
-		getDesignFromUrl : function(url) {
+		getTemplateFromUrl : function(url) {
 			var href = url.toLowerCase();
 			for ( var i = 0; i < juxtapo.designTemplates.length; i++) {
 				layout = juxtapo.designTemplates[i];
 				for ( var p = 0; p < layout.paths.length; p++) {
 					path = layout.paths[p].toLowerCase();
 					if (href.juxtapoContains(path)) {
-						juxtapo.designCurrentImageIndex = i;
+						juxtapo.templates.selectedTemplateIndex = i;
 						return layout;
 					}
 				}
@@ -163,7 +166,7 @@
 						.changeTo(parseInt(juxtapo.utils.getQuery("di")));
 			} else {
 				juxtapo.templates.changeTo(juxtapo.templates
-						.getDesignFromUrl(location.href));
+						.getTemplateFromUrl(location.href));
 			}
 			$(document).keydown(juxtapo.onBody_KeyDown);
 
@@ -239,7 +242,7 @@
 				offSet : $img.offset(),
 				position : $img.position()
 			};
-			onDesignPositionChanged($img.get(0), oldPos, newPos);
+			onOverlayImagePositionChanged($img.get(0), oldPos, newPos);
 		},
 		search : function(q) {
 			var results = {
@@ -287,8 +290,8 @@
 		 * @event
 		 * @param {Object} fn(ev)
 		 */
-		designPositionChanged : function(fn) {
-			$(juxtapo).bind("_designPositionChanged", fn);
+		overlayImagePositionChanged : function(fn) {
+			$(juxtapo).bind("_overlayImagePositionChanged", fn);
 		}
 	};
 

@@ -1,10 +1,10 @@
 juxtapo.initComplete(function(){
     module("Designs");
     
-    test("getDesignFromUrl", function(){
-        ok(juxtapo.templates.getDesignFromUrl("test.htm"), "We should get image settings back");
-        ok(juxtapo.templates.getDesignFromUrl("TeSt.htm"), "url should be case insensitive");
-        same(juxtapo.templates.getDesignFromUrl("nofile.htm"), juxtapo.designTemplates[0], "When there is no match we should get the first template back");
+    test("getTemplateFromUrl", function(){
+        ok(juxtapo.templates.getTemplateFromUrl("test.htm"), "We should get image settings back");
+        ok(juxtapo.templates.getTemplateFromUrl("TeSt.htm"), "url should be case insensitive");
+        same(juxtapo.templates.getTemplateFromUrl("nofile.htm"), juxtapo.designTemplates[0], "When there is no match we should get the first template back");
         
     });
     
@@ -33,13 +33,13 @@ juxtapo.initComplete(function(){
     });
     
     test("Changing Template", function(){
-        equals(juxtapo.designCurrentImageIndex, 0, "Current Template should be 0");
+        equals(juxtapo.templates.selectedTemplateIndex, 0, "Current Template should be 0");
         juxtapo.templates.change()
-        equals(juxtapo.designCurrentImageIndex, 1, "Next Template (should be 1)");
+        equals(juxtapo.templates.selectedTemplateIndex, 1, "Next Template (should be 1)");
         juxtapo.templates.change()
-        equals(juxtapo.designCurrentImageIndex, 2, "Next Template (should be 2)");
+        equals(juxtapo.templates.selectedTemplateIndex, 2, "Next Template (should be 2)");
         juxtapo.templates.change(true)
-        equals(juxtapo.designCurrentImageIndex, 1, "Previous Template (should be 1)");
+        equals(juxtapo.templates.selectedTemplateIndex, 1, "Previous Template (should be 1)");
     });
     
     test("search", function(){
