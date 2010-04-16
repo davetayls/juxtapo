@@ -14,11 +14,15 @@
 
 	/* public */
 	/**
-	 * Designs
 	 * @namespace
 	 */
 	juxtapo.templates = {
 		// methods
+		/**
+		 * Moves the current visibility of the design back.
+		 * If the visibility is set to 0 (hidden) then the visibility
+		 * is set to 2 (opaque)
+		 */
 		back : function() {
 			if (juxtapo.currentDesignView == juxtapo.designViews.hidden) {
 				juxtapo.templates.show();
@@ -28,6 +32,11 @@
 				juxtapo.templates.semiTransparent();
 			}
 		},
+		/**
+		 * Changes the current selected template to the next or previous template
+		 * depending on the previous parameter.
+		 * @param {bool} previous
+		 */
 		change : function(previous) {
 			if (previous) {
 				newIndex = juxtapo.designCurrentImageIndex - 1;
@@ -40,6 +49,11 @@
 			}
 			juxtapo.templates.changeTo(newIndex);
 		},
+		/**
+		 * Changes the current selected template
+		 * @param {juxtapo.templates.TemplateItem} item
+		 * @param {number} item The index of the added template
+		 */
 		changeTo : function(item) {
 			var design = null;
 			if (typeof (item) == "undefined") {
@@ -55,7 +69,10 @@
 				$("#design").attr("src", design.imageUrl).css(designStyle);				
 			}
 		},
-		currentDesign : function(){
+		/**
+		 * Gets the current {@link juxtapo.templates.TemplateItem}
+		 */
+		currentTemplateItem : function(){
 			return juxtapo.designTemplates[juxtapo.designCurrentImageIndex];
 		},
 		designImageElement : function(el) {
@@ -84,6 +101,11 @@
 				"designs" : results
 			};
 		},
+		/**
+		 * Moves the current visibility of the design forward.
+		 * If the visibility is set to 2 (opaque) then the visibility
+		 * is set to 0 (hidden)
+		 */
 		forward : function() {
 			if (juxtapo.currentDesignView == juxtapo.designViews.hidden) {
 				juxtapo.templates.semiTransparent();

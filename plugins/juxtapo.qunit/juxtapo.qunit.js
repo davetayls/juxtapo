@@ -5,7 +5,7 @@ window.QUnitDone = false;
 (function(){
 
 	var dropDown = null;
-	var currentDesign;
+	var currentTemplateItem;
 	var totalResources = 0;
 	var resourcesLoaded = 0;
 
@@ -39,11 +39,11 @@ window.QUnitDone = false;
 					juxtapo.utils.requireResource(jsTestFile);
 				}
 			}
-			currentDesign = juxtapo.templates.currentDesign();
-			if (currentDesign){
-				if (currentDesign.settings.data.qunitTests){
-					for (var i=0;i<currentDesign.settings.data.qunitTests.length;i++){
-						var jsTestFile = juxtapo.utils.resolveAbsoluteUrl(juxtapo.coreJsUrl(),currentDesign.settings.data.qunitTests[i]);
+			currentTemplateItem = juxtapo.templates.currentTemplateItem();
+			if (currentTemplateItem){
+				if (currentTemplateItem.settings.data.qunitTests){
+					for (var i=0;i<currentTemplateItem.settings.data.qunitTests.length;i++){
+						var jsTestFile = juxtapo.utils.resolveAbsoluteUrl(juxtapo.coreJsUrl(),currentTemplateItem.settings.data.qunitTests[i]);
 						juxtapo.utils.requireResource(jsTestFile);
 					}
 				}
