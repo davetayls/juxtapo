@@ -5,7 +5,7 @@
 
     juxtapo.initComplete(function() {
         var info = new juxtapo.ui.DropDown({style:{height: '150px',width:'300px'}});
-        var $design = $(juxtapo.templates.designImageElement());
+        var $design = $(juxtapo.templates.overlayImageElement());
 		
 		var setInfo = function(){
 			var infoText = 'info:<br />';

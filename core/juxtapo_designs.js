@@ -5,7 +5,7 @@
 (function() {
 
 	// properties
-	var _designImageElement = null;
+	var _overlayImageElement = null;
 
 	// events
 	var onDesignPositionChanged = function(img, oldPos, newPos) {
@@ -51,8 +51,7 @@
 		},
 		/**
 		 * Changes the current selected template
-		 * @param {juxtapo.templates.TemplateItem} item
-		 * @param {number} item The index of the added template
+		 * @param {juxtapo.templates.TemplateItem|number} item The TemplateItem or index of the added template
 		 */
 		changeTo : function(item) {
 			var design = null;
@@ -75,14 +74,23 @@
 		currentTemplateItem : function(){
 			return juxtapo.designTemplates[juxtapo.designCurrentImageIndex];
 		},
-		designImageElement : function(el) {
+		/**
+		 * Gets or sets the image element used as the overlay for
+		 * the templates.
+		 * @param {HtmlImage} el
+		 */
+		overlayImageElement : function(el) {
 			if (typeof (el) != "undefined") {
-				_designImageElement = el;
-			} else if (!_designImageElement) {
-				_designImageElement = document.getElementById("design");
+				_overlayImageElement = el;
+			} else if (!_overlayImageElement) {
+				_overlayImageElement = document.getElementById("design");
 			}
-			return _designImageElement;
+			return _overlayImageElement;
 		},
+		/**
+		 * Filters the thumbnails by a search query
+		 * @param {String} q
+		 */
 		filterBySearch : function(q) {
 			var results = null;
 			var thumbs = [];
@@ -115,6 +123,11 @@
 				juxtapo.templates.hide();
 			}
 		},
+		/**
+		 * Gets the array of {@link juxtapo.templates.TemplateItem} templates which
+		 * have been added to juxtapo.
+		 * @return {juxtapo.templates.TemplateItem[]}
+		 */
 		getAll : function(){
 			return juxtapo.designTemplates;
 		},
@@ -190,7 +203,7 @@
 				return false;
 			if (typeof (pixels) == "undefined")
 				pixels = 1;
-			var $img = $(this.designImageElement());
+			var $img = $(this.overlayImageElement());
 			var horizClass = 'margin-left';
 			if ($img.css('left').indexOf('%') < 0){
 				if ($img.css('right') != 'auto'){
