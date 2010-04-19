@@ -134,6 +134,27 @@
 		getAll : function(){
 			return juxtapo.designTemplates;
 		},
+		/**
+		 * Searches the paths specified within each added template for the first one that 
+		 * matches the url string.
+		 * 
+		 * @param {String} url
+		 * @return {juxtapo.templates.TemplateItem}
+		 * @example
+		 * - http://juxtapo.net/sample/design1.htm
+		 * - /sample/design1.htm
+		 * - design1.htm
+	
+		 * If you are using juxtapo on a static site then you would use something 
+		 * like the following for a file located at: c:\juxtapo\sample\design1.htm
+		 * - to match any file called design1.htm you could 
+		 *   use "design1.htm"
+		 * - to only match design1.htm files within the sample 
+		 *   folder use "/sample/design1.htm"
+		 * 
+		 * You will notice this is the same as if you were using it within 
+		 * a website url.
+		 */
 		getTemplateFromUrl : function(url) {
 			var href = url.toLowerCase();
 			for ( var i = 0; i < juxtapo.designTemplates.length; i++) {
@@ -141,7 +162,7 @@
 				for ( var p = 0; p < layout.paths.length; p++) {
 					path = layout.paths[p].toLowerCase();
 					if (href.juxtapoContains(path)) {
-						juxtapo.templates.selectedTemplateIndex = i;
+						juxtapo.templates.selectedTemplawteIndex = i;
 						return layout;
 					}
 				}
@@ -149,17 +170,21 @@
 			;
 			return juxtapo.designTemplates[0];
 		},
+		/**
+		 * Hides the current overlay image
+		 */
 		hide : function() {
 			$("#design").css("display", "none");
 			juxtapo.designVisible = false;
 			juxtapo.currentDesignView = juxtapo.designViews.hidden;
 		},
+		/**
+		 * @private
+		 */
 		init : function() {
 			// add design image to page
 			$('<img id="design" src="noimage.jpg" alt="design image" />')
-					.appendTo("body").css( {
-						display : 'none'
-					});
+					.appendTo("body").css({display : 'none'});
 
 			if (juxtapo.utils.getQuery("di") != null) {
 				juxtapo.templates
@@ -201,6 +226,11 @@
 			}
 
 		},
+		/**
+		 * Moves the current overlay image
+		 * @param {String} dir This can be 'top','right','bottom','left'
+		 * @param {Number} pixels The number of pixels to move the image by
+		 */
 		nudge : function(dir, pixels) {
 			if (dir == "")
 				return false;
@@ -244,6 +274,12 @@
 			};
 			onOverlayImagePositionChanged($img.get(0), oldPos, newPos);
 		},
+		/**
+		 * Search through the url paths and imagePath for each of the added 
+		 * templates and return any that contain the query
+		 * @param {Object} q Query to search for
+		 * @return {Object} {designs[],indexes[]}
+		 */
 		search : function(q) {
 			var results = {
 				designs : [],
@@ -262,6 +298,9 @@
 			}
 			return results;
 		},
+		/**
+		 * Show the currently selected template image
+		 */
 		show : function() {
 			$("#design").css( {
 				display : "block",
@@ -271,6 +310,9 @@
 			juxtapo.currentDesignView = juxtapo.designViews.opaque;
 			return juxtapo.currentDesignView;
 		},
+		/**
+		 * Make the currently selected template image semi transparent
+		 */
 		semiTransparent : function() {
 			$("#design").css( {
 				display : "block",
@@ -279,6 +321,9 @@
 			juxtapo.designVisible = true;
 			juxtapo.currentDesignView = juxtapo.designViews.semiTransparent;
 		},
+		/**
+		 * @deprecated
+		 */
 		toggle : function() {
 			juxtapo.templates.forward();
 		},

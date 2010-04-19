@@ -78,7 +78,7 @@
         currentStatus: 2,
         //designlayout: null,
         designVisible: false,
-        designTemplates: [], // list of layout images to place as the
+        designTemplates: [],
         plugins : {}, // convention for adding plugin specific functionality
 		globalSettings:{},
         coreJsUrl: function(){
