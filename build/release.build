@@ -5,6 +5,7 @@
 	<property name="release.directory" value="${project.directory}\release" />
 	<property name="combiner.directory" value="${project.directory}\combiner\win\core" />
 	<property name="combiner.solution.file" value="${combiner.directory}\juxtapo-combiner.sln" />
+	<property name="project.tests.directory" value="${project.directory}\tests" />
 	<property name="combiner.testsuite.directory" value="${project.directory}\tests\juxtapo-tests" />
 	<property name="combiner.testsuite.solution.file" value="${combiner.testsuite.directory}\juxtapo-testsuite.sln" />
 	<property name="tools.directory" value="${project.directory}\tools" />
@@ -46,7 +47,6 @@
 
 	<target name="run-tests">
 		<echo message="Running tests" />
-
 		<exec program="${nunit.exe}" commandline="${combiner.testsuite.directory}\juxtapo-testsuite\bin\${project.build.configuration}\juxtapo-testsuite.dll" />
 
 		<echo message="Finished running tests" />
