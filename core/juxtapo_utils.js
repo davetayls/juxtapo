@@ -88,6 +88,7 @@
 		    Url = url.toLowerCase();
 		    if (Url.substr(0, 2) == "~/") { return true; }
 		    if (Url.substr(0, 3) == "../") { return true; }
+		    if (Url.substr(0, 2) == "./") { return true; }
 		    return false;
 		},
 		isStaticUrl : function(url){

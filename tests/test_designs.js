@@ -47,10 +47,10 @@ juxtapo.initComplete(function(){
             designs: [],
             indexes: []
         }, "Blank search should return an object with designs and indexes properties.");
-        var results = juxtapo.templates.search("test");
+        var results = juxtapo.templates.search("threeresults");
         ok(results, "Search for test should not be null");
-        equals(results.designs.length, 3, "Search for test should give 3 design results");
-        equals(results.indexes.length, 3, "Search for test should give 3 indexes results");
+        equals(results.designs.length, 3, "Search for threeresults should give 3 design results");
+        equals(results.indexes.length, 3, "Search for threeresults should give 3 indexes results");
     });
 	
 	test("nudge",function(){

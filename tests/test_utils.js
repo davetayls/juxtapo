@@ -42,6 +42,11 @@ juxtapo.initComplete(function(){
 			true,
 			"relativeUrl ../juxtapo.js is a relative url"
 		);
+		equals(
+			juxtapo.utils.isRelativeUrl("./juxtapo.js"),
+			true,
+			"relativeUrl ./juxtapo.js is a relative url"
+		);
 	});
 	test("isStaticUrl",function(){
 		equals(

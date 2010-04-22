@@ -4,6 +4,15 @@ juxtapo.initComplete(function(){
         ok(juxtapo.thumbs.dropDown(), "The dropDown should have been created");
         equals(juxtapo.thumbs.dropDown().text(), "+", "drop down text should be a plus sign");
         equals(juxtapo.thumbs.dropDown().show(), true, "drop down expanded flag should be true");
+		var foundRelativeUrl = false;
+		var thumbLinks$ = $("a.juxtapo-thumb-lnk");
+		thumbLinks$.each(function(){
+			if (juxtapo.utils.isRelativeUrl($(this).attr('href'))){
+				foundRelativeUrl = true;
+			}
+		});
+		ok(thumbLinks$.length > 0,"Should have found some thumb links");
+		equals(!foundRelativeUrl,true,"Relative url paths should be resolved for thumbnail links")		
         equals(juxtapo.thumbs.dropDown().show(false), false, "drop down expanded flag should be false");
         equals(juxtapo.thumbs.dropDown().toggleShow(), true, "drop down expanded flag should be true");
     });

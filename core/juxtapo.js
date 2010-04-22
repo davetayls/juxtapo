@@ -38,6 +38,7 @@
     includes.push("juxtapo_templates.js");
     includes.push("juxtapo_utils.js");
     includes.push("juxtapo_ui.js");
+    includes.push("ui/Thumbnail.js");
     includes.push("juxtapo_ui_toolbar.js");
     includes.push("juxtapo_thumbs.js");
     includes.push("juxtapo_help.js");
