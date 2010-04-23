@@ -17,7 +17,7 @@ juxtapo.initConfig(function(){
         	juxtapo.addTemplate(new juxtapo.templates.TemplateItem("../tests/juxtapotestsuite-screenshot.png", ["threeresults.htm"], {})),
 			"Passing a TemplateItem in to addTemplate"
 		);
-        equals(juxtapo.designTemplates.length, 6, "There should be 6 templates")
+        equals(juxtapo.templates.collection.length, 6, "There should be 6 templates")
     });	
 });          
 juxtapo.initComplete(function(){

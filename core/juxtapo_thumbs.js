@@ -67,17 +67,18 @@
             	.append(_$thumbsContainer);
             _toolbar.toolbarLeft$.append(_search$);
 			_$thumbsContainer.css("height",(contentsHeight - 39)+'px');
-            for (var i = 0; i < juxtapo.designTemplates.length; i++) {
-				var thumb = new juxtapo.ui.Thumbnail(juxtapo.designTemplates[i]);
+            for (var i = 0; i < juxtapo.templates.collection.length; i++) {
+				var thumb = new juxtapo.ui.Thumbnail(juxtapo.templates.collection[i]);
 				_$thumbsContainer.append(thumb.container);
             }
-            $("#juxtapo-searchDesigns").keyup(this.searchKeyup);
+            _$searchBox.keyup(this.searchKeyup);
             this.rendered = true;
             $(juxtapo.thumbs).trigger("_thumbsRendered");
         },
 		/** @private */
         searchKeyup: function(e){
-            juxtapo.templates.filterBySearch($("#juxtapo-searchDesigns").val());
+			var q = $(this).val();
+            juxtapo.templates.filterBySearch(q);
         },
 		/**
 		 * The html ul element which contains the list of thumbs

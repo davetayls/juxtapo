@@ -11,14 +11,24 @@
 	var onOverlayImagePositionChanged = function(img, oldPos, newPos) {
 		$(juxtapo).trigger("_overlayImagePositionChanged", [ img, oldPos, newPos ]);
 	};
+	
+	// methods
+	var clearOverlayClasses = function(){
+		$(juxtapo.templates.overlayButton)
+			.removeClass('juxtapo-overlayTransparent')
+			.removeClass('juxtapo-overlaySemiTrans')
+			.removeClass('juxtapo-overlayOpaque')		
+	}
 
 	/* public */
 	/**
 	 * @namespace
+     * @property {juxtapo.templates.TemplateItem[]} collection Array of {@link juxtapo.templates.TemplateItem} which describe the designs within the project
      * @property {int} selectedTemplateIndex The index of the current matched template
 	 */
 	juxtapo.templates = {
 		// properties
+        collection: [],
         selectedTemplateIndex: 0,
 		// methods
 		/**
@@ -44,10 +54,10 @@
 			if (previous) {
 				newIndex = juxtapo.templates.selectedTemplateIndex - 1;
 				if (newIndex < 0)
-					newIndex = juxtapo.designTemplates.length - 1;
+					newIndex = juxtapo.templates.collection.length - 1;
 			} else {
 				newIndex = juxtapo.templates.selectedTemplateIndex + 1;
-				if (newIndex > juxtapo.designTemplates.length - 1)
+				if (newIndex > juxtapo.templates.collection.length - 1)
 					newIndex = 0;
 			}
 			juxtapo.templates.changeTo(newIndex);
@@ -62,9 +72,9 @@
 				return false;
 			} else if (typeof (item) == "object") {
 				design = item;
-			} else if (typeof item == 'number' && item < juxtapo.designTemplates.length) {
+			} else if (typeof item == 'number' && item < juxtapo.templates.collection.length) {
 				juxtapo.templates.selectedTemplateIndex = item;
-				design = juxtapo.designTemplates[item];
+				design = juxtapo.templates.collection[item];
 			}
 			if (design){
 				var designStyle = $.extend({},juxtapo.templates.TemplateItem.defaultStyles,design.settings.style);
@@ -75,7 +85,7 @@
 		 * Gets the current {@link juxtapo.templates.TemplateItem}
 		 */
 		selectedTemplateItem : function(){
-			return juxtapo.designTemplates[juxtapo.templates.selectedTemplateIndex];
+			return juxtapo.templates.collection[juxtapo.templates.selectedTemplateIndex];
 		},
 		/**
 		 * Gets or sets the image element used as the overlay for
@@ -98,10 +108,10 @@
 			var results = null;
 			var thumbs = [];
 			if (q == "") {
-				$("#juxtapo-thumbs-container li").show();
+				$("#juxtapo-thumbs-container .juxtapo-thumb").show();
 			} else {
 				results = this.search(q);
-				$("#juxtapo-thumbs-container li").hide();
+				$("#juxtapo-thumbs-container .juxtapo-thumb").hide();
 				for ( var i = 0; i < results.designs.length; i++) {
 					var design = results.designs[i]
 					design.thumbnail.show();
@@ -132,7 +142,7 @@
 		 * @return {juxtapo.templates.TemplateItem[]}
 		 */
 		getAll : function(){
-			return juxtapo.designTemplates;
+			return juxtapo.templates.collection;
 		},
 		/**
 		 * Searches the paths specified within each added template for the first one that 
@@ -157,8 +167,8 @@
 		 */
 		getTemplateFromUrl : function(url) {
 			var href = url.toLowerCase();
-			for ( var i = 0; i < juxtapo.designTemplates.length; i++) {
-				layout = juxtapo.designTemplates[i];
+			for ( var i = 0; i < juxtapo.templates.collection.length; i++) {
+				layout = juxtapo.templates.collection[i];
 				for ( var p = 0; p < layout.paths.length; p++) {
 					path = layout.paths[p].toLowerCase();
 					if (href.juxtapoContains(path)) {
@@ -168,7 +178,7 @@
 				}
 			}
 			;
-			return juxtapo.designTemplates[0];
+			return juxtapo.templates.collection[0];
 		},
 		/**
 		 * Hides the current overlay image
@@ -177,6 +187,9 @@
 			$("#design").css("display", "none");
 			juxtapo.designVisible = false;
 			juxtapo.currentDesignView = juxtapo.designViews.hidden;
+			clearOverlayClasses();
+			$(this.overlayButton).addClass('juxtapo-overlayTransparent');
+			return juxtapo.currentDesignView;			
 		},
 		/**
 		 * @private
@@ -196,11 +209,11 @@
 			$(document).keydown(juxtapo.onBody_KeyDown);
 
 			// design controller button
-			juxtapo.designlayout = document.createElement("div");
-			$(juxtapo.designlayout).attr("class", "juxtapo-btn");
-			juxtapo.designlayout.onclick = juxtapo.templates.toggle;
-			juxtapo.designlayout.innerHTML = "D E S I G N";
-			juxtapo.container.appendChild(juxtapo.designlayout);
+			juxtapo.templates.overlayButton = document.createElement("div");
+			$(juxtapo.templates.overlayButton).attr("class", "juxtapo-btn");
+			juxtapo.templates.overlayButton.onclick = juxtapo.templates.toggle;
+			juxtapo.templates.overlayButton.innerHTML = "OVERLAY";
+			juxtapo.container.appendChild(juxtapo.templates.overlayButton);
 			d = juxtapo.utils.getQuery("design");
 			if (d != null) {
 				juxtapo.designVisible = d;
@@ -287,8 +300,8 @@
 			};
 			if (q != "") {
 				q = q.toLowerCase();
-				for ( var i = 0; i < juxtapo.designTemplates.length; i++) {
-					var iDesign = juxtapo.designTemplates[i];
+				for ( var i = 0; i < juxtapo.templates.collection.length; i++) {
+					var iDesign = juxtapo.templates.collection[i];
 					if (iDesign.imageUrl.toLowerCase().indexOf(q) > -1
 							|| iDesign.paths[0].toLowerCase().indexOf(q) > -1) {
 						results.designs.push(iDesign);
@@ -308,6 +321,8 @@
 			});
 			juxtapo.designVisible = true;
 			juxtapo.currentDesignView = juxtapo.designViews.opaque;
+			clearOverlayClasses();
+			$(this.overlayButton).addClass('juxtapo-overlayOpaque');			
 			return juxtapo.currentDesignView;
 		},
 		/**
@@ -320,6 +335,9 @@
 			});
 			juxtapo.designVisible = true;
 			juxtapo.currentDesignView = juxtapo.designViews.semiTransparent;
+			clearOverlayClasses();
+			$(this.overlayButton).addClass('juxtapo-overlaySemiTrans');			
+			return juxtapo.currentDesignView;
 		},
 		/**
 		 * @deprecated

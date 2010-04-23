@@ -42,7 +42,6 @@
      * @property {juxtapo.designViews} currentDesignView The enum signifying the visibility of the current overlay
      * @property {juxtapo.statuses} currentStatus The enum specifying the auto refresh state
      * @property {bool} designVisible Set to true if the current design is semiTransparent or completely visible
-     * @property {juxtapo.templates.TemplateItem[]} designTemplates Array of {@link juxtapo.templates.TemplateItem} which describe the designs within the project
      * @property {Object} plugins The namespace for adding plugin specific public methods/properties
      * @property {Object} globalSettings A global namespace for public methods/properties
 	 */
@@ -76,9 +75,7 @@
         controller: null,
         currentDesignView: 0,
         currentStatus: 2,
-        //designlayout: null,
         designVisible: false,
-        designTemplates: [],
         plugins : {}, // convention for adding plugin specific functionality
 		globalSettings:{},
         coreJsUrl: function(){
@@ -122,7 +119,7 @@
 			}
 		},
         /**
-         * Adds a juxtapo.templates.TemplateItem object to the designTemplates
+         * Adds a juxtapo.templates.TemplateItem object to the juxtapo.templates.collection
          * array
          *
          * @param {String}
@@ -138,14 +135,14 @@
          */
         addTemplate: function(path, imageUrl, settings){
 			if (path instanceof juxtapo.templates.TemplateItem) {
-	            this.designTemplates.push(path);
+	            juxtapo.templates.collection.push(path);
 	            return path;				
 			} else {
 				if (typeof path == 'string'){ 
 					path = [path]; 
 				};
 	            var t = new juxtapo.templates.TemplateItem(imageUrl, path, settings);				
-	            this.designTemplates.push(t);
+	            juxtapo.templates.collection.push(t);
 	            return t;
 			}
         },

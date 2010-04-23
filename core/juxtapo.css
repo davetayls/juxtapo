@@ -1,3 +1,31 @@
+/*
+	juxtapo-btn
+-----------------------------------------*/
+.juxtapo-btn {
+	background-color: white; 
+	border: solid 1px #000; 
+	cursor: pointer;
+	float: left; 
+	font-family: arial,helvetica,sans-serif;
+	font-weight: bold; 
+	font-size: 9px; 
+	height: 6px; 
+	padding: 3px; 
+	position: relative; 
+	text-align: center; 
+	z-index: 2000;		
+}
+	div.juxtapo-btn-open {
+		background-color:#000000;
+		border-bottom:1px solid #aaa;
+		border-left:1px solid #CCCCCC;
+		border-right:1px solid #aaa;
+		color:#FFFFFF;
+		padding-bottom: 5px;
+		top:-3px;
+	}
+	div.juxtapo-btn:hover { background-color: #555; color: white; }
+
 /*  cc - clear container 
 ----------------------------------------------------*/
 .juxtapo-cc { zoom: 1; }
@@ -83,30 +111,18 @@
 	.juxtapo-lightBox ul {
 		margin: 5px 0px 3px 10px;
 	}
-.juxtapo-btn {
-	background-color: white; 
-	border: solid 1px #000; 
-	cursor: pointer;
-	float: left; 
-	font-family: arial,helvetica,sans-serif;
-	font-weight: bold; 
-	font-size: 9px; 
-	height: 6px; 
-	padding: 3px; 
-	position: relative; 
-	text-align: center; 
-	z-index: 2000;		
+
+
+/*
+	juxtapo-btn
+-----------------------------------------*/
+.juxtapo-overlayOpaque {
+	background-color: #00ADEF;
 }
-	.juxtapo-btn-open {
-		background-color:#000000;
-		border-bottom:1px solid #aaa;
-		border-left:1px solid #CCCCCC;
-		border-right:1px solid #aaa;
-		color:#FFFFFF;
-		padding-bottom: 5px;
-		top:-3px;
-	}
-	.juxtapo-btn:hover { background-color: #555; color: white; }
+.juxtapo-overlaySemiTrans {
+	background-color: #88ddFF;	
+}
+.juxtapo-overlayTransparent {}
 
 #juxtapo-searchDesigns { width: 300px; }
 
