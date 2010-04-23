@@ -1,0 +1,314 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		
+		<title>juxtapo documentation - Index</title>
+		<meta name="generator" content="JsDoc Toolkit" />
+		<link rel="stylesheet" type="text/css" href="lib/1.reset.css" />
+		<link rel="stylesheet" type="text/css" href="lib/2.brand.css" />
+		<link rel="stylesheet" type="text/css" href="lib/3.screen.css" />		
+	</head>
+	
+	<body>
+		<div id="header">
+	<p id="header-logo">
+		<a href="http://juxtapo.net/">juxtapo - front end tools, documentation</a>		
+	</p>
+	<ul id="header-links">
+		<li><a href="http://juxtapo.net">Return to the juxtapo website</a></li>
+		<li><a href="http://davetayls.github.com/juxtapo">juxtapo on github</a></li>
+	</ul>
+</div>
+		
+		<div id="index">
+			<div align="center"><a href="index.html">Class Index</a>
+| <a href="files.html">File Index</a></div>
+<hr />
+<h2>Classes</h2>
+<ul class="classList">
+	
+	<li><i><a href="symbols/_global_.html">_global_</a></i></li>
+	
+	<li><a href="symbols/juxtapo.html">juxtapo</a></li>
+	
+	<li><a href="symbols/juxtapo.control.html">juxtapo.control</a></li>
+	
+	<li><a href="symbols/juxtapo.eh.html">juxtapo.eh</a></li>
+	
+	<li><a href="symbols/juxtapo.templates.html">juxtapo.templates</a></li>
+	
+	<li><a href="symbols/juxtapo.templates.TemplateItem.html">juxtapo.templates.TemplateItem</a></li>
+	
+	<li><a href="symbols/juxtapo.thumbs.html">juxtapo.thumbs</a></li>
+	
+	<li><a href="symbols/juxtapo.ui.html">juxtapo.ui</a></li>
+	
+	<li><a href="symbols/juxtapo.ui.DropDown.html">juxtapo.ui.DropDown</a></li>
+	
+	<li><a href="symbols/juxtapo.ui.Thumbnail.html">juxtapo.ui.Thumbnail</a></li>
+	
+	<li><a href="symbols/juxtapo.ui.Toolbar.html">juxtapo.ui.Toolbar</a></li>
+	
+	<li><a href="symbols/juxtapo.ui.ToolBtn.html">juxtapo.ui.ToolBtn</a></li>
+	
+	<li><a href="symbols/juxtapo.utils.html">juxtapo.utils</a></li>
+	
+	<li><a href="symbols/juxtapo.utils.date.html">juxtapo.utils.date</a></li>
+	
+	<li><a href="symbols/juxtapo.utils.String.html">juxtapo.utils.String</a></li>
+	
+	<li><a href="symbols/String.html">String</a></li>
+	
+</ul>
+<hr />
+		</div>
+		
+		<div id="content">
+			<h1 class="classTitle">About and Installation</h1>
+			<div class="instructions">
+			
+juxtapo
+Front End Tools: JavaScript Library
+<a href="http://juxtapo.net/">http://juxtapo.net/</a>
+
+Copyright (c) 2010 David Taylor (@davetayls), <a href="http://the-taylors.org">http://the-taylors.org</a>
+Licensed under the GNU v3 license.
+<a href="http://www.gnu.org/licenses/gpl.html">http://www.gnu.org/licenses/gpl.html</a>
+
+If you find this software useful please support it's development by 
+donating at <a href="http://github.com/davetayls/juxtapo">http://github.com/davetayls/juxtapo.</a>
+
+What is juxtapo
+=========================================================
+juxtapo has two streams at the moment.
+
+1. In browser tools using javascript to assist while you're turning designs in to html\css.
+
+	The core library is designed to be basic and fast to get up and running and gives:
+	- Overlays with keyboard nudging and positioning
+	- Auto refresh
+	
+	It has a plugin api which allows for any developer to extend the core functionality.
+	Currently the following plugin concepts have been created:
+	* qunit: Allows for in build unit testing using the qunit library
+	* Google Spreadsheets: Get your design templates and template metadata from a Google spreadsheet
+	* Design Info: Show the positioning and size of the current design
+	* Views: Different displays for the template thumbnails
+	
+2. 	Ease the management of your javascript by providing a framework for working with and deploying JavaScript
+	
+	This enables you to split your javascript in to separate files but only reference and use a central combiner js file
+	to link them all while developing.
+	
+	The combiner can then be run on deployment to join all the included files in to one large js file.
+	
+	You can have as many root combiners as you wish to give you complete control over which files get combined.
+
+	
+	
+Front End Tools: Installation
+=========================================================
+juxtapo is designed to be as simple as possible to integrate and use.
+If you have any issues with installation please contact us.
+
+1. Download the latest version
+2. Extract the files in to your website root 
+   (doesn't need to be in the root, just needs to be accessible)
+3. Include a script reference to the juxtapo.js file within your page
+4. Copy and paste the juxtapo.config.js file from the core directory
+5. Edit the juxtapo.config.js file and add your templates
+
+Pre-requisites
+==============
+juxtapo currently utilises the jQuery library for much of it's functionality.
+If you don't already have this library included within your page then you will 
+need to add a reference to it. It has been added to the lib folder so you don't
+have to download it.
+
+Initial Setup
+=============
+Juxtapo gets it's settings from the juxtapo.config.js file within 
+the juxtapo directory.
+
+1. Setting the default overlay styles
+
+	You will need to tweak the default image overlay styles to match 
+	the size and positioning of your designs. This example default styles 
+	positions a 900px wide the image centrally on the page:
+
+	juxtapo.setDefaultStyles({ 
+		position: 'absolute', 
+		'z-index': '2000', 
+		top: '0px', 
+		left: '50%', 
+		'margin-left': '-450px' 
+	});
+
+2. For each page which has a corresponding design image add the following within the juxtapo.initConfig section provided:
+
+	juxtapo.addTemplate(pageUrl,designUrl,settings);
+
+	@param pageUrl {String}
+	this is the absolute or partial url of the page which you are matching a design to. 
+	juxtapo compares the url of the browser to these and when it finds a match it will 
+	default to the design linked
+	
+	here are some examples:
+	* <a href="http://juxtapo.net/sample/design1.htm">http://juxtapo.net/sample/design1.htm</a>
+	* /sample/design1.htm
+	* design1.htm
+	
+	if you are using juxtapo on a static site then you would use something like the 
+	following for a file located at: c:\juxtapo\sample\design1.htm
+
+	- to match any file called design1.htm you could use "design1.htm"
+	- to only match design1.htm files within the sample folder use "/sample/design1.htm"
+	
+	you will notice this is the same as if you were using it within a website url.
+	
+	@param designUrl {String}
+	the designUrl is the location of the image file which you want to overlay on to your page. 
+	This will be placed as entered here in to the src of the img tag
+	
+	@param settings {object} optional
+	This is a key/value object containing any style tweaks to be applied to the default 
+	overlay styles and any data related to your template.
+
+	for more detailed information see the docs withn the juxtapo directory:
+	/docs/symbols/juxtapo.html#.addTemplate
+	
+Combiner Installation
+=========================================================
+1. 	Copy the contents of the /combiner/example-combiner.js for each file you want to 
+	split in to separate files.
+2.	Change the combinerFileName to filename of the combiner javascript file.
+3.	Add includes.push("javascriptfile.js") lines for each of the files you want to
+	include with this file.
+
+On deployment:    
+    Copy your javascript files in to a separate deployment directory 
+	and use this with the juxtapo-combiner.exe file.
+    eg: juxtapo-combiner.exe "c:\full\path\to\jsdirecory\"
+	
+	This will add all the contents of the included javascript files in to
+	the root combiner file and delete the referenced files.
+
+	
+More information
+=========================================================
+The juxtapo project is still in its early stages so please inform me of any errors or bugs
+you come across at <a href="http://github.com/davetayls/juxtapo">http://github.com/davetayls/juxtapo.</a>
+
+If you would like to contribute to the project please let me know by posting a message on github.
+
+			</div>
+			
+			<h1 class="classTitle">Class Index</h1>
+			
+			
+			<div>
+				<h2><a href="symbols/_global_.html">_global_</a></h2>
+				
+			</div>
+			<hr />
+			
+			<div>
+				<h2><a href="symbols/juxtapo.html">juxtapo</a></h2>
+				
+			</div>
+			<hr />
+			
+			<div>
+				<h2><a href="symbols/juxtapo.control.html">juxtapo.control</a></h2>
+				
+			</div>
+			<hr />
+			
+			<div>
+				<h2><a href="symbols/juxtapo.eh.html">juxtapo.eh</a></h2>
+				
+			</div>
+			<hr />
+			
+			<div>
+				<h2><a href="symbols/juxtapo.templates.html">juxtapo.templates</a></h2>
+				
+			</div>
+			<hr />
+			
+			<div>
+				<h2><a href="symbols/juxtapo.templates.TemplateItem.html">juxtapo.templates.TemplateItem</a></h2>
+				TemplateItem is the description of each template layout
+			</div>
+			<hr />
+			
+			<div>
+				<h2><a href="symbols/juxtapo.thumbs.html">juxtapo.thumbs</a></h2>
+				
+			</div>
+			<hr />
+			
+			<div>
+				<h2><a href="symbols/juxtapo.ui.html">juxtapo.ui</a></h2>
+				
+			</div>
+			<hr />
+			
+			<div>
+				<h2><a href="symbols/juxtapo.ui.DropDown.html">juxtapo.ui.DropDown</a></h2>
+				Represents a dropDown control
+			</div>
+			<hr />
+			
+			<div>
+				<h2><a href="symbols/juxtapo.ui.Thumbnail.html">juxtapo.ui.Thumbnail</a></h2>
+				Represents a thumbnail control
+			</div>
+			<hr />
+			
+			<div>
+				<h2><a href="symbols/juxtapo.ui.Toolbar.html">juxtapo.ui.Toolbar</a></h2>
+				Represents a Toolbar control
+			</div>
+			<hr />
+			
+			<div>
+				<h2><a href="symbols/juxtapo.ui.ToolBtn.html">juxtapo.ui.ToolBtn</a></h2>
+				Represents a toolbtn control
+			</div>
+			<hr />
+			
+			<div>
+				<h2><a href="symbols/juxtapo.utils.html">juxtapo.utils</a></h2>
+				
+			</div>
+			<hr />
+			
+			<div>
+				<h2><a href="symbols/juxtapo.utils.date.html">juxtapo.utils.date</a></h2>
+				
+			</div>
+			<hr />
+			
+			<div>
+				<h2><a href="symbols/juxtapo.utils.String.html">juxtapo.utils.String</a></h2>
+				
+			</div>
+			<hr />
+			
+			<div>
+				<h2><a href="symbols/String.html">String</a></h2>
+				
+			</div>
+			<hr />
+			
+			
+		</div>
+		<div class="fineprint" style="clear:both">
+			
+			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blankt">JsDoc Toolkit</a> 2.3.2 on Wed Apr 21 2010 17:13:32 GMT+0100 (BST)
+		</div>
+	</body>
+</html>

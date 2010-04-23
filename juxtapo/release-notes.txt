@@ -1,0 +1,27 @@
+juxtapo release notes
+=====================
+
+0.7		2010		Release:
+					- Refactor of namespaces and Object definitions:
+					  juxtapo.ui.DropDown, juxtapo.ui.Thumbnail, juxtapo.ui.ToolBtn
+					  
+0.6		2010-04-06	Released:
+					- added namespace juxtapo.plugins as the convention for adding
+					  plugin specific public methods/properties
+					- added ability to use nudging with absolute left or absolute right positioning
+					- now supports child directories within combiner
+					
+0.5.1 	2010-03-26 	Released:
+					- fix bug with juxtapo.ui.requireResource
+
+0.5a 	2010-03-18	Released:
+					- First 0.5 Alpha release
+					- With plugin support
+				
+0.4a 	2010-03-18	Released:
+					- Added combiner to release
+
+0.4a				Released: 
+					- Added plugin support
+					- Need to use juxtapo.initConfig event for adding templates
+					- Now using juxtapo.setDefaultStyles({}) for default styles

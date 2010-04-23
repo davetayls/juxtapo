@@ -1,0 +1,175 @@
+/* default.css */
+body {
+	background: #000;
+	color: #eee;
+	font: 12px "Lucida Grande", Tahoma, Arial, Helvetica, sans-serif;
+	letter-spacing: -0.02em;
+	padding: 10px;
+	width: 960px;
+}
+
+.header {
+	clear: both;
+	background-color: #ccc;
+	padding: 8px;
+}
+#header {
+	padding: 10px 0;
+	position: relative;
+}
+	#header-logo a {
+		background: url(juxtapo-logo-50.gif) no-repeat left top;
+		display: block;
+		height: 50px;
+		text-indent: -9999px;
+		width: 150px;
+	}
+	#header-links {
+		display: block;
+		position: absolute;
+		right: 0px;
+		top: 20px;
+	}
+		#header-links li {
+			list-style: none;
+			text-align:right;
+			
+		}
+#index {
+	margin-top: 0px;
+	float: left;
+	width: 240px;
+	position: absolute;
+	left: 8px;
+	background-color: #333;
+	padding: 8px;
+}
+
+#content {
+	margin-left: 280px;
+	width: 600px;
+}
+	.instructions {
+		white-space: pre;
+	}
+
+hr {
+	border: none 0;
+	border-top: 1px solid #7F8FB1;
+	height: 1px;
+}
+pre.code {
+	display: block;
+	padding: 8px;
+	border: 1px dashed #ccc;
+	font-size:1.2em;
+}
+
+.classList
+{
+	list-style-type: none;
+	padding: 0;
+	margin: 0 0 0 8px;
+	font-family: arial, sans-serif;
+	font-size: 1em;
+	overflow: auto;
+}
+
+.classList li
+{
+	padding: 0;
+	margin: 0 0 8px 0;
+}
+
+.summaryTable { width: 100%; }
+
+h1.classTitle
+{
+	font-size:170%;
+	line-height:130%;
+}
+
+caption, div.sectionTitle
+{
+	background-color: #333;
+	color: #fff;
+	font-size:130%;
+	text-align: left;
+	padding: 2px 6px 2px 6px;
+	border: 1px #555 solid;
+}
+
+div.sectionTitle { margin: 15px 0 8px; }
+.summaryTable thead { display: none; }
+
+.summaryTable td {
+	vertical-align: top;
+	padding: 4px;
+	border-bottom: 1px #555 dotted;
+	border-right: 1px #555 dotted;
+}
+
+/*col#summaryAttributes {}*/
+.summaryTable td.attributes {
+	border-left: 1px #555 dotted;
+	width: 140px;
+	text-align: right;
+}
+	.summaryTable td.attributes span {
+		display: block;
+		padding: 2px 5px;
+		text-align: right;
+	}
+
+td.attributes, .fixedFont {
+	line-height: 15px;
+	color: #84D725;
+	font-family: "Courier New",Courier,monospace;
+	font-size: 13px;
+}
+
+.summaryTable td.nameDescription {
+	text-align: left;
+	font-size: 13px;
+	line-height: 15px;
+}
+
+.summaryTable td.nameDescription, .description {
+	line-height: 15px;
+	padding: 4px;
+	padding-left: 4px;
+}
+
+.summaryTable { margin-bottom: 8px; }
+
+ul.inheritsList
+{
+	list-style: square;
+	margin-left: 20px;
+	padding-left: 0;
+}
+
+.detailList {
+	margin-left: 20px; 
+	line-height: 15px;
+}
+.detailList dt { margin-left: 20px; }
+
+.detailList .heading
+{
+	font-weight: bold;
+	padding-bottom: 6px;
+	margin-left: 0;
+}
+
+.light, td.attributes, .light a:link, .light a:visited
+{
+	color: #aaa;
+	font-style: italic;
+}
+
+.fineprint
+{
+	text-align: right;
+	font-size: 10px;
+}
