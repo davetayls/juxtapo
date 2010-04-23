@@ -137,9 +137,17 @@
          * @return {juxtapo.templates.TemplateItem} Returns the new template
          */
         addTemplate: function(path, imageUrl, settings){
-            var t = new juxtapo.templates.TemplateItem(imageUrl, [path], settings);
-            this.designTemplates.push(t);
-            return t;
+			if (path instanceof juxtapo.templates.TemplateItem) {
+	            this.designTemplates.push(path);
+	            return path;				
+			} else {
+				if (typeof path == 'string'){ 
+					path = [path]; 
+				};
+	            var t = new juxtapo.templates.TemplateItem(imageUrl, path, settings);				
+	            this.designTemplates.push(t);
+	            return t;
+			}
         },
         /**
          * This sets the default styles applied to each design template

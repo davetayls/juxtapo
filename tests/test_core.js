@@ -8,9 +8,15 @@ juxtapo.initConfig(function(){
         equals(t.imageUrl, expected.imageUrl, "We should have a new template");
         juxtapo.addTemplate("../tests/TestSuite-plugins.html", "../tests/test2.png", {});
         juxtapo.addTemplate("test3.htm", "../tests/test3.png", {});
-        juxtapo.addTemplate("ThreeResults.htm", "../tests/item.png", {});
+        ok(
+			juxtapo.addTemplate(['ThreeResults.htm','path2.htm'], "../tests/item.png", {}) instanceof juxtapo.templates.TemplateItem,
+			"Can add an array of paths to add a template"
+		);
         juxtapo.addTemplate("THREERESULTS.htm", "../tests/page5.png", {});
-        juxtapo.addTemplate("threeresults.htm", "../tests/juxtapotestsuite-screenshot.png", {});
+        ok(
+        	juxtapo.addTemplate(new juxtapo.templates.TemplateItem("../tests/juxtapotestsuite-screenshot.png", ["threeresults.htm"], {})),
+			"Passing a TemplateItem in to addTemplate"
+		);
         equals(juxtapo.designTemplates.length, 6, "There should be 6 templates")
     });	
 });          
