@@ -17,13 +17,8 @@ juxtapo.ui.Thumbnail = function(designTemplate, options) {
 	this._init(designTemplate, options);
 };
 juxtapo.ui.Thumbnail.prototype = {
-	caption : null,
-	captionLink : null,
 	container : null,
 	designTemplate : null,
-	imageLink : null,
-	imageContainer : null,
-	image : null,
 	settings : {},
 	thumbnailHtmlTemplate : '' + 
 		'  <a href="${href}" class="juxtapo-thumb-lnk">' +
