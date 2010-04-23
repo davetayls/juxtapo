@@ -175,11 +175,11 @@
 	    span.juxtapo-thumb-caption { 
 			position: absolute;
 			background-color: #efefef;
-			bottom: 0; 
-			left: 0;
+			bottom: 1px; 
+			left: 1px;
 			padding: 3px;
 			display: block;
-			width: 200px;
+			width: 194px;
 			z-index: 2;
 		}
 			a.juxtapo-thumb-lnk:hover span.juxtapo-thumb-caption,

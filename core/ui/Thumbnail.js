@@ -32,7 +32,7 @@ juxtapo.ui.Thumbnail.prototype = {
 		'    </span>' +
 		'  </a>' +
 		'  <span class="juxtapo-thumb-caption">' +
-		'    <a href="${href}">' +
+		'    <a href="${href}" tabindex="-1">' +
 		'      ${caption}' +
 		'    </a>' +
 		'  </span>',
