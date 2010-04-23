@@ -1,4 +1,5 @@
 (function($) {
+
 /**
  * Creates a new thumbnail control which contains a link to the page
  * a small image and the page name
@@ -17,34 +18,53 @@ juxtapo.ui.Thumbnail = function(designTemplate, options) {
 };
 juxtapo.ui.Thumbnail.prototype = {
 	caption : null,
+	captionLink : null,
 	container : null,
 	designTemplate : null,
-	link : null,
+	imageLink : null,
 	imageContainer : null,
 	image : null,
 	settings : {},
-
+	thumbnailHtmlTemplate : '' + 
+		'  <a href="${href}" class="juxtapo-thumb-lnk">' +
+		'    <span class="juxtapo-thumb-img">' +
+		'      <img height="220" alt="design image" src="${imageSrc}">' +
+		'    </span>' +
+		'  </a>' +
+		'  <span class="juxtapo-thumb-caption">' +
+		'    <a href="${href}">' +
+		'      ${caption}' +
+		'    </a>' +
+		'  </span>',
+	
 	// methods
 	_init : function(designTemplate, options) {
 		var self = this;
 
 		self.settings = $.extend( {}, this.settings, options);
 		self.designTemplate = designTemplate;
+		
+		self.container = $('<div class="juxtapo-thumb" />')
+			.append(
+				juxtapo.utils.htmlFromTemplate(
+					this.getThumbnailHtmlTemplate(),
+					this.getThumbnailData()
+				)
+			)
+			.get(0);		
 
-		self.image = $(
-				'<img height="220" src="' + this.getImageSrc() + '" alt="design image" />')
-				.get(0);
-		self.imageContainer = $('<span class="juxtapo-thumb-img" />').append(
-				self.image).get(0);
-
-		self.caption = $('<span class="juxtapo-thumb-caption" />').html(
-				self.designTemplate.paths[0]).get(0);
-		self.link = $(
-				'<a class="juxtapo-thumb-lnk" style="display:block;" href="' + this.getLinkHref(self.designTemplate.paths[0]) + '" />')
-				.append(self.imageContainer).append(self.caption).get(0);
+		/*
+		self.image = $(self.container).find().get(0);
+		self.imageContainer = $(self.container).find('.juxtapo-thumb-img').get(0);
+		self.caption = $(self.container).find('.juxtapo-thumb-caption').get(0);
+		self.captionLink = $(self.container).find('.juxtapo-thumb-captionLink').get(0);
+		self.imageLink = $(self.container).find('.juxtapo-thumb-imageLink').get(0);
+		*/
+		/*
 		self.container = $('<li class="juxtapo-thumb" />').append(self.link)
 				.get(0);
-
+		*/
+		
 		designTemplate.setUiThumbnail(self);
 
 		/**
@@ -59,7 +79,7 @@ juxtapo.ui.Thumbnail.prototype = {
 			if (b) {
 				$(self.container).show();
 			} else {
-				$(self.container).show();
+				$(self.container).hide();
 			}
 		};
 
@@ -79,6 +99,16 @@ juxtapo.ui.Thumbnail.prototype = {
 		else {
 			return url;
 		}		
+	},
+	getThumbnailData : function(){
+		return { 
+				caption: this.designTemplate.paths[0], 
+				href: this.getLinkHref(this.designTemplate.paths[0]), 
+				imageSrc: this.getImageSrc() 
+			   };
+	},
+	getThumbnailHtmlTemplate : function(){
+		return this.thumbnailHtmlTemplate;
 	}
 };
 })(jQuery);

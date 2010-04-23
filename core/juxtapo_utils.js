@@ -78,6 +78,13 @@
 			}
 			return ret;
 		},
+		htmlFromTemplate : function(template,templateData){
+			for (var dataKey in templateData){
+				var regEx = new RegExp('\\${'+ dataKey + '}','g');
+				template = template.replace(regEx,templateData[dataKey]);
+			}
+			return template;
+		},		
 		isAbsoluteUrl : function(url) {
 		    Url = url.toLowerCase();
 		    if (Url.substr(0, 7) == "http://") { return true; }

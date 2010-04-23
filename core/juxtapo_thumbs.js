@@ -8,7 +8,7 @@
     var _toolbar = new juxtapo.ui.Toolbar();
     var _$searchBox = $('<input id="juxtapo-searchDesigns" type="text" title="Search" />');
 	var _search$ = $('<label><span class="label-text">Search:</span></label>').append(_$searchBox);
-    var _$thumbsContainer = $('<ul id="juxtapo-thumbs-container" />');
+    var _$thumbsContainer = $('<div id="juxtapo-thumbs-container" />');
  
 	/**
 	 * Pop up for displaying thumbnails
