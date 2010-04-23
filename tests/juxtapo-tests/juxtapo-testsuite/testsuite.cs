@@ -64,7 +64,7 @@ namespace juxtapo_testsuite
 				selenium.Open ("TestSuite.html?q=testquery");
 				Assert.AreEqual ("juxtapo test suite", selenium.GetTitle ());
 				selenium.Click ("juxtapo-controller");
-				selenium.WaitForPageToLoad ("3000");
+				selenium.WaitForPageToLoad ("8000");
 				try {
 					Assert.IsTrue (Regex.IsMatch (selenium.GetLocation (), "^[\\s\\S]*TestSuite\\.html[\\s\\S]q=testquery[\\s\\S]*$"));
 				} catch (AssertionException e) {
@@ -76,7 +76,7 @@ namespace juxtapo_testsuite
 					verificationErrors.Append (e.Message);
 				}
 				Assert.AreEqual ("juxtapo test suite", selenium.GetTitle ());
-				selenium.WaitForPageToLoad ("3000");
+				selenium.WaitForPageToLoad ("8000");
 				Assert.AreEqual ("juxtapo test suite", selenium.GetTitle ());
 				try {
 					Assert.IsTrue (Regex.IsMatch (selenium.GetLocation (), "^[\\s\\S]*TestSuite\\.html[\\s\\S]q=testquery[\\s\\S]*$"));
@@ -88,7 +88,7 @@ namespace juxtapo_testsuite
 				} catch (AssertionException e) {
 					verificationErrors.Append (e.Message);
 				}
-				selenium.WaitForPageToLoad ("3000");
+				selenium.WaitForPageToLoad ("8000");
 				try {
 					Assert.IsTrue (Regex.IsMatch (selenium.GetLocation (), "^[\\s\\S]*TestSuite\\.html[\\s\\S]q=testquery[\\s\\S]*$"));
 				} catch (AssertionException e) {

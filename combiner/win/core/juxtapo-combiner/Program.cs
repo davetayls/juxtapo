@@ -52,10 +52,10 @@ namespace juxtapo.Combiner
                             if (File.Exists(dir + matchedFileName))
                             {
                                 Console.WriteLine("   - Adding to root: " + matchedFileName);
-                                combined += "\n\n" + File.ReadAllText(dir + matchedFileName);                                
+                                combined += File.ReadAllText(dir + matchedFileName);                                
                             }else
                             {
-                                Console.WriteLine("   - File doesn't exist in same folder as combiner: " + matchedFileName);
+                                Console.WriteLine("   - "+ dir + matchedFileName + ": File doesn't exist in same folder as combiner: " + matchedFileName);
                             }
                         }
 

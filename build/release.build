@@ -83,11 +83,11 @@
 		<echo message="copying core files"/>
 		<copy todir="${release.directory}\core">
 			<fileset basedir="${project.directory}\core">
-				<include name="*.js"/>
-				<include name="*.css"/>
-				<include name="*.jpg"/>
-				<include name="*.png"/>
-				<include name="*.gif"/>
+				<include name="**/*.js"/>
+				<include name="**/*.css"/>
+				<include name="**/*.jpg"/>
+				<include name="**/*.png"/>
+				<include name="**/*.gif"/>
 			</fileset>
 		</copy>
 
