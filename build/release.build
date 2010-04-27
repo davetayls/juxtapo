@@ -14,7 +14,7 @@
 	<property name="selenium-server.jar" value="${project.directory}\tools\selenium\selenium-server-1.0.3\selenium-server.jar" />	
 
 	<property name="project.version.major" value="0" />
-	<property name="project.version.minor" value="7" />
+	<property name="project.version.minor" value="7a" />
 	<property name="project.version.revision" value="${datetime::get-year(datetime::now())}-${datetime::get-month(datetime::now())}-${datetime::get-day(datetime::now())}" />
 	<property name="project.version" value="${project.version.major}.${project.version.minor}-${project.version.revision}" />
 	<property name="project.build.configuration" value="Release" />
@@ -60,14 +60,6 @@
 				<include name="**\**" />
 			</fileset>
 		</zip>
-		<!--
-		<delete>
-			<fileset basedir="${release.directory}" >
-				<exclude name="*.zip" />
-				<include name="**\**" />
-			</fileset>
-		</delete>
-		-->
 		<echo message="Finished generating package" />
 	</target>
 
@@ -107,7 +99,7 @@
 	<target name="prepare-javascript-sources">
 
 		<echo message="combining javascript core" />
-		<exec program="${release.directory}\combiner\win\commandline\juxtapo-combiner.exe" commandline="core\" workingdir="${release.directory}" />
+		<exec program="${release.directory}\combiner\win\commandline\juxtapo-combiner.exe" commandline="-root:core\ -vars:JUXTAPO_VERSION=${project.version.major}.${project.version.minor}" workingdir="${release.directory}" />
 		<copy file="${release.directory}\core\juxtapo.js" tofile="${release.directory}\core\juxtapo.dev.js"/>
 
 		<echo message="generating docs" />

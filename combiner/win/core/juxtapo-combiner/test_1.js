@@ -1,4 +1,5 @@
-﻿function() {
+// @JUXTAPO_VERSION
+function() {
     alert("hi");
     alert("hi"); //##DEBUG
     alert("hi");
@@ -10,6 +11,7 @@ function() {
     alert("hi");
 }
 //##DEBUGEND
+// @JUXTAPO_VERSION
 function() {
     alert("1");
     alert("2"); //##DEBUG

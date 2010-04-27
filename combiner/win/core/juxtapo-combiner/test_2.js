@@ -1,4 +1,4 @@
-﻿function() {
+function() {
     function() {
         alert("hi");
         alert("hi"); //##DEBUG
@@ -11,6 +11,7 @@
         alert("hi");
     }
     //##DEBUGEND
+    // @VARTWO
     function() {
         alert("1");
         alert("2"); //##DEBUG

@@ -12,18 +12,33 @@ namespace juxtapo.Combiner
         static Regex regexIncludes = new Regex(@"includes.push\(\""([^\""]*\.js)\""\)");
         static Regex regRemoveDebugContainers = new Regex(@"(//##DEBUGSTART)([\s\S]*?)(//##DEBUGEND)");
         static Regex regRemoveDebuging = new Regex(@"[\r]?\n.*//##DEBUG");
-
+		
         static void Main(string[] args)
         {
-            String fileLoc = args[0].Trim('"');
-			if (!Path.IsPathRooted(fileLoc)){
-				fileLoc = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(),fileLoc));
+			String fileLoc = "";
+			Dictionary<String,String> commandLineArgs = new Dictionary<String, String>();
+			if (!Environment.CommandLine.Contains("-root:")){
+	            fileLoc = args[0].Trim('"');	
+				if (!Path.IsPathRooted(fileLoc)){
+					fileLoc = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(),fileLoc));
+				}
+			}else{
+				foreach (String str in Regex.Split(Environment.CommandLine," -")){
+					if (str.Contains(":")){
+						string[] keyValue = str.Split(':');
+						commandLineArgs.Add(keyValue[0],keyValue[1].Trim('"'));
+					}
+				}
+				fileLoc = commandLineArgs["root"];
 			}
-			Console.WriteLine("");
-            ProcessDirectory(fileLoc);
+            ProcessDirectory(fileLoc,commandLineArgs);
+			CleanEmptyDir(fileLoc);
         }
 
-        static void ProcessDirectory(String dir)
+		static void CleanEmptyDir(String dir){
+			// code to remove empty directories where combined files were deleted
+		}
+        static void ProcessDirectory(String dir, Dictionary<String,String> commandLineArgs)
         {
             if (dir.Substring(dir.Length - 1) != "\\") {
                 dir += "\\";
@@ -64,7 +79,15 @@ namespace juxtapo.Combiner
 
                         // removing //##DEBUG lines
                         combined = regRemoveDebuging.Replace(combined, "");
-                        
+						
+						// replacing variables
+						if (commandLineArgs.ContainsKey("vars")){
+							string[] allVars = commandLineArgs["vars"].Split(';');
+							foreach (String v in allVars){
+								combined = Regex.Replace(combined,"\\@"+v.Split('=')[0],v.Split('=')[1]);
+							}
+						}
+						
                         // writing combined file
                         if (fileCombined == String.Empty) fileCombined = fileName + ".js";
                         Console.WriteLine("   - Writing combined file: " + fileCombined);
@@ -88,7 +111,7 @@ namespace juxtapo.Combiner
                 }
             }
             foreach (string subDir in Directory.GetDirectories(dir)) {
-                ProcessDirectory(subDir);
+                ProcessDirectory(subDir,commandLineArgs);
             }
         }
     }

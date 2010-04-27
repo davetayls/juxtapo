@@ -46,7 +46,7 @@
      * @property {Object} globalSettings A global namespace for public methods/properties
 	 */
     juxtapo = {
-		version : '0.6',
+		version : '@JUXTAPO_VERSION',
 		/**
 		 * The various states the auto refresh can be in
 		 * @constant
