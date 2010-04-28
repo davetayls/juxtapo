@@ -80,12 +80,7 @@ juxtapo.ui.Thumbnail.prototype = {
 
 	},
 	getImageSrc: function(){
-		if (juxtapo.utils.isRelativeUrl(this.designTemplate.imageUrl)) {
-			return juxtapo.utils.resolveAbsoluteUrl(juxtapo.coreJsUrl(), this.designTemplate.imageUrl);
-		}
-		else {
-			return this.designTemplate.imageUrl;
-		}
+		return this.designTemplate.getImageSrc();
 	},
 	getLinkHref : function(url){
 		if (juxtapo.utils.isRelativeUrl(url)) {

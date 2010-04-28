@@ -36,8 +36,10 @@ juxtapo.initComplete(function(){
         equals(juxtapo.templates.selectedTemplateIndex, 0, "Current Template should be 0");
         juxtapo.templates.change()
         equals(juxtapo.templates.selectedTemplateIndex, 1, "Next Template (should be 1)");
+		ok($(juxtapo.templates.overlayImageElement()).attr('src').substr(0,3) != '../', "The relative overlay image url should have been changed to an absolute one");
         juxtapo.templates.change()
         equals(juxtapo.templates.selectedTemplateIndex, 2, "Next Template (should be 2)");
+		ok($(juxtapo.templates.overlayImageElement()).attr('src').substr(0,3) != '../', "The relative overlay image url should have been changed to an absolute one");
         juxtapo.templates.change(true)
         equals(juxtapo.templates.selectedTemplateIndex, 1, "Previous Template (should be 1)");
     });

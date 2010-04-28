@@ -3,6 +3,7 @@
 
 	<property name="project.directory" value="${directory::get-current-directory()}" />
 	<property name="release.directory" value="${project.directory}\release" />
+	<property name="combiner.exe" value="${release.directory}\combiner\win\commandline\juxtapo-combiner.exe" />
 	<property name="combiner.directory" value="${project.directory}\combiner\win\core" />
 	<property name="combiner.solution.file" value="${combiner.directory}\juxtapo-combiner.sln" />
 	<property name="project.tests.directory" value="${project.directory}\tests" />
@@ -20,6 +21,8 @@
 	<property name="project.build.configuration" value="Release" />
 
 	<target name="generate-release-package" depends="init,compile-solutions,run-tests,generate-package" />
+	<target name="release-no-tests" depends="init,compile-solutions,generate-package" />
+	<target name="run-test-suite" depends="init,compile-solutions,run-tests" />
 
 
 	<!--
@@ -65,7 +68,7 @@
 
 	<target name="copy-package-source">
 
-		<copy file="${combiner.directory}\juxtapo-combiner\bin\${project.build.configuration}\juxtapo-combiner.exe" todir="${release.directory}\combiner\win\commandline" />
+		<copy file="${combiner.exe}" todir="${release.directory}\combiner\win\commandline" />
 		<copy todir="${release.directory}\combiner">
 			<fileset basedir="${project.directory}\combiner">
 				<include name="*.*"/>
@@ -99,7 +102,7 @@
 	<target name="prepare-javascript-sources">
 
 		<echo message="combining javascript core" />
-		<exec program="${release.directory}\combiner\win\commandline\juxtapo-combiner.exe" commandline="-root:core\ -vars:JUXTAPO_VERSION=${project.version.major}.${project.version.minor}" workingdir="${release.directory}" />
+		<exec program="${combiner.exe}" commandline="-root:core\ -vars:JUXTAPO_VERSION=${project.version.major}.${project.version.minor}" workingdir="${release.directory}" />
 		<copy file="${release.directory}\core\juxtapo.js" tofile="${release.directory}\core\juxtapo.dev.js"/>
 
 		<echo message="generating docs" />
@@ -111,7 +114,7 @@
 		<delete file="${release.directory}\core\juxtapo.js"/>
 		<copy file="${tools.directory}\juxtapo.compiled.js" tofile="${release.directory}\core\juxtapo.js" />
 		<copy file="${project.directory}\core\juxtapo_headcomment.js" todir="${release.directory}\core\"/>
-		<exec program="${release.directory}\combiner\win\commandline\juxtapo-combiner.exe" commandline="core\" workingdir="${release.directory}" />
+		<exec program="${combiner.exe}" commandline="-root:core\ -vars:JUXTAPO_VERSION=${project.version.major}.${project.version.minor}" workingdir="${release.directory}" />
 
 	</target>
 
