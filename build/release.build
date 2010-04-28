@@ -68,7 +68,7 @@
 
 	<target name="copy-package-source">
 
-		<copy file="${combiner.exe}" todir="${release.directory}\combiner\win\commandline" />
+		<copy file="${combiner.directory}\juxtapo-combiner\bin\${project.build.configuration}\juxtapo-combiner.exe" todir="${release.directory}\combiner\win\commandline" />
 		<copy todir="${release.directory}\combiner">
 			<fileset basedir="${project.directory}\combiner">
 				<include name="*.*"/>

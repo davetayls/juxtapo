@@ -32,12 +32,8 @@ namespace juxtapo.Combiner
 				fileLoc = commandLineArgs["root"];
 			}
             ProcessDirectory(fileLoc,commandLineArgs);
-			CleanEmptyDir(fileLoc);
         }
 
-		static void CleanEmptyDir(String dir){
-			// code to remove empty directories where combined files were deleted
-		}
         static void ProcessDirectory(String dir, Dictionary<String,String> commandLineArgs)
         {
             if (dir.Substring(dir.Length - 1) != "\\") {
