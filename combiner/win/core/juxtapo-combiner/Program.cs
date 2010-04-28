@@ -102,6 +102,15 @@ namespace juxtapo.Combiner
                             {
                                 System.IO.File.Delete(dir + matchedFileName);    
                             }
+							// remove empty directories
+							string matchedFileDir = Path.GetDirectoryName(dir + matchedFileName);
+							if (Directory.Exists(matchedFileDir)){
+								int dirFiles = Directory.GetFiles(matchedFileDir).Length;
+								if (dirFiles == 0){
+									Console.WriteLine("     - No files in " + matchedFileDir + " so deleting");
+									Directory.Delete(matchedFileDir);
+								}
+							}
                         }
                     }
                 }

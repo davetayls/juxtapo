@@ -58,6 +58,7 @@
     <Content Include="test_2.js" />
     <Content Include="test_1.js" />
     <Content Include="testcombiner.js" />
+    <Content Include="subdir\subdirfile.js" />
   </ItemGroup>
   <ItemGroup>
     <None Include="test.bat" />
@@ -97,4 +98,7 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <ItemGroup>
+    <Folder Include="subdir\" />
+  </ItemGroup>
 </Project>

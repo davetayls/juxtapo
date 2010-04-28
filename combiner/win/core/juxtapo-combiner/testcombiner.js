@@ -1,4 +1,4 @@
-﻿/*
+/*
 All of the items this file dynamically adds 
 get combined and compressed on deployment.
 @juxtapo.combiner
@@ -28,6 +28,7 @@ get combined and compressed on deployment.
     includes.push("test_4.js"); 
     includes.push("test_5.js");
     //##DEBUGEND
+    includes.push("subdir/subdirfile.js");
 
     function includeJs() {
         for (var i = 0; i < includes.length; i++) {
