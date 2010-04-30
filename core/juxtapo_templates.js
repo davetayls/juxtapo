@@ -17,8 +17,8 @@
 		$(juxtapo.templates.overlayButton)
 			.removeClass('juxtapo-overlayTransparent')
 			.removeClass('juxtapo-overlaySemiTrans')
-			.removeClass('juxtapo-overlayOpaque')		
-	}
+			.removeClass('juxtapo-overlayOpaque');		
+	};
 
 	/* public */
 	/**
@@ -37,9 +37,9 @@
 		 * is set to 2 (opaque)
 		 */
 		back : function() {
-			if (juxtapo.currentDesignView == juxtapo.designViews.hidden) {
+			if (juxtapo.currentDesignView === juxtapo.designViews.hidden) {
 				juxtapo.templates.show();
-			} else if (juxtapo.currentDesignView == juxtapo.designViews.semiTransparent) {
+			} else if (juxtapo.currentDesignView === juxtapo.designViews.semiTransparent) {
 				juxtapo.templates.hide();
 			} else {
 				juxtapo.templates.semiTransparent();
@@ -51,14 +51,17 @@
 		 * @param {bool} previous
 		 */
 		change : function(previous) {
+			var newIndex;
 			if (previous) {
 				newIndex = juxtapo.templates.selectedTemplateIndex - 1;
-				if (newIndex < 0)
+				if (newIndex < 0) {
 					newIndex = juxtapo.templates.collection.length - 1;
+				}
 			} else {
 				newIndex = juxtapo.templates.selectedTemplateIndex + 1;
-				if (newIndex > juxtapo.templates.collection.length - 1)
+				if (newIndex > juxtapo.templates.collection.length - 1) {
 					newIndex = 0;
+				}
 			}
 			juxtapo.templates.changeTo(newIndex);
 		},
@@ -68,11 +71,11 @@
 		 */
 		changeTo : function(item) {
 			var design = null;
-			if (typeof (item) == "undefined") {
+			if (typeof (item) === "undefined") {
 				return false;
-			} else if (typeof (item) == "object") {
+			} else if (typeof (item) === "object") {
 				design = item;
-			} else if (typeof item == 'number' && item < juxtapo.templates.collection.length) {
+			} else if (typeof item === 'number' && item < juxtapo.templates.collection.length) {
 				juxtapo.templates.selectedTemplateIndex = item;
 				design = juxtapo.templates.collection[item];
 			}
@@ -93,7 +96,7 @@
 		 * @param {HtmlImage} el
 		 */
 		overlayImageElement : function(el) {
-			if (typeof (el) != "undefined") {
+			if (typeof (el) !== "undefined") {
 				_overlayImageElement = el;
 			} else if (!_overlayImageElement) {
 				_overlayImageElement = document.getElementById("design");
@@ -107,13 +110,13 @@
 		filterBySearch : function(q) {
 			var results = null;
 			var thumbs = [];
-			if (q == "") {
+			if (q === "") {
 				$("#juxtapo-thumbs-container .juxtapo-thumb").show();
 			} else {
 				results = this.search(q);
 				$("#juxtapo-thumbs-container .juxtapo-thumb").hide();
-				for ( var i = 0; i < results.designs.length; i++) {
-					var design = results.designs[i]
+				for ( var i = 0; i < results.designs.length; i+=1) {
+					var design = results.designs[i];
 					design.thumbnail.show();
 				}
 			}
@@ -128,9 +131,9 @@
 		 * is set to 0 (hidden)
 		 */
 		forward : function() {
-			if (juxtapo.currentDesignView == juxtapo.designViews.hidden) {
+			if (juxtapo.currentDesignView === juxtapo.designViews.hidden) {
 				juxtapo.templates.semiTransparent();
-			} else if (juxtapo.currentDesignView == juxtapo.designViews.semiTransparent) {
+			} else if (juxtapo.currentDesignView === juxtapo.designViews.semiTransparent) {
 				juxtapo.templates.show();
 			} else {
 				juxtapo.templates.hide();
@@ -167,10 +170,10 @@
 		 */
 		getTemplateFromUrl : function(url) {
 			var href = url.toLowerCase();
-			for ( var i = 0; i < juxtapo.templates.collection.length; i++) {
-				layout = juxtapo.templates.collection[i];
-				for ( var p = 0; p < layout.paths.length; p++) {
-					path = layout.paths[p].toLowerCase();
+			for ( var i = 0; i < juxtapo.templates.collection.length; i+=1) {
+				var layout = juxtapo.templates.collection[i];
+				for ( var p = 0; p < layout.paths.length; p+=1) {
+					var path = layout.paths[p].toLowerCase();
 					if (href.juxtapoContains(path)) {
 						juxtapo.templates.selectedTemplawteIndex = i;
 						return layout;
@@ -198,9 +201,9 @@
 			$('<img id="design" src="noimage.jpg" alt="design image" />')
 					.appendTo("body").css({display : 'none'});
 
-			if (juxtapo.utils.getQuery("di") != null) {
+			if (juxtapo.utils.getQuery("di") !== null) {
 				juxtapo.templates
-						.changeTo(parseInt(juxtapo.utils.getQuery("di")));
+						.changeTo(parseInt(juxtapo.utils.getQuery("di"),10));
 			} else {
 				juxtapo.templates.changeTo(juxtapo.templates.getTemplateFromUrl(location.href));
 			}
@@ -212,18 +215,18 @@
 			juxtapo.templates.overlayButton.onclick = juxtapo.templates.toggle;
 			juxtapo.templates.overlayButton.innerHTML = "OVERLAY";
 			juxtapo.container.appendChild(juxtapo.templates.overlayButton);
-			d = juxtapo.utils.getQuery("design");
-			if (d != null) {
+			var d = juxtapo.utils.getQuery("design");
+			if (d !== null) {
 				juxtapo.designVisible = d;
 			}
-			dv = juxtapo.utils.getQuery("dv");
+			var dv = juxtapo.utils.getQuery("dv");
 			if (!dv) {
 				dv = juxtapo.currentDesignView;
 			}
-			if (dv != null) {
-				if (dv == juxtapo.designViews.hidden) {
+			if (dv !== null) {
+				if (dv === juxtapo.designViews.hidden) {
 					juxtapo.templates.hide();
-				} else if (dv == juxtapo.designViews.semiTransparent) {
+				} else if (dv === juxtapo.designViews.semiTransparent) {
 					juxtapo.templates.semiTransparent();
 				} else {
 					juxtapo.templates.show();
@@ -231,7 +234,7 @@
 			}
 
 			// reset scroll position
-			v = juxtapo.utils.getQuery("v");
+			var v = juxtapo.utils.getQuery("v");
 			if (v) {
 				$(document).scrollTop(v);
 			}
@@ -243,14 +246,16 @@
 		 * @param {Number} pixels The number of pixels to move the image by
 		 */
 		nudge : function(dir, pixels) {
-			if (dir == "")
+			if (dir === "") {
 				return false;
-			if (typeof (pixels) == "undefined")
+			}
+			if (typeof(pixels) === "undefined") {
 				pixels = 1;
+			}
 			var $img = $(this.overlayImageElement());
 			var horizClass = 'margin-left';
 			if ($img.css('left').indexOf('%') < 0){
-				if ($img.css('right') != 'auto'){
+				if ($img.css('right') !== 'auto'){
 					horizClass = 'right';
 				}else{
 					horizClass = 'left';
@@ -261,22 +266,33 @@
 				offSet : $img.offset(),
 				position : $img.position()
 			};
+			var currentTop,currentLeft;
 			switch (dir) {
 			case "top":
-				var currentTop = parseInt($img.css("top"));
+				currentTop = parseInt($img.css("top"),10);
 				$img.css("top", currentTop - pixels);
 				break;
 			case "right":
-				var currentLeft = parseInt($img.css(horizClass));
-				horizClass != 'right' ? $img.css(horizClass, currentLeft + pixels): $img.css(horizClass, currentLeft - pixels);
+				currentLeft = parseInt($img.css(horizClass),10);
+				if (horizClass !== 'right') {
+					$img.css(horizClass, currentLeft + pixels);
+				}
+				else {
+					$img.css(horizClass, currentLeft - pixels);
+				}
 				break;
 			case "bottom":
-				var currentTop = parseInt($img.css("top"));
+				currentTop = parseInt($img.css("top"),10);
 				$img.css("top", currentTop + pixels);
 				break;
 			case "left":
-				var currentLeft = parseInt($img.css(horizClass));
-				horizClass != 'right' ? $img.css(horizClass, currentLeft - pixels): $img.css(horizClass, currentLeft + pixels);
+				currentLeft = parseInt($img.css(horizClass),10);
+				if (horizClass !== 'right') {
+					$img.css(horizClass, currentLeft - pixels);
+				}
+				else {
+					$img.css(horizClass, currentLeft + pixels);
+				}
 				break;
 			}
 			var newPos = {
@@ -296,12 +312,11 @@
 				designs : [],
 				indexes : []
 			};
-			if (q != "") {
+			if (q !== "") {
 				q = q.toLowerCase();
-				for ( var i = 0; i < juxtapo.templates.collection.length; i++) {
+				for ( var i = 0; i < juxtapo.templates.collection.length; i+=1) {
 					var iDesign = juxtapo.templates.collection[i];
-					if (iDesign.imageUrl.toLowerCase().indexOf(q) > -1
-							|| iDesign.paths[0].toLowerCase().indexOf(q) > -1) {
+					if (iDesign.imageUrl.toLowerCase().indexOf(q) > -1 || iDesign.paths[0].toLowerCase().indexOf(q) > -1) {
 						results.designs.push(iDesign);
 						results.indexes.push(i);
 					}

@@ -38,9 +38,9 @@
             return juxtapo.eh.errors;
         },
         logError: function(err){
-            if (typeof(err) == "string") {
+            if (typeof(err) === "string") {
                 juxtapo.eh.errors = "<li class=\"juxtapo-error\">" + err + "</li>"+juxtapo.eh.errors;
-            }else if (typeof(err) == "object") {
+            }else if (typeof(err) === "object") {
 				juxtapo.eh.errors = "<li class=\"juxtapo-error\">[object]" + juxtapo.utils.objectToStructureString(err) + "</li>"+juxtapo.eh.errors;
 			}
 			else {

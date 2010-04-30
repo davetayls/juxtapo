@@ -31,7 +31,7 @@
 		        }
 		    });*/
 			
-		    if (juxtapo.currentStatus == juxtapo.statuses.pause) {
+		    if (juxtapo.currentStatus === juxtapo.statuses.pause) {
 		        juxtapo.control.pause();
 		    } else {
 		        juxtapo.control.play();
@@ -58,11 +58,11 @@
 			return juxtapo.currentStatus;
 		},
 		reload : function() {
-		    if (juxtapo.currentStatus == juxtapo.statuses.play) {
+		    if (juxtapo.currentStatus ===  juxtapo.statuses.play) {
 				var originalUrl = juxtapo.utils.getQuery('jxurl');
 				originalUrl= originalUrl? unescape(originalUrl): location.href;
 				var joiner = originalUrl.indexOf('?') > -1 ? '&' : '?';
-		        reloadUrl = originalUrl + 
+		        var reloadUrl = originalUrl + 
 							joiner +
 							"jxurl=" + escape(originalUrl) + 
 							"&r=" + new Date().toString() + 
@@ -75,7 +75,7 @@
 		    }
 		},
 		toggle : function() {
-		    if (juxtapo.currentStatus == juxtapo.statuses.pause) {
+		    if (juxtapo.currentStatus === juxtapo.statuses.pause) {
 		        return juxtapo.control.play();
 		    } else {
 		        return juxtapo.control.pause();

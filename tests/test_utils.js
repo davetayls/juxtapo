@@ -71,7 +71,13 @@ juxtapo.initComplete(function(){
 		);
 	});
 	test("requireResource",function(){		
-		var absUrl = juxtapo.utils.resolveAbsoluteUrl(juxtapo.coreJsUrl(),'../tests/externalfile.js');
+		
+		var absUrl;
+		if (juxtapo.coreJsUrl().indexOf('/release') == -1){
+			absUrl = juxtapo.utils.resolveAbsoluteUrl(juxtapo.coreJsUrl(),'../tests/externalfile.js');
+		}else{
+			absUrl = juxtapo.utils.resolveAbsoluteUrl(juxtapo.coreJsUrl(),'../../tests/externalfile.js');
+		}
 		equals(typeof(absUrl),'string','resolveAbsoluteUrl returns a string');
 		ok(absUrl,'absUrl equals: '+absUrl);
 		var res = juxtapo.utils.requireResource(absUrl);

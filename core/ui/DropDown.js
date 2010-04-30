@@ -1,6 +1,6 @@
 (function($) {
 
-	_openDropDown = null;
+	var _openDropDown = null;
 	
 	/**
 	 * Creates a new dropDown control which puts a button in the tool strip and gives a popup
@@ -39,14 +39,14 @@
 
 			var self = this;
 			$(document).bind("keydown", function(e) {
-				if (self.expanded && e.which == 27) {
+				if (self.expanded && e.which === 27) {
 					self.show(false);
 					return false;
 				}
 			});
 		},
 		contentHtml : function(s) {
-			if (typeof s == "undefined") {
+			if (typeof s === "undefined") {
 				return $(this.contents).html();
 			} else {
 				$(this.contents).html(s);
@@ -74,8 +74,9 @@
 
 		},
 		show : function(b) {
-			if (typeof (b) == "undefined")
+			if (typeof(b) === "undefined") {
 				b = true;
+			}
 			if (b && !this.expanded) {
 				if (_openDropDown){
 					_openDropDown.show(false);
@@ -99,7 +100,7 @@
 			return this.expanded;
 		},
 		text : function(s) {
-			if (typeof s == "undefined") {
+			if (typeof s === "undefined") {
 				return $(this.controller).html();
 			} else {
 				$(this.controller).html(s);

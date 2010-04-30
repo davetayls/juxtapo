@@ -1,22 +1,24 @@
+var juxtapo;
+
 (function($){
 
     /* private */
-	var _coreJsUrl = ''
+	var _coreJsUrl = '';
     
     // Methods
-    function addResources(){
+    var addResources = function(){
         if (juxtapo.coreJsUrl()) {
             juxtapo.utils.requireResource(juxtapo.coreJsUrl() + 'juxtapo.css');
         }
     };
-    function initContainer(){
+    var initContainer = function(){
         juxtapo.container = document.createElement("div");
         $(juxtapo.container).attr("id", "juxtapo-container");
         $("body").append(juxtapo.container);
     };
-    function initStatus(){
+    var initStatus = function(){
         // get current status
-        s = juxtapo.utils.getQuery("status");
+        var s = juxtapo.utils.getQuery("status");
         if (s) {
             juxtapo.currentStatus = s;
         }
@@ -79,7 +81,9 @@
         plugins : {}, // convention for adding plugin specific functionality
 		globalSettings:{},
         coreJsUrl: function(){
-	        if (_coreJsUrl == '') _coreJsUrl = juxtapo.utils.getJsLocation('juxtapo.js');
+	        if (_coreJsUrl === '') {
+				_coreJsUrl = juxtapo.utils.getJsLocation('juxtapo.js');
+			}
 			return _coreJsUrl;
 		},
         
@@ -94,7 +98,7 @@
             initStatus();
             
             // init if not turned off
-            if (juxtapo.currentStatus != juxtapo.statuses.off) {
+            if (juxtapo.currentStatus !== juxtapo.statuses.off) {
                 initContainer();
                 juxtapo.templates.init();
                 juxtapo.control.init();
@@ -113,7 +117,7 @@
 		 * juxtapo.addPlugins(['../plugins/juxtapo.views.js']);
 		 */
         addPlugins : function(pluginPaths){
-			for (var i=0;i<pluginPaths.length;i++){
+			for (var i=0;i<pluginPaths.length;i+=1){
 				var jsLoc = juxtapo.utils.resolveAbsoluteUrl(juxtapo.coreJsUrl(),pluginPaths[i]);
 				document.write("<script type=\"text/javascript\" src=\"" + jsLoc + "\"></script>");
 			}
@@ -138,9 +142,9 @@
 	            juxtapo.templates.collection.push(path);
 	            return path;				
 			} else {
-				if (typeof path == 'string'){ 
+				if (typeof path === 'string'){ 
 					path = [path]; 
-				};
+				}
 	            var t = new juxtapo.templates.TemplateItem(imageUrl, path, settings);				
 	            juxtapo.templates.collection.push(t);
 	            return t;
@@ -161,7 +165,7 @@
 		 * @event
 		 * @example
 		 * juxtapo.initConfig(function(ev){
-		 * 		juxtapo.addTemplate('path.htm','image.png',{}); 
+		 *		juxtapo.addTemplate('path.htm','image.png',{}); 
 		 * });
 		 * @param {Function} fn(ev)
 		 */
@@ -189,66 +193,67 @@
 	 */
     juxtapo.onBody_KeyDown = function(e){
         var keycode;
-        if (window.event) 
-            keycode = window.event.keyCode;
-        else 
-            if (e) 
-                keycode = e.which;
-            else 
-                return true;
+        if (window.event) {
+			keycode = window.event.keyCode;
+		}
+		else {
+			if (e) {
+				keycode = e.which;
+			}
+			else {
+				return true;
+			}
+		}
         
         juxtapo.eh.logInfo("keycode is: " + keycode); // ##DEBUG
         // Check if user presses Ctl+o or Ctl+right
-        if (e.ctrlKey && (keycode == 79 || keycode == 39)) {
+        if (e.ctrlKey && (keycode === 79 || keycode === 39)) {
             juxtapo.templates.forward();
             juxtapo.utils.preventDefaultEventAction(e);
             return false;
         }
         // Check if user presses Ctl+u or Ctl+left
-        if (e.ctrlKey && (keycode == 85 || keycode == 37)) {
+        if (e.ctrlKey && (keycode === 85 || keycode === 37)) {
             juxtapo.templates.back();
             juxtapo.utils.preventDefaultEventAction(e);
             return false;
         }
         // Check if user presses Ctl+up-arrow
-        if (e.ctrlKey && keycode == 38) {
+        if (e.ctrlKey && keycode === 38) {
             juxtapo.templates.change(true);
             juxtapo.utils.preventDefaultEventAction(e);
             return false;
         }
         // Check if user presses Ctl+down-arrow
-        if (e.ctrlKey && keycode == 40) {
+        if (e.ctrlKey && keycode === 40) {
             juxtapo.templates.change(false);
             juxtapo.utils.preventDefaultEventAction(e);
             return false;
         }
         // Ctl+Space
-        if (e.ctrlKey && keycode == 32) {
+        if (e.ctrlKey && keycode === 32) {
             juxtapo.control.toggle();
             juxtapo.utils.preventDefaultEventAction(e);
             return false;
         }
         // nudge designs
-        if (e.ctrlKey && keycode == 73) {
-            var pixels = e.shiftKey ? 1 : 25;
+		var pixels = e.shiftKey ? 1 : 25;
+        if (e.ctrlKey && keycode === 73) {
             juxtapo.templates.nudge("top", pixels);
             juxtapo.utils.preventDefaultEventAction(e);
             return false;
         }
-        if (e.ctrlKey && keycode == 76) {
-            var pixels = e.shiftKey ? 1 : 25;
+        if (e.ctrlKey && keycode === 76) {
             juxtapo.templates.nudge("right", pixels);
             juxtapo.utils.preventDefaultEventAction(e);
             return false;
         }
-        if (e.ctrlKey && keycode == 75) {
-            var pixels = e.shiftKey ? 1 : 25;
+        if (e.ctrlKey && keycode === 75) {
             juxtapo.templates.nudge("bottom", pixels);
             juxtapo.utils.preventDefaultEventAction(e);
             return false;
         }
-        if (e.ctrlKey && keycode == 74) {
-            var pixels = e.shiftKey ? 1 : 25;
+        if (e.ctrlKey && keycode === 74) {
             juxtapo.templates.nudge("left", pixels);
             juxtapo.utils.preventDefaultEventAction(e);
             return false;

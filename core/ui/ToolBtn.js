@@ -40,8 +40,9 @@ juxtapo.ui.ToolBtn.prototype = {
 		 * @param {bool} [b=true] A boolean value to determine whether to show the button 
 		 */
 		self.show = function(b) {
-			if (typeof (b) == 'undefined')
+			if (typeof(b) === 'undefined') {
 				b = true;
+			}
 			if (b) {
 				$(self.container).show();
 			} else {

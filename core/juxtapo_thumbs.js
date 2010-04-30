@@ -60,14 +60,14 @@
             juxtapo.eh.logInfo("thumbs rendering");
             var designList;
             designList = "";
-			var windowHeight = parseInt($(window).height());
+			var windowHeight = parseInt($(window).height(),10);
 			var contentsHeight = windowHeight - 50; 
             $(_dropDown.contents)
-            	.append(_toolbar.toolbar$)
-            	.append(_$thumbsContainer);
+				.append(_toolbar.toolbar$)
+				.append(_$thumbsContainer);
             _toolbar.toolbarLeft$.append(_search$);
 			_$thumbsContainer.css("height",(contentsHeight - 39)+'px');
-            for (var i = 0; i < juxtapo.templates.collection.length; i++) {
+            for (var i = 0; i < juxtapo.templates.collection.length; i+=1) {
 				var thumb = new juxtapo.ui.Thumbnail(juxtapo.templates.collection[i]);
 				_$thumbsContainer.append(thumb.container);
             }

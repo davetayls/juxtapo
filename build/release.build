@@ -20,7 +20,9 @@
 	<property name="project.version" value="${project.version.major}.${project.version.minor}-${project.version.revision}" />
 	<property name="project.build.configuration" value="Release" />
 
-	<target name="generate-release-package" depends="init,compile-solutions,run-tests,generate-package" />
+	<target 
+		name="generate-release-package" 
+		depends="init,compile-solutions,copy-package-source,combine-javascript-sources,run-tests,generate-package" />
 	<target name="release-no-tests" depends="init,compile-solutions,generate-package" />
 	<target name="run-test-suite" depends="init,compile-solutions,run-tests" />
 
@@ -46,24 +48,6 @@
 		<exec program="${msbuild.exe}" commandline="${combiner.testsuite.solution.file} /t:Rebuild /p:Configuration=${project.build.configuration} /v:minimal" />
 
 		<echo message="Finished compiling solutions" />
-	</target>
-
-	<target name="run-tests">
-		<echo message="Running tests" />
-		<exec program="${nunit.exe}" commandline="${combiner.testsuite.directory}\juxtapo-testsuite\bin\${project.build.configuration}\juxtapo-testsuite.dll" />
-
-		<echo message="Finished running tests" />
-	</target>
-
-	<target name="generate-package" depends="copy-package-source,prepare-javascript-sources">
-		<echo message="Generating package" />
-
-		<zip zipfile="${release.directory}\juxtapo-v${project.version}.zip">
-			<fileset basedir="${release.directory}" >
-				<include name="**\**" />
-			</fileset>
-		</zip>
-		<echo message="Finished generating package" />
 	</target>
 
 	<target name="copy-package-source">
@@ -99,11 +83,36 @@
 
 	</target>
 
-	<target name="prepare-javascript-sources">
-
+	<target name="combine-javascript-sources">
 		<echo message="combining javascript core" />
 		<exec program="${combiner.exe}" commandline="-root:core\ -vars:JUXTAPO_VERSION=${project.version.major}.${project.version.minor}" workingdir="${release.directory}" />
 		<copy file="${release.directory}\core\juxtapo.js" tofile="${release.directory}\core\juxtapo.dev.js"/>
+	</target>
+	
+	<target name="run-tests">
+
+		<echo message="jsLint Tests" />
+		<foreach item="File" property="jsfile">
+			<in>
+				<items>
+					<include name="${release.directory}\core\juxtapo.js" />
+				</items>
+			</in>
+			<do>
+				<exec program="${tools.directory}\jslint\jslint.bat" commandline="${jsfile}" />
+			</do>
+		</foreach>
+
+		<echo message="Selenium Tests" />
+		<exec program="${nunit.exe}" commandline="${combiner.testsuite.directory}\juxtapo-testsuite\bin\${project.build.configuration}\juxtapo-testsuite.dll" />
+
+		<echo message="Finished running tests" />
+	</target>
+
+	<target name="run-tests-jsLint" description="validates JS files">
+	</target>
+
+	<target name="prepare-javascript-sources">
 
 		<echo message="generating docs" />
 		<exec program="java" commandline="-jar ${tools.directory}\jsdoc-toolkit\jsrun.jar ${tools.directory}\jsdoc-toolkit\app\run.js -d=${release.directory}\docs\ -a -t=${tools.directory}\jsdoc-toolkit\templates\jsdoc ${release.directory}\core\juxtapo.js" />
@@ -118,4 +127,15 @@
 
 	</target>
 
+	<target name="generate-package" depends="prepare-javascript-sources">
+		<echo message="Generating package" />
+
+		<zip zipfile="${release.directory}\juxtapo-v${project.version}.zip">
+			<fileset basedir="${release.directory}" >
+				<include name="**\**" />
+			</fileset>
+		</zip>
+		<echo message="Finished generating package" />
+	</target>
+	
 </project>

@@ -13,11 +13,14 @@
     
     Full documentation can be found at juxtapo.net    
 ---------------------------------------------------*/
+/*jslint
+    evil: true, laxbreak: true, white: false
+*/
 (function() {
 
     var combinerFileName = "juxtapo.js";
 
-    function getJsLocation(jsFileName) {
+    var getJsLocation = function(jsFileName) {
         var scriptFiles = document.getElementsByTagName("script");
         for (var i = 0; i < scriptFiles.length; i++) {
             var scriptTag = scriptFiles[i];
@@ -29,8 +32,8 @@
         }
         return "";
     };
-    var combinerJsLocation = getJsLocation(combinerFileName);
-    var includes = [];
+    var combinerJsLocation = getJsLocation(combinerFileName),
+		includes = [];
     includes.push("juxtapo_headcomment.js");
     includes.push("juxtapo_core.js");
     includes.push("juxtapo_eh.js");
@@ -50,6 +53,6 @@
             document.write("<script type=\"text/javascript\" src=\"" + combinerJsLocation + includes[i] + "\"></script>");
         }
         return null;
-    };
+    }
     includeJs();
 })();
