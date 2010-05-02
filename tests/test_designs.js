@@ -1,5 +1,5 @@
 juxtapo.initComplete(function(){
-    module("Designs");
+    module("templates");
     
     test("getTemplateFromUrl", function(){
         ok(juxtapo.templates.getTemplateFromUrl("test.htm"), "We should get image settings back");
@@ -55,8 +55,34 @@ juxtapo.initComplete(function(){
         equals(results.indexes.length, 3, "Search for threeresults should give 3 indexes results");
     });
 	
-	test("nudge",function(){
+	test("TemplateItem",function(){
+		var t = new juxtapo.templates.TemplateItem(
+			'test.png',
+			'testtemplateitem.htm',
+			{
+				style:{top:'8px'},
+				data: {metadata:'test'}
+			});
+		ok(t instanceof juxtapo.templates.TemplateItem,'create new TemplateItem');
+		equals(
+			t.getImageSrc(),
+			'test.png',
+			'get image src for the TemplateItem');
+		ok(
+			t.imageUrl = '../test.png', 
+			'change the imageUrl of the TemplateItem to a relative path');		
+		ok(
+			juxtapo.utils.isAbsoluteUrl(t.getImageSrc()) === true,
+			'New image src for the TemplateItem should be an absolute path');
+		var thumb = new juxtapo.ui.Thumbnail(t);
+		same(
+			t.thumbnail,
+			thumb,
+			'Newly created ui.Thumbnail should now be associated with this template');
 		
+		ok(
+			new juxtapo.templates.TemplateItem('test.png',['multiplepath.htm','path2.htm']),
+			'create new TemplateItem with multiple paths');
 	});
 });          
 

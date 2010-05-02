@@ -51,13 +51,15 @@
 		    return null;
 		},
 		getJsLocation : function(jsFileName){
-			jsFileName = jsFileName.toLowerCase();
+			if (typeof jsFileName === 'string') {
+				jsFileName = new RegExp(jsFileName.toLowerCase());
+			}
 			var scriptFiles = document.getElementsByTagName("script");
 			for (var i=0;i<scriptFiles.length;i+=1){
 				var scriptTag = scriptFiles[i];
 				var scriptFileName = scriptTag.src.substring(scriptTag.src.lastIndexOf("/")+1).toLowerCase();
-				scriptFileName = scriptFileName.split("?")[0];
-				if (scriptFileName === jsFileName){
+				//scriptFileName = scriptFileName.split("?")[0];
+				if (jsFileName.test(scriptFileName)){
 					return scriptTag.src.substring(0,scriptTag.src.lastIndexOf("/")+1);
 				}
 			}
@@ -93,6 +95,7 @@
 		isAbsoluteUrl : function(url) {
 		    var Url = url.toLowerCase();
 		    if (Url.substr(0, 7) === "http://") { return true; }
+		    if (Url.substr(0, 8) === "file:///") { return true; }
 		    if (Url.substr(0, 6) === "ftp://") { return true; }
 		    return false;
 		},

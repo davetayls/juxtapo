@@ -1,0 +1,12 @@
+	<target name="jsTesting" description="validates JS files">
+		<foreach item="File" property="jsfile">
+			<in>
+				<items>
+					<include name="${solution.dir}\BritishRedCross.Site\js\*.js" />
+				</items>
+			</in>
+			<do>
+				<exec program="${tools.dir}\jslint\jslint.bat" commandline="${jsfile}" />
+			</do>
+		</foreach>
+	</target>

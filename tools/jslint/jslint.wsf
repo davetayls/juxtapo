@@ -1,0 +1,154 @@
+<job id="JSLint">
+
+<runtime>
+    <named name="adsafe" type="boolean" required="false" helpstring="true if ADsafe.org rules widget pattern should be enforced (default is false)" />
+    <named name="bitwise" type="boolean" required="false" helpstring="true if bitwise operators should not be allowed (default is true)" />
+    <named name="browser" type="boolean" required="false" helpstring="true if the standard browser globals should be predefined (default is true)" />
+    <named name="cap" type="boolean" required="false" helpstring="true if upper case HTML should be allowed (default is false)" />
+    <named name="debug" type="boolean" required="false" helpstring="true if debugger statements should be allowed (default is false)" />
+    <named name="eqeqeq" type="boolean" required="false" helpstring="true if === should be required (default is true)" />
+    <named name="evil" type="boolean" required="false" helpstring="true if eval should be allowed (default is false)" />
+    <named name="forin" type="boolean" required="false" helpstring="true if unfiltered for in statements should be allowed (default is false)" />
+    <named name="fragment" type="boolean" required="false" helpstring="true if HTML fragments should be allowed (default is false)" />
+    <named name="indent" type="string" required="false" helpstring="the number of spaces used for indentation (default is 4)" />
+    <named name="laxbreak" type="boolean" required="false" helpstring="true if statement breaks should not be checked (default is false)" />
+    <named name="msajax" type="boolean" required="false" helpstring="true if the Microsoft AJAX Library globals should be predefined (default is true)" />
+    <named name="nomen" type="boolean" required="false" helpstring="true if names should be checked for initial underbars (default is false)" />
+    <named name="on" type="boolean" required="false" helpstring="true if HTML event handlers should be allowed (default is false)" />
+    <named name="passfail" type="boolean" required="false" helpstring="true if the scan should stop on first error (default is false)" />
+    <named name="plusplus" type="boolean" required="false" helpstring="true if ++ and -- should not be allowed (default is true)" />
+    <named name="predef" type="string" required="false" helpstring="an array of strings (comma separated), the names of predefined global variables (default is [])" />
+    <named name="regexp" type="boolean" required="false" helpstring="true if . should not be allowed in RegExp literals (default is false)" />
+    <named name="rhino" type="boolean" required="false" helpstring="true if the Rhino environment globals should be predefined (default is false)" />
+    <named name="safe" type="boolean" required="false" helpstring="true if the safe subset rules are enforced (default is false)" />
+    <named name="sidebar" type="boolean" required="false" helpstring="true if the Windows Sidebar Gadgets globals should be predefined (default is false)" />
+    <named name="sub" type="boolean" required="false" helpstring="true if subscript notation may be used for expressions better expressed in dot notation (default is true)" />
+    <named name="undef" type="boolean" required="false" helpstring="true if undefined global variables are errors (default is true)" />
+    <named name="white" type="boolean" required="false" helpstring="true if strict whitespace rules apply (default is false)" />
+    <named name="widget" type="boolean" required="false" helpstring="true if the Yahoo Widgets globals should be predefined (default is false)" />
+    <unnamed name="path" type="string" required="true" helpstring="path to script file" />
+</runtime>
+
+<reference object="Scripting.FileSystemObject" />
+
+<script language="JScript" src="fulljslint.js" />
+
+<script language="JScript">
+
+if (!WScript.Arguments.Unnamed.length) {
+    WScript.Arguments.ShowUsage();
+    WScript.Quit(1);
+}
+
+var path = WScript.Arguments.Unnamed.Item(0);
+
+var fso = WScript.CreateObject('Scripting.FileSystemObject');
+var file = fso.OpenTextFile(path, ForReading);
+var script = file.ReadAll();
+file.Close();
+
+// Remove the UTF-8 Byte Order Mark, if present.
+
+if (script.charCodeAt(0) === 239 && script.charCodeAt(1) === 187 && script.charCodeAt(2) === 191) {
+    script = script.substring(3);
+}
+
+var defaults = {
+    adsafe: false,
+    bitwise: true,
+    browser: true,
+    cap: false,
+    debug: false,
+    eqeqeq: true,
+    evil: true,
+    forin: false,
+    fragment: false,
+    indent: 4,
+    laxbreak: false,
+    msajax: true,
+    nomen: false,
+    on: false,
+    passfail: false,
+    plusplus: true,
+    predef: ['window','jQuery','$','escape','unescape'],
+    regexp: false,
+    rhino: false,
+    safe: false,
+    sidebar: false,
+    sub: true,
+    undef: true,
+    white: false,
+    widget: false
+};
+
+var options = {};
+
+for (var opt in defaults) {
+    if (defaults.hasOwnProperty(opt)) {
+        var val = WScript.Arguments.Named.Item(opt); 
+        options[opt] = typeof val !== 'undefined' ? val : defaults[opt];
+    }
+}
+
+// Convert indent string to number.
+
+if (typeof options.indent === 'string') {
+    options.indent = parseInt(options.indent, 10);
+}
+
+// Convert predef string to array.
+
+if (typeof options.predef === 'string') {
+    options.predef = options.predef.split(',');
+}
+
+// Add Microsoft AJAX Library globals.
+
+if (options.msajax) {
+    options.predef.push.apply(options.predef, [
+        'Sys',
+        'Type',
+        '$addHandler',
+        '$addHandlers',
+        '$clearHandlers',
+        '$create',
+        '$find',
+        '$get',
+        '$removeHandler'
+    ]);
+}
+
+delete options.msajax;
+
+// Verify the script.
+
+WScript.StdErr.WriteLine('Verifying ' + path);
+WScript.StdErr.WriteLine();
+
+if (!JSLINT(script, options)) {
+    for (var i = 0; i < JSLINT.errors.length; i += 1) {
+        var e = JSLINT.errors[i];
+        if (e) {
+            // Output file and line numbers in Visual Studio syntax.
+            WScript.StdErr.WriteLine(path + '(' + (e.line + 1) + '): ' + e.reason);
+            // What does this RegExp do?
+            WScript.StdErr.WriteLine((e.evidence || '').replace(/^\s*(\S*(\s+\S+)*)\s*$/, "$1"));
+            WScript.StdErr.WriteLine();
+        }
+    }
+    WScript.StdErr.WriteLine(JSLINT.errors.length + ' errors! WTF?');
+    WScript.Quit(1);
+}
+
+WScript.StdErr.WriteLine('No errors!');
+
+</script>
+
+</job>
+
+<!--
+
+2008-08-09: Initial release.
+
+  -->
+

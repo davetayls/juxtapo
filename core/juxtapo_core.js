@@ -37,8 +37,8 @@ var juxtapo;
     
     /* public */
 	/**
-	 * juxtapo library 
-	 * @class
+	 * the juxtapo root namespace
+	 * @namespace
 	 * @name juxtapo
      * @property {HtmlElement} container The div element containing the juxtapo tools
      * @property {juxtapo.designViews} currentDesignView The enum signifying the visibility of the current overlay
@@ -82,7 +82,7 @@ var juxtapo;
 		globalSettings:{},
         coreJsUrl: function(){
 	        if (_coreJsUrl === '') {
-				_coreJsUrl = juxtapo.utils.getJsLocation('juxtapo.js');
+				_coreJsUrl = juxtapo.utils.getJsLocation(/juxtapo(\.dev)*\.js/);
 			}
 			return _coreJsUrl;
 		},

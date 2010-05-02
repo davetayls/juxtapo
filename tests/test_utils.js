@@ -5,8 +5,9 @@ juxtapo.initComplete(function(){
 	    equals(juxtapo.utils.date.toShortTimeString(testDate), "10:20:30:0", "to short time string");
 	});
 	test("getJsLocation", function(){
-	    ok(juxtapo.utils.getJsLocation("juxtapo.js"), "should find the juxtapo js file");
+	    ok(juxtapo.utils.getJsLocation("juxtapo."), "should find the juxtapo js file");
 	    equals(juxtapo.utils.getJsLocation("notincluded.js"), null, "return null for a file which isn't included");
+		ok(juxtapo.utils.getJsLocation(/juxtapo(\.dev)*\.js/),"get js location using regex allowing for juxtapo.dev.js")
 	    
 	});
 	test("isAbsoluteUrl",function(){
@@ -24,6 +25,11 @@ juxtapo.initComplete(function(){
 			juxtapo.utils.isAbsoluteUrl("../juxtapo.js"),
 			false,
 			"isAbsoluteUrl Detects ../juxtapo.js is not an absolute url"
+		);
+		equals(
+			juxtapo.utils.isAbsoluteUrl("file:///d:/test/juxtapo.js"),
+			true,
+			"detects file:// urls as absolute"
 		);
 	});
 	test("isRelativeUrl",function(){
