@@ -44,7 +44,7 @@
 				juxtapo.eh.errors = "<li class=\"juxtapo-error\">[object]" + juxtapo.utils.objectToStructureString(err) + "</li>"+juxtapo.eh.errors;
 			}
 			else {
-				juxtapo.eh.errors += "<li class=\"juxtapo-error\">" + err.message + "</li>";
+				juxtapo.eh.errors += "<li class=\"juxtapo-error\">" + err.toString() + "</li>";
 			}
             juxtapo.eh.hasError = true;
             juxtapo.eh.renderErrors();
@@ -64,20 +64,7 @@
                 }
             }
             return true;
-        },
-        showErrorBox: function(b){
-            juxtapo.eh.errorsBoxVisible = b;
-            if (b) {
-                $(juxtapo.eh.errorsBox).show(100);
-            }
-            else {
-                $(juxtapo.eh.errorsBox).hide(100);
-            }
-        },
-        toggleErrorBox: function(){
-            juxtapo.eh.showErrorBox(!juxtapo.eh.errorsBoxVisible);
-        }
-        
+        }        
     }; // juxtapo.eh
 })();
 

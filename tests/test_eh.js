@@ -16,6 +16,7 @@ juxtapo.initComplete(function(){
             message: "an error has occured",
             context: "test"
         });
+		ok(juxtapo.eh.logError(1),'Send a date through as an error log');
     });
 });          
 

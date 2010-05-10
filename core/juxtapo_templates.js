@@ -300,6 +300,7 @@
 				position : $img.position()
 			};
 			onOverlayImagePositionChanged($img.get(0), oldPos, newPos);
+			return this;
 		},
 		/**
 		 * Search through the url paths and imagePath for each of the added 

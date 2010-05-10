@@ -1,4 +1,16 @@
-juxtapo.addPlugins(['../plugins/juxtapo.views/juxtapo.views.js']);
+if (juxtapo.coreJsUrl().indexOf('coverage') > -1){
+	juxtapo.addPlugins(['../../plugins/juxtapo.views/juxtapo.views.js']);
+}else{
+	juxtapo.addPlugins(['../plugins/juxtapo.views/juxtapo.views.js']);	
+}
+
+juxtapo.setDefaultStyles({
+	position : 'absolute',
+	'z-index' : '2000',
+	top : '0px',
+	left : '50%',
+	'margin-left' : '-375px'
+});
 
 juxtapo.initConfig(function(){
     module("core initConfig");

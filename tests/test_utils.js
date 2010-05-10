@@ -80,7 +80,7 @@ juxtapo.initComplete(function(){
 		
 		var absUrl;
 		if (juxtapo.coreJsUrl().indexOf('/release') == -1){
-			absUrl = juxtapo.utils.resolveAbsoluteUrl(juxtapo.coreJsUrl(),'../tests/externalfile.js');
+			absUrl = juxtapo.utils.resolveAbsoluteUrl(juxtapo.coreJsUrl(),'../../tests/externalfile.js');
 		}else{
 			absUrl = juxtapo.utils.resolveAbsoluteUrl(juxtapo.coreJsUrl(),'../../tests/externalfile.js');
 		}

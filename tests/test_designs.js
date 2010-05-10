@@ -31,7 +31,30 @@ juxtapo.initComplete(function(){
         juxtapo.templates.back();
         equals(juxtapo.currentDesignView, juxtapo.designViews.hidden, "juxtapo.templates.back() - Design view should be hidden(0)")
     });
-    
+
+    test("nudge",function(){
+		same(
+			juxtapo.templates.nudge('left',10),
+			juxtapo.templates,
+			'nudge overlay left 10 px'
+		);
+		same(
+			juxtapo.templates.nudge('right',10),
+			juxtapo.templates,
+			'nudge overlay right 10 px'
+		);
+		same(
+			juxtapo.templates.nudge('top',10),
+			juxtapo.templates,
+			'nudge overlay top 10 px'
+		);
+		same(
+			juxtapo.templates.nudge('bottom',10),
+			juxtapo.templates,
+			'nudge overlay bottom 10 px'
+		);
+	});
+	
     test("Changing Template", function(){
         equals(juxtapo.templates.selectedTemplateIndex, 0, "Current Template should be 0");
         juxtapo.templates.change()
@@ -42,6 +65,18 @@ juxtapo.initComplete(function(){
 		ok($(juxtapo.templates.overlayImageElement()).attr('src').substr(0,3) != '../', "The relative overlay image url should have been changed to an absolute one");
         juxtapo.templates.change(true)
         equals(juxtapo.templates.selectedTemplateIndex, 1, "Previous Template (should be 1)");
+        juxtapo.templates.change(true)
+        juxtapo.templates.change(true)
+        equals(juxtapo.templates.selectedTemplateIndex, juxtapo.templates.getAll().length -1, "Previous Template when at first should take you to the last");
+
+        juxtapo.templates.changeTo(3);
+        equals(juxtapo.templates.selectedTemplateIndex, 3, "Change Template one at index 3");
+
+        juxtapo.templates.changeTo(juxtapo.templates.getAll().length -1);
+        equals(juxtapo.templates.selectedTemplateIndex, juxtapo.templates.getAll().length -1, "Change Template to last template");
+		juxtapo.templates.change();
+        equals(juxtapo.templates.selectedTemplateIndex, 0, "Change Template when at last should take you to the first");
+		ok(!juxtapo.templates.changeTo(), 'passing nothing in to changeTo returns false');
     });
     
     test("search", function(){
