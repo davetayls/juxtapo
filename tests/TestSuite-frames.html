@@ -13,7 +13,17 @@
         <h2 id="qunit-userAgent"></h2>
         <ol id="qunit-tests">
         </ol>
-		<iframe src="TestSuite.html" width="800" height="300"></iframe>
-		<iframe src="TestSuite.html?status=1" width="800" height="300"></iframe>
+		<div>
+			<script>
+			    function jscoverageWindow() {
+			      /* you may have to adjust the path here; it should point to jscoverage.html in the top of your instrumented directory */
+			      var coverageWindow = window.open('coverage/jscoverage.html');
+			      coverageWindow._$jscoverage = top._$jscoverage;
+			    }
+		    </script>
+	    	<button onclick="jscoverageWindow();">Coverage Report</button>
+		</div>		
+		<iframe src="TestSuite.html" width="800" height="400"></iframe>
+		<iframe src="TestSuite.html?status=1" width="800" height="400"></iframe>
     </body>
 </html>

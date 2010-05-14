@@ -55,6 +55,12 @@ juxtapo.initComplete(function(){
 module('core');
 test("core properties",function(){
 	ok(juxtapo.coreJsUrl(),'finds url with coreJsUrl()');
-	ok(juxtapo.currentDesignView === juxtapo.designViews.hidden,'juxtapo.currentDesignView matches juxtapo.designViews.hidden');
-	ok(juxtapo.currentStatus === juxtapo.statuses.pause,'juxtapo.currentStatus matches juxtapo.statuses.off');
+	if (juxtapo.utils.getQuery('status')){
+		same(juxtapo.currentDesignView,juxtapo.designViews.hidden,'juxtapo.currentDesignView matches juxtapo.designViews.hidden');		
+		same(juxtapo.currentStatus,juxtapo.statuses.play,'juxtapo.currentStatus matches juxtapo.statuses.off');
+		//juxtapo.control.pause();
+	}else{
+		ok(juxtapo.currentDesignView === juxtapo.designViews.hidden,'juxtapo.currentDesignView matches juxtapo.designViews.hidden');
+		ok(juxtapo.currentStatus === juxtapo.statuses.pause,'juxtapo.currentStatus matches juxtapo.statuses.off');
+	}
 });

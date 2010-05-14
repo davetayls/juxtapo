@@ -88,6 +88,12 @@ juxtapo.initComplete(function(){
         ok(results, "Search for test should not be null");
         equals(results.designs.length, 3, "Search for threeresults should give 3 design results");
         equals(results.indexes.length, 3, "Search for threeresults should give 3 indexes results");
+
+        same(juxtapo.templates.filterBySearch(""), {
+            q: '',
+            designs: null
+        }, "Blank filterBySearch should return an object with designs and indexes properties.");
+		
     });
 	
 	test("TemplateItem",function(){

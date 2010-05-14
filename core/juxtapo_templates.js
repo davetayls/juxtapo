@@ -224,6 +224,7 @@
 				dv = juxtapo.currentDesignView;
 			}
 			if (dv !== null) {
+				dv = parseInt(dv,10);
 				if (dv === juxtapo.designViews.hidden) {
 					juxtapo.templates.hide();
 				} else if (dv === juxtapo.designViews.semiTransparent) {
