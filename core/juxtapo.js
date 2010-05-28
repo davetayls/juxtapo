@@ -47,6 +47,7 @@
     includes.push("ui/ToolBtn.js");
     includes.push("juxtapo_thumbs.js");
     includes.push("juxtapo_help.js");
+    includes.push("juxtapo_plugin.js");
 
     function includeJs() {
         for (var i = 0; i < includes.length; i++) {

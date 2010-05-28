@@ -1,7 +1,7 @@
 /*
  juxtapo.eh
  -----------------------------------------------------------*/
-(function(){
+(function($){
 
     var _dropDown = null;
 
@@ -66,6 +66,12 @@
             return true;
         }        
     }; // juxtapo.eh
-})();
+    
+	juxtapo.eh.Exception = function(message,trace){
+		this.message = message;
+		this.trace = trace;
+	};
+
+})(jQuery);
 
 

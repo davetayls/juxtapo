@@ -16,6 +16,16 @@ var juxtapo;
         $(juxtapo.container).attr("id", "juxtapo-container");
         $("body").append(juxtapo.container);
     };
+	var initPlugins = function(){
+		for (var key in juxtapo.plugins){
+			if (juxtapo.plugins.hasOwnProperty(key)){
+				var plugin = juxtapo.plugins[key];
+				if (typeof plugin.init === 'function'){
+					plugin.init();
+				}				
+			}
+		}
+	};
     var initStatus = function(){
         // get current status
         var s = juxtapo.utils.getQuery("status");
@@ -105,9 +115,8 @@ var juxtapo;
             }
             juxtapo.eh.init();
             juxtapo.thumbs.init();
-            
-            juxtapo.utils.getKeyCombination("13+shift");
-            
+                        
+			initPlugins();			
             onInitComplete();
         },
 		/**

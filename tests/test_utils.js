@@ -89,6 +89,7 @@ juxtapo.initComplete(function(){
 		var res = juxtapo.utils.requireResource(absUrl);
 		equals(res.tagName.toLowerCase(),'script','requireResource has returned a script tag');
 		//equals($(res).parent().get(0).tagName.toLowerCase(),'head','requireResource returned tag with parent head');
+		/*
 		stop();
 		setTimeout(function(){
 			equals(
@@ -97,7 +98,7 @@ juxtapo.initComplete(function(){
 				'requireResource: the external file has set a global setting'
 			);
 			start();
-		},100);
+		},100);*/
 	});
 	test("getKeyCombination ", function(){
 	    same(juxtapo.utils.getKeyCombination("23+shift"), {
