@@ -9,36 +9,39 @@ var libUrl = juxtapo.utils.resolveAbsoluteUrl(juxtapo.coreJsUrl(), '../lib/');
 juxtapo.utils.requireResource(libUrl + "qunit.css");
 //juxtapo.utils.requireResource(libUrl + "qunit.js");
 
-var dropDown = null;
+var _dropDown = null;
 var selectedTemplateItem;
 var totalResources = 0;
 var resourcesLoaded = 0;
+var _qunitHtml = document.createElement('div');
+_qunitHtml.innerHTML = '<h2 id="qunit-header">test suite</h2><h3 id="qunit-banner"></h3><h3 id="qunit-userAgent"></h3><ol id="qunit-tests"></ol>';
 
 juxtapo.plugins.qunit = new juxtapo.Plugin({
 	dropDown: function(){
-		return dropDown;
+		return _dropDown;
 	},
 	init: function(){
 		if (typeof(QUnit) != 'undefined') {
-			dropDown = new juxtapo.ui.DropDown({
+			_dropDown = new juxtapo.ui.DropDown({
 				style: {
 					height: '400px',
 					width: '600px'
 				}
 			});
-			dropDown.text('qunit');
+			// qunit html
+			_dropDown.text('qunit');
 			if (!document.getElementById('qunit-header')) {
-				dropDown.contentHtml('<h2 id="qunit-header">test suite</h2><h3 id="qunit-banner"></h3><h3 id="qunit-userAgent"></h3><ol id="qunit-tests"></ol>');
+				$(_dropDown.contents).append(_qunitHtml);
 			}
 			
 			QUnit.done = function(failures, total){
 				if (failures > 0) {
-					$(dropDown.controller).addClass("juxtapo-eh-error");
+					$(_dropDown.controller).addClass("juxtapo-eh-error");
 					juxtapo.eh.logError("QUnit tests returned " + failures + " failures out of " + total + " tests");
 				}
 				else {
-					$(dropDown.controller).css("background-color", "#C6E746");
-					dropDown.text("qunit:" + total + " tests");
+					$(_dropDown.controller).css("background-color", "#C6E746");
+					_dropDown.text("qunit:" + total + " tests");
 				}
 				window.QUnitDone = true;
 			};
