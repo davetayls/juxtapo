@@ -1,10 +1,14 @@
 juxtapo release notes
 =====================
 
-0.7		2010		Release:
+0.7		2010-05-13	Release:
+					This release features a major reworking of the api to be more consistent.
+					Please retest any plugins built against the previous api. We are working to
+					make sure there are no major api changes after the v1 release unless really needed.
 					- Refactor of namespaces and Object definitions:
 					  juxtapo.ui.DropDown, juxtapo.ui.Thumbnail, juxtapo.ui.ToolBtn
-					  
+					- Removed specific properties for Thumbnail.image, Thumbnail.caption, Thumbnail.imageContainer
+					
 0.6		2010-04-06	Released:
 					- added namespace juxtapo.plugins as the convention for adding
 					  plugin specific public methods/properties

@@ -1,0 +1,19 @@
+/*
+    3.0_6.screen-navs
+    - prefix: nav
+*/
+
+ul.nav-v,
+.nav-v ul {
+	display: block;
+	margin: 0;
+	padding: 0;
+}
+	.nav-v li {
+		display: block;
+		list-style: none;
+		list-style-image: none;
+		margin: 0;
+		padding: 0;
+	}
+

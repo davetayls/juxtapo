@@ -4,77 +4,89 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<title>juxtapo front end tools</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+        <meta http-equiv="Content-Script-Type" content="text/javascript" />
+        <meta http-equiv="Content-Style-Type" content="text/css" />
+        <meta http-equiv="Content-Language" content="en-GB" />
+        <meta name="description" content="" />
+        <link href="lib/jquery-ui/css/dark-hive/jquery-ui-1.8.custom.css" rel="stylesheet" type="text/css" />
+        <link href="css/1.reset.css" rel="stylesheet" type="text/css" />
+        <link href="css/2.brand.css" rel="stylesheet" type="text/css" />
+        <link href="css/3.0.screen.css" rel="stylesheet" type="text/css" />
+        <link rel="shortcut icon" href="http://www.the-taylors.org/favicon.ico" />
+        <link rel="bookmark icon" href="http://www.the-taylors.org/favicon.ico" />
+        <link rel="icon" type="image/ico" href="http://www.the-taylors.org/favicon.ico" />
+	    <!--[if lte IE 6]>
+		    <link rel="stylesheet" type="text/css" media="all" href="css/ie6.css" />
+	    <![endif]-->
 
-	<title>davetayls/juxtapo @ GitHub</title>
-	
-	<style type="text/css">
-		body {
-  		margin-top: 1.0em;
-  		background-color: #ffffff;
-		  font-family: "Helvetica,Arial,FreeSans";
-  		color: #000000;
-    }
-    #container {
-      margin: 0 auto;
-      width: 700px;
-    }
-		h1 { font-size: 3.8em; color: #000000; margin-bottom: 3px; }
-		h1 .small { font-size: 0.4em; }
-		h1 a { text-decoration: none }
-		h2 { font-size: 1.5em; color: #000000; }
-    h3 { text-align: center; color: #000000; }
-    a { color: #000000; }
-    .description { font-size: 1.2em; margin-bottom: 30px; margin-top: 30px; font-style: italic;}
-    .download { float: right; }
-		pre { background: #000; color: #fff; padding: 15px;}
-    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-    .footer { text-align:center; padding-top:30px; font-style: italic; }
-	</style>
+        <script type="text/javascript" src="lib/jquery-1.4.2.min.js"></script>
+        <script type="text/javascript" src="lib/jquery-ui/js/jquery-ui-1.8.custom.min.js"></script>
+        <script type="text/javascript" src="js/jxweb.js"></script>
+		
+		<script type="text/javascript" src="juxtapo/core/juxtapo.js"></script>
+		<script type="text/javascript" src="juxtapo/juxtapo.config.js"></script>
 	
 </head>
 
 <body>
-  <a href="http://github.com/davetayls/juxtapo"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
-
-  <div id="container">
-
-    <div class="download">
-      <a href="http://github.com/davetayls/juxtapo/zipball/master">
-        <img border="0" width="90" src="http://github.com/images/modules/download/zip.png"></a>
-      <a href="http://github.com/davetayls/juxtapo/tarball/master">
-        <img border="0" width="90" src="http://github.com/images/modules/download/tar.png"></a>
-    </div>
-
-    <h1><a href="http://github.com/davetayls/juxtapo">juxtapo</a>
-      <span class="small">by <a href="http://github.com/davetayls">davetayls</a></span></h1>
-
-    <div class="description">
-      front-end developer tools
-    </div>
-
-    <h2>Authors</h2>
-<p>Arnold Zokas (arnold.zokas@coderoom.net)<br/>Dave Tayor (dave@the-taylors.org)<br/><br/>      </p>
-<h2>Contact</h2>
-<p>Dave Taylor (dave@the-taylors.org)<br/>      </p>
-
-
-    <h2>Download</h2>
-    <p>
-      You can download this project in either
-      <a href="http://github.com/davetayls/juxtapo/zipball/master">zip</a> or
-      <a href="http://github.com/davetayls/juxtapo/tarball/master">tar</a> formats.
-    </p>
-    <p>You can also clone the project with <a href="http://git-scm.com">Git</a>
-      by running:
-      <pre>$ git clone git://github.com/davetayls/juxtapo</pre>
-    </p>
-
-    <div class="footer">
-      get the source code on GitHub : <a href="http://github.com/davetayls/juxtapo">davetayls/juxtapo</a>
-    </div>
-
-  </div>
-
-  
+	<div id="wrapper">
+		<div id="logo">
+			<a href="index.html">
+				<img src="images/juxtapo-logo.png" alt="juxtapo front end tools" />
+			</a>
+		</div>
+		<div id="content">
+			<div class="lay-wideL cc">
+				<div class="lay-wideL-left cc">
+					<object width="640" height="505"><param name="wmode" value="transparent" /><param name="movie" value="http://www.youtube.com/v/no6InlWVSUo&hl=en_GB&fs=1&color1=0x006699&color2=0x54abd6"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/no6InlWVSUo&hl=en_GB&fs=1&color1=0x006699&color2=0x54abd6" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="640" height="505" wmode="transparent"></embed></object>	
+				</div>
+				<div class="lay-wideL-right cc">
+					<h2>What is juxtapo?</h2>
+					<p>Use Juxtapo on this site using the controller at the bottom left of the screen.</p>
+					<p class="cp-numberedPara cc"><span class="cp-numberedPara-num">1 </span>In-browser tools using JavaScript to assist while you're turning designs in to html/css</p>
+					<p>The core library is designed to be basic and fast to get up and running.</p>
+					<ul>
+						<li>Overlays</li>
+						<li>Keyboard nudging</li>
+						<li>Page auto refresh</li>
+					</ul>
+					<p class="cp-numberedPara"><span class="cp-numberedPara-num">2 </span>A simple <a href="docs/index.html">plugin API</a> which allows for any developer to extend the core functionality.</p>
+					<p>
+						<a href="downloads/juxtapo-v0.7.zip" class="featureButton featureBlock">Download version 0.7</a>
+					</p>
+				</div>
+			</div>
+		</div>
+		<div id="nav-primary">
+			<ul>
+				<li><a class="featureButton" href="downloads/juxtapo-v0.7.zip">Download here</a></li>
+				<li class="nav-selected"><a href="index.htm">Quickstart</a></li>
+				<li><a href="docs/index.html">Documentation</a></li>
+			</ul>
+		</div>
+		<div id="footer" class="lay-c3 cc">
+			<div class="lay-c3-left cc">
+				<h2>Help and Information</h2>
+				<ul class="nav-v">
+					<li><a href="juxtapo/readme.txt">Juxtapo Readme</a></li>
+					<li><a href="docs/index.html">Juxtapo API documentation</a></li>
+				</ul>
+			</div>
+			<div class="lay-c3-mid cc">
+				<h2>Featured Plugins</h2>
+				<ul class="nav-v">
+					<li>Google Spreadsheets</li>
+					<li>QUnit</li>
+					<li>Views</li>
+					<li>Info</li>
+				</ul>
+			</div>
+			<div class="lay-c3-right cc">
+				<h2>Juxtapo News</h2>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

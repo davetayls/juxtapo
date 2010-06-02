@@ -1,0 +1,102 @@
+/*
+    3.0_0.screen-structure
+    This style sheet contains core structural layout 
+    
+    This shouldn't contain reusable modules or components but would generally 
+    set out the chrome of the page using ids
+    
+    This would often contain the primary and secondary navigation styles but if they
+    are not specified here they should be within screen-navs
+    
+    This file should be ordered as elements appear on the page including indentation.
+    
+*/
+
+/* Layout */
+body {
+	background: #333;
+}
+
+#nav-accessibility      { position: absolute; top: 0px; left: 0px; z-index: 1000; }
+	#nav-accessibility h2   { position:absolute; top: auto; left: -10000px; width: 1px; height: 1px; }
+	#nav-accessibility ul   { list-style: none; margin:0; position:absolute; }
+		#nav-accessibility li	{ position: absolute; top: 0; left: 0; }
+			#nav-accessibility a    { position:absolute; display: block; top: auto; left: -10000px; width: 1px; height: 1px; }
+			#nav-accessibility a:active, 
+			#nav-accessibility a:focus { z-index: 1000; top: 0; left: 0px; width: 350px; height: 20px; background-color: white; border: 1px dotted #ccc; padding: 5px; }
+
+#wrapper {
+	margin: 0 auto;
+    padding: 0;
+	position: relative;
+	width: 980px;	
+}
+	#logo {
+	    left:2px;
+	    position:absolute;
+	    top:8px;
+	    z-index:10;
+	}
+		#logo a, #logo img { display: block; }
+
+    #content { 
+	    margin: 0;
+	    padding: 110px 0 0;
+    }
+
+	#nav-primary {
+		background: #000;
+		border-bottom: solid 1px #fff;
+		height: 97px;
+	    left:0px;
+		padding: 0 27px 0 227px;
+	    position:absolute;
+	    top:0px;
+	    z-index:5;		
+	}
+		#nav-primary ul {
+			padding-top: 3px;
+		}
+		#nav-primary li {
+			display: block;
+			float: left;
+			list-style: none;
+			padding: 0px;
+		}
+			#nav-primary li a {
+				background-color: #333;
+				border: solid 1px #333;
+				border-radius: 1px;
+				-moz-border-radius: 1px;
+				display: block;
+				font-size: 1.2em;
+				letter-spacing: -0.03em;
+				margin: 12px 3px 0;
+				padding: 20px 10px;
+				text-decoration: none;
+			}
+			#nav-primary li a:hover {
+				background-color: #555;
+			}
+			#nav-primary li.nav-selected a {
+				border-top: solid 1px #fff;
+				border-right: solid 1px #fff;
+				border-bottom: none;
+				border-left: solid 1px #fff;
+				color: #fff;
+				padding-bottom: 44px;
+			}
+
+
+	
+#footer {
+	background: #202020 url(../images/footer-bg.png) repeat-x left top;
+	margin: 10px 0;
+	min-height: 140px;
+	padding: 17px;
+}
+	#footer h2 {
+		color: #fff;
+		font-size: 1em;
+	}
+

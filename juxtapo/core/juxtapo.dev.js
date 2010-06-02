@@ -1,36 +1,34 @@
-
-
 /**
  * juxtapo JavaScript Library http://juxtapo.net/
  *
  * Copyright (c) 2009 David Taylor (@davetayls) Licensed under the GNU v3
  * license. http://www.gnu.org/licenses/gpl.html
  * 
- * Version 0.6
+ * Version 0.7
  *
  */
 
-
+var juxtapo;
 
 (function($){
 
     /* private */
-	var _coreJsUrl = ''
+	var _coreJsUrl = '';
     
     // Methods
-    function addResources(){
+    var addResources = function(){
         if (juxtapo.coreJsUrl()) {
             juxtapo.utils.requireResource(juxtapo.coreJsUrl() + 'juxtapo.css');
         }
     };
-    function initContainer(){
+    var initContainer = function(){
         juxtapo.container = document.createElement("div");
         $(juxtapo.container).attr("id", "juxtapo-container");
         $("body").append(juxtapo.container);
     };
-    function initStatus(){
+    var initStatus = function(){
         // get current status
-        s = juxtapo.utils.getQuery("status");
+        var s = juxtapo.utils.getQuery("status");
         if (s) {
             juxtapo.currentStatus = s;
         }
@@ -49,19 +47,18 @@
     
     /* public */
 	/**
-	 * juxtapo library 
-	 * @class
+	 * the juxtapo root namespace
+	 * @namespace
 	 * @name juxtapo
      * @property {HtmlElement} container The div element containing the juxtapo tools
      * @property {juxtapo.designViews} currentDesignView The enum signifying the visibility of the current overlay
      * @property {juxtapo.statuses} currentStatus The enum specifying the auto refresh state
      * @property {bool} designVisible Set to true if the current design is semiTransparent or completely visible
-     * @property {juxtapo.templates.TemplateItem[]} designTemplates Array of {@link juxtapo.templates.TemplateItem} which describe the designs within the project
      * @property {Object} plugins The namespace for adding plugin specific public methods/properties
      * @property {Object} globalSettings A global namespace for public methods/properties
 	 */
     juxtapo = {
-		version : '0.6',
+		version : '0.7',
 		/**
 		 * The various states the auto refresh can be in
 		 * @constant
@@ -90,13 +87,13 @@
         controller: null,
         currentDesignView: 0,
         currentStatus: 2,
-        //designlayout: null,
         designVisible: false,
-        designTemplates: [],
         plugins : {}, // convention for adding plugin specific functionality
 		globalSettings:{},
         coreJsUrl: function(){
-	        if (_coreJsUrl == '') _coreJsUrl = juxtapo.utils.getJsLocation('juxtapo.js');
+	        if (_coreJsUrl === '') {
+				_coreJsUrl = juxtapo.utils.getJsLocation(/juxtapo(\.dev)*\.js/);
+			}
 			return _coreJsUrl;
 		},
         
@@ -111,7 +108,7 @@
             initStatus();
             
             // init if not turned off
-            if (juxtapo.currentStatus != juxtapo.statuses.off) {
+            if (juxtapo.currentStatus !== juxtapo.statuses.off) {
                 initContainer();
                 juxtapo.templates.init();
                 juxtapo.control.init();
@@ -130,13 +127,13 @@
 		 * juxtapo.addPlugins(['../plugins/juxtapo.views.js']);
 		 */
         addPlugins : function(pluginPaths){
-			for (var i=0;i<pluginPaths.length;i++){
+			for (var i=0;i<pluginPaths.length;i+=1){
 				var jsLoc = juxtapo.utils.resolveAbsoluteUrl(juxtapo.coreJsUrl(),pluginPaths[i]);
 				document.write("<script type=\"text/javascript\" src=\"" + jsLoc + "\"></script>");
 			}
 		},
         /**
-         * Adds a juxtapo.templates.TemplateItem object to the designTemplates
+         * Adds a juxtapo.templates.TemplateItem object to the juxtapo.templates.collection
          * array
          *
          * @param {String}
@@ -151,9 +148,17 @@
          * @return {juxtapo.templates.TemplateItem} Returns the new template
          */
         addTemplate: function(path, imageUrl, settings){
-            var t = new juxtapo.templates.TemplateItem(imageUrl, [path], settings);
-            this.designTemplates.push(t);
-            return t;
+			if (path instanceof juxtapo.templates.TemplateItem) {
+	            juxtapo.templates.collection.push(path);
+	            return path;				
+			} else {
+				if (typeof path === 'string'){ 
+					path = [path]; 
+				}
+	            var t = new juxtapo.templates.TemplateItem(imageUrl, path, settings);				
+	            juxtapo.templates.collection.push(t);
+	            return t;
+			}
         },
         /**
          * This sets the default styles applied to each design template
@@ -170,7 +175,7 @@
 		 * @event
 		 * @example
 		 * juxtapo.initConfig(function(ev){
-		 * 		juxtapo.addTemplate('path.htm','image.png',{}); 
+		 *		juxtapo.addTemplate('path.htm','image.png',{}); 
 		 * });
 		 * @param {Function} fn(ev)
 		 */
@@ -198,66 +203,67 @@
 	 */
     juxtapo.onBody_KeyDown = function(e){
         var keycode;
-        if (window.event) 
-            keycode = window.event.keyCode;
-        else 
-            if (e) 
-                keycode = e.which;
-            else 
-                return true;
+        if (window.event) {
+			keycode = window.event.keyCode;
+		}
+		else {
+			if (e) {
+				keycode = e.which;
+			}
+			else {
+				return true;
+			}
+		}
         
         juxtapo.eh.logInfo("keycode is: " + keycode); // ##DEBUG
         // Check if user presses Ctl+o or Ctl+right
-        if (e.ctrlKey && (keycode == 79 || keycode == 39)) {
+        if (e.ctrlKey && (keycode === 79 || keycode === 39)) {
             juxtapo.templates.forward();
             juxtapo.utils.preventDefaultEventAction(e);
             return false;
         }
         // Check if user presses Ctl+u or Ctl+left
-        if (e.ctrlKey && (keycode == 85 || keycode == 37)) {
+        if (e.ctrlKey && (keycode === 85 || keycode === 37)) {
             juxtapo.templates.back();
             juxtapo.utils.preventDefaultEventAction(e);
             return false;
         }
         // Check if user presses Ctl+up-arrow
-        if (e.ctrlKey && keycode == 38) {
+        if (e.ctrlKey && keycode === 38) {
             juxtapo.templates.change(true);
             juxtapo.utils.preventDefaultEventAction(e);
             return false;
         }
         // Check if user presses Ctl+down-arrow
-        if (e.ctrlKey && keycode == 40) {
+        if (e.ctrlKey && keycode === 40) {
             juxtapo.templates.change(false);
             juxtapo.utils.preventDefaultEventAction(e);
             return false;
         }
         // Ctl+Space
-        if (e.ctrlKey && keycode == 32) {
+        if (e.ctrlKey && keycode === 32) {
             juxtapo.control.toggle();
             juxtapo.utils.preventDefaultEventAction(e);
             return false;
         }
         // nudge designs
-        if (e.ctrlKey && keycode == 73) {
-            var pixels = e.shiftKey ? 1 : 25;
+		var pixels = e.shiftKey ? 1 : 25;
+        if (e.ctrlKey && keycode === 73) {
             juxtapo.templates.nudge("top", pixels);
             juxtapo.utils.preventDefaultEventAction(e);
             return false;
         }
-        if (e.ctrlKey && keycode == 76) {
-            var pixels = e.shiftKey ? 1 : 25;
+        if (e.ctrlKey && keycode === 76) {
             juxtapo.templates.nudge("right", pixels);
             juxtapo.utils.preventDefaultEventAction(e);
             return false;
         }
-        if (e.ctrlKey && keycode == 75) {
-            var pixels = e.shiftKey ? 1 : 25;
+        if (e.ctrlKey && keycode === 75) {
             juxtapo.templates.nudge("bottom", pixels);
             juxtapo.utils.preventDefaultEventAction(e);
             return false;
         }
-        if (e.ctrlKey && keycode == 74) {
-            var pixels = e.shiftKey ? 1 : 25;
+        if (e.ctrlKey && keycode === 74) {
             juxtapo.templates.nudge("left", pixels);
             juxtapo.utils.preventDefaultEventAction(e);
             return false;
@@ -275,11 +281,6 @@ else
     if (window.attachEvent) {
         window.attachEvent('onload', juxtapo.init);
     }
-
-
-/**
- * @author david
- */
 /*
  juxtapo.eh
  -----------------------------------------------------------*/
@@ -320,13 +321,13 @@ else
             return juxtapo.eh.errors;
         },
         logError: function(err){
-            if (typeof(err) == "string") {
+            if (typeof(err) === "string") {
                 juxtapo.eh.errors = "<li class=\"juxtapo-error\">" + err + "</li>"+juxtapo.eh.errors;
-            }else if (typeof(err) == "object") {
+            }else if (typeof(err) === "object") {
 				juxtapo.eh.errors = "<li class=\"juxtapo-error\">[object]" + juxtapo.utils.objectToStructureString(err) + "</li>"+juxtapo.eh.errors;
 			}
 			else {
-				juxtapo.eh.errors += "<li class=\"juxtapo-error\">" + err.message + "</li>";
+				juxtapo.eh.errors += "<li class=\"juxtapo-error\">" + err.toString() + "</li>";
 			}
             juxtapo.eh.hasError = true;
             juxtapo.eh.renderErrors();
@@ -346,24 +347,9 @@ else
                 }
             }
             return true;
-        },
-        showErrorBox: function(b){
-            juxtapo.eh.errorsBoxVisible = b;
-            if (b) {
-                $(juxtapo.eh.errorsBox).show(100);
-            }
-            else {
-                $(juxtapo.eh.errorsBox).hide(100);
-            }
-        },
-        toggleErrorBox: function(){
-            juxtapo.eh.showErrorBox(!juxtapo.eh.errorsBoxVisible);
-        }
-        
+        }        
     }; // juxtapo.eh
 })();
-
-
 
 
 /*
@@ -399,7 +385,7 @@ else
 		        }
 		    });*/
 			
-		    if (juxtapo.currentStatus == juxtapo.statuses.pause) {
+		    if (juxtapo.currentStatus === juxtapo.statuses.pause) {
 		        juxtapo.control.pause();
 		    } else {
 		        juxtapo.control.play();
@@ -426,11 +412,11 @@ else
 			return juxtapo.currentStatus;
 		},
 		reload : function() {
-		    if (juxtapo.currentStatus == juxtapo.statuses.play) {
+		    if (juxtapo.currentStatus ===  juxtapo.statuses.play) {
 				var originalUrl = juxtapo.utils.getQuery('jxurl');
 				originalUrl= originalUrl? unescape(originalUrl): location.href;
 				var joiner = originalUrl.indexOf('?') > -1 ? '&' : '?';
-		        reloadUrl = originalUrl + 
+		        var reloadUrl = originalUrl + 
 							joiner +
 							"jxurl=" + escape(originalUrl) + 
 							"&r=" + new Date().toString() + 
@@ -443,7 +429,7 @@ else
 		    }
 		},
 		toggle : function() {
-		    if (juxtapo.currentStatus == juxtapo.statuses.pause) {
+		    if (juxtapo.currentStatus === juxtapo.statuses.pause) {
 		        return juxtapo.control.play();
 		    } else {
 		        return juxtapo.control.pause();
@@ -452,8 +438,6 @@ else
 	};
 	
 })();
-
-
 /**
  * @author david
  * @namespace juxtapo.templates
@@ -467,14 +451,24 @@ else
 	var onOverlayImagePositionChanged = function(img, oldPos, newPos) {
 		$(juxtapo).trigger("_overlayImagePositionChanged", [ img, oldPos, newPos ]);
 	};
+	
+	// methods
+	var clearOverlayClasses = function(){
+		$(juxtapo.templates.overlayButton)
+			.removeClass('juxtapo-overlayTransparent')
+			.removeClass('juxtapo-overlaySemiTrans')
+			.removeClass('juxtapo-overlayOpaque');		
+	};
 
 	/* public */
 	/**
 	 * @namespace
+     * @property {juxtapo.templates.TemplateItem[]} collection Array of {@link juxtapo.templates.TemplateItem} which describe the designs within the project
      * @property {int} selectedTemplateIndex The index of the current matched template
 	 */
 	juxtapo.templates = {
 		// properties
+        collection: [],
         selectedTemplateIndex: 0,
 		// methods
 		/**
@@ -483,9 +477,9 @@ else
 		 * is set to 2 (opaque)
 		 */
 		back : function() {
-			if (juxtapo.currentDesignView == juxtapo.designViews.hidden) {
+			if (juxtapo.currentDesignView === juxtapo.designViews.hidden) {
 				juxtapo.templates.show();
-			} else if (juxtapo.currentDesignView == juxtapo.designViews.semiTransparent) {
+			} else if (juxtapo.currentDesignView === juxtapo.designViews.semiTransparent) {
 				juxtapo.templates.hide();
 			} else {
 				juxtapo.templates.semiTransparent();
@@ -497,14 +491,17 @@ else
 		 * @param {bool} previous
 		 */
 		change : function(previous) {
+			var newIndex;
 			if (previous) {
 				newIndex = juxtapo.templates.selectedTemplateIndex - 1;
-				if (newIndex < 0)
-					newIndex = juxtapo.designTemplates.length - 1;
+				if (newIndex < 0) {
+					newIndex = juxtapo.templates.collection.length - 1;
+				}
 			} else {
 				newIndex = juxtapo.templates.selectedTemplateIndex + 1;
-				if (newIndex > juxtapo.designTemplates.length - 1)
+				if (newIndex > juxtapo.templates.collection.length - 1) {
 					newIndex = 0;
+				}
 			}
 			juxtapo.templates.changeTo(newIndex);
 		},
@@ -514,24 +511,24 @@ else
 		 */
 		changeTo : function(item) {
 			var design = null;
-			if (typeof (item) == "undefined") {
+			if (typeof (item) === "undefined") {
 				return false;
-			} else if (typeof (item) == "object") {
+			} else if (typeof (item) === "object") {
 				design = item;
-			} else if (typeof item == 'number' && item < juxtapo.designTemplates.length) {
+			} else if (typeof item === 'number' && item < juxtapo.templates.collection.length) {
 				juxtapo.templates.selectedTemplateIndex = item;
-				design = juxtapo.designTemplates[item];
+				design = juxtapo.templates.collection[item];
 			}
 			if (design){
 				var designStyle = $.extend({},juxtapo.templates.TemplateItem.defaultStyles,design.settings.style);
-				$("#design").attr("src", design.imageUrl).css(designStyle);				
+				$("#design").attr("src", design.getImageSrc()).css(designStyle);				
 			}
 		},
 		/**
 		 * Gets the current {@link juxtapo.templates.TemplateItem}
 		 */
 		selectedTemplateItem : function(){
-			return juxtapo.designTemplates[juxtapo.templates.selectedTemplateIndex];
+			return juxtapo.templates.collection[juxtapo.templates.selectedTemplateIndex];
 		},
 		/**
 		 * Gets or sets the image element used as the overlay for
@@ -539,7 +536,7 @@ else
 		 * @param {HtmlImage} el
 		 */
 		overlayImageElement : function(el) {
-			if (typeof (el) != "undefined") {
+			if (typeof (el) !== "undefined") {
 				_overlayImageElement = el;
 			} else if (!_overlayImageElement) {
 				_overlayImageElement = document.getElementById("design");
@@ -553,13 +550,13 @@ else
 		filterBySearch : function(q) {
 			var results = null;
 			var thumbs = [];
-			if (q == "") {
-				$("#juxtapo-thumbs-container li").show();
+			if (q === "") {
+				$("#juxtapo-thumbs-container .juxtapo-thumb").show();
 			} else {
 				results = this.search(q);
-				$("#juxtapo-thumbs-container li").hide();
-				for ( var i = 0; i < results.designs.length; i++) {
-					var design = results.designs[i]
+				$("#juxtapo-thumbs-container .juxtapo-thumb").hide();
+				for ( var i = 0; i < results.designs.length; i+=1) {
+					var design = results.designs[i];
 					design.thumbnail.show();
 				}
 			}
@@ -574,9 +571,9 @@ else
 		 * is set to 0 (hidden)
 		 */
 		forward : function() {
-			if (juxtapo.currentDesignView == juxtapo.designViews.hidden) {
+			if (juxtapo.currentDesignView === juxtapo.designViews.hidden) {
 				juxtapo.templates.semiTransparent();
-			} else if (juxtapo.currentDesignView == juxtapo.designViews.semiTransparent) {
+			} else if (juxtapo.currentDesignView === juxtapo.designViews.semiTransparent) {
 				juxtapo.templates.show();
 			} else {
 				juxtapo.templates.hide();
@@ -588,7 +585,7 @@ else
 		 * @return {juxtapo.templates.TemplateItem[]}
 		 */
 		getAll : function(){
-			return juxtapo.designTemplates;
+			return juxtapo.templates.collection;
 		},
 		/**
 		 * Searches the paths specified within each added template for the first one that 
@@ -613,18 +610,17 @@ else
 		 */
 		getTemplateFromUrl : function(url) {
 			var href = url.toLowerCase();
-			for ( var i = 0; i < juxtapo.designTemplates.length; i++) {
-				layout = juxtapo.designTemplates[i];
-				for ( var p = 0; p < layout.paths.length; p++) {
-					path = layout.paths[p].toLowerCase();
+			for ( var i = 0; i < juxtapo.templates.collection.length; i+=1) {
+				var layout = juxtapo.templates.collection[i];
+				for ( var p = 0; p < layout.paths.length; p+=1) {
+					var path = layout.paths[p].toLowerCase();
 					if (href.juxtapoContains(path)) {
 						juxtapo.templates.selectedTemplawteIndex = i;
 						return layout;
 					}
 				}
 			}
-			;
-			return juxtapo.designTemplates[0];
+			return juxtapo.templates.collection[0];
 		},
 		/**
 		 * Hides the current overlay image
@@ -633,6 +629,9 @@ else
 			$("#design").css("display", "none");
 			juxtapo.designVisible = false;
 			juxtapo.currentDesignView = juxtapo.designViews.hidden;
+			clearOverlayClasses();
+			$(this.overlayButton).addClass('juxtapo-overlayTransparent');
+			return juxtapo.currentDesignView;			
 		},
 		/**
 		 * @private
@@ -642,33 +641,33 @@ else
 			$('<img id="design" src="noimage.jpg" alt="design image" />')
 					.appendTo("body").css({display : 'none'});
 
-			if (juxtapo.utils.getQuery("di") != null) {
+			if (juxtapo.utils.getQuery("di") !== null) {
 				juxtapo.templates
-						.changeTo(parseInt(juxtapo.utils.getQuery("di")));
+						.changeTo(parseInt(juxtapo.utils.getQuery("di"),10));
 			} else {
-				juxtapo.templates.changeTo(juxtapo.templates
-						.getTemplateFromUrl(location.href));
+				juxtapo.templates.changeTo(juxtapo.templates.getTemplateFromUrl(location.href));
 			}
 			$(document).keydown(juxtapo.onBody_KeyDown);
 
 			// design controller button
-			juxtapo.designlayout = document.createElement("div");
-			$(juxtapo.designlayout).attr("class", "juxtapo-btn");
-			juxtapo.designlayout.onclick = juxtapo.templates.toggle;
-			juxtapo.designlayout.innerHTML = "D E S I G N";
-			juxtapo.container.appendChild(juxtapo.designlayout);
-			d = juxtapo.utils.getQuery("design");
-			if (d != null) {
+			juxtapo.templates.overlayButton = document.createElement("div");
+			$(juxtapo.templates.overlayButton).attr("class", "juxtapo-btn");
+			juxtapo.templates.overlayButton.onclick = juxtapo.templates.toggle;
+			juxtapo.templates.overlayButton.innerHTML = "OVERLAY";
+			juxtapo.container.appendChild(juxtapo.templates.overlayButton);
+			var d = juxtapo.utils.getQuery("design");
+			if (d !== null) {
 				juxtapo.designVisible = d;
 			}
-			dv = juxtapo.utils.getQuery("dv");
+			var dv = juxtapo.utils.getQuery("dv");
 			if (!dv) {
 				dv = juxtapo.currentDesignView;
 			}
-			if (dv != null) {
-				if (dv == juxtapo.designViews.hidden) {
+			if (dv !== null) {
+				dv = parseInt(dv,10);
+				if (dv === juxtapo.designViews.hidden) {
 					juxtapo.templates.hide();
-				} else if (dv == juxtapo.designViews.semiTransparent) {
+				} else if (dv === juxtapo.designViews.semiTransparent) {
 					juxtapo.templates.semiTransparent();
 				} else {
 					juxtapo.templates.show();
@@ -676,7 +675,7 @@ else
 			}
 
 			// reset scroll position
-			v = juxtapo.utils.getQuery("v");
+			var v = juxtapo.utils.getQuery("v");
 			if (v) {
 				$(document).scrollTop(v);
 			}
@@ -688,14 +687,16 @@ else
 		 * @param {Number} pixels The number of pixels to move the image by
 		 */
 		nudge : function(dir, pixels) {
-			if (dir == "")
+			if (dir === "") {
 				return false;
-			if (typeof (pixels) == "undefined")
+			}
+			if (typeof(pixels) === "undefined") {
 				pixels = 1;
+			}
 			var $img = $(this.overlayImageElement());
 			var horizClass = 'margin-left';
 			if ($img.css('left').indexOf('%') < 0){
-				if ($img.css('right') != 'auto'){
+				if ($img.css('right') !== 'auto'){
 					horizClass = 'right';
 				}else{
 					horizClass = 'left';
@@ -706,22 +707,33 @@ else
 				offSet : $img.offset(),
 				position : $img.position()
 			};
+			var currentTop,currentLeft;
 			switch (dir) {
 			case "top":
-				var currentTop = parseInt($img.css("top"));
+				currentTop = parseInt($img.css("top"),10);
 				$img.css("top", currentTop - pixels);
 				break;
 			case "right":
-				var currentLeft = parseInt($img.css(horizClass));
-				horizClass != 'right' ? $img.css(horizClass, currentLeft + pixels): $img.css(horizClass, currentLeft - pixels);
+				currentLeft = parseInt($img.css(horizClass),10);
+				if (horizClass !== 'right') {
+					$img.css(horizClass, currentLeft + pixels);
+				}
+				else {
+					$img.css(horizClass, currentLeft - pixels);
+				}
 				break;
 			case "bottom":
-				var currentTop = parseInt($img.css("top"));
+				currentTop = parseInt($img.css("top"),10);
 				$img.css("top", currentTop + pixels);
 				break;
 			case "left":
-				var currentLeft = parseInt($img.css(horizClass));
-				horizClass != 'right' ? $img.css(horizClass, currentLeft - pixels): $img.css(horizClass, currentLeft + pixels);
+				currentLeft = parseInt($img.css(horizClass),10);
+				if (horizClass !== 'right') {
+					$img.css(horizClass, currentLeft - pixels);
+				}
+				else {
+					$img.css(horizClass, currentLeft + pixels);
+				}
 				break;
 			}
 			var newPos = {
@@ -729,6 +741,7 @@ else
 				position : $img.position()
 			};
 			onOverlayImagePositionChanged($img.get(0), oldPos, newPos);
+			return this;
 		},
 		/**
 		 * Search through the url paths and imagePath for each of the added 
@@ -741,12 +754,11 @@ else
 				designs : [],
 				indexes : []
 			};
-			if (q != "") {
+			if (q !== "") {
 				q = q.toLowerCase();
-				for ( var i = 0; i < juxtapo.designTemplates.length; i++) {
-					var iDesign = juxtapo.designTemplates[i];
-					if (iDesign.imageUrl.toLowerCase().indexOf(q) > -1
-							|| iDesign.paths[0].toLowerCase().indexOf(q) > -1) {
+				for ( var i = 0; i < juxtapo.templates.collection.length; i+=1) {
+					var iDesign = juxtapo.templates.collection[i];
+					if (iDesign.imageUrl.toLowerCase().indexOf(q) > -1 || iDesign.paths[0].toLowerCase().indexOf(q) > -1) {
 						results.designs.push(iDesign);
 						results.indexes.push(i);
 					}
@@ -764,6 +776,8 @@ else
 			});
 			juxtapo.designVisible = true;
 			juxtapo.currentDesignView = juxtapo.designViews.opaque;
+			clearOverlayClasses();
+			$(this.overlayButton).addClass('juxtapo-overlayOpaque');			
 			return juxtapo.currentDesignView;
 		},
 		/**
@@ -776,6 +790,9 @@ else
 			});
 			juxtapo.designVisible = true;
 			juxtapo.currentDesignView = juxtapo.designViews.semiTransparent;
+			clearOverlayClasses();
+			$(this.overlayButton).addClass('juxtapo-overlaySemiTrans');			
+			return juxtapo.currentDesignView;
 		},
 		/**
 		 * @deprecated
@@ -858,7 +875,15 @@ else
 				return self;
 			};
 
-		}
+		},
+		getImageSrc: function(){
+			if (juxtapo.utils.isRelativeUrl(this.imageUrl)) {
+				return juxtapo.utils.resolveAbsoluteUrl(juxtapo.coreJsUrl(), this.imageUrl);
+			}
+			else {
+				return this.imageUrl;
+			}
+		}		
 	};
 	juxtapo.templates.TemplateItem.defaultStyles = {
 		position : 'absolute',
@@ -869,22 +894,23 @@ else
 	};
 
 })();
-
-
 (function(){
-
+	var self;
 	/**
 	 * Utils namespace which contains useful functions
 	 * @namespace
 	 */
 	juxtapo.utils = {
 		createCookie : function(name,value,days) {
+			var expires;
 			if (days) {
 				var date = new Date();
-				date.setTime(date.getTime()+(days*24*60*60*1000));
-				var expires = "; expires="+date.toGMTString();
+				date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+				expires = "; expires=" + date.toGMTString();
 			}
-			else var expires = "";
+			else {
+				expires = "";
+			}
 			document.cookie = name+"="+value+expires+"; path=/";
 			return true;
 		},
@@ -910,24 +936,26 @@ else
 		 * @param {String} ji The query string variable name
 		 */
 		getQuery : function(ji) {
-		    hu = window.location.search.substring(1);
-		    gy = hu.split("&");
-		    for (i = 0; i < gy.length; i++) {
-		        ft = gy[i].split("=");
-		        if (ft[0] == ji) {
+		    var hu = window.location.search.substring(1);
+		    var gy = hu.split("&");
+		    for (var i = 0; i < gy.length; i+=1) {
+		        var ft = gy[i].split("=");
+		        if (ft[0] === ji) {
 		            return ft[1];
 		        }
 		    }
 		    return null;
 		},
 		getJsLocation : function(jsFileName){
-			jsFileName = jsFileName.toLowerCase();
+			if (typeof jsFileName === 'string') {
+				jsFileName = new RegExp(jsFileName.toLowerCase());
+			}
 			var scriptFiles = document.getElementsByTagName("script");
-			for (var i=0;i<scriptFiles.length;i++){
+			for (var i=0;i<scriptFiles.length;i+=1){
 				var scriptTag = scriptFiles[i];
 				var scriptFileName = scriptTag.src.substring(scriptTag.src.lastIndexOf("/")+1).toLowerCase();
-				scriptFileName = scriptFileName.split("?")[0];
-				if (scriptFileName == jsFileName){
+				//scriptFileName = scriptFileName.split("?")[0];
+				if (jsFileName.test(scriptFileName)){
 					return scriptTag.src.substring(0,scriptTag.src.lastIndexOf("/")+1);
 				}
 			}
@@ -940,50 +968,63 @@ else
 				keyCode: -1,
 				shift: false
 			};
-			for (var i=0;i<items.length;i++){
+			for (var i=0;i<items.length;i+=1){
 				var itm = items[i].toLowerCase();
-				if (isNaN(parseInt(itm))){
-					ret.shift = (ret.shift || itm == "shift");
-					ret.ctrl = (ret.ctrl || itm == "ctrl");
+				if (isNaN(parseInt(itm,10))){
+					ret.shift = (ret.shift || itm === "shift");
+					ret.ctrl = (ret.ctrl || itm === "ctrl");
 				}else{
-					ret.keyCode = parseInt(itm);	
+					ret.keyCode = parseInt(itm,10);	
 				}
 			}
 			return ret;
 		},
+		htmlFromTemplate : function(template,templateData){
+			for (var dataKey in templateData){
+				if (templateData.hasOwnProperty(dataKey)){
+					var regEx = new RegExp('\\${'+ dataKey + '}','g');
+					template = template.replace(regEx,templateData[dataKey]);					
+				}
+			}
+			return template;
+		},		
 		isAbsoluteUrl : function(url) {
-		    Url = url.toLowerCase();
-		    if (Url.substr(0, 7) == "http://") { return true; }
-		    if (Url.substr(0, 6) == "ftp://") { return true; }
+		    var Url = url.toLowerCase();
+		    if (Url.substr(0, 7) === "http://") { return true; }
+		    if (Url.substr(0, 8) === "file:///") { return true; }
+		    if (Url.substr(0, 6) === "ftp://") { return true; }
 		    return false;
 		},
 		isRelativeUrl : function(url) {
-		    Url = url.toLowerCase();
-		    if (Url.substr(0, 2) == "~/") { return true; }
-		    if (Url.substr(0, 3) == "../") { return true; }
+		    var Url = url.toLowerCase();
+		    if (Url.substr(0, 2) === "~/") { return true; }
+		    if (Url.substr(0, 3) === "../") { return true; }
+		    if (Url.substr(0, 2) === "./") { return true; }
 		    return false;
 		},
 		isStaticUrl : function(url){
-		    Url = url.toLowerCase();
-		    if (Url.substr(0, 7) == "file://") { return true; }
-		    if (Url.substr(0, 6) == "ftp://") { return true; }
-			if (Url.substr(1, 1) == ":") { return true; }
+		    var Url = url.toLowerCase();
+		    if (Url.substr(0, 7) === "file://") { return true; }
+		    if (Url.substr(0, 6) === "ftp://") { return true; }
+			if (Url.substr(1, 1) === ":") { return true; }
 		    return false;			
 		},
 		objectToStructureString : function(obj,tab,level){
-			if (obj == window) return "window";
-		    if (typeof(tab)=='undefined'){tab='';}
-			if (typeof(level)=='undefined'){level=0;}
+			if (obj === window) {
+				return "window";
+			}
+		    if (typeof(tab) === 'undefined'){tab='';}
+			if (typeof(level) === 'undefined'){level=0;}
 			var newLine = "<br />";
-			var tabString = "&nbsp;&nbsp;&nbsp;&nbsp;"
+			var tabString = "&nbsp;&nbsp;&nbsp;&nbsp;";
 		    // Loop through the properties/functions
 		    var properties = '';
 		    for (var propertyName in obj) {
 		        // Check if it's NOT a function
-		        if (!(obj[propertyName] instanceof Function)) {
-		            if (typeof(obj[propertyName]) == 'object'){
+				if (!(obj[propertyName] instanceof Function)) {
+					if (typeof(obj[propertyName]) === 'object'){
 						if (level < 3){							
-		                	properties +='<li>'+propertyName+':'+newLine+juxtapo.utils.objectToStructureString(obj[propertyName],tab+tabString,level+1) + '</li>';
+							properties +='<li>'+propertyName+':'+newLine+juxtapo.utils.objectToStructureString(obj[propertyName],tab+tabString,level+1) + '</li>';
 						}
 		            }else{
 		                properties +='<li>'+propertyName+':'+obj[propertyName] + '</li>';
@@ -999,8 +1040,8 @@ else
 		        }
 		    }
 		    var sReturn = '';
-		    if (properties !=''){sReturn+='<li>Properties : <ul>' + properties + '</ul></li>';}
-		    if (functions !=''){sReturn+=newLine+tab+'<li>Functions : <ul>'+functions + '</ul></li>';}
+		    if (properties !==''){sReturn+='<li>Properties : <ul>' + properties + '</ul></li>';}
+		    if (functions !==''){sReturn+=newLine+tab+'<li>Functions : <ul>'+functions + '</ul></li>';}
 		    return '<ul>' + sReturn + '</ul>';
 		},
 		preventDefaultEventAction : function(event){
@@ -1014,10 +1055,14 @@ else
 		readCookie : function(name) {
 			var nameEQ = name + "=";
 			var ca = document.cookie.split(';');
-			for(var i=0;i < ca.length;i++) {
+			for(var i=0;i < ca.length;i+=1) {
 				var c = ca[i];
-				while (c.charAt(0)==' ') c = c.substring(1,c.length);
-				if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+				while (c.charAt(0) === ' ') {
+					c = c.substring(1, c.length);
+				}
+				if (c.indexOf(nameEQ) === 0) {
+					return c.substring(nameEQ.length, c.length);
+				}
 			}
 			return null;
 		},
@@ -1026,7 +1071,7 @@ else
 			var callBackRun = false;
 			var resourceLoaded = false;
 
-			if (url.substr(url.lastIndexOf(".")) == ".css"){
+			if (url.substr(url.lastIndexOf(".")) === ".css"){
 				var link = document.createElement('link');
 				link.setAttribute('rel','stylesheet');
 				link.setAttribute('type','text/css');
@@ -1034,22 +1079,26 @@ else
 				head.appendChild(link);
 				return link;
 
-			}else if (url.substr(url.lastIndexOf(".")) == ".js"){
+			}else if (url.substr(url.lastIndexOf(".")) === ".js"){
 				var script = document.createElement('script');
 				script.type= 'text/javascript';
-				if (typeof(callBack) != 'undefined'){
+				if (typeof(callBack) !== 'undefined'){
 					script.onreadystatechange= function () {
-					  if (this.readyState == 'complete' && !callBackRun) {
-					  	callBackRun = true;
+					  if (this.readyState === 'complete' && !callBackRun) {
+						callBackRun = true;
 						resourceLoaded = true;
-						if (typeof(callBack) != 'undefined') callBack.call(script,url);
+						if (typeof(callBack) !== 'undefined') {
+							callBack.call(script, url);
+						}
 					  }
 					};
 					script.onload = function(){
 						if (!callBackRun){
 							callBackRun = true;
 							resourceLoaded = true;
-							if (typeof(callBack) != 'undefined') callBack.call(script,url);
+							if (typeof(callBack) !== 'undefined') {
+								callBack.call(script, url);
+							}
 						}
 					};
 				}
@@ -1061,7 +1110,7 @@ else
 			return null;
 		},
 		resolveAbsoluteUrl : function(baseUrl,relativeUrl) {
-		    if (relativeUrl.substr(0, 1) == '/') {
+		    if (relativeUrl.substr(0, 1) === '/') {
 		        return baseUrl + relativeUrl; 
 		    }else if (self.isAbsoluteUrl(relativeUrl)) {
 		        return relativeUrl;
@@ -1093,14 +1142,18 @@ else
 			    return str.replace(RegEx, newChar);
 			},
 			right : function(str, n){
-			        if (n <= 0)     // Invalid bound, return blank string
-			           return "";
-			        else if (n > String(str).length)   // Invalid bound, return
-			           return str;                     // entire string
-			        else { // Valid bound, return appropriate substring
-			           var iLen = String(str).length;
-			           return String(str).substring(iLen, iLen - n);
-			        }
+			        if (n <= 0) { // Invalid bound, return blank string
+						return "";
+					}
+					else {
+						if (n > String(str).length) { // Invalid bound, return
+							return str; // entire string
+						}
+						else { // Valid bound, return appropriate substring
+							var iLen = String(str).length;
+							return String(str).substring(iLen, iLen - n);
+						}
+					}
 			},
 			rtrim : function(str, chars) {
 			    chars = chars || "\\s";
@@ -1112,30 +1165,20 @@ else
 		}
 	};
 
-	var self = juxtapo.utils;
+	self = juxtapo.utils;
 	String.prototype.juxtapoContains = function(containing){
 		return juxtapo.utils.String.contains(this,containing);
 	};
 	
 })();
-
-
-/**
- * @author david
- */
-/*
- * juxtapo.ui
- * ------------------------------------------------------------------------
- */
 /**
  * UI namespace of controls
  * @namespace
  */
 juxtapo.ui = {};
-
 (function($) {
 
-	_openDropDown = null;
+	var _openDropDown = null;
 	
 	/**
 	 * Creates a new dropDown control which puts a button in the tool strip and gives a popup
@@ -1174,14 +1217,14 @@ juxtapo.ui = {};
 
 			var self = this;
 			$(document).bind("keydown", function(e) {
-				if (self.expanded && e.which == 27) {
+				if (self.expanded && e.which === 27) {
 					self.show(false);
 					return false;
 				}
 			});
 		},
 		contentHtml : function(s) {
-			if (typeof s == "undefined") {
+			if (typeof s === "undefined") {
 				return $(this.contents).html();
 			} else {
 				$(this.contents).html(s);
@@ -1209,8 +1252,9 @@ juxtapo.ui = {};
 
 		},
 		show : function(b) {
-			if (typeof (b) == "undefined")
+			if (typeof(b) === "undefined") {
 				b = true;
+			}
 			if (b && !this.expanded) {
 				if (_openDropDown){
 					_openDropDown.show(false);
@@ -1234,7 +1278,7 @@ juxtapo.ui = {};
 			return this.expanded;
 		},
 		text : function(s) {
-			if (typeof s == "undefined") {
+			if (typeof s === "undefined") {
 				return $(this.controller).html();
 			} else {
 				$(this.controller).html(s);
@@ -1246,8 +1290,8 @@ juxtapo.ui = {};
 
 	};
 })(jQuery);
-
 (function($) {
+
 /**
  * Creates a new thumbnail control which contains a link to the page
  * a small image and the page name
@@ -1265,35 +1309,49 @@ juxtapo.ui.Thumbnail = function(designTemplate, options) {
 	this._init(designTemplate, options);
 };
 juxtapo.ui.Thumbnail.prototype = {
-	caption : null,
 	container : null,
 	designTemplate : null,
-	link : null,
-	imageContainer : null,
-	image : null,
 	settings : {},
-
+	thumbnailHtmlTemplate : '' + 
+		'  <a href="${href}" class="juxtapo-thumb-lnk">' +
+		'    <span class="juxtapo-thumb-img">' +
+		'      <img height="220" alt="design image" src="${imageSrc}">' +
+		'    </span>' +
+		'  </a>' +
+		'  <span class="juxtapo-thumb-caption">' +
+		'    <a href="${href}" tabindex="-1">' +
+		'      ${caption}' +
+		'    </a>' +
+		'  </span>',
+	
 	// methods
 	_init : function(designTemplate, options) {
 		var self = this;
 
 		self.settings = $.extend( {}, this.settings, options);
 		self.designTemplate = designTemplate;
+		
+		self.container = $('<div class="juxtapo-thumb" />')
+			.append(
+				juxtapo.utils.htmlFromTemplate(
+					this.getThumbnailHtmlTemplate(),
+					this.getThumbnailData()
+				)
+			)
+			.get(0);		
 
-		self.image = $(
-				'<img height="220" src="' + designTemplate.imageUrl + '" alt="design image" />')
-				.get(0);
-		self.imageContainer = $('<span class="juxtapo-thumb-img" />').append(
-				self.image).get(0);
-
-		self.caption = $('<span class="juxtapo-thumb-caption" />').html(
-				self.designTemplate.paths[0]).get(0);
-		self.link = $(
-				'<a class="juxtapo-thumb-lnk" style="display:block;" href="' + self.designTemplate.paths[0] + '" />')
-				.append(self.imageContainer).append(self.caption).get(0);
+		/*
+		self.image = $(self.container).find().get(0);
+		self.imageContainer = $(self.container).find('.juxtapo-thumb-img').get(0);
+		self.caption = $(self.container).find('.juxtapo-thumb-caption').get(0);
+		self.captionLink = $(self.container).find('.juxtapo-thumb-captionLink').get(0);
+		self.imageLink = $(self.container).find('.juxtapo-thumb-imageLink').get(0);
+		*/
+		/*
 		self.container = $('<li class="juxtapo-thumb" />').append(self.link)
 				.get(0);
-
+		*/
+		
 		designTemplate.setUiThumbnail(self);
 
 		/**
@@ -1303,19 +1361,72 @@ juxtapo.ui.Thumbnail.prototype = {
 		 * @param {bool} [b=true] A boolean value to determine whether to show the thumbnail 
 		 */
 		self.show = function(b) {
-			if (typeof (b) == 'undefined')
+			if (typeof(b) === 'undefined') {
 				b = true;
+			}
 			if (b) {
 				$(self.container).show();
 			} else {
-				$(self.container).show();
+				$(self.container).hide();
 			}
 		};
 
+	},
+	getImageSrc: function(){
+		return this.designTemplate.getImageSrc();
+	},
+	getLinkHref : function(url){
+		if (juxtapo.utils.isRelativeUrl(url)) {
+			return juxtapo.utils.resolveAbsoluteUrl(juxtapo.coreJsUrl(), url);
+		}
+		else {
+			return url;
+		}		
+	},
+	getThumbnailData : function(){
+		return { 
+				caption: this.designTemplate.paths[0], 
+				href: this.getLinkHref(this.designTemplate.paths[0]), 
+				imageSrc: this.getImageSrc() 
+			   };
+	},
+	getThumbnailHtmlTemplate : function(){
+		return this.thumbnailHtmlTemplate;
 	}
 };
 })(jQuery);
-
+(function(){	
+	/**
+	 * Toolbar ui control which can be added to the contents of a dropdown.
+	 * @class Represents a Toolbar control
+	 * @constructor
+	 */
+	juxtapo.ui.Toolbar = function(options){
+		this._init(options);
+	};
+	juxtapo.ui.Toolbar.prototype = {
+		_init: function(options){
+			var _self = this;
+			this.settings = $.extend({}, this.settings, options);
+		    this.toolbar$ = $('<div class="juxtapo-ui-toolbar juxtapo-cc" class="juxtapo-cc" />');
+		    this.toolbarLeft$ = $('<div class="juxtapo-ui-toolbarL juxtapo-cc" />').appendTo(_self.toolbar$);
+		    this.toolbarRight$ = $('<div class="juxtapo-ui-toolbarR juxtapo-cc" />').appendTo(_self.toolbar$);
+			this.appendTo = function(selector){
+				_self.toolbar$.appendTo(selector);
+				return _self;
+			};
+			this.appendLeft = function(html){
+				_self.toolbarLeft$.append(html);
+				return _self;
+			};
+			this.appendRight = function(html){
+				_self.toolbarRight$.append(html);
+				return _self;
+			};
+		},
+		settings : {}
+	};
+})();
 (function($) {
 /**
  * Creates a new toolbtn control
@@ -1358,8 +1469,9 @@ juxtapo.ui.ToolBtn.prototype = {
 		 * @param {bool} [b=true] A boolean value to determine whether to show the button 
 		 */
 		self.show = function(b) {
-			if (typeof (b) == 'undefined')
+			if (typeof(b) === 'undefined') {
 				b = true;
+			}
 			if (b) {
 				$(self.container).show();
 			} else {
@@ -1379,42 +1491,6 @@ juxtapo.ui.ToolBtn.prototype = {
 	}
 };
 })(jQuery);
-
-
-(function(){	
-	/**
-	 * Toolbar ui control which can be added to the contents of a dropdown.
-	 * @class Represents a Toolbar control
-	 * @constructor
-	 */
-	juxtapo.ui.Toolbar = function(options){
-		this._init(options);
-	};
-	juxtapo.ui.Toolbar.prototype = {
-		_init: function(options){
-			var _self = this;
-			this.settings = $.extend({}, this.settings, options);
-		    this.toolbar$ = $('<div class="juxtapo-ui-toolbar juxtapo-cc" class="juxtapo-cc" />');
-		    this.toolbarLeft$ = $('<div class="juxtapo-ui-toolbarL juxtapo-cc" />').appendTo(_self.toolbar$);
-		    this.toolbarRight$ = $('<div class="juxtapo-ui-toolbarR juxtapo-cc" />').appendTo(_self.toolbar$);
-			this.appendTo = function(selector){
-				_self.toolbar$.appendTo(selector);
-				return _self;
-			};
-			this.appendLeft = function(html){
-				_self.toolbarLeft$.append(html);
-				return _self;
-			};
-			this.appendRight = function(html){
-				_self.toolbarRight$.append(html);
-				return _self;
-			};
-		},
-		settings : {}
-	};
-})();
-
-
 /*
  juxtapo.thumbs
  -----------------------------------------------------------*/
@@ -1425,7 +1501,7 @@ juxtapo.ui.ToolBtn.prototype = {
     var _toolbar = new juxtapo.ui.Toolbar();
     var _$searchBox = $('<input id="juxtapo-searchDesigns" type="text" title="Search" />');
 	var _search$ = $('<label><span class="label-text">Search:</span></label>').append(_$searchBox);
-    var _$thumbsContainer = $('<ul id="juxtapo-thumbs-container" />');
+    var _$thumbsContainer = $('<div id="juxtapo-thumbs-container" />');
  
 	/**
 	 * Pop up for displaying thumbnails
@@ -1477,24 +1553,25 @@ juxtapo.ui.ToolBtn.prototype = {
             juxtapo.eh.logInfo("thumbs rendering");
             var designList;
             designList = "";
-			var windowHeight = parseInt($(window).height());
+			var windowHeight = parseInt($(window).height(),10);
 			var contentsHeight = windowHeight - 50; 
             $(_dropDown.contents)
-            	.append(_toolbar.toolbar$)
-            	.append(_$thumbsContainer);
+				.append(_toolbar.toolbar$)
+				.append(_$thumbsContainer);
             _toolbar.toolbarLeft$.append(_search$);
 			_$thumbsContainer.css("height",(contentsHeight - 39)+'px');
-            for (var i = 0; i < juxtapo.designTemplates.length; i++) {
-				var thumb = new juxtapo.ui.Thumbnail(juxtapo.designTemplates[i]);
+            for (var i = 0; i < juxtapo.templates.collection.length; i+=1) {
+				var thumb = new juxtapo.ui.Thumbnail(juxtapo.templates.collection[i]);
 				_$thumbsContainer.append(thumb.container);
             }
-            $("#juxtapo-searchDesigns").keyup(this.searchKeyup);
+            _$searchBox.keyup(this.searchKeyup);
             this.rendered = true;
             $(juxtapo.thumbs).trigger("_thumbsRendered");
         },
 		/** @private */
         searchKeyup: function(e){
-            juxtapo.templates.filterBySearch($("#juxtapo-searchDesigns").val());
+			var q = $(this).val();
+            juxtapo.templates.filterBySearch(q);
         },
 		/**
 		 * The html ul element which contains the list of thumbs
@@ -1511,8 +1588,6 @@ juxtapo.ui.ToolBtn.prototype = {
     };
     
 })();
-
-
 
 
 (function(){

@@ -1,0 +1,26 @@
+﻿.image-float-right
+{
+	float: right;
+	margin: 0 0 10px 10px;
+}
+.image-float-left
+{
+	float: left;
+	margin: 0 10px 10px 0;
+}
+
+/* Place holders */
+
+.richtext_placeholder  {
+    display: inline;
+    padding: 2px;
+    background-color: #E3E1E1;
+    border: dashed 1px black;
+}
+
+.formreplacement_placeholder {
+    padding-left: 20px;
+    background-image: url('/sitecore/shell/Themes/Standard/Business/16x16/percent.png');
+    background-position: 2px 5px;
+    background-repeat: no-repeat;
+}
