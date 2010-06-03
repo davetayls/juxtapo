@@ -1,0 +1,22 @@
+#wrapper {
+	width: auto;
+}
+	#logo img {
+		width: 100px;
+	}
+
+#content {
+	padding: 5em 5px;
+}
+#nav-primary {
+	height: auto;
+	padding-left: 87px;
+}
+	#nav-primary li a {
+		font-size: 1em;
+		letter-spacing: 0.01em;
+		padding: 3px 5px;
+	}
+	#nav-primary li.nav-selected a {
+		padding-bottom: 12px;
+	}
