@@ -11,3 +11,7 @@
 @import url("3.0_5.screen-modules.css");
 @import url("3.0_6.screen-navs.css");
 
+body {
+	background: #000 url(../images/body-bg.png) no-repeat center top;
+}
+
