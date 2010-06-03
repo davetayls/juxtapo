@@ -318,7 +318,119 @@ a.ico, a.ico span { cursor: pointer; }
 		width: 30px;
 		vertical-align: top;
 	}
+/*
+    3.0_4.screen-layouts
+    
+    Within the site all column layouts within main content areas should be modular
+    and defined here.
+    - All layouts are designed to be used with the cc class to clear the containers
+    - Layouts prefix: lay 
+    
+    A few examples/often used layouts are defined below.
+    
+*/
 
+/* 
+	lay-c2
+	General 2 equal column layout
+-------------------------------------------------------*/
+.lay-c2 {
+	margin: 0;
+	padding: 0;
+}
+	.lay-c2 .lay-c2-left,
+	.lay-c2 .lay-c2-right {
+		list-style-image: none;
+		list-style-type: none;
+		position: relative;
+		width: 49.2%;
+		zoom: 1; 
+	}
+	.lay-c2 .lay-c2-left { float: left; }
+	.lay-c2 .lay-c2-right { float: right; }
+
+/* 
+	lay-c3
+	General 3 equal column layout
+-------------------------------------------------------*/
+.lay-c3 {
+	margin: 0;
+	padding: 0;
+	position: relative;
+}
+	.lay-c3 .lay-c3-left,
+	.lay-c3 .lay-c3-mid,
+	.lay-c3 .lay-c3-right {
+		list-style-image: none;
+		list-style-type: none;
+		position: relative;
+		width: 33.2%;
+		zoom: 1; 
+	}
+	.lay-c3 .lay-c3-left,
+	.lay-c3 .lay-c3-mid { float: left; }
+	.lay-c3 .lay-c3-right { float: right; }
+
+/* 
+	lay-c2
+	General 2 equal column layout
+-------------------------------------------------------*/
+.lay-wideL {
+	margin: 0;
+	padding: 0;
+}
+	.lay-wideL .lay-wideL-left,
+	.lay-wideL .lay-wideL-right {
+		list-style-image: none;
+		list-style-type: none;
+		position: relative;
+		zoom: 1; 
+	}
+	.lay-wideL .lay-wideL-left { float: left; width: 640px; }
+	.lay-wideL .lay-wideL-right { float: right; width: 305px; }
+
+/*
+    lay-m2
+    2 Column master layout with area for content on the right
+    and navigation on the left.
+----------------------------------------------------------*/
+.lay-m2 {
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+    .lay-m2-content {
+	    position: relative;
+	    /*margin-left: 25px;*/
+	    float: right;
+	    width: 718px;
+    }
+    .lay-m2-navigation {
+	    position: relative;
+	    float: left;
+	    width: 174px;
+    }
+
+/*
+    lay-m2sub
+    2 column layout designed to fit within lay-m2-content to
+    produce a 3 column layout keeping the content at the top
+    of the page.
+----------------------------------------------------------*/
+.lay-m2sub {
+}
+    .lay-m2sub-content {
+	    position: relative;
+	    float: left;
+	    width: 502px;
+	    z-index: 2;
+    }
+    .lay-m2sub-aside {
+	    position: relative;
+	    float: right;
+	    padding-top: 11px;
+	    width: 190px;
+	    z-index: 1;
+    }
 /*@import url("3.0_5.screen-modules.css");*/
 /*@import url("3.0_6.screen-navs.css");*/
 /*
