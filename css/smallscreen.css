@@ -2,7 +2,7 @@ body {
 	background-color: #000;
 }
 #wrapper {
-	width: auto;
+	width: 480px;
 	overflow: hidden;
 }
 	#logo img {
