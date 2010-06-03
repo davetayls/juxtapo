@@ -1,26 +1,6 @@
-﻿/*
-    3.0.screen.css
-    This is the global screen stylesheet. 
-    The imports below get combined and compressed in to this file on deployment.
-*/
-/*@import url("3.0_0.screen-structure.css");*/
-/*
-    3.0_0.screen-structure
-    This style sheet contains core structural layout 
-    
-    This shouldn't contain reusable modules or components but would generally 
-    set out the chrome of the page using ids
-    
-    This would often contain the primary and secondary navigation styles but if they
-    are not specified here they should be within screen-navs
-    
-    This file should be ordered as elements appear on the page including indentation.
-    
-*/
-
-/* Layout */
+﻿/* Layout */
 body {
-	background: #000 url(../images/body-bg.png) no-repeat center top;
+	background: #000 url('../images/body-bg.png') no-repeat center top;
 }
 
 #nav-accessibility      { position: absolute; top: 0px; left: 0px; z-index: 1000; }
@@ -85,6 +65,7 @@ body {
 				background-color: #555;
 			}
 			#nav-primary li.nav-selected a {
+				background-color: #005778;
 				border-top: solid 1px #fff;
 				border-right: solid 1px #fff;
 				border-bottom: none;
@@ -108,21 +89,9 @@ body {
 	}
 
 
-/*@import url("3.0_1.screen-reusable.css");*/
 /*
-	3.0_1.screen-reusable
-	This file has two sections. 
-	
-	The first is for simple 1 or 2 line styles:	
-	- This should contain basic reusable styles.
-	- This should not contain any component or module styles
-	- The styles should be in a rough alphabetical order
-	
-	The Second is for icon definitions
-	- icon names should be in a rough alphabetical order
+	reusable
 */
-
-
 .accessibility-item,
 .accessibility-link { position:absolute; display: block; top: auto; left: -10000px; width: 1px; height: 1px; }
 .align-left         { text-align: left !important; }
@@ -159,87 +128,7 @@ body {
 }
 
 /*
-    Section for icons
---------------------------------------------------------*/
-.ico {
-    vertical-align: top;
-    margin: 0;
-    outline: none;
-    padding-left: 15px;
-    position: relative;
-    text-align: left;
-    text-decoration: none !important;
-    zoom: 1; /* this tells ie to mark the element with the hasLayout property allowing us to use the % below */
-}
-    .ico span {
-	    background-image: url(../images/sprites.png); /* ie6 override */
-	    background-repeat: no-repeat;
-	    display: block;
-	    height: 15px;
-	    left: 0;
-	    margin: -7px 0 0;
-	    padding: 0;
-	    position: absolute;
-	    text-align: left;
-	    text-indent: -9999px;
-	    top: 50% !important; /* this is overriden in ie7/6 to 49.9% */
-	    width: 15px;
-	    zoom: 1;
-    }
-	* html .ico span { background-image: url(../images/sprites.gif); top: 49.9%; } /* ie6 only */
-	*:first-child+html { top: 49.9%; } /* ie7 only */
-	
-a.ico, a.ico span { cursor: pointer; }
-
-/* example icon */
-.ico-x {
-    padding-left: 8px !important; /* approx ico width */
-}
-    .ico-x span {
-        background-position: -25px -50px; /* position within sprite */
-        height: 9px; /* exact icon height */
-        margin-top: -4px; /* tweak this to position the icon vertically with text */
-        width: 10px; /* exact icon width */
-    }
-
-/*@import url("3.0_2.screen-components.css");*/
-/*
-    3.0_2.screen-components
-    
-    - basic reusable items which are simple
-    - components cannot contain child components or modules
-    - components can use the following prefixes:
-      - cp    component
-      - cta   call to action
-      - hs    hotspot
-    
-    Component styles should be grouped together with a heading name
-    and description. Styles within each group should then appear as
-    they do in the markup including indentation.
-    
-    Component definitions should be ordered alphabetically.
-    
-    See example below. 
-    (Note: A space has been added next to * to prevent this comment block from breaking.
-    This would be removed when used)
-
-/ *
-	cp-componentName
-	Description of component
-----------------------------------------* /
-.cp-componentName {}
-	.cp-componentName-member {}
-	.cp-componentName a {}
-
-/ *
-	cp-secondComponentName
-	Description of component
-----------------------------------------* /
-.cp-secondComponentName {}
-	.cp-secondComponentName-member {}
-	.cp-secondComponentName a {}
-
-
+    components
 */
 
 /*
@@ -260,74 +149,8 @@ a.ico, a.ico span { cursor: pointer; }
 		vertical-align: top;
 	}
 
-/*@import url("3.0_3.screen-forms.css");*/
-/*@import url("3.0_4.screen-layouts.css");*/
-/*
-    3.0_2.screen-components
-    
-    - basic reusable items which are simple
-    - components cannot contain child components or modules
-    - components can use the following prefixes:
-      - cp    component
-      - cta   call to action
-      - hs    hotspot
-    
-    Component styles should be grouped together with a heading name
-    and description. Styles within each group should then appear as
-    they do in the markup including indentation.
-    
-    Component definitions should be ordered alphabetically.
-    
-    See example below. 
-    (Note: A space has been added next to * to prevent this comment block from breaking.
-    This would be removed when used)
-
-/ *
-	cp-componentName
-	Description of component
-----------------------------------------* /
-.cp-componentName {}
-	.cp-componentName-member {}
-	.cp-componentName a {}
-
-/ *
-	cp-secondComponentName
-	Description of component
-----------------------------------------* /
-.cp-secondComponentName {}
-	.cp-secondComponentName-member {}
-	.cp-secondComponentName a {}
-
-
-*/
-
-/*
-	cp-numberedPara
-	paragraph with a large floated number
-----------------------------------------*/
-.cp-numberedPara {
-	padding-top: 10px;
-	position: relative;
-}
-	.cp-numberedPara-num {
-		color:#00ADEF;
-		float: left;
-		font-size: 3em;
-		font-weight: bold;
-		line-height: 1em;
-		width: 30px;
-		vertical-align: top;
-	}
 /*
     3.0_4.screen-layouts
-    
-    Within the site all column layouts within main content areas should be modular
-    and defined here.
-    - All layouts are designed to be used with the cc class to clear the containers
-    - Layouts prefix: lay 
-    
-    A few examples/often used layouts are defined below.
-    
 */
 
 /* 
@@ -431,11 +254,8 @@ a.ico, a.ico span { cursor: pointer; }
 	    width: 190px;
 	    z-index: 1;
     }
-/*@import url("3.0_5.screen-modules.css");*/
-/*@import url("3.0_6.screen-navs.css");*/
 /*
     3.0_6.screen-navs
-    - prefix: nav
 */
 
 ul.nav-v,

@@ -2,7 +2,7 @@ body {
 	background-color: #000;
 }
 #wrapper {
-	width: 480px;
+	width: auto;
 	overflow: hidden;
 }
 	#logo img {
@@ -13,8 +13,9 @@ body {
 	padding: 5em 5px;
 }
 #nav-primary {
-	height: auto;
+	height: 48px;
 	padding-left: 87px;
+	width: 100%
 }
 	#nav-primary li a {
 		font-size: 1em;
@@ -27,5 +28,14 @@ body {
 
 
 
-	.lay-wideL .lay-wideL-left { float: none; width: auto; }
-	.lay-wideL .lay-wideL-right { float: none; width: auto; }
+	.lay-wideL .lay-wideL-left { 
+		float: none; 
+		width: auto; 
+	}
+		.lay-wideL .lay-wideL-left object,
+		.lay-wideL .lay-wideL-left embed {
+			width: 100%;
+		}
+	.lay-wideL .lay-wideL-right { 
+		float: none; width: auto; 
+	}
