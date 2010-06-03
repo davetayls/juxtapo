@@ -66,10 +66,8 @@
 		position: relative;
 		zoom: 1; 
 	}
-	@media screen and (min-width:800px){
 	.lay-wideL .lay-wideL-left { float: left; width: 640px; }
 	.lay-wideL .lay-wideL-right { float: right; width: 305px; }
-	}
 
 /*
     lay-m2

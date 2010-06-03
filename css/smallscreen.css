@@ -20,3 +20,8 @@
 	#nav-primary li.nav-selected a {
 		padding-bottom: 12px;
 	}
+
+
+
+	.lay-wideL .lay-wideL-left { float: none; width: auto; }
+	.lay-wideL .lay-wideL-right { float: none; width: auto; }

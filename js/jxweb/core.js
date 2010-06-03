@@ -1,5 +1,3 @@
 var jxweb = {};
-jxweb.ready = function(){
-	
-};
-$().ready(dt.ready);
+jxweb.ready = function(){};
+$().ready(jxweb.ready);
