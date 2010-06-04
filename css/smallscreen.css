@@ -6,11 +6,13 @@ html,body {
 	overflow: hidden;
 }
 	#logo,
-	#logo a
-	#logo img {
+	#logo a {
 		height: 40px;
-		width: 100px;
+		width: 100px;		
 	}
+		#logo img {
+			width: 100px;
+		}
 
 #content {
 	padding: 5em 5px;
