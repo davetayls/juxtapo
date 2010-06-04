@@ -5,12 +5,12 @@ html,body {
 	width: 480px;
 	overflow: hidden;
 }
-	#logo {
+	#logo,
+	#logo a
+	#logo img {
+		height: 40px;
 		width: 100px;
 	}
-		#logo img {
-			width: 100px;
-		}
 
 #content {
 	padding: 5em 5px;
