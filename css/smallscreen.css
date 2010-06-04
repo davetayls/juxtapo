@@ -1,4 +1,5 @@
 html,body {
+	background-image: none;
 	width: 480px;
 }
 #wrapper {
