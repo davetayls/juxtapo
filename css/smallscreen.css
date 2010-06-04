@@ -1,5 +1,5 @@
-body {
-	background-color: #000;
+html,body {
+	width: 480px;
 }
 #wrapper {
 	width: 480px;
