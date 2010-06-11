@@ -19,7 +19,7 @@
 		// methods
 		init : function(){
 			$(this.controller)
-				.attr({"class":"juxtapo-btn",'id':'juxtapo-controller'})
+				.attr({"class":"juxtapo-btn",'id':'juxtapo-controller','title':'Automatically refresh the page'})
 				.click(this.toggle)
 				.appendTo(juxtapo.container);
 		

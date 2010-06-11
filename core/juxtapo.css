@@ -3,7 +3,8 @@
 -----------------------------------------*/
 .juxtapo-btn {
 	background-color: white; 
-	border: solid 1px #000; 
+	border: solid 1px #000;
+	color: #000; 
 	cursor: pointer;
 	float: left; 
 	font-family: arial,helvetica,sans-serif;
@@ -51,7 +52,8 @@
 
 
 .juxtapo-dropDown {
-	border: solid 1px #000; 
+	border: solid 1px #000;
+	color: #000; 
 	position: relative; 
 	/*width: 5px;*/ 
 	height: 6px;
@@ -74,6 +76,7 @@
 	box-shadow: 0px 0px 20px #000;
 	-moz-box-shadow: 0px 0px 20px #000;
 	-webkit-box-shadow: 0px 0px 20px #000;
+	color: #000;
 	display: none;
 	font-family: Arial,sans-serif;
 	font-size: 11px; 

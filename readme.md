@@ -11,7 +11,7 @@ If you find this software useful please support it's development by
 donating at http://github.com/davetayls/juxtapo.
 
 What is juxtapo
-=========================================================
+===============
 juxtapo has two streams at the moment.
 
 1. In browser tools using javascript to assist while you're turning designs in to html\css.

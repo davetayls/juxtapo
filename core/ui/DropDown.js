@@ -105,6 +105,15 @@
 			} else {
 				$(this.controller).html(s);
 			}
+			return this;
+		},
+		title : function(s){
+			if (typeof s === "undefined") {
+				return $(this.controller).attr('title');
+			} else {
+				$(this.controller).attr('title',s);
+			}
+			return this;			
 		},
 		toggleShow : function() {
 			return this.show(!this.expanded);

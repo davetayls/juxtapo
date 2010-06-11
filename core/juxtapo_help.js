@@ -5,6 +5,7 @@
 	juxtapo.initComplete(function(){
         _dropDown = new juxtapo.ui.DropDown({style:{width:'300px'}});
         _dropDown.text("?");
+		_dropDown.title('Juxtapo help and information');
 		
 		var helpHtml = '';
 		helpHtml = '' +

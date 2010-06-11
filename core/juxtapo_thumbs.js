@@ -28,6 +28,7 @@
 			self = juxtapo.thumbs;
 			_dropDown = new juxtapo.ui.DropDown();
             _dropDown.text("+");
+			_dropDown.title('View template thumbnails');
             var thumbs = this;
 
 			/** @private */

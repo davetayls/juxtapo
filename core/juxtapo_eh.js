@@ -23,6 +23,7 @@
         
             _dropDown = new juxtapo.ui.DropDown({style:{height:'300px',width:'450px'}});
             _dropDown.text("e");
+			_dropDown.title('Error logger');
 			$(_dropDown.contents).addClass("juxtapo-errorBox");
                         
             juxtapo.eh.renderErrors();

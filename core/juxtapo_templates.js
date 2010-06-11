@@ -214,6 +214,7 @@
 			$(juxtapo.templates.overlayButton).attr("class", "juxtapo-btn");
 			juxtapo.templates.overlayButton.onclick = juxtapo.templates.toggle;
 			juxtapo.templates.overlayButton.innerHTML = "OVERLAY";
+			juxtapo.templates.overlayButton.title = 'Toggle visibility of the overlay';
 			juxtapo.container.appendChild(juxtapo.templates.overlayButton);
 			var d = juxtapo.utils.getQuery("design");
 			if (d !== null) {
