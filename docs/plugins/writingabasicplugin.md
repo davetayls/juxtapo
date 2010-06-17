@@ -69,5 +69,5 @@ The plugin namespace has a wrapper function which will create a new plugin named
 	
 ## Important Conventions
 
-* Name your file juxtapo.[name of plugin].js, eg juxtapo.views.js
+* Name your file juxtapo.name_of_plugin.js, eg juxtapo.views.js
 * Juxtapo.plg.add is the only restricted name within the plg namespace

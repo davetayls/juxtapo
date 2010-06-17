@@ -38,6 +38,25 @@ navclass: blog
 				        <div class="textRegion">
 				            {{ content }}
 				        </div>
+						<div class="mod-comments">
+							<h2>Comments</h2>
+							<div id="disqus_thread"></div>
+							<script type="text/javascript">
+							  var disqus_identifier = '{{ page.id }}';
+							  var disqus_developer = 0;
+							  var disqus_url = 'http://juxtapo.net{{ page.url }}';
+							  var disqus_title = '{{ page.title }}';						  
+							  (function() {
+							   var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+							   dsq.src = 'http://juxtapofrontendtools.disqus.com/embed.js';
+							   (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+							  })();
+							</script>
+							<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript=juxtapofrontendtools">comments powered by Disqus.</a></noscript>
+							<p>
+								<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+							</p>							
+						</div>
 				    </div>
 				    <div class="lay-wideR-left cc">
 				    	&nbsp;
@@ -79,5 +98,22 @@ navclass: blog
             </div>
             <!-- end #content -->
         </div>
+		
+		
+<script type="text/javascript">
+//<![CDATA[
+(function() {
+	var links = document.getElementsByTagName('a');
+	var query = '?';
+	for(var i = 0; i < links.length; i++) {
+	if(links[i].href.indexOf('#disqus_thread') >= 0) {
+		query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
+	}
+	}
+	document.write('<script charset="utf-8" type="text/javascript" src="http://disqus.com/forums/juxtapofrontendtools/get_num_replies.js' + query + '"></' + 'script>');
+})();
+//]]>
+</script>
+
     </body>
 </html>
