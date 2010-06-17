@@ -1,17 +1,16 @@
-html,body {
-	width: 480px;
-}
+html,body {}
 #wrapper {
-	width: 480px;
+	background: #000 url('../images/body-bg.png') no-repeat center top;
+	width: auto;
 	overflow: hidden;
 }
 	#logo,
 	#logo a {
 		height: 40px;
-		width: 100px;		
+		width: 60px;		
 	}
 		#logo img {
-			width: 100px;
+			width: 60px;
 		}
 
 #content {
@@ -20,7 +19,7 @@ html,body {
 #nav-primary {
 	height: 48px;
 	padding-left: 87px;
-	width: 480px;
+	width: 100%;
 }
 	#nav-primary li a {
 		font-size: 1em;

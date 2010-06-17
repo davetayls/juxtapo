@@ -20,7 +20,7 @@ abbr        {}
 address     { }
 body        { 
 	font-family: Arial, Helvetica, "Nimbus Sans L", "Free Sans", Sans-Serif;
-	color: #fff; 
+	color: #ddd; 
 	font-size: 0.75em;
 	
 	/* Ref: http://articles.sitepoint.com/article/eight-definitive-font-stacks/2 */
@@ -33,18 +33,21 @@ body        {
 body.acc-med	{ font-size: 0.92em; }
 body.acc-large	{ font-size: 1.1em; }
 
+code 		{ background: #333; font-size: 1.1em; padding: 0 3px; }
+pre code	{ border: dotted 1px #ccc; display: block; margin: 0 0 15px 0; padding: 10px; }
+
 dl          {}
 dt          { font-weight: bold; }
 dd          { }
 
 fieldset    {}
 
-h1          { }
-h2     		{ color: #00ADEF; font-size: 2.1em; font-weight: normal; padding-bottom: 3px; }
-h3			{ }
-h4		    { }
-h5          { }
-h6          { }
+h1          { color:#fff; font-size: 2.1em; }
+h2     		{ color: #00ADEF; font-size: 1.9em; font-weight: normal; line-height: 0.9em; padding-bottom: 5px; }
+h3			{ color:#fff; font-size: 1.2em; padding-bottom: 3px; }
+h4		    { color:#fff; padding-bottom: 3px; }
+h5          { color:#fff; padding-bottom: 3px; }
+h6          { padding-bottom: 3px; }
 
 h2 strong,
 h3 strong   { }
@@ -54,12 +57,12 @@ input {}
 
 label       { }
 li			{ line-height: 1.5em; }
-ol          { padding-top: 5px; padding-left: 23px; }
-p           { padding-bottom: 5px; line-height: 1.5em; }
+ol          { padding: 5px 0 15px 23px; }
+p           { padding-bottom: 15px; line-height: 1.5em; }
 select      { }
 strong      {}
 
-ul          { padding: 0px 0 10px 20px; }
+ul          { padding: 0px 0 15px 20px; }
 ul li       { }
 ul li li    { list-style-image: none; list-style-type: circle; }
 ul li li li { list-style-image: none; list-style-type: disc; }

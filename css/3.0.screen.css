@@ -41,12 +41,14 @@ body {
 	    z-index:5;		
 	}
 		#nav-primary ul {
-			padding-top: 3px;
+			margin: 0;
+			padding: 3px 0 0;
 		}
 		#nav-primary li {
 			display: block;
 			float: left;
 			list-style: none;
+			margin: 0;
 			padding: 0px;
 		}
 			#nav-primary li a {
@@ -64,6 +66,10 @@ body {
 			#nav-primary li a:hover {
 				background-color: #555;
 			}
+
+			#nav-primary.about li.about a,
+			#nav-primary.docs li.docs a,
+			#nav-primary.quickstart li.quickstart a,
 			#nav-primary li.nav-selected a {
 				background-color: #005778;
 				border-top: solid 1px #fff;
@@ -75,10 +81,16 @@ body {
 				padding-bottom: 44px;
 			}
 
-
+#ticks {
+	position: absolute;
+	top: 25px;
+	right: 10px;
+	width: 325px;
+}
 	
 #footer {
 	background: #202020 url(../images/footer-bg.png) repeat-x left top;
+	color: #999;
 	margin: 10px 0;
 	min-height: 140px;
 	padding: 17px;
@@ -104,6 +116,9 @@ body {
 .image-float-left	{ float: left; margin: 0 10px 10px 0px; }
 .image-float-right	{ float: right; margin: 0 0 10px 10px; }
 .tight-top          { padding-top: 0 !important; }
+.textRegion			{ border-left: dotted 1px #005778; background: rgba(0,0,0,0.1); font-size: 1.2em; padding: 15px; }
+.textRegion h1		{ font-size: 1.4em; }
+.textRegion h2		{ font-size: 1.3em; }
 
 .featureButton {
 	background:#00ADEF !important;
@@ -145,9 +160,175 @@ body {
 		font-size: 3em;
 		font-weight: bold;
 		line-height: 1em;
-		width: 30px;
+		padding-right: 10px;
+		min-width: 20px;
 		vertical-align: top;
 	}
+
+/*
+    cp-promo
+------------------------------------------------*/
+.cp-promo {}
+
+.cp-promo-carousel {
+	height: 385px;
+	width: 980px;
+}
+
+.cp-promo {
+	/*overflow: hidden;*/
+	margin: 0 0 7px;
+	padding: 0;
+}        
+    .cp-promo-carousel {
+        margin: 0;
+        overflow: auto;
+        position: relative;
+        padding: 0;
+        z-index: 1;
+    }
+		.cp-promo-carousel .cp-promo-carouselWrapper {
+			margin:0;padding:0;
+		}
+        .cp-promo-carousel .cp-promo-item {
+            overflow: hidden;
+            width: 963px;
+            overflow: hidden;
+            zoom:1;
+        }
+		.cp-promo-active .cp-promo-carousel .cp-promo-item {
+			width: 980px;
+		}
+        
+    .cp-promo-controller {
+		display: block;
+        list-style: none;
+        list-style-image: none;
+        margin: 0;
+        padding: 0px 0 10px;
+        position: relative;
+        z-index: 2;
+    }
+        .cp-promo-controller li {
+            cursor: pointer;
+            display: block;
+            float: left;
+            /*height: 33px;*/
+	        list-style: none;
+	        list-style-image: none;
+            margin: 0px;
+            overflow: hidden;
+            padding: 0;
+            /*width: 70px;*/
+        }
+		.cp-promo-controller li.nav-selected {
+			/*width: 75px;*/
+		}
+            .cp-promo-controller li a {
+            	border: solid 1px #00ADEF;
+            	border-radius: 2px;
+				-moz-border-radius: 2px;
+				-webkit-border-radius: 2px;
+                display: block;
+                float: left;
+				font-size:0.9em;
+                height: 27px;
+				line-height: 1.1em;
+                margin: 0 4px 0 0;
+                overflow: hidden;
+                padding: 8px 20px 8px 11px;
+				text-decoration:none;
+                width: 208px;
+            }
+            .cp-promo-controller li.nav-selected a,
+            .cp-promo-controller li:hover a,
+            .cp-promo-controller li a:hover {
+            	background-color: #00ADEF;
+				color: #fff;
+				/*padding-left: 4px;*/
+				/*width: 75px;*/
+            }
+			.cp-promo-controller li a * {
+				color: #fff;
+			}
+			.cp-promo-controller li a .cp-numberedPara-num {
+				line-height: 0.85em;
+			}
+    .cp-promo-play {
+        background: #fff url(../images/sprites.png) no-repeat -79px -353px;
+        bottom: 0px;
+        display: block;
+        height: 43px;
+        left: 0px;
+        list-style: none;
+        list-style-image: none;
+        margin: 0;
+        outline: none;
+        padding: 8px 3px;
+        position: absolute;
+        text-align: left;
+        /*text-indent: -9999px;*/
+        width: 53px;
+        z-index: 3;        
+    }
+        .cp-promo-play:hover,
+        .cp-promo-play:focus,
+        .cp-promo-play:active {
+            outline: none;
+        }
+    .cp-promo-paused .cp-promo-play {
+        background-position: -79px -379px;
+    }
+
+    /* customised templates */
+    .cp-promo-carousel li a.cp-promo-tRight {
+        left: auto;
+        right: 21px;
+    }
+    .cp-promo-carousel li a.cp-promo-tBlack {
+    }
+        .cp-promo-carousel li a.cp-promo-tBlack .cp-promo-top {
+            background-position: left -14px;
+            opacity: 0.75;
+            filter:Alpha(Opacity=75);
+        }    
+        .cp-promo-carousel li a.cp-promo-tBlack .cp-promo-bg {
+            background:#000;        
+            opacity: 0.75;
+            filter:Alpha(Opacity=75);
+        }    
+        .cp-promo-carousel li a.cp-promo-tBlack .cp-promo-btm {
+            background-position: left -21px;
+            opacity: 0.75;
+            filter:Alpha(Opacity=75);
+        }
+        .cp-promo-carousel li a.cp-promo-tBlack .cp-promo-cta {
+            background-position: left -28px;
+        }        
+            .cp-promo-carousel li a.cp-promo-tBlack .cp-promo-cta span {
+                background-position: right -28px;
+            }        
+
+/*
+	cp-screenShots
+-------------------------------------------------------*/
+ul.cp-screenShots {
+	display: block;
+	margin: 0;
+	padding: 0;
+}
+	ul.cp-screenShots li {
+		display: block;
+		float: left;
+		list-style: none;
+		margin: 0;
+		padding: 10px 10px 10px 0px;
+	}
+		ul.cp-screenShots li a,
+		ul.cp-screenShots li span {
+			display: block;
+		}
+
 
 /*
     3.0_4.screen-layouts
@@ -195,8 +376,8 @@ body {
 	.lay-c3 .lay-c3-right { float: right; }
 
 /* 
-	lay-c2
-	General 2 equal column layout
+	lay-wideL
+	2 column layout with a wide left column
 -------------------------------------------------------*/
 .lay-wideL {
 	margin: 0;
@@ -210,7 +391,26 @@ body {
 		zoom: 1; 
 	}
 	.lay-wideL .lay-wideL-left { float: left; width: 640px; }
-	.lay-wideL .lay-wideL-right { float: right; width: 305px; }
+	.lay-wideL .lay-wideL-right { float: right; width: 305px; padding-right: 10px; }
+
+/* 
+	lay-wideR
+	2 column layout with a wide right column
+-------------------------------------------------------*/
+.lay-wideR {
+	margin: 0;
+	padding: 0;
+}
+	.lay-wideR .lay-wideR-left,
+	.lay-wideR .lay-wideR-right {
+		list-style-image: none;
+		list-style-type: none;
+		position: relative;
+		zoom: 1; 
+	}
+	.lay-wideR .lay-wideR-left { float: left; width: 305px; }
+	.lay-wideR .lay-wideR-right { float: right; width: 640px; }
+
 
 /*
     lay-m2
@@ -254,10 +454,29 @@ body {
 	    width: 190px;
 	    z-index: 1;
     }
+	
+/*
+ * 	modules
+ */
+.mod-navSection {
+	padding: 10px 0 15px;
+}
+	
 /*
     3.0_6.screen-navs
 */
 
+ul.nav-ticks {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+	.nav-ticks li {
+		background: url(/images/tick.png) no-repeat left center;
+		font-size: 1.3em;
+		padding: 0 0 0 25px;		
+	}
+	
 ul.nav-v,
 .nav-v ul {
 	display: block;

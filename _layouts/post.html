@@ -1,0 +1,83 @@
+---
+navclass: blog
+---
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{{ page.title }}</title>
+        <meta name="description" content="Juxtapo Front End Tools, in browser tools to assist turning templates in to html and css" />
+        <link href="lib/jquery-ui/css/dark-hive/jquery-ui-1.8.custom.css" rel="stylesheet" type="text/css" />
+        <link href="/css/1.reset.css" rel="stylesheet" type="text/css" />
+        <link href="/css/2.brand.css" rel="stylesheet" type="text/css" />
+        <link href="/css/3.0.screen.css" rel="stylesheet" type="text/css" />
+        <link href="/css/smallscreen.css" media="screen and (max-device-width:600px)" rel="stylesheet" type="text/css" />
+        <link rel="shortcut icon" href="http://www.the-taylors.org/favicon.ico" />
+        <link rel="bookmark icon" href="http://www.the-taylors.org/favicon.ico" />
+        <link rel="icon" type="image/ico" href="http://www.the-taylors.org/favicon.ico" />
+        <!--[if lte IE 6]>
+            <link rel="stylesheet" type="text/css" media="all" href="css/ie6.css" />
+        <![endif]-->
+        <!--[if lte IE 8]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+        <script type="text/javascript" src="/lib/jquery-1.4.2.min.js"></script>
+        <script type="text/javascript" src="/lib/jquery-ui/js/jquery-ui-1.8.custom.min.js"></script>
+        <script type="text/javascript" src="/lib/jquery.promo.js"></script>
+        <script type="text/javascript" src="/js/jxweb.js"></script>
+        <script type="text/javascript" src="/juxtapo/core/juxtapo.js"></script>
+        <script type="text/javascript" src="/juxtapo/juxtapo.config.js"></script>
+        <meta name= "viewport" content="width=480"></head>
+    <body>
+        <div id="wrapper">
+            <div id="logo">
+                <a href="/"><img src="/images/juxtapo-logo.png" alt="juxtapo front end tools" /></a>
+            </div>
+            <div id="content">
+				<div class="lay-wideR cc">
+				    <div class="lay-wideR-right cc">
+				        <div class="textRegion">
+				            {{ content }}
+				        </div>
+				    </div>
+				    <div class="lay-wideR-left cc">
+				    	&nbsp;
+				    </div>
+				</div>				
+            </div>
+			{% include navPrimary.html %}
+			<div id="ticks">
+				<ul class="nav-ticks">
+					<li>Cross browser</li>
+					<li>Easy plugin API for your own plugins</li>
+				</ul>
+			</div>
+            <div id="footer" class="lay-c3 cc">
+                <div class="lay-c3-left cc">
+                    <h2>Help and Information</h2>
+                    <ul class="nav-v">
+                        <li>
+                            <a href="juxtapo/readme.txt">Juxtapo Readme</a>
+                        </li>
+                        <li>
+                            <a href="docs/index.html">Juxtapo API documentation</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="lay-c3-mid cc">
+                    <h2>Featured Plugins</h2>
+                    <ul class="nav-v">
+                        <li>Google Spreadsheets</li>
+                        <li>QUnit</li>
+                        <li>Views</li>
+                        <li>Info</li>
+                    </ul>
+                </div>
+                <div class="lay-c3-right cc">
+                    <h2>Juxtapo News</h2>
+					{% include newsList.html %}
+                </div>
+            </div>
+            <!-- end #content -->
+        </div>
+    </body>
+</html>

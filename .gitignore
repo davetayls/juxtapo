@@ -2,3 +2,5 @@
 *.tmp*
 /.project
 .settings*
+/Portfolio
+/_site

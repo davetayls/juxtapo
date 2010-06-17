@@ -1,131 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <title>juxtapo front end tools</title>
-        <meta name="description" content="Juxtapo Front End Tools, in browser tools to assist turning templates in to html and css" />
-        <link href="lib/jquery-ui/css/dark-hive/jquery-ui-1.8.custom.css" rel="stylesheet" type="text/css" />
-        <link href="css/1.reset.css" rel="stylesheet" type="text/css" />
-        <link href="css/2.brand.css" rel="stylesheet" type="text/css" />
-        <link href="css/3.0.screen.css" rel="stylesheet" type="text/css" />
-        <link href="css/smallscreen.css" media="screen and (max-device-width:600px)" rel="stylesheet" type="text/css" />
-        <link rel="shortcut icon" href="http://www.the-taylors.org/favicon.ico" />
-        <link rel="bookmark icon" href="http://www.the-taylors.org/favicon.ico" />
-        <link rel="icon" type="image/ico" href="http://www.the-taylors.org/favicon.ico" />
-        <!--[if lte IE 6]>
-            <link rel="stylesheet" type="text/css" media="all" href="css/ie6.css" />
-        <![endif]-->
-        <script type="text/javascript" src="lib/jquery-1.4.2.min.js">
-        </script>
-        <script type="text/javascript" src="lib/jquery-ui/js/jquery-ui-1.8.custom.min.js">
-        </script>
-        <script type="text/javascript" src="js/jxweb.js">
-        </script>
-		<!--
-        <script type="text/javascript" src="juxtapo/core/juxtapo.js">
-        </script>
-        <script type="text/javascript" src="juxtapo/juxtapo.config.js">
-        </script>-->
-    </head>
-    <body>
-        <div id="wrapper">
-            <div id="logo">
-                <a href="index.html"><img src="images/juxtapo-logo.png" alt="juxtapo front end tools" /></a>
+---
+layout: default
+title: Juxtapo Front End Tools
+---
+<div class="cp-promo">
+    <ul class="cp-promo-controller cc">
+        <li>
+            <a href="#s1"><span class="cp-numberedPara-num">1 </span>What is juxtapo</a>
+        </li>
+        <li>
+            <a href="#s2"><span class="cp-numberedPara-num">2 </span>Download<br/>and install</a>
+        </li>
+        <li>
+            <a href="#s3"><span class="cp-numberedPara-num">3 </span>Plugins<br/>to enhance your productivity</a>
+        </li>
+        <li>
+            <a href="#s4"><span class="cp-numberedPara-num">4 </span>Contribute<br/>to the community</a>
+        </li>
+    </ul>
+    <div class="cp-promo-carousel cc">
+        <div class="cp-promo-carouselWrapper cc">
+            <div id="s1" class="cp-promo-item cc">
+            	{% include whatisjuxtapo.html %}
             </div>
-            <div id="content">
-			<!--
-                <div class="lay-wideL cc">
-                    <div class="lay-wideL-right cc">
-                        <h2>What is juxtapo?</h2>
-                        <p>
-                            Use Juxtapo on this site using the controller at the bottom left of the screen.
-                        </p>
-                        <p class="cp-numberedPara cc">
-                            <span class="cp-numberedPara-num">1 </span>In-browser tools using JavaScript to assist while you're turning designs in to html/css
-                        </p>
-                        <p>
-                            The core library is designed to be basic and fast to get up and running.
-                        </p>
-                        <ul>
-                            <li>
-                                Overlays
-                            </li>
-                            <li>
-                                Keyboard nudging
-                            </li>
-                            <li>
-                                Page auto refresh
-                            </li>
-                        </ul>
-                        <p class="cp-numberedPara">
-                            <span class="cp-numberedPara-num">2 </span>
-                            A simple <a href="docs/index.html">plugin API</a>
-                            which allows for any developer to extend the core functionality.
-                        </p>
-                        <p>
-                            <a href="http://github.com/downloads/davetayls/juxtapo/juxtapo-v0.7.zip" class="featureButton featureBlock">Download latest version 0.7</a>
-                        </p>
-                    </div>
-                    <div class="lay-wideL-left cc">
-                        <object width="640" height="505" type="application/x-shockwave-flash">
-                            <param name="wmode" value="transparent"></param>
-							<param name="movie" value="http://www.youtube.com/v/no6InlWVSUo&mp;hl=en_GB&amp;fs=1&amp;color1=0x006699&amp;color2=0x54abd6"></param>
-							<param name="allowFullScreen" value="true"></param>
-							<param name="allowscriptaccess" value="always"></param>
-                            <embed src="http://www.youtube.com/v/no6InlWVSUo&amp;hl=en_GB&amp;fs=1&amp;color1=0x006699&amp;color2=0x54abd6" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="640" height="505" wmode="transparent">
-                            </embed>
-                            </object>
-                        </div>
-                    </div>
-                </div>
-				-->
-                <div id="xnav-primary">
-                    <ul>
-                        <li>
-                            <a class="featureButton" href="http://github.com/downloads/davetayls/juxtapo/juxtapo-v0.7.zip">Download here</a>
-                        </li>
-                        <li class="nav-selected">
-                            <a href="index.htm">Quickstart</a>
-                        </li>
-                        <li>
-                            <a href="docs/index.html">Documentation</a>
-                        </li>
-                    </ul>
-                </div>
-				<!--
-                <div id="footer" class="lay-c3 cc">
-                    <div class="lay-c3-left cc">
-                        <h2>Help and Information</h2>
-                        <ul class="nav-v">
-                            <li>
-                                <a href="juxtapo/readme.txt">Juxtapo Readme</a>
-                            </li>
-                            <li>
-                                <a href="docs/index.html">Juxtapo API documentation</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="lay-c3-mid cc">
-                        <h2>Featured Plugins</h2>
-                        <ul class="nav-v">
-                            <li>
-                                Google Spreadsheets
-                            </li>
-                            <li>
-                                QUnit
-                            </li>
-                            <li>
-                                Views
-                            </li>
-                            <li>
-                                Info
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="lay-c3-right cc">
-                        <h2>Juxtapo News</h2>
-                    </div>
-				-->
-                </div> <!-- end #content -->
+            <div id="s2" class="cp-promo-item">
+                {% include download.html %}
             </div>
-        </body>
-    </html>
+            <div id="s3" class="cp-promo-item">
+            	{% include plugins.html %}
+            </div>
+            <div id="s4" class="cp-promo-item">
+            	{% include contribute.html %}
+            </div>
+        </div>
+    </div>
+</div>

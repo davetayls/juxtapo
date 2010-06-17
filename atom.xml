@@ -1,0 +1,27 @@
+---
+layout: nil
+---
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+ 
+ <title>Juxtapo Front End Tools</title>
+ <link href="http://juxtapo.net/atom.xml" rel="self"/>
+ <link href="http://juxtapo.net/"/>
+ <updated>{{ site.time | date_to_xmlschema }}</updated>
+ <id>http://juxtapo.net/</id>
+ <author>
+   <name>David Taylor</name>
+   <email>dave@the-taylors.org</email>
+ </author>
+
+ {% for post in site.posts %}
+ <entry>
+   <title>{{ post.title }}</title>
+   <link href="http://juxtapo.net{{ post.url }}"/>
+   <updated>{{ post.date | date_to_xmlschema }}</updated>
+   <id>http://juxtapo.net{{ post.id }}</id>
+   <content type="html">{{ post.content | xml_escape }}</content>
+ </entry>
+ {% endfor %}
+ 
+</feed>
