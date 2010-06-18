@@ -1,9 +1,7 @@
 ---
 layout: post
 title: Juxtapo website underway
+categories: releases
 ---
-
-{{ page.title }}
-================
 
 The juxtapo website is being built

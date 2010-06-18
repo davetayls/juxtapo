@@ -36,8 +36,31 @@ navclass: docs
 				<div class="lay-wideR cc">
 				    <div class="lay-wideR-right cc">
 				        <div class="textRegion">
+				        	<h1>{{ page.title }}</h1>
 				            {{ content }}
 				        </div>
+						{% if page.comments != 'hide' %}
+						<div class="mod-comments">
+							<h2>Comments</h2>
+							<div id="disqus_thread"></div>
+							<script type="text/javascript">
+							  {% if page.id %}
+							  var disqus_identifier = '{{ page.id }}';
+							  {% endif %}
+							  var disqus_developer = 1;
+							  var disqus_title = '{{ page.title }}';						  
+							  (function() {
+							   var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+							   dsq.src = 'http://juxtapofrontendtools.disqus.com/embed.js';
+							   (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+							  })();
+							</script>
+							<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript=juxtapofrontendtools">comments powered by Disqus.</a></noscript>
+							<p class="cp-disclaimerText">
+								<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+							</p>							
+						</div>
+						{% endif %}
 				    </div>
 				    <div class="lay-wideR-left cc">
 				    	<div class="mod-navSection">

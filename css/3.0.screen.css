@@ -33,7 +33,7 @@ body {
 	#nav-primary {
 		background: #000;
 		border-bottom: solid 1px #fff;
-		/*height: 97px;*/
+		min-height: 97px;
 	    left:0px;
 		padding: 0 27px 0 227px;
 	    position:absolute;
@@ -84,8 +84,8 @@ body {
 #ticks {
 	position: absolute;
 	top: 25px;
-	right: 10px;
-	width: 325px;
+	right: 0px;
+	width: 305px;
 }
 	
 #footer {
@@ -146,6 +146,14 @@ body {
     components
 */
 
+/*
+ * cp-disclaimerText
+ * reduces the size of the font and makes it italics
+ */
+.cp-disclaimerText {
+	font-size: 0.7em;
+	font-style: italic;
+}
 /*
 	cp-numberedPara
 	paragraph with a large floated number
@@ -460,7 +468,7 @@ ul.cp-screenShots {
  */
 .mod-comments {
 	border-left: dotted 1px #005778; 
-	background: rgba(0,0,0,0.1); 
+	background: rgba(255,255,255,0.1); 
 	font-size: 1.2em;
 	margin: 10px 0; 
 	padding: 15px; 	

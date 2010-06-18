@@ -36,14 +36,16 @@ navclass: blog
 				<div class="lay-wideR cc">
 				    <div class="lay-wideR-right cc">
 				        <div class="textRegion">
+				        	<h1>{{ page.title }}</h1>
 				            {{ content }}
 				        </div>
+						{% if page.comments != 'hide' %}
 						<div class="mod-comments">
 							<h2>Comments</h2>
 							<div id="disqus_thread"></div>
 							<script type="text/javascript">
 							  var disqus_identifier = '{{ page.id }}';
-							  var disqus_developer = 0;
+							  var disqus_developer = 1;
 							  var disqus_url = 'http://juxtapo.net{{ page.url }}';
 							  var disqus_title = '{{ page.title }}';						  
 							  (function() {
@@ -53,13 +55,19 @@ navclass: blog
 							  })();
 							</script>
 							<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript=juxtapofrontendtools">comments powered by Disqus.</a></noscript>
-							<p>
+							<p class="cp-disclaimerText">
 								<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
 							</p>							
 						</div>
+						{% endif %}
 				    </div>
 				    <div class="lay-wideR-left cc">
-				    	&nbsp;
+				    	<h2>Categories</h2>
+						<ul>
+							<li>
+								<a href="/blog/category/releases">Releases</a>
+							</li>
+						</ul>
 				    </div>
 				</div>				
             </div>

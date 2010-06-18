@@ -42,8 +42,8 @@ dd          { }
 
 fieldset    {}
 
-h1          { color:#fff; font-size: 2.1em; }
-h2     		{ color: #00ADEF; font-size: 1.9em; font-weight: normal; line-height: 0.9em; padding-bottom: 5px; }
+h1          { color:#fff; font-size: 2.1em; padding: 8px 0 6px; }
+h2     		{ color: #00ADEF; font-size: 1.9em; font-weight: normal; line-height: 0.9em; padding: 3px 0 4px; }
 h3			{ color:#fff; font-size: 1.2em; padding-bottom: 3px; }
 h4		    { color:#fff; padding-bottom: 3px; }
 h5          { color:#fff; padding-bottom: 3px; }
