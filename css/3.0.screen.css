@@ -119,6 +119,7 @@ body {
 .textRegion			{ border-left: dotted 1px #005778; background: rgba(0,0,0,0.1); font-size: 1.2em; padding: 15px; }
 .textRegion h1		{ font-size: 1.4em; }
 .textRegion h2		{ font-size: 1.3em; }
+.textRegion p		{ padding-bottom: 15px; }
 
 .featureButton {
 	background:#00ADEF !important;

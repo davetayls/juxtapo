@@ -3,9 +3,6 @@ layout: docs
 title: Writing a Basic Plugin
 ---
 
-{{ page.title }}
-================
-
 Juxtapo plugins generally initiate themselves as Juxtapo does and extend the core functionality. An example of this is the QUnit plugin
 which allows the developer to link a number of unit tests to a particular template. It hooks in to the API and once juxtapo has
 initialised looks up the current template and runs the tests.

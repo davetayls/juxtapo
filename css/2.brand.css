@@ -58,7 +58,7 @@ input {}
 label       { }
 li			{ line-height: 1.5em; }
 ol          { padding: 5px 0 15px 23px; }
-p           { padding-bottom: 15px; line-height: 1.5em; }
+p           { padding-bottom: 5px; line-height: 1.5em; }
 select      { }
 strong      {}
 

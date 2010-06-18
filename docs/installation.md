@@ -1,10 +1,8 @@
 ---
 layout: docs
-title: Juxtapo Installation and Setup
+title: Front End Tools Installation and Setup
 ---
 
-Front End Tools: Installation and Setup
-=======================================
 Juxtapo is designed to be as simple as possible to integrate and use.
 If you have any issues with installation please contact us.
 
