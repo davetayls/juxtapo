@@ -37,6 +37,12 @@ navclass: blog
 				    <div class="lay-wideR-right cc">
 				        <div class="textRegion">
 				        	<h1>{{ page.title }}</h1>
+							<p>
+								{{ page.date | date:"%d %b %Y" }}
+								{% if page.author %}
+								 by {{ page.author }}
+								{% endif %}
+							</p>
 				            {{ content }}
 				        </div>
 						{% if page.comments != 'hide' %}
