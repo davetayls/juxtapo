@@ -41,25 +41,18 @@
             </div>
 			{% include navPrimary.html %}
 			<div id="ticks">
-				<ul class="nav-ticks">
-					<li>Cross browser</li>
-					<li>Easy plugin API for your own plugins</li>
-				</ul>
+				{% include sharelinks-short.html %}
 			</div>
             <div id="footer" class="lay-c3 cc">
                 <div class="lay-c3-left cc">
-                    <h2>Help and Information</h2>
-                    <ul class="nav-v">
-                        <li>
-							<img src="/images/feed-icon-12x12-orange.gif" alt="" />
-							<a href="http://feeds.feedburner.com/juxtapo">
-								Subscribe here (atom)
-							</a>
-                        </li>
-                        <li>
-                            <a href="docs/index.html">Juxtapo API documentation</a>
-                        </li>
-                    </ul>
+                    <h2>Juxtapo News</h2>
+                    <p>
+						<img src="/images/feed-icon-12x12-orange.gif" alt="" />
+						<a href="http://feeds.feedburner.com/juxtapo">
+							Subscribe to the Juxtapo Blog
+						</a>
+                    </p>
+					{% include newsList.html %}
                 </div>
                 <div class="lay-c3-mid cc">
                     <h2>Featured Plugins</h2>
@@ -71,8 +64,18 @@
                     </ul>
                 </div>
                 <div class="lay-c3-right cc">
-                    <h2>Juxtapo News</h2>
-					{% include newsList.html %}
+                    <h2>Help and Information</h2>
+                    <ul class="nav-v">
+                        <li>
+							<img src="/images/feed-icon-12x12-orange.gif" alt="" />
+							<a href="http://feeds.feedburner.com/juxtapo">
+								Subscribe to the Juxtapo Blog
+							</a>
+                        </li>
+						<li>
+							<a href="/about">About Juxtapo</a>
+						</li>
+                    </ul>
                 </div>
             </div>
             <!-- end #content -->

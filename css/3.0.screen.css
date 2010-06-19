@@ -83,10 +83,13 @@ body {
 
 #ticks {
 	position: absolute;
-	top: 25px;
+	top: 12px;
 	right: 0px;
-	width: 305px;
+	width: 230px;
 }
+	#ticks .cp-shareLinks {
+		float: right;
+	}
 	
 #footer {
 	background: #202020 url(../images/footer-bg.png) repeat-x left top;
@@ -155,6 +158,21 @@ body {
 	font-size: 0.7em;
 	font-style: italic;
 }
+
+/*
+	cp-icons
+	inline icons and contributors links
+----------------------------------------*/
+li.cp-contributor {
+	background: #fff;
+	padding: 4px !important;
+}
+	.cp-contributor h3 {
+		color: #000;
+	}
+	.cp-contributor-icons * {
+		vertical-align: middle;
+	}
 /*
 	cp-numberedPara
 	paragraph with a large floated number
