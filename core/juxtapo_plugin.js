@@ -31,6 +31,10 @@ juxtapo.Plugin.prototype = {
 			this.initComplete = true;
 			this.onInitCompleted();
 			return true;
+		}else{
+			this.initComplete = true;
+			this.onInitCompleted();
+			return true;			
 		}
 	},
 	initComplete :false,

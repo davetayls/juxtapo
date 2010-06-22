@@ -12,6 +12,13 @@ juxtapo.setDefaultStyles({
 	'margin-left' : '-375px'
 });
 
+juxtapo.addPlugins([
+	'../plugins/juxtapo.qunit/juxtapo.qunit.js',
+	'../plugins/juxtapo.designInfo/juxtapo.designInfo.js',
+	'../plugins/juxtapo.views/juxtapo.views.js',
+	'../plugins/juxtapo.gspreadsheet/juxtapo.gspreadsheet.js'
+]);
+
 juxtapo.initConfig(function(){
     module("core initConfig");
     var t = juxtapo.addTemplate("test.htm", "test.png", {});
@@ -30,6 +37,7 @@ juxtapo.initConfig(function(){
 			"Passing a TemplateItem in to addTemplate"
 		);
         equals(juxtapo.templates.collection.length, 6, "There should be 6 templates")
+		juxtapo.plg.gspreadsheet.addTemplates('0AqWXkD93Jmy2dHpmcjhfeUdkQ2laVWUyX1RrSzFWOWc');
     });	
 });          
 juxtapo.initComplete(function(){
@@ -200,5 +208,14 @@ test('Example plugins',function(){
 	ok(
 		typeof juxtapo.plg.designInfo.setInfo === 'function',
 		'designInfo setInfo function accessible'
+	);
+	ok(
+		juxtapo.plg.gspreadsheet,
+		'gspreadsheet plugin added'
+	);
+	equals(
+		juxtapo.plg.gspreadsheet.initComplete,
+		true,
+		'The gspreadsheet plugin should have initComplete set to true'
 	);
 });
