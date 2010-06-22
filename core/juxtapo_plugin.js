@@ -17,10 +17,13 @@ juxtapo.Plugin = function(settings){
 	$.extend(this,{},extendObject);
 };
 juxtapo.Plugin.prototype = {
-	_init: function(){
-		if (typeof this.init === 'function'){
+	init: function(){
+		if (this.initComplete){
+			return true;
+		}
+		if (typeof this._init === 'function'){
 			try {
-				this.init.call(this);				
+				this._init.call(this);				
 			}catch(ex){
 				juxtapo.eh.logError(ex);
 				return false;

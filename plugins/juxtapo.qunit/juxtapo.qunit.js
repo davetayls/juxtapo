@@ -16,11 +16,11 @@ var resourcesLoaded = 0;
 var _qunitHtml = document.createElement('div');
 _qunitHtml.innerHTML = '<h2 id="qunit-header">test suite</h2><h3 id="qunit-banner"></h3><h3 id="qunit-userAgent"></h3><ol id="qunit-tests"></ol>';
 
-juxtapo.plugins.qunit = new juxtapo.Plugin({
+juxtapo.plg.qunit = new juxtapo.Plugin({
 	dropDown: function(){
 		return _dropDown;
 	},
-	init: function(){
+	_init: function(){
 		if (typeof(QUnit) != 'undefined') {
 			_dropDown = new juxtapo.ui.DropDown({
 				style: {

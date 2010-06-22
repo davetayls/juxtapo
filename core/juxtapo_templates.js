@@ -405,7 +405,13 @@
 		_init : function(imageUrl, paths, settings){
 			var self = this;
 			self.imageUrl = imageUrl;
-			self.paths = paths;
+			if (typeof paths === 'object' && paths.constructor === Array){
+				self.paths = paths;
+			}else if (typeof paths === 'string'){
+				self.paths = [paths];				
+			}else{
+				throw new juxtapo.eh.Exception('Cannot initiate this TemplateItem, valid paths can be a string or array of strings');
+			}
 			self.settings = $.extend( {}, juxtapo.templates.TemplateItem.prototype.settings, settings);
 
 			/**

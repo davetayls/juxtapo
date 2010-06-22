@@ -115,6 +115,12 @@ juxtapo.initComplete(function(){
 		ok(
 			juxtapo.utils.isAbsoluteUrl(t.getImageSrc()) === true,
 			'New image src for the TemplateItem should be an absolute path');
+		same(
+			t.paths.constructor,
+			Array,
+			'TemplateItem paths is an array'
+		);
+		
 		var thumb = new juxtapo.ui.Thumbnail(t);
 		same(
 			t.thumbnail,

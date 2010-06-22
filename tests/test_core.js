@@ -18,8 +18,8 @@ juxtapo.initConfig(function(){
     test("addTemplate", function(){
         var expected = new juxtapo.templates.TemplateItem("test.png", ["test.htm"], {});
         equals(t.imageUrl, expected.imageUrl, "We should have a new template");
-        juxtapo.addTemplate("../../tests/TestSuite-plugins.html", "../../tests/test2.png", {});
-        juxtapo.addTemplate("test3.htm", "../../tests/test3.png", {});
+        juxtapo.addTemplate("../tests/TestSuite-plugins.html", "../tests/test2.png", {});
+        juxtapo.addTemplate("test3.htm", "../tests/test3.png", {});
         ok(
 			juxtapo.addTemplate(['ThreeResults.htm','path2.htm'], "../../tests/item.png", {}) instanceof juxtapo.templates.TemplateItem,
 			"Can add an array of paths to add a template"
@@ -55,6 +55,7 @@ juxtapo.initComplete(function(){
 module('core');
 test("core properties",function(){
 	ok(juxtapo.coreJsUrl(),'finds url with coreJsUrl()');
+	ok(juxtapo.utils.isAbsoluteUrl(juxtapo.coreJsUrl())===true,'coreJsUrl is an absolute url');
 	if (juxtapo.utils.getQuery('status')){
 		same(juxtapo.currentDesignView,juxtapo.designViews.hidden,'juxtapo.currentDesignView matches juxtapo.designViews.hidden');		
 		same(juxtapo.currentStatus,juxtapo.statuses.play,'juxtapo.currentStatus matches juxtapo.statuses.off');
@@ -69,11 +70,11 @@ module('Plugin');
 test('Add Basic Plugin',function(){
 	ok(juxtapo.Plugin,'Plugin constructor has been added');
 	ok(
-		juxtapo.plugins.testPlugin = new juxtapo.Plugin(),
-		'Create new instance of juxtapo.Plugin and add to juxtapo.plugins.testPlugin'
+		juxtapo.plg.testPlugin = new juxtapo.Plugin(),
+		'Create new instance of juxtapo.Plugin and add to juxtapo.plg.testPlugin'
 	);
 	equals(
-		juxtapo.plugins.testPlugin instanceof juxtapo.Plugin,
+		juxtapo.plg.testPlugin instanceof juxtapo.Plugin,
 		true,
 		'The newly created plugin should be an instanceof juxtapo.Plugin'
 	);
@@ -90,7 +91,7 @@ test('Instantiate a Plugin with an object',function(){
 	var pluginPassingObject;
 	ok(
 		pluginPassingObject = new juxtapo.Plugin({
-			init: function(){
+			_init: function(){
 				this.publicVar = 'changed';
 			},
 			publicVar: 'public'
@@ -98,9 +99,9 @@ test('Instantiate a Plugin with an object',function(){
 		'Create a new plugin giving it an object of properties'
 	);
 	equals(
-		typeof pluginPassingObject.init,
+		typeof pluginPassingObject._init,
 		'function',
-		'The new plugin should have an init function'
+		'The new plugin should have an _init function'
 	);
 	equals(
 		pluginPassingObject.publicVar,
@@ -111,7 +112,7 @@ test('Instantiate a Plugin with an object',function(){
 		this.handledInitCompleted = true;
 	});
 	equals(
-		pluginPassingObject._init(),
+		pluginPassingObject.init(),
 		true,
 		'Initialising the plugin should return true'
 	);
@@ -136,7 +137,7 @@ test('Instantiate a Plugin with a function',function(){
 	ok(
 		pluginPassingFunction = new juxtapo.Plugin(function(){
 			return {
-				init: function(){
+				_init: function(){
 					this.publicVar = 'changed';
 				},
 				publicVar: 'public'
@@ -145,9 +146,9 @@ test('Instantiate a Plugin with a function',function(){
 		'Create a new plugin giving it an object of properties'
 	);
 	equals(
-		typeof pluginPassingFunction.init,
+		typeof pluginPassingFunction._init,
 		'function',
-		'The new plugin should have an init function'
+		'The new plugin should have an _init function'
 	);
 	equals(
 		pluginPassingFunction.publicVar,
@@ -158,7 +159,7 @@ test('Instantiate a Plugin with a function',function(){
 		this.handledInitCompleted = true;
 	});
 	equals(
-		pluginPassingFunction._init(),
+		pluginPassingFunction.init(),
 		true,
 		'Initialising the plugin should return true'
 	);
@@ -180,11 +181,24 @@ test('Instantiate a Plugin with a function',function(){
 });
 test('Example plugins',function(){
 	ok(
-		juxtapo.plugins.qunit,
+		juxtapo.plg.qunit,
 		'qunit plugin added'
 	);
 	ok(
-		juxtapo.plugins.qunit.dropDown() instanceof juxtapo.ui.DropDown,
+		juxtapo.plg.qunit.dropDown() instanceof juxtapo.ui.DropDown,
 		'qunit plugin dropdown has been initialised'
+	);
+	equals(
+		juxtapo.plg.qunit.initComplete,
+		true,
+		'The qunit plugin should have initComplete set to true'
+	);
+	ok(
+		juxtapo.plg.designInfo,
+		'designInfo plugin added'
+	);
+	ok(
+		typeof juxtapo.plg.designInfo.setInfo === 'function',
+		'designInfo setInfo function accessible'
 	);
 });

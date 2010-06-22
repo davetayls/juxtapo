@@ -1,9 +1,8 @@
 ﻿/*
  *	Adds on design info functionality 
  */
-(function() {
-
-    juxtapo.initComplete(function() {
+juxtapo.plg.designInfo = new juxtapo.Plugin({
+	_init: function(){
         var info = new juxtapo.ui.DropDown({style:{height: '150px',width:'300px'}});
         var $design = $(juxtapo.templates.overlayImageElement());
 		
@@ -17,11 +16,11 @@
 			
             info.contentHtml(infoText);			
 		};
+		this.setInfo = setInfo;
         info.text('info');
 		setInfo();		
         juxtapo.templates.overlayImagePositionChanged(function(img, oldPos, newPos) {
 			setInfo();
         });
-    });
-
-})();
+	}
+});

@@ -3,7 +3,7 @@ var juxtapo;
 (function($){
 
     /* private */
-	var _coreJsUrl = '';
+    var _coreJsUrl = '';
     
     // Methods
     var addResources = function(){
@@ -16,16 +16,16 @@ var juxtapo;
         $(juxtapo.container).attr("id", "juxtapo-container");
         $("body").append(juxtapo.container);
     };
-	var initPlugins = function(){
-		for (var key in juxtapo.plugins){
-			if (juxtapo.plugins.hasOwnProperty(key)){
-				var plugin = juxtapo.plugins[key];
-				if (typeof plugin.init === 'function'){
-					plugin.init();
-				}				
-			}
-		}
-	};
+    var initPlugins = function(){
+        for (var key in juxtapo.plg) {
+            if (juxtapo.plg.hasOwnProperty(key)) {
+                var plugin = juxtapo.plg[key];
+                if (typeof plugin.init === 'function') {
+                    plugin.init();
+                }
+            }
+        }
+    };
     var initStatus = function(){
         // get current status
         var s = juxtapo.utils.getQuery("status");
@@ -46,36 +46,36 @@ var juxtapo;
     };
     
     /* public */
-	/**
-	 * the juxtapo root namespace
-	 * @namespace
-	 * @name juxtapo
+    /**
+     * the juxtapo root namespace
+     * @namespace
+     * @name juxtapo
      * @property {HtmlElement} container The div element containing the juxtapo tools
      * @property {juxtapo.designViews} currentDesignView The enum signifying the visibility of the current overlay
      * @property {juxtapo.statuses} currentStatus The enum specifying the auto refresh state
      * @property {bool} designVisible Set to true if the current design is semiTransparent or completely visible
-     * @property {Object} plugins The namespace for adding plugin specific public methods/properties
+     * @property {Object} plg The namespace for adding plugin specific public methods/properties
      * @property {Object} globalSettings A global namespace for public methods/properties
-	 */
+     */
     juxtapo = {
-		version : '@JUXTAPO_VERSION',
-		/**
-		 * The various states the auto refresh can be in
-		 * @constant
-		 * @default pause:2
-		 * @field
-		 * @type Object {off,play,pause}
-		 */
+        version: '@JUXTAPO_VERSION',
+        /**
+         * The various states the auto refresh can be in
+         * @constant
+         * @default pause:2
+         * @field
+         * @type Object {off,play,pause}
+         */
         statuses: {
             off: 0,
             play: 1,
             pause: 2
         },
-		/**
-		 * The states to choose the transparency of the design
-		 * @constant
-		 * @type Object {hidden,semiTransparent,opaque}
-		 */
+        /**
+         * The states to choose the transparency of the design
+         * @constant
+         * @type Object {hidden,semiTransparent,opaque}
+         */
         designViews: {
             hidden: 0,
             semiTransparent: 1,
@@ -88,23 +88,27 @@ var juxtapo;
         currentDesignView: 0,
         currentStatus: 2,
         designVisible: false,
-        plugins : {}, // convention for adding plugin specific functionality
-		globalSettings:{},
+        plg: {}, // convention for adding plugin specific functionality
+        globalSettings: {},
         coreJsUrl: function(){
-	        if (_coreJsUrl === '') {
-				_coreJsUrl = juxtapo.utils.getJsLocation(/juxtapo(\.dev)*\.js/);
-			}
-			return _coreJsUrl;
-		},
+            if (_coreJsUrl === '') {
+                _coreJsUrl = juxtapo.utils.getJsLocation(/juxtapo(\.dev)*\.js/);
+				if (!juxtapo.utils.isAbsoluteUrl(_coreJsUrl)){
+					_coreJsUrl = juxtapo.utils.resolveAbsoluteUrl(window.location.href,_coreJsUrl);
+					juxtapo.eh.logInfo('coreJsUrl: '+_coreJsUrl);
+				}
+            }
+            return _coreJsUrl;
+        },
         
         // methods
-		/**
-		 * Initialises juxtapo
-		 * @private
-		 */
+        /**
+         * Initialises juxtapo
+         * @private
+         */
         init: function(){
             addResources();
-			onInitConfig();
+            onInitConfig();
             initStatus();
             
             // init if not turned off
@@ -115,79 +119,80 @@ var juxtapo;
             }
             juxtapo.eh.init();
             juxtapo.thumbs.init();
-                        
-			initPlugins();			
+            
+            initPlugins();
             onInitComplete();
         },
-		/**
-		 * Adds plugin files to juxtapo
-		 * @param {Object} pluginPaths An array of paths to plugins relative to the juxtapo.js
-		 * @example
-		 * juxtapo.addPlugins(['../plugins/juxtapo.views.js']);
-		 */
-        addPlugins : function(pluginPaths){
-			for (var i=0;i<pluginPaths.length;i+=1){
-				var jsLoc = juxtapo.utils.resolveAbsoluteUrl(juxtapo.coreJsUrl(),pluginPaths[i]);
-				document.write("<script type=\"text/javascript\" src=\"" + jsLoc + "\"></script>");
-			}
-		},
+        /**
+         * Adds plugin files to juxtapo
+         * @param {Object} pluginPaths An array of paths to plugins relative to the juxtapo.js
+         * @example
+         * juxtapo.addPlugins(['../plugins/juxtapo.views.js']);
+         */
+        addPlugins: function(pluginPaths){
+            for (var i = 0; i < pluginPaths.length; i += 1) {
+                var jsLoc = juxtapo.utils.resolveAbsoluteUrl(juxtapo.coreJsUrl(), pluginPaths[i]);
+                document.write("<script type=\"text/javascript\" src=\"" + jsLoc + "\"></script>");
+            }
+        },
         /**
          * Adds a juxtapo.templates.TemplateItem object to the juxtapo.templates.collection
          * array
          *
-         * @param {String}
-         *            imageUrl
-         * @param {Array}
-         *            paths An array of urls to match this image with
-         * @param {Object}
+         * @param path {Array}
+         *             A string or an array of urls to match this image with
+         * @param imageUrl {String}
+         *
+         * @param settings {Object}
          *            Object with the following settings
          *            - style: A set of key:value pairs to customise the style from the
          *              defaultStyles
-         *            - data: A set of key:value pairs to be associated with the template 
+         *            - data: A set of key:value pairs to be associated with the template
          * @return {juxtapo.templates.TemplateItem} Returns the new template
          */
         addTemplate: function(path, imageUrl, settings){
-			if (path instanceof juxtapo.templates.TemplateItem) {
-	            juxtapo.templates.collection.push(path);
-	            return path;				
-			} else {
-				if (typeof path === 'string'){ 
-					path = [path]; 
-				}
-	            var t = new juxtapo.templates.TemplateItem(imageUrl, path, settings);				
-	            juxtapo.templates.collection.push(t);
-	            return t;
-			}
+            if (path instanceof juxtapo.templates.TemplateItem) {
+                juxtapo.templates.collection.push(path);
+                return path;
+            }
+            else {
+                if (typeof path === 'string') {
+                    path = [path];
+                }
+                var t = new juxtapo.templates.TemplateItem(imageUrl, path, settings);
+                juxtapo.templates.collection.push(t);
+                return t;
+            }
         },
         /**
          * This sets the default styles applied to each design template
          * image when added to the page.
          * @param {Object} styles
          */
-		setDefaultStyles : function(styles){
-			juxtapo.templates.TemplateItem.defaultStyles = styles;
-		},
+        setDefaultStyles: function(styles){
+            juxtapo.templates.TemplateItem.defaultStyles = styles;
+        },
         // events
-		/**
-		 * Adds a listener function which gets fired when juxtapo
-		 * needs the configuration to be initialised
-		 * @event
-		 * @example
-		 * juxtapo.initConfig(function(ev){
-		 *		juxtapo.addTemplate('path.htm','image.png',{}); 
-		 * });
-		 * @param {Function} fn(ev)
-		 */
+        /**
+         * Adds a listener function which gets fired when juxtapo
+         * needs the configuration to be initialised
+         * @event
+         * @example
+         * juxtapo.initConfig(function(ev){
+         *		juxtapo.addTemplate('path.htm','image.png',{});
+         * });
+         * @param {Function} fn(ev)
+         */
         initConfig: function(fn){
             $(juxtapo).bind("_initConfig", fn);
         },
-		/**
-		 * Adds a listener to the initComplete event
-		 * @event
-		 * @example
-		 * juxtapo.iniComplete(function(ev){ run code here... });
-		 * @param {Function} fn(ev)
-		 */
+        /**
+         * Adds a listener to the initComplete event
+         * @event
+         * @example
+         * juxtapo.iniComplete(function(ev){ run code here... });
+         * @param {Function} fn(ev)
+         */
         initComplete: function(fn){
             $(juxtapo).bind("_initComplete", fn);
         }
@@ -196,23 +201,23 @@ var juxtapo;
     
     // Methods
     
-	/**
-	 * Listener attached to the keydown event on the body
-	 * @private
-	 */
+    /**
+     * Listener attached to the keydown event on the body
+     * @private
+     */
     juxtapo.onBody_KeyDown = function(e){
         var keycode;
         if (window.event) {
-			keycode = window.event.keyCode;
-		}
-		else {
-			if (e) {
-				keycode = e.which;
-			}
-			else {
-				return true;
-			}
-		}
+            keycode = window.event.keyCode;
+        }
+        else {
+            if (e) {
+                keycode = e.which;
+            }
+            else {
+                return true;
+            }
+        }
         
         juxtapo.eh.logInfo("keycode is: " + keycode); // ##DEBUG
         // Check if user presses Ctl+o or Ctl+right
@@ -246,7 +251,7 @@ var juxtapo;
             return false;
         }
         // nudge designs
-		var pixels = e.shiftKey ? 1 : 25;
+        var pixels = e.shiftKey ? 1 : 25;
         if (e.ctrlKey && keycode === 73) {
             juxtapo.templates.nudge("top", pixels);
             juxtapo.utils.preventDefaultEventAction(e);
