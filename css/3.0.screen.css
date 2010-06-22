@@ -534,6 +534,10 @@ ul.nav-v,
 	margin: 0;
 	padding: 0;
 }
+	.nav-v ul ul,
+	ul.nav-v ul {
+		padding-left: 15px;
+	}
 	.nav-v li {
 		display: block;
 		list-style: none;
