@@ -1,9 +1,9 @@
 ﻿/* 
  * adapted from:
  * http://meyerweb.com/eric/tools/css/reset/ */
-/* v1.0 | 20080212 */
 /*
-    This file is used to allow all browsers to start from the same style properties.
+    This file is used to allow all browsers to start 
+    from the same style properties.
 */
 
 div, span, applet, object, iframe,
@@ -20,7 +20,6 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 	border: 0;
 	font-size: 100%;
 	vertical-align: baseline;
-	position: relative;
 }
 html,body {
 	margin: 0;

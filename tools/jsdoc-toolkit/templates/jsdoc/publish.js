@@ -4,8 +4,8 @@ function publish(symbolSet) {
 		ext:         ".html",
 		outDir:      JSDOC.opt.d || SYS.pwd+"../out/jsdoc/",
 		templatesDir: JSDOC.opt.t || SYS.pwd+"../templates/jsdoc/",
-		symbolsDir:  "symbols/",
-		srcDir:      "symbols/src/"
+		symbolsDir:  "",
+		srcDir:      "src/"
 	};
 	
 	// is source output is suppressed, just display the links to the source file
@@ -16,14 +16,20 @@ function publish(symbolSet) {
 	}
 	
 	// create the folders and subfolders to hold the output
-	IO.mkPath((publish.conf.outDir+"symbols/src").split("/"));
+	IO.mkPath((publish.conf.outDir+"src").split("/"));
+	IO.mkPath(publish.conf.outDir+"css");
+	IO.mkPath(publish.conf.outDir+"images");
 	IO.mkPath(publish.conf.outDir+"lib");
 	
 	// copy lib files
-	IO.copyFile(publish.conf.templatesDir+'static/1.reset.css',publish.conf.outDir+"lib/");
-	IO.copyFile(publish.conf.templatesDir+'static/2.brand.css',publish.conf.outDir+"lib/");
-	IO.copyFile(publish.conf.templatesDir+'static/3.screen.css',publish.conf.outDir+"lib/");
-	IO.copyFile(publish.conf.templatesDir+'static/juxtapo-logo-50.gif',publish.conf.outDir+"lib/");
+	IO.copyFile(publish.conf.templatesDir+'static/1.reset.css',publish.conf.outDir+"css/");
+	IO.copyFile(publish.conf.templatesDir+'static/2.brand.css',publish.conf.outDir+"css/");
+	IO.copyFile(publish.conf.templatesDir+'static/3.screen.css',publish.conf.outDir+"css/");
+	IO.copyFile(publish.conf.templatesDir+'static/docs.css',publish.conf.outDir+"css/");
+
+	IO.copyFile(publish.conf.templatesDir+'images/body-bg.png',publish.conf.outDir+"images/");
+	IO.copyFile(publish.conf.templatesDir+'images/juxtapo-logo.png',publish.conf.outDir+"images/");
+	IO.copyFile(publish.conf.templatesDir+'images/feed-icon-12x12-orange.gif',publish.conf.outDir+"images/");
 		
 	// used to allow Link to check the details of things being linked to
 	Link.symbolSet = symbolSet;
@@ -50,7 +56,7 @@ function publish(symbolSet) {
 	var files = JSDOC.opt.srcFiles;
  	for (var i = 0, l = files.length; i < l; i++) {
  		var file = files[i];
- 		var srcDir = publish.conf.outDir + "symbols/src/";
+ 		var srcDir = publish.conf.outDir + "src/";
 		makeSrcFile(file, srcDir);
  	}
  	
@@ -74,7 +80,7 @@ function publish(symbolSet) {
 	}
 	
 	// create a class index, displayed in the left-hand column of every class page
-	Link.base = "../";
+	Link.base = "";
  	publish.classesIndex = classesTemplate.process(classes); // kept in memory
 	
 	// create each of the class pages
@@ -87,7 +93,7 @@ function publish(symbolSet) {
 		var output = "";
 		output = classTemplate.process(symbol);
 		
-		IO.saveFile(publish.conf.outDir+"symbols/", ((JSDOC.opt.u)? Link.filemap[symbol.alias] : symbol.alias) + publish.conf.ext, output);
+		IO.saveFile(publish.conf.outDir, ((JSDOC.opt.u)? Link.filemap[symbol.alias] : symbol.alias) + publish.conf.ext, output);
 	}
 	
 	// regenerate the index with different relative links, used in the index pages

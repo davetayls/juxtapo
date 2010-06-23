@@ -1,60 +1,69 @@
-﻿body {
-	color: #333;
-    font-family: Arial, Sans-Serif;
-    letter-spacing: -0.05em;
-    font-size: 0.8em;
-}
-
-a,a:link,a:visited { color: #00ADEF; text-decoration: underline; }
-a:hover { text-decoration: none; }
-a img { border: none; }
-
-p { 
-	font-size:1em;
-	letter-spacing:0.02em;
-	line-height:1.35em;
-	margin:0 0 10px;
-	padding:0;
-}
-
-h1{}
-h2 {
-	color:#84D725;
-	font-family:trebuchet MS;
-	font-size:1.7em;
-	font-weight:normal;
-	letter-spacing:-0.008em;
-	line-height: 1.15em;	
-	margin-bottom: 10px;
-}
-h3 {
-	font-size: 1.1em;
-	font-weight: normal;
-	text-transform: uppercase;
-}
-h5 {
-	margin: 0 0 5px;
-}
-pre {
-	background-color:#333333;
-	border-left:5px solid #777777;
-	color:#CCCCCC;
-	display: block;
-	font-size:1.3em;
-	margin:10px 0;
-	overflow:auto;
-	padding:10px;
-}
-
 /*
-	lists
------------------------------------------------------------*/
-ol, ul      { padding: 5px 0 5px 20px; }
-li {
-	font-size:1em;
-	letter-spacing:0.02em;
-	line-height:1.35em;	
+    2.brand.css
+    - These styles are used to set basic elements to fit to a brand.
+    - It should be able to be added to a page no matter what the media type to set the brand.
+    - It must not contain layout styles [ie margins,position,padding,display]. It would be used for: colors, text, fonts
+    - It must not contain ids, only elements and classes
+    
+    These elements should be in a rough alphabetical order
+*/
+
+/* Document Elements - (alphabetical order) */
+a, 
+a:link      { color: #00ADEF; }
+a:visited	{} 
+a:hover, 
+a:active,
+a:focus     { text-decoration: none; }
+
+abbr        {}
+address     { }
+body        { 
+	font-family: Arial, Helvetica, "Nimbus Sans L", "Free Sans", Sans-Serif;
+	color: #ddd; 
+	font-size: 0.75em;
+	
+	/* Ref: http://articles.sitepoint.com/article/eight-definitive-font-stacks/2 */
+	/* Rich Helvetica/Arial-based sans serif stack  	font-family: Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif; */
+	/* Verdana-based sans serif							font-family: Corbel, "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", "Bitstream Vera Sans", "Liberation Sans", Verdana, "Verdana Ref", sans-serif; */
+	/* traditional Garamond-based serif stack			font-family: "Palatino Linotype", Palatino, Palladio, "URW Palladio L", "Book Antiqua", Baskerville, "Bookman Old Style", "Bitstream Charter", "Nimbus Roman No9 L", Garamond, "Apple Garamond", "ITC Garamond Narrow", "New Century Schoolbook", "Century Schoolbook", "Century Schoolbook L", Georgia, serif; */
+	/* Trebuchet-based sans serif						font-family: "Segoe UI", Candara, "Bitstream Vera Sans", "DejaVu Sans", "Bitstream Vera Sans", "Trebuchet MS", Verdana, "Verdana Ref", sans-serif; */
+	/* monospace										font-family: Consolas, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", Monaco, "Courier New", Courier, monospace; */
 }
+body.acc-med	{ font-size: 0.92em; }
+body.acc-large	{ font-size: 1.1em; }
+
+code 		{ background: #333; font-size: 1.1em; padding: 0 3px; }
+pre code	{ border: dotted 1px #ccc; display: block; margin: 0 0 15px 0; padding: 10px; }
+
+dl          {}
+dt          { font-weight: bold; }
+dd          { }
+
+fieldset    {}
+
+h1          { color:#fff; font-size: 2.1em; padding: 8px 0 6px; }
+h2     		{ color: #00ADEF; font-size: 1.9em; font-weight: normal; line-height: 0.9em; padding: 3px 0 4px; }
+h3			{ color:#fff; font-size: 1.2em; padding-bottom: 3px; }
+h4		    { color:#fff; padding-bottom: 3px; }
+h5          { color:#fff; padding-bottom: 3px; }
+h6          { padding-bottom: 3px; }
+
+h2 strong,
+h3 strong   { }
+
+
+input {}
+
+label       { }
+li			{ line-height: 1.5em; }
+ol          { padding: 5px 0 15px 23px; }
+p           { padding-bottom: 5px; line-height: 1.5em; }
+select      { }
+strong      {}
+
+ul          { padding: 0px 0 15px 20px; }
+ul li       { }
 ul li li    { list-style-image: none; list-style-type: circle; }
 ul li li li { list-style-image: none; list-style-type: disc; }
 ul li li li li { list-style-image: none; list-style-type: square; }
