@@ -5,9 +5,9 @@ window.QUnitDone = false;
 
 (function($){
 
-var libUrl = juxtapo.utils.resolveAbsoluteUrl(juxtapo.coreJsUrl(), '../lib/');
+var libUrl = juxtapo.utils.getJsLocation('juxtapo.qunit.js');
 juxtapo.utils.requireResource(libUrl + "qunit.css");
-//juxtapo.utils.requireResource(libUrl + "qunit.js");
+juxtapo.utils.requireResource(libUrl + "qunit.js");
 
 var _dropDown = null;
 var selectedTemplateItem;
