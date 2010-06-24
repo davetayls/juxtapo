@@ -1,4 +1,7 @@
 html,body {}
+pre code {
+	font-size: 0.85em;
+}
 #wrapper {
 	background: #000 url('../images/body-bg.png') no-repeat center top;
 	width: auto;
@@ -10,29 +13,51 @@ html,body {}
 		width: 60px;		
 	}
 		#logo img {
-			width: 60px;
+			width: 125px;
 		}
 
 #content {
-	padding: 5em 5px;
+	padding: 110px 5px 10px;
 }
 #nav-primary {
 	height: 48px;
-	padding-left: 87px;
+	padding-left: 0px;
 	width: 100%;
 }
+	#nav-primary ul {
+		padding-left: 145px;
+	}
 	#nav-primary li a {
-		font-size: 1em;
 		letter-spacing: 0.01em;
 		padding: 3px 5px;
 	}
 	#nav-primary li.nav-selected a {
-		padding-bottom: 12px;
+		border: solid 1px #fff;
+		padding-bottom: 4px;
 	}
 
+.textRegion {
+	border: none;
+	padding: 0;
+}
 
+.cp-promo-controller li,
+.cp-promo-controller li a {
+	float: none;
+	width: auto;
+}
+.cp-promo-carousel {
+	height: 820px;
+	width: 453px;
+}
+.cp-promo-active .cp-promo-carousel .cp-promo-item {
+	width:453px;
+}
 
-	.lay-wideL .lay-wideL-left { 
+	.lay-wideL .lay-wideL-left, 
+	.lay-wideL .lay-wideL-right,
+	.lay-wideR .lay-wideR-left, 
+	.lay-wideR .lay-wideR-right { 
 		float: none; 
 		width: auto; 
 	}
@@ -40,6 +65,5 @@ html,body {}
 		.lay-wideL .lay-wideL-left embed {
 			width: 100%;
 		}
-	.lay-wideL .lay-wideL-right { 
-		float: none; width: auto; 
-	}
+
+	
