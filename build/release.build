@@ -3,14 +3,12 @@
 
 	<property name="project.directory" value="${directory::get-current-directory()}" />
 	<property name="release.directory" value="${project.directory}\release" />
-	<property name="combiner.exe" value="${release.directory}\combiner\win\commandline\juxtapo-combiner.exe" />
-	<property name="combiner.directory" value="${project.directory}\combiner\win\core" />
-	<property name="combiner.solution.file" value="${combiner.directory}\juxtapo-combiner.sln" />
 	<property name="project.tests.directory" value="${project.directory}\tests" />
 	<property name="combiner.testsuite.directory" value="${project.directory}\tests\juxtapo-tests" />
 	<property name="combiner.testsuite.solution.file" value="${combiner.testsuite.directory}\juxtapo-testsuite.sln" />
 	<property name="tools.directory" value="${project.directory}\tools" />
 	<property name="nunit.exe" value="${project.directory}\tools\nunit\nunit-console.exe" />
+	<property name="combiner.exe" value="${tools.directory}\juxtapo-combiner\Juxtapo.Combiner.Console.exe" />
 	<property name="msbuild.exe" value="${environment::get-variable('WINDIR')}\Microsoft.NET\Framework\v3.5\msbuild.exe" />
 	<property name="selenium-server.jar" value="${project.directory}\tools\selenium\selenium-server-1.0.3\selenium-server.jar" />	
 
@@ -44,20 +42,12 @@
 		<echo message="Compiling solutions" />
 
 		<echo message="${project.directory}" />
-		<exec program="${msbuild.exe}" commandline="${combiner.solution.file} /t:Rebuild /p:Configuration=${project.build.configuration} /v:minimal" />
 		<exec program="${msbuild.exe}" commandline="${combiner.testsuite.solution.file} /t:Rebuild /p:Configuration=${project.build.configuration} /v:minimal" />
 
 		<echo message="Finished compiling solutions" />
 	</target>
 
 	<target name="copy-package-source">
-
-		<copy file="${combiner.directory}\juxtapo-combiner\bin\${project.build.configuration}\juxtapo-combiner.exe" todir="${release.directory}\combiner\win\commandline" />
-		<copy todir="${release.directory}\combiner">
-			<fileset basedir="${project.directory}\combiner">
-				<include name="*.*"/>
-			</fileset>
-		</copy>
 
 		<echo message="copying core files"/>
 		<copy todir="${release.directory}\core">
@@ -85,7 +75,7 @@
 
 	<target name="combine-javascript-sources">
 		<echo message="combining javascript core" />
-		<exec program="${combiner.exe}" commandline="-root:core\ -vars:JUXTAPO_VERSION=${project.version.major}.${project.version.minor}" workingdir="${release.directory}" />
+		<exec program="${combiner.exe}" commandline="core\ -v:JUXTAPO_VERSION=${project.version.major}.${project.version.minor}" workingdir="${release.directory}" />
 		<copy file="${release.directory}\core\juxtapo.js" tofile="${release.directory}\core\juxtapo.dev.js"/>
 	</target>
 	
