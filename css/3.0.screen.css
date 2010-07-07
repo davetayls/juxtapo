@@ -89,6 +89,8 @@ body {
 }
 	#ticks .cp-shareLinks {
 		float: right;
+		margin-right: 15px;
+		width: 200px;
 	}
 	
 #footer {
@@ -170,8 +172,14 @@ li.cp-contributor {
 	.cp-contributor h3 {
 		color: #000;
 	}
+	.cp-contributor-icons {
+		margin-left: 50px;
+	}
 	.cp-contributor-icons * {
 		vertical-align: middle;
+	}
+	.cp-contributor-icons a {
+		white-space: nowrap;
 	}
 /*
 	cp-numberedPara
@@ -369,6 +377,25 @@ ul.cp-screenShots {
 }
 	.cp-shareLinks * {
 		color: #000 !important;
+	}
+
+/*
+	cp-subcribe
+---------------------------------------------------*/
+.cp-subcribe {
+	clear: both;
+	font-size: 1.2em;
+	line-height: 1em;
+	padding: 15px;
+	text-align: center;
+}
+	.cp-subcribe img {
+		float: left;
+	}
+	.cp-subcribe a {
+		color: white !important;
+		font-weight: bold;
+		text-decoration: none !important;
 	}
 
 /*
