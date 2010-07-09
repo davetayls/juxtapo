@@ -58,7 +58,6 @@
 			for (var i=0;i<scriptFiles.length;i+=1){
 				var scriptTag = scriptFiles[i];
 				var scriptFileName = scriptTag.src.substring(scriptTag.src.lastIndexOf("/")+1).toLowerCase();
-				//scriptFileName = scriptFileName.split("?")[0];
 				if (jsFileName.test(scriptFileName)){
 					return scriptTag.src.substring(0,scriptTag.src.lastIndexOf("/")+1);
 				}
