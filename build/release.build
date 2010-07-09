@@ -1,7 +1,8 @@
 <?xml version="1.0"?>
 <project name="juxtapo-release" xmlns="http://nant.sf.net/release/0.85/nant.xsd">
 
-	<property name="project.directory" value="${directory::get-current-directory()}" />
+	<property name="current.directory" value="${directory::get-current-directory()}" />
+	<property name="project.directory" value="${directory::get-parent-directory(current.directory)}" />
 	<property name="release.directory" value="${project.directory}\release" />
 	<property name="project.tests.directory" value="${project.directory}\tests" />
 	<property name="combiner.testsuite.directory" value="${project.directory}\tests\juxtapo-tests" />

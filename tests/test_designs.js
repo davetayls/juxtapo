@@ -2,9 +2,19 @@ juxtapo.initComplete(function(){
     module("templates");
     
     test("getTemplateFromUrl", function(){
-        ok(juxtapo.templates.getTemplateFromUrl("test.htm"), "We should get image settings back");
-        ok(juxtapo.templates.getTemplateFromUrl("TeSt.htm"), "url should be case insensitive");
-        same(juxtapo.templates.getTemplateFromUrl("nofile.htm"), juxtapo.templates.collection[0], "When there is no match we should get the first template back");
+        ok(
+			juxtapo.templates.getTemplateFromUrl("test.htm"), 
+			"We should get image settings back"
+		);
+        ok(
+			juxtapo.templates.getTemplateFromUrl("TeSt.htm"), 
+			"url should be case insensitive"
+		);
+        same(
+			juxtapo.templates.getTemplateFromUrl("nofile.htm"), 
+			juxtapo.templates.collection[0], 
+			"When there is no match we should get the first template back"
+		);
         
     });
     
