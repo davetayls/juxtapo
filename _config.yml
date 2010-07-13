@@ -1,7 +1,7 @@
 auto: true
 permalink: /blog/:year/:month/:day/:title
-latest_stable_version: 1.0b
-latest_stable_url: http://github.com/downloads/davetayls/juxtapo/juxtapo-v1.0b-2010-6-22.zip
+latest_stable_version: 1.0
+latest_stable_url: http://github.com/downloads/davetayls/juxtapo/juxtapo-v1.0.zip
 exclude:
 - startjekyll.bat
 - /portfolio
