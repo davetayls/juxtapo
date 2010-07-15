@@ -214,7 +214,7 @@
 		},
 		resolveAbsoluteUrl : function(baseUrl,relativeUrl) {
 		    if (relativeUrl.substr(0, 1) === '/') {
-		        return baseUrl + relativeUrl; 
+		        return baseUrl.substring(0,baseUrl.indexOf('/',baseUrl.indexOf('//') + 2)) + relativeUrl; 
 		    }else if (self.isAbsoluteUrl(relativeUrl)) {
 		        return relativeUrl;
 		    } else {
