@@ -100,6 +100,28 @@ juxtapo.initComplete(function(){
 			start();
 		},100);*/
 	});
+	test('resolveAbsoluteUrl',4,function(){
+		equals(
+				juxtapo.utils.resolveAbsoluteUrl('http://test.com/','test2.html'),
+				'http://test.com/test2.html',
+				'when passing a basic url and relative file it concatenates the two'
+		);
+		equals(
+				juxtapo.utils.resolveAbsoluteUrl('http://test.com/test.html','/test2.html'),
+				'http://test.com/test2.html',
+				'when passing a root url with a file and a url starting with / it truncates the url to the domain'
+		);
+		equals(
+				juxtapo.utils.resolveAbsoluteUrl('http://test.com/test/test.html','/test2.html'),
+				'http://test.com/test2.html',
+				'when passing a root url with a file and a url starting with / it truncates the url to the domain removing sub folders'
+		);
+		equals(
+				juxtapo.utils.resolveAbsoluteUrl('http://test.com/test/test.html','test2.html'),
+				'http://test.com/test/test2.html',
+				'when passing a root url with sub folders and a static ref it truncates to the last folder'
+		);
+	});
 	test("getKeyCombination ", function(){
 	    same(juxtapo.utils.getKeyCombination("23+shift"), {
 	        ctrl: false,
