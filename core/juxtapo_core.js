@@ -1,6 +1,4 @@
-var juxtapo;
-
-(function($){
+(function($,global){
 
     /* private */
     var _coreJsUrl = '';
@@ -57,7 +55,7 @@ var juxtapo;
      * @property {Object} plg The namespace for adding plugin specific public methods/properties
      * @property {Object} globalSettings A global namespace for public methods/properties
      */
-    juxtapo = {
+    global.juxtapo = {
         version: '@JUXTAPO_VERSION',
         /**
          * The various states the auto refresh can be in
@@ -276,7 +274,7 @@ var juxtapo;
         return true;
     };
     
-})(jQuery);
+})(jQuery,this);
 
 if (window.addEventListener) {
     window.addEventListener('load', juxtapo.init, false);

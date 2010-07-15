@@ -22,8 +22,14 @@
 	<target 
 		name="generate-release-package" 
 		depends="init,compile-solutions,copy-package-source,combine-javascript-sources,run-tests,generate-package" />
-	<target name="release-no-tests" depends="init,compile-solutions,generate-package" />
-	<target name="run-test-suite" depends="init,compile-solutions,run-tests" />
+	<target 
+		name="release-no-tests" 
+		depends="init,compile-solutions,copy-package-source,combine-javascript-sources,generate-package" />
+		/>
+	<target 
+		name="run-test-suite" 
+		depends="init,compile-solutions,run-tests" />
+		/>
 
 
 	<!--
