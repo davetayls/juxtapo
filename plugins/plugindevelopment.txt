@@ -1,1 +1,1 @@
-Plugin development for juxtapo has been designed to be simple
+For information on developing plugins, please visit: http://juxtapo.net

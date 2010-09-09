@@ -151,9 +151,6 @@
 			event.preventDefault();
 			event.keyCode = 0;
 			event.which = 0;
-			if (event.originalEvent){
-				event.originalEvent.keyCode = 0;
-			}
 		},
 		readCookie : function(name) {
 			var nameEQ = name + "=";

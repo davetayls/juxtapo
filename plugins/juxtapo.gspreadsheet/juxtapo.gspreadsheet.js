@@ -145,6 +145,7 @@ GSpreadsheet.load = function(key, options, callback) {
 
                     juxtapo.addTemplate(row.path, row.imageurl, settings);
                 });
+				juxtapo.templates.changeTo(juxtapo.templates.getTemplateFromUrl(location.href));
             });
         }
     });
