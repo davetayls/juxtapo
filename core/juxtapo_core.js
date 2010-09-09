@@ -1,3 +1,5 @@
+var juxtapo;
+
 (function($,global){
 
     /* private */
@@ -55,7 +57,7 @@
      * @property {Object} plg The namespace for adding plugin specific public methods/properties
      * @property {Object} globalSettings A global namespace for public methods/properties
      */
-    global.juxtapo = {
+    juxtapo = {
         version: '@JUXTAPO_VERSION',
         /**
          * The various states the auto refresh can be in
