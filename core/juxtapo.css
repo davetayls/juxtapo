@@ -207,45 +207,6 @@
 				background-color: #000;
 			}
 
-.juxtapo-thumb.juxtapo-thumb-detailsView {
-	float: none;
-	height: auto;
-	margin:0;
-	width: auto;
-	
-}
-	.juxtapo-thumb-detailsView a.juxtapo-thumb-lnk {
-		background-color: #efefef;
-		border: none;
-		border-top: solid 1px #fff;
-		border-bottom: solid 1px #aaa;
-		height: 30px;
-		padding: 10px 5px;
-		width: auto;
-	}
-		.juxtapo-thumb-detailsView a.juxtapo-thumb-lnk:focus,
-		.juxtapo-thumb-detailsView a.juxtapo-thumb-lnk:active {
-			background-color: #000;
-			border: none;
-			border-top: solid 1px #fff;
-			border-bottom: solid 1px #aaa;
-		}
-	
-	    .juxtapo-thumb-detailsView .juxtapo-thumb-img {
-			height: 30px;
-			float: left;
-			width: 50px;
-	    }
-	    .juxtapo-thumb-detailsView .juxtapo-thumb-img img {
-			height: auto;
-			width: 40px;	    	
-	    } 
-	    .juxtapo-thumb-detailsView span.juxtapo-thumb-caption {
-	    	position: relative;
-			float: left;
-			width: auto;
-	    } 
-
 
 .juxtapo-info { }
 .juxtapo-error,
@@ -294,6 +255,7 @@
 	float: left;
 	line-height: 20px;
 	margin: 0 2px;
+	text-decoration: none;
 }
 	.juxtapo-toolbtn-contents {
 		color: #bbb;

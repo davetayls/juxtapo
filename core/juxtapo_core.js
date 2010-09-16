@@ -88,7 +88,13 @@ var juxtapo;
         currentDesignView: 0,
         currentStatus: 2,
         designVisible: false,
-        plg: {}, // convention for adding plugin specific functionality
+        plg: {
+			add : function(name,settings){
+				if (!this[name]){
+					this[name] = new juxtapo.Plugin(settings);					
+				}
+			}
+		}, // convention for adding plugin specific functionality
         globalSettings: {},
         coreJsUrl: function(){
             if (_coreJsUrl === '') {

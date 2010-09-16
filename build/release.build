@@ -9,12 +9,12 @@
 	<property name="combiner.testsuite.solution.file" value="${combiner.testsuite.directory}\juxtapo-testsuite.sln" />
 	<property name="tools.directory" value="${project.directory}\tools" />
 	<property name="nunit.exe" value="${project.directory}\tools\nunit\nunit-console.exe" />
-	<property name="combiner.exe" value="${tools.directory}\juxtapo-combiner\Juxtapo.Combiner.Console.exe" />
+	<property name="combiner.exe" value="${tools.directory}\Rivet\Rivet.Console.exe" />
 	<property name="msbuild.exe" value="${environment::get-variable('WINDIR')}\Microsoft.NET\Framework\v3.5\msbuild.exe" />
 	<property name="selenium-server.jar" value="${project.directory}\tools\selenium\selenium-server-1.0.3\selenium-server.jar" />	
 
 	<property name="project.version.major" value="1" />
-	<property name="project.version.minor" value="1" />
+	<property name="project.version.minor" value="1.1" />
 	<property name="project.version.revision" value="${datetime::get-year(datetime::now())}-${datetime::get-month(datetime::now())}-${datetime::get-day(datetime::now())}" />
 	<property name="project.version" value="${project.version.major}.${project.version.minor}-${project.version.revision}" />
 	<property name="project.build.configuration" value="Release" />

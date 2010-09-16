@@ -1,7 +1,7 @@
 ﻿/*
  * All of the items this file dynamically adds
  * get combined and compressed on deployment.
- * @juxtapo.combiner
+ * @rivet
  * 
  */
 (function(){
