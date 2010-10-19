@@ -1,7 +1,7 @@
 /*
  juxtapo.thumbs
  -----------------------------------------------------------*/
-(function(){
+(function($){
 
 	var self;
     var _dropDown = null;
@@ -95,6 +95,6 @@
 		}
     };
     
-})();
+})(jQuery);
 
 

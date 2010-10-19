@@ -1,4 +1,4 @@
-(function(){
+(function($){
 
 	var _dropDown = null;
 
@@ -16,18 +16,20 @@
 		'<tr><td>Move Right</td><td>Ctrl+L [+shift for nudge]</td></tr>' +
 		'<tr><td>Move Up</td><td>Ctrl+I [+shift for nudge]</td></tr>' +
 		'<tr><td>Move Down</td><td>Ctrl+K [+shift for nudge]</td></tr>' +
+		'<tr><td>Previous Design</td><td>Ctrl+Up</td></tr>' +
+		'<tr><td>Next Design</td><td>Ctrl+Down</td></tr>' +
 		'<tr><td>Transparency Back</td><td>Ctrl+U</td></tr>' +
 		'<tr><td>Transparency Forward</td><td>Ctrl+O</td></tr>' +
 		'<tr><td>Auto Refresh Play/Stop</td><td>Ctrl+Space</td></tr>' +
 		'</table>' +
 		'<h4>Documention</h4>' +
-		'<ul><li><a href="'+ juxtapo.utils.resolveAbsoluteUrl(juxtapo.coreJsUrl(),'../docs/index.htm') + '">juxtapo API documentation</a></ul>';
+		'<ul><li><a href="'+ juxtapo.utils.resolveAbsoluteUrl(juxtapo.coreJsUrl(),'../docs/index.html') + '">juxtapo API documentation</a></ul>';
 		
 		_dropDown.contentHtml(helpHtml);
 		
 	});
 
 
-})();
+})(jQuery);
 
 

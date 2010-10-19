@@ -1,6 +1,7 @@
 ﻿/*
  *	Adds on design info functionality 
  */
+(function($){
 juxtapo.plg.designInfo = new juxtapo.Plugin({
 	_init: function(){
         var info = new juxtapo.ui.DropDown({style:{height: '150px',width:'300px'}});
@@ -24,3 +25,4 @@ juxtapo.plg.designInfo = new juxtapo.Plugin({
         });
 	}
 });
+})(jQuery);

@@ -2,7 +2,7 @@
  * @author david
  * @namespace juxtapo.templates
  */
-(function() {
+(function($) {
 
 	// properties
 	var _overlayImageElement = null;
@@ -460,4 +460,4 @@
 		'margin-left' : '-550px'
 	};
 
-})();
+})(jQuery);

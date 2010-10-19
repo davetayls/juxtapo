@@ -1,7 +1,7 @@
 /*
  * juxtapo.control
  */
-(function(){
+(function($){
 	/**
 	 * The control name
 	 * @namespace
@@ -83,4 +83,4 @@
 		}
 	};
 	
-})();
+})(jQuery);

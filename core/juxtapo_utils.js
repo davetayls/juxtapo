@@ -1,4 +1,4 @@
-(function(){
+(function($){
 	var self;
 	/**
 	 * Utils namespace which contains useful functions
@@ -270,4 +270,4 @@
 		return juxtapo.utils.String.contains(this,containing);
 	};
 	
-})();
+})(jQuery);

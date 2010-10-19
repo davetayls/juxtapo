@@ -1,7 +1,7 @@
 ﻿/*
  *	Adds on different views of the template designs
  */
-(function(){
+(function($){
 
 if (!juxtapo.plg['views']) {
 	var libUrl = juxtapo.utils.getJsLocation('juxtapo.views.js');
@@ -44,4 +44,4 @@ juxtapo.plg.add('views', {
 	}
 });
 
-})();
+})(jQuery);
