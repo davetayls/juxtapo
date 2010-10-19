@@ -14,7 +14,7 @@
 	<property name="selenium-server.jar" value="${project.directory}\tools\selenium\selenium-server-1.0.3\selenium-server.jar" />	
 
 	<property name="project.version.major" value="1" />
-	<property name="project.version.minor" value="1.1" />
+	<property name="project.version.minor" value="2" />
 	<property name="project.version.revision" value="${datetime::get-year(datetime::now())}-${datetime::get-month(datetime::now())}-${datetime::get-day(datetime::now())}" />
 	<property name="project.version" value="${project.version.major}.${project.version.minor}-${project.version.revision}" />
 	<property name="project.build.configuration" value="Release" />

@@ -42,6 +42,10 @@
 	    .juxtapo-thumb-detailsView .juxtapo-thumb:hover span.juxtapo-thumb-caption {
 	    	background: #bbb;
 	    }
-			.juxtapo-thumb-detailsView span.juxtapo-thumb-caption a {
+			.juxtapo-thumb-detailsView span.juxtapo-thumb-caption a,
+			.juxtapo-thumb-detailsView span.juxtapo-thumb-caption a:link,
+			.juxtapo-thumb-detailsView span.juxtapo-thumb-caption a:active,
+			.juxtapo-thumb-detailsView span.juxtapo-thumb-caption a:visited {
+				color: #000 !important;
 				display: block;
 			}
