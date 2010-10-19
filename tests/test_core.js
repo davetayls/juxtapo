@@ -1,3 +1,4 @@
+(function($){
 if (juxtapo.coreJsUrl().indexOf('coverage') > -1){
 	juxtapo.addPlugins(['../../plugins/juxtapo.views/juxtapo.views.js']);
 }else{
@@ -219,3 +220,4 @@ test('Example plugins',function(){
 		'The gspreadsheet plugin should have initComplete set to true'
 	);
 });
+})(jQuery);

@@ -1,3 +1,4 @@
+(function($){
 juxtapo.initComplete(function(){
     module("Error handling");
     test("init", function(){
@@ -20,3 +21,4 @@ juxtapo.initComplete(function(){
     });
 });          
 
+})(jQuery);

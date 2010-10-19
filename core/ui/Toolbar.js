@@ -1,4 +1,4 @@
-(function(){	
+(function($){	
 	/**
 	 * Toolbar ui control which can be added to the contents of a dropdown.
 	 * @class Represents a Toolbar control
@@ -29,4 +29,4 @@
 		},
 		settings : {}
 	};
-})();
+})(jQuery);

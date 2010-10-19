@@ -1,3 +1,4 @@
+(function($){
 juxtapo.initComplete(function(){
     module("Thumbs");
     test("dropDown", function(){
@@ -28,3 +29,4 @@ juxtapo.initComplete(function(){
     });
 });          
 
+})(jQuery);

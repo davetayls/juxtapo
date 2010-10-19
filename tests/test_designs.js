@@ -1,3 +1,4 @@
+(function($){
 juxtapo.initComplete(function(){
     module("templates");
     
@@ -143,3 +144,4 @@ juxtapo.initComplete(function(){
 	});
 });          
 
+})(jQuery);
