@@ -247,16 +247,17 @@
 		 * @param {String} dir This can be 'top','right','bottom','left'
 		 * @param {Number} pixels The number of pixels to move the image by
 		 */
-		nudge : function(dir, pixels) {
+		nudge: function(dir, pixels) {
 			if (dir === "") {
 				return false;
 			}
 			if (typeof(pixels) === "undefined") {
 				pixels = 1;
 			}
-			var $img = $(this.overlayImageElement());
+			var img = this.overlayImageElement(),
+                $img = $(img);
 			var horizClass = 'margin-left';
-			if ($img.css('left').indexOf('%') < 0){
+			if (img.style.left.indexOf('%') < 0){
 				if ($img.css('right') !== 'auto'){
 					horizClass = 'right';
 				}else{
