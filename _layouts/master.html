@@ -3,13 +3,13 @@
     <head>
         <title>{{ page.title }}</title>
         <meta name="description" content="Juxtapo Front End Tools, in browser tools to assist turning templates in to html and css" />
-        <link href="lib/jquery-ui/css/dark-hive/jquery-ui-1.8.custom.css" rel="stylesheet" type="text/css" />
-        <link href="/css/1.reset.css" rel="stylesheet" type="text/css" />
-        <link href="/css/2.brand.css" rel="stylesheet" type="text/css" />
-        <link href="/css/3.0.screen.css" rel="stylesheet" type="text/css" />
-        <link href="/css/smallscreen.css" media="screen and (max-width:600px)" rel="stylesheet" type="text/css" />
+        <link href="{{ page.subfolder }}lib/jquery-ui/css/dark-hive/jquery-ui-1.8.custom.css" rel="stylesheet" type="text/css" />
+        <link href="{{ page.subfolder }}css/1.reset.css" rel="stylesheet" type="text/css" />
+        <link href="{{ page.subfolder }}css/2.brand.css" rel="stylesheet" type="text/css" />
+        <link href="{{ page.subfolder }}css/3.0.screen.css" rel="stylesheet" type="text/css" />
+        <link href="{{ page.subfolder }}css/smallscreen.css" media="screen and (max-width:600px)" rel="stylesheet" type="text/css" />
 		
-		<link href="/lib/jquery-lightbox-0.5/css/jquery.lightbox-0.5.css" media="screen" rel="stylesheet" type="text/css" />
+		<link href="{{ page.subfolder }}lib/jquery-lightbox-0.5/css/jquery.lightbox-0.5.css" media="screen" rel="stylesheet" type="text/css" />
 		
         <link rel="shortcut icon" href="http://www.the-taylors.org/favicon.ico" />
         <link rel="bookmark icon" href="http://www.the-taylors.org/favicon.ico" />
@@ -20,13 +20,13 @@
         <!--[if lte IE 8]>
             <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
-        <script type="text/javascript" src="/lib/jquery-1.4.2.min.js"></script>
-        <script type="text/javascript" src="/lib/jquery-ui/js/jquery-ui-1.8.custom.min.js"></script>
-        <script type="text/javascript" src="/lib/jquery.promo.js"></script>
-		<script type="text/javascript" src="/lib/jquery-lightbox-0.5/js/jquery.lightbox-0.5.min.js"></script>
-        <script type="text/javascript" src="/js/jxweb.js"></script>
-        <script type="text/javascript" src="/juxtapo/core/juxtapo.js"></script>
-        <script type="text/javascript" src="/juxtapo.config.js"></script>
+        <script type="text/javascript" src="{{ page.subfolder }}lib/jquery-1.4.2.min.js"></script>
+        <script type="text/javascript" src="{{ page.subfolder }}lib/jquery-ui/js/jquery-ui-1.8.custom.min.js"></script>
+        <script type="text/javascript" src="{{ page.subfolder }}lib/jquery.promo.js"></script>
+		<script type="text/javascript" src="{{ page.subfolder }}lib/jquery-lightbox-0.5/js/jquery.lightbox-0.5.min.js"></script>
+        <script type="text/javascript" src="{{ page.subfolder }}js/jxweb.js"></script>
+        <script type="text/javascript" src="{{ page.subfolder }}juxtapo/core/juxtapo.js"></script>
+        <script type="text/javascript" src="{{ page.subfolder }}juxtapo.config.js"></script>
         
 		<meta name= "viewport" content="width=480">
 
