@@ -8,6 +8,6 @@ related: hide
 {% for post in site.posts limit:5 %}
 <div>
 	<h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
-	<p>{{ post.date | date:"%d %b %Y" }}</p>
+	<p>/juxtapo{{ post.date | date:"%d %b %Y" }}</p>
 </div>
 {% endfor %}
