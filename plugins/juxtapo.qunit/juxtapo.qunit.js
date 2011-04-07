@@ -1,5 +1,10 @@
 ﻿/*
- *	Adds on qunit functionality to any page 
+ *	Adds on qunit functionality to any page
+ *
+ *  Set up an array of file paths relative to the juxtapo.js file to load as tests
+ *  juxtapo.globalSettings.qunitTests = [
+ *      '../../tests/test.js'
+ *  ]
  */
 window.QUnitDone = false;
 
@@ -25,7 +30,8 @@ juxtapo.plg.qunit = new juxtapo.Plugin({
 			_dropDown = new juxtapo.ui.DropDown({
 				style: {
 					height: '400px',
-					width: '600px'
+					width: '600px',
+                    overflow: 'auto'
 				}
 			});
 			// qunit html
@@ -34,14 +40,14 @@ juxtapo.plg.qunit = new juxtapo.Plugin({
 				$(_dropDown.contents).append(_qunitHtml);
 			}
 			
-			QUnit.done = function(failures, total){
-				if (failures > 0) {
+			QUnit.done = function(result){
+				if (result.failed > 0) {
 					$(_dropDown.controller).addClass("juxtapo-eh-error");
-					juxtapo.eh.logError("QUnit tests returned " + failures + " failures out of " + total + " tests");
+					juxtapo.eh.logError("QUnit tests returned " + result.failed + " failures out of " + result.total + " tests");
 				}
 				else {
 					$(_dropDown.controller).css("background-color", "#C6E746");
-					_dropDown.text("qunit:" + total + " tests");
+					_dropDown.text("qunit:" + result.total + " tests");
 				}
 				window.QUnitDone = true;
 			};

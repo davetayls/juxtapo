@@ -258,7 +258,7 @@
                 $img = $(img);
 			var horizClass = 'margin-left';
 			if (img.style.left.indexOf('%') < 0){
-				if ($img.css('right') !== 'auto'){
+				if (img.style.right !== '' && img.style.right !== 'auto'){
 					horizClass = 'right';
 				}else{
 					horizClass = 'left';
