@@ -110,7 +110,7 @@ GSpreadsheet.load = function(key, options, callback) {
                         '?alt=json-in-script&callback=' + callbackName);
   script.setAttribute('id', 'jsonScript');
   script.setAttribute('type', 'text/javascript');
-  document.documentElement.firstChild.appendChild(script);
+  document.getElementsByTagName('head')[0].appendChild(script);
 };
 
 /*
